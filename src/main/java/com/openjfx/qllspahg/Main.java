@@ -12,7 +12,7 @@ import static com.openjfx.qllspahg.database.Db.getConnection;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/DangNhap.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/ManHinhChinh.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Đăng nhập");
         stage.setScene(scene);
