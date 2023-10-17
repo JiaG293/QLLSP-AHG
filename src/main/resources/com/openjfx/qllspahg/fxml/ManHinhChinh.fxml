@@ -216,7 +216,7 @@
                                     <Rectangle2D />
                                  </viewport>
                                  <image>
-                                    <Image url="@../images/user/user-solid-60.png" />
+                                    <Image url="@../images/icons/user-solid-60.png" />
                                  </image>
                               </ImageView>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20053331">
