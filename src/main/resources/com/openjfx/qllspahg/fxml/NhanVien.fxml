@@ -349,9 +349,9 @@
                                           <TableView prefHeight="570.0">
                                             <columns>
                                               <TableColumn prefWidth="85.59999996423721" text="Mã nhân viên" />
-                                              <TableColumn prefWidth="64.79998779296875" text="Họ tên" />
-                                                <TableColumn prefWidth="98.40001831054687" text="Phòng ban" />
-                                                <TableColumn prefWidth="114.40005493164062" text="Ngày 01/xx/xxxx">
+                                              <TableColumn prefWidth="190.40005493164062" text="Họ tên" />
+                                                <TableColumn prefWidth="135.199951171875" text="Phòng ban" />
+                                                <TableColumn prefWidth="151.20001220703125" text="Ngày 01/xx/xxxx">
                                                    <columns>
                                                       <TableColumn prefWidth="75.0" text="Đi làm" />
                                                       <TableColumn prefWidth="75.0" text="Tăng ca" />
@@ -772,12 +772,12 @@
                                        <children>
                                           <TableView prefHeight="521.0">
                                              <columns>
-                                                <TableColumn prefWidth="95.99999386072159" text="Mã nhân viên" />
-                                                <TableColumn prefWidth="54.399993896484375" text="Họ tên" />
-                                                <TableColumn prefWidth="98.40001831054687" text="Phòng ban" />
-                                                <TableColumn prefWidth="111.19996643066406" text="Số ngày di làm" />
-                                                <TableColumn prefWidth="160.0" text="Lương chính" />
-                                                <TableColumn prefWidth="374.39996337890625" text="Truy lãnh">
+                                                <TableColumn prefWidth="122.39998775720596" text="Mã nhân viên" />
+                                                <TableColumn prefWidth="157.60006713867188" text="Họ tên" />
+                                                <TableColumn minWidth="8.79998779296875" prefWidth="112.0" text="Phòng ban" />
+                                                <TableColumn minWidth="9.60003662109375" prefWidth="120.79998779296875" text="Số ngày di làm" />
+                                                <TableColumn prefWidth="194.39996337890625" text="Lương chính" />
+                                                <TableColumn prefWidth="296.800048828125" text="Truy lãnh">
                                                    <columns>
                                                       <TableColumn prefWidth="128.00001525878906" text="Bảo hiểm y tế" />
                                                       <TableColumn prefWidth="124.0" text="Bảo hiểm xã hội" />
