@@ -47,7 +47,7 @@ public class ManHinhChinhTestController implements Initializable {
 
     @FXML
     void btnNhanVien(ActionEvent event) throws IOException {
-        AnchorPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/SanPham.fxml")));
+        TabPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/SanPham.fxml")));
         MainView.setCenter(view);
     }
 }
