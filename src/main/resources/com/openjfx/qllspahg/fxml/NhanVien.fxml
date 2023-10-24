@@ -121,7 +121,7 @@
                             <children>
                                 <ImageView fitHeight="160.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../images/avatar.png"/>
+                                        <Image url="@../images/icons/avatar.png"/>
                                     </image>
                                 </ImageView>
                                 <HBox alignment="CENTER_LEFT" spacing="10.0">
