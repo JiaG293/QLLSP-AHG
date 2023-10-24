@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="DangNhap" minHeight="720.0" minWidth="1280.0" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openjfx.qllspahg.gui.DangNhapController">
+<AnchorPane fx:id="DangNhap" minHeight="720.0" minWidth="1280.0" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openjfx.qllspahg.gui.DangNhapController">
    <children>
       <GridPane hgap="20.0" layoutX="899.0" layoutY="228.0" prefHeight="400.0" prefWidth="400.0" vgap="20.0">
         <columnConstraints>
@@ -28,12 +28,12 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField alignment="CENTER" prefHeight="50.0" promptText="Nhập mã nhân sự" style="-fx-border-style: solid inside; -fx-border-width: 0 0 2 0; -fx-border-radius: 5;">
+            <TextField fx:id="tfMaNhanSu" alignment="CENTER" prefHeight="50.0" promptText="Nhập mã nhân sự" style="-fx-border-style: solid inside; -fx-border-width: 0 0 2 0; -fx-border-radius: 5;">
                <font>
                   <Font name="System Italic" size="24.0" />
                </font>
             </TextField>
-            <PasswordField alignment="CENTER" prefHeight="50.0" promptText="Nhập mật khẩu" GridPane.rowIndex="1">
+            <PasswordField fx:id="tfMatKhau" alignment="CENTER" prefHeight="50.0" promptText="Nhập mật khẩu" GridPane.rowIndex="1">
                <font>
                   <Font name="System Italic" size="24.0" />
                </font>
@@ -47,7 +47,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <CheckBox mnemonicParsing="false" text="Ghi nhớ mã nhân sự" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                  <CheckBox fx:id="cboxGhiNho" mnemonicParsing="false" text="Ghi nhớ mã nhân sự" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -59,7 +59,7 @@
                   </Text>
                </children>
             </GridPane>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="350.0" text="Đăng nhập" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+            <Button fx:id="btnDangNhap" mnemonicParsing="false" onAction="#xuLiDangNhap" prefHeight="50.0" prefWidth="350.0" text="Đăng nhập" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets top="-50.0" />
                </GridPane.margin>
