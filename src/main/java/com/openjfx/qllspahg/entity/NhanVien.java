@@ -32,6 +32,15 @@ public class NhanVien {
         this.maPhuCap = maPhuCap;
     }
 
+
+    ///Sample
+    public NhanVien(String maNV, String hoNV, String tenNV, Boolean gioiTinh) {
+        this.maNV = maNV;
+        this.hoNV = hoNV;
+        this.tenNV = tenNV;
+        this.gioiTinh = gioiTinh;
+    }
+
     public ChucVu getChucVuNV() {
         return chucVuNV;
     }
@@ -55,8 +64,6 @@ public class NhanVien {
     public void setMaPhuCap(PhuCap maPhuCap) {
         this.maPhuCap = maPhuCap;
     }
-
-
 
 
     public String getMaNV() {

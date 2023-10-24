@@ -9,6 +9,13 @@ module com.openjfx.qllspahg {
     requires java.sql;
     requires com.microsoft.sqlserver.jdbc;
 
+
+//    exports com.openjfx.qllspahg.dao;
+//    opens com.openjfx.qllspahg.dao to javafx.fxml;
+    exports com.openjfx.qllspahg.database;
+    opens com.openjfx.qllspahg.database to javafx.fxml;
+    exports com.openjfx.qllspahg.entity;
+    opens com.openjfx.qllspahg.entity to javafx.fxml;
     exports com.openjfx.qllspahg.gui;
     opens com.openjfx.qllspahg.gui to javafx.fxml;
     exports com.openjfx.qllspahg;
