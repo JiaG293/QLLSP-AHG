@@ -20,13 +20,22 @@ import java.util.ResourceBundle;
 
 public class ManHinhChinhTestController implements Initializable {
     @FXML
-    private BorderPane MainView;
-
-    @FXML
     private Button btnCongNhan;
 
     @FXML
+    private Button btnHopDong;
+
+    @FXML
     private Button btnNhanVien;
+
+    @FXML
+    private Button btnSanPham;
+
+    @FXML
+    private Button btnThongKe;
+
+    @FXML
+    private BorderPane guiChinh;
 
     @FXML
     private Font x3;
@@ -40,14 +49,32 @@ public class ManHinhChinhTestController implements Initializable {
     }
 
     @FXML
-    void btnCongNhan(ActionEvent event) throws IOException {
-        TabPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/HopDong.fxml")));
-        MainView.setCenter(view);
+    void ChangeSceneCongNhan(ActionEvent event) throws IOException {
+        TabPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/CongNhan.fxml")));
+        guiChinh.setCenter(view);
     }
 
     @FXML
-    void btnNhanVien(ActionEvent event) throws IOException {
+    void ChangeSceneHopDong(ActionEvent event) throws IOException {
+        TabPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/HopDong.fxml")));
+        guiChinh.setCenter(view);
+    }
+
+    @FXML
+    void ChangeSceneNhanVien(ActionEvent event) throws IOException {
+        TabPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/NhanVien.fxml")));
+        guiChinh.setCenter(view);
+    }
+
+    @FXML
+    void ChangeSceneSanPham(ActionEvent event) throws IOException {
         TabPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/SanPham.fxml")));
-        MainView.setCenter(view);
+        guiChinh.setCenter(view);
+    }
+
+    @FXML
+    void ChangeSceneThongKe(ActionEvent event) throws IOException {
+        TabPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/CongNhan.fxml")));
+        guiChinh.setCenter(view);
     }
 }
