@@ -29,6 +29,7 @@ public class Db {
         if (conn != null) {
             try {
                 conn.close();
+                System.out.println("Database close connect");
             } catch (SQLException e) {
                 throw new DbException(e.getMessage());
             }

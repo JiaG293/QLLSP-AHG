@@ -13,6 +13,9 @@ public class SanPham {
         this.giaSP = giaSP;
     }
 
+    public SanPham() {
+    }
+
     public String getMaSP() {
         return maSP;
     }
