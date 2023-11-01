@@ -39,7 +39,7 @@
                                     <HBox alignment="CENTER_LEFT" spacing="10.0">
                                        <children>
                                           <Label text="Mã sản phẩm:" HBox.hgrow="ALWAYS" />
-                                          <TextField prefHeight="26.0" prefWidth="227.0" HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="tfMaSP" prefHeight="26.0" prefWidth="227.0" HBox.hgrow="ALWAYS" />
                                        </children>
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -51,13 +51,13 @@
                                        </padding>
                                        <children>
                                           <Label text="Tên sản phẩm:" HBox.hgrow="ALWAYS" />
-                                          <TextField prefHeight="26.0" prefWidth="172.0" HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="tfTenSP" prefHeight="26.0" prefWidth="172.0" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" spacing="10.0">
                                        <children>
                                           <Label text="Giá sản phẩm:" HBox.hgrow="ALWAYS" />
-                                          <TextField prefHeight="26.0" prefWidth="172.0" HBox.hgrow="ALWAYS">
+                                          <TextField fx:id="tfGiaSP" prefHeight="26.0" prefWidth="172.0" HBox.hgrow="ALWAYS">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -70,7 +70,7 @@
                                     <HBox alignment="CENTER_LEFT" spacing="10.0">
                                        <children>
                                           <Label text="Loại sản phẩm:" HBox.hgrow="ALWAYS" />
-                                          <ComboBox prefHeight="26.0" prefWidth="183.0" HBox.hgrow="ALWAYS" />
+                                          <ComboBox fx:id="cbxLoaiSP" prefHeight="26.0" prefWidth="183.0" HBox.hgrow="ALWAYS" />
                                        </children>
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -84,7 +84,7 @@
                      <bottom>
                         <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <items>
-                              <Button mnemonicParsing="false" text="Thêm sản phẩm">
+                              <Button mnemonicParsing="false" onAction="#themSanPham" text="Thêm sản phẩm">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -93,7 +93,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button mnemonicParsing="false" text="Xóa sản phẩm">
+                              <Button mnemonicParsing="false" onAction="#xoaSanPham" text="Xóa sản phẩm">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -124,10 +124,10 @@
                            <content>
                               <TableView fx:id="sanPhamTableView" editable="true" tableMenuButtonVisible="true">
                                  <columns>
-                                    <TableColumn prefWidth="36.0" text="STT" />
+                                    <TableColumn fx:id="sttSPColumn" prefWidth="36.0" text="STT" />
                                     <TableColumn fx:id="maSPColumn" minWidth="-1.0" prefWidth="180.0" text="Mã sản phẩm" />
                                     <TableColumn fx:id="tenSPColumn" minWidth="-1.0" prefWidth="257.6000061035156" text="Tên sản phẩm" />
-                                    <TableColumn minWidth="-1.0" prefWidth="119.0" text="Phân loại" />
+                                    <TableColumn fx:id="loaiSPColumn" minWidth="-1.0" prefWidth="119.0" text="Phân loại" />
                                     <TableColumn fx:id="giaSPColumn" minWidth="-1.0" prefWidth="101.0" text="Giá sản phẩm" />
                                  </columns>
                               </TableView>
@@ -177,7 +177,7 @@
                      <children>
                         <ToolBar nodeOrientation="LEFT_TO_RIGHT">
                            <items>
-                              <Button mnemonicParsing="false" text="Làm mới">
+                              <Button mnemonicParsing="false" onAction="#lamMoiDSSanPham" text="Làm mới">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
