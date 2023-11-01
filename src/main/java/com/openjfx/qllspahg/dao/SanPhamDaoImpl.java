@@ -12,15 +12,16 @@ import java.sql.Statement;
 
 //Thuc thi va xu li sql o day
 public class SanPhamDaoImpl implements SanPhamDao<SanPham> {
+
     //Khoi tao doi tuong - goi ham truoc khi muon goi cac ham khac
-    public static SanPhamDaoImpl getInstance(){
+    public static SanPhamDaoImpl getInstance() {
         return new SanPhamDaoImpl();
     }
 
-    @Override
-    public ObservableList<SanPham> getAllSanPham(){
-        ObservableList<SanPham> list =  FXCollections.observableArrayList();;
+    private ObservableList<SanPham> list = FXCollections.observableArrayList();
 
+    @Override
+    public ObservableList<SanPham> getAllSanPham() {
         try {
             //Tao ket noi voi csdl
             Connection con = Db.getConnection();
@@ -49,12 +50,11 @@ public class SanPhamDaoImpl implements SanPhamDao<SanPham> {
             }
 
             //Dong ket noi voi csdl moi khi thuc thi xong cau lenh truy van
-            Db.closeConnection();
+//            Db.closeConnection();
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
         //Tra ra danh sach doi tuong duoc them vao
         return list;
     }
