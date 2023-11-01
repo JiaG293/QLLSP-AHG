@@ -1,23 +1,23 @@
 package com.openjfx.qllspahg.entity;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.Objects;
 
 public class CongNhan {
     private String maCN;
     private String hoCN;
     private String tenNV;
-    private Boolean gioiTinh;
-    private LocalDate ngaySinh;
+    private boolean gioiTinh;
+    private Date ngaySinh;
     private int sDT;
     private String email;
-    private LocalDate ngayVaoLam;
+    private Date ngayVaoLam;
     private String sTK;
     private ChucVu chucVuCN;
     private ToSanXuat toSanXuat;
     private PhuCap maPhuCap;
 
-    public CongNhan(String maCN, String hoCN, String tenNV, Boolean gioiTinh, LocalDate ngaySinh, int sDT, String email, LocalDate ngayVaoLam, String sTK, ChucVu chucVuCN, ToSanXuat toSanXuat, PhuCap maPhuCap) {
+    public CongNhan(String maCN, String hoCN, String tenNV, boolean gioiTinh, Date ngaySinh, int sDT, String email, Date ngayVaoLam, String sTK, ChucVu chucVuCN, ToSanXuat toSanXuat, PhuCap maPhuCap) {
         this.maCN = maCN;
         this.hoCN = hoCN;
         this.tenNV = tenNV;
@@ -56,19 +56,19 @@ public class CongNhan {
         this.tenNV = tenNV;
     }
 
-    public Boolean getGioiTinh() {
+    public boolean getGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(Boolean gioiTinh) {
+    public void setGioiTinh(boolean gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
-    public LocalDate getNgaySinh() {
+    public Date getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(LocalDate ngaySinh) {
+    public void setNgaySinh(Date ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
@@ -88,11 +88,11 @@ public class CongNhan {
         this.email = email;
     }
 
-    public LocalDate getNgayVaoLam() {
+    public Date getNgayVaoLam() {
         return ngayVaoLam;
     }
 
-    public void setNgayVaoLam(LocalDate ngayVaoLam) {
+    public void setNgayVaoLam(Date ngayVaoLam) {
         this.ngayVaoLam = ngayVaoLam;
     }
 

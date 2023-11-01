@@ -5,12 +5,15 @@ import java.util.Objects;
 public class SanPham {
     private String maSP;
     private String tenSP;
-    private Double giaSP;
+    private double giaSP;
 
-    public SanPham(String maSP, String tenSP, Double giaSP) {
+    public SanPham(String maSP, String tenSP, double giaSP) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.giaSP = giaSP;
+    }
+
+    public SanPham() {
     }
 
     public String getMaSP() {
@@ -29,11 +32,11 @@ public class SanPham {
         this.tenSP = tenSP;
     }
 
-    public Double getGiaSP() {
+    public double getGiaSP() {
         return giaSP;
     }
 
-    public void setGiaSP(Double giaSP) {
+    public void setGiaSP(double giaSP) {
         this.giaSP = giaSP;
     }
 

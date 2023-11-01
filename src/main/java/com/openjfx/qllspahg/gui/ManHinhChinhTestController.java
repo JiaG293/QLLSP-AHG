@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Border;
@@ -19,21 +20,6 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ManHinhChinhTestController implements Initializable {
-    @FXML
-    private Button btnCongNhan;
-
-    @FXML
-    private Button btnHopDong;
-
-    @FXML
-    private Button btnNhanVien;
-
-    @FXML
-    private Button btnSanPham;
-
-    @FXML
-    private Button btnThongKe;
-
     @FXML
     private BorderPane guiChinh;
 
@@ -74,7 +60,7 @@ public class ManHinhChinhTestController implements Initializable {
 
     @FXML
     void ChangeSceneThongKe(ActionEvent event) throws IOException {
-        TabPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/CongNhan.fxml")));
+        TabPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/ThongKe.fxml")));
         guiChinh.setCenter(view);
     }
 }

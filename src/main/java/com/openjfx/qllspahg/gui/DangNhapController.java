@@ -52,7 +52,7 @@ public class DangNhapController implements Initializable {
         }
 
         if(testUser.equals(username) && testPwd.equals(password)){
-            ControlFlow.switchViews(event, "/com/openjfx/qllspahg/fxml/ManHinhChinhTest.fxml", "Màn Hình Chính");
+            ControlFlow.switchViewsSetSize(event, "/com/openjfx/qllspahg/fxml/ManHinhChinhTest.fxml", "Màn Hình Chính", 1600, 900);
         } else{
             Alerts.showConfirmation("Vui lòng nhập lại!", "Mã nhân sự hoặc mật khẩu không chính xác!");
         }
@@ -62,7 +62,8 @@ public class DangNhapController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        tfMaNhanSu.setText(testUser);
+        tfMatKhau.setText(testPwd);
     }
 
 

@@ -4,14 +4,14 @@ import java.util.Objects;
 
 public class PhuCap {
     private String maPhuCap;
-    private Double tienChuyenCan;
-    private Double tienNangSuat;
-    private Double tienDienThoai;
-    private Double tienNhaTro;
-    private Double tienConNho;
+    private double tienChuyenCan;
+    private double tienNangSuat;
+    private double tienDienThoai;
+    private double tienNhaTro;
+    private double tienConNho;
     private String loaiPhuCap;
 
-    public PhuCap(String maPhuCap, Double tienChuyenCan, Double tienNangSuat, Double tienDienThoai, Double tienNhaTro, Double tienConNho, String loaiPhuCap) {
+    public PhuCap(String maPhuCap, double tienChuyenCan, double tienNangSuat, double tienDienThoai, double tienNhaTro, double tienConNho, String loaiPhuCap) {
         this.maPhuCap = maPhuCap;
         this.tienChuyenCan = tienChuyenCan;
         this.tienNangSuat = tienNangSuat;
@@ -29,43 +29,43 @@ public class PhuCap {
         this.maPhuCap = maPhuCap;
     }
 
-    public Double getTienChuyenCan() {
+    public double getTienChuyenCan() {
         return tienChuyenCan;
     }
 
-    public void setTienChuyenCan(Double tienChuyenCan) {
+    public void setTienChuyenCan(double tienChuyenCan) {
         this.tienChuyenCan = tienChuyenCan;
     }
 
-    public Double getTienNangSuat() {
+    public double getTienNangSuat() {
         return tienNangSuat;
     }
 
-    public void setTienNangSuat(Double tienNangSuat) {
+    public void setTienNangSuat(double tienNangSuat) {
         this.tienNangSuat = tienNangSuat;
     }
 
-    public Double getTienDienThoai() {
+    public double getTienDienThoai() {
         return tienDienThoai;
     }
 
-    public void setTienDienThoai(Double tienDienThoai) {
+    public void setTienDienThoai(double tienDienThoai) {
         this.tienDienThoai = tienDienThoai;
     }
 
-    public Double getTienNhaTro() {
+    public double getTienNhaTro() {
         return tienNhaTro;
     }
 
-    public void setTienNhaTro(Double tienNhaTro) {
+    public void setTienNhaTro(double tienNhaTro) {
         this.tienNhaTro = tienNhaTro;
     }
 
-    public Double getTienConNho() {
+    public double getTienConNho() {
         return tienConNho;
     }
 
-    public void setTienConNho(Double tienConNho) {
+    public void setTienConNho(double tienConNho) {
         this.tienConNho = tienConNho;
     }
 

@@ -1,6 +1,6 @@
 package com.openjfx.qllspahg.entity;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.Objects;
 
 public class HopDong {
@@ -9,10 +9,10 @@ public class HopDong {
     private String sDT;
     private String diaChi;
     private String email;
-    private LocalDate ngayKKHD;
-    private LocalDate ngayTLHD;
+    private Date ngayKKHD;
+    private Date ngayTLHD;
 
-    public HopDong(String maHD, String tenKH, String sDT, String diaChi, String email, LocalDate ngayKKHD, LocalDate ngayTLHD) {
+    public HopDong(String maHD, String tenKH, String sDT, String diaChi, String email, Date ngayKKHD, Date ngayTLHD) {
         this.maHD = maHD;
         this.tenKH = tenKH;
         this.sDT = sDT;
@@ -20,6 +20,9 @@ public class HopDong {
         this.email = email;
         this.ngayKKHD = ngayKKHD;
         this.ngayTLHD = ngayTLHD;
+    }
+
+    public HopDong() {
     }
 
     public String getMaHD() {
@@ -62,19 +65,19 @@ public class HopDong {
         this.email = email;
     }
 
-    public LocalDate getNgayKKHD() {
+    public Date getNgayKKHD() {
         return ngayKKHD;
     }
 
-    public void setNgayKKHD(LocalDate ngayKKHD) {
+    public void setNgayKKHD(Date ngayKKHD) {
         this.ngayKKHD = ngayKKHD;
     }
 
-    public LocalDate getNgayTLHD() {
+    public Date getNgayTLHD() {
         return ngayTLHD;
     }
 
-    public void setNgayTLHD(LocalDate ngayTLHD) {
+    public void setNgayTLHD(Date ngayTLHD) {
         this.ngayTLHD = ngayTLHD;
     }
 

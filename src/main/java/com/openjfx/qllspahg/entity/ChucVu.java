@@ -5,9 +5,9 @@ import java.util.Objects;
 public class ChucVu {
     private String maCV;
     private String tenCV;
-    private Double heSoCV;
+    private double heSoCV;
 
-    public ChucVu(String maCV, String tenCV, Double heSoCV) {
+    public ChucVu(String maCV, String tenCV, double heSoCV) {
         this.maCV = maCV;
         this.tenCV = tenCV;
         this.heSoCV = heSoCV;
@@ -29,11 +29,11 @@ public class ChucVu {
         this.tenCV = tenCV;
     }
 
-    public Double getHeSoCV() {
+    public double getHeSoCV() {
         return heSoCV;
     }
 
-    public void setHeSoCV(Double heSoCV) {
+    public void setHeSoCV(double heSoCV) {
         this.heSoCV = heSoCV;
     }
 
