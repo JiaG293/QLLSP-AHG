@@ -1,6 +1,6 @@
 package com.openjfx.qllspahg.entity;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.Objects;
 
 public class BangPhanCongCongNhan {
@@ -8,10 +8,10 @@ public class BangPhanCongCongNhan {
     private CongNhan maCongNhan;
     private CongDoan maCongDoan;
     private int chiTieu;
-    private LocalDate ngayPC;
-    private LocalDate ngayKT;
+    private Date ngayPC;
+    private Date ngayKT;
 
-    public BangPhanCongCongNhan(String maBPCCN, CongNhan maCongNhan, CongDoan maCongDoan, int chiTieu, LocalDate ngayPC, LocalDate ngayKT) {
+    public BangPhanCongCongNhan(String maBPCCN, CongNhan maCongNhan, CongDoan maCongDoan, int chiTieu, Date ngayPC, Date ngayKT) {
         this.maBPCCN = maBPCCN;
         this.maCongNhan = maCongNhan;
         this.maCongDoan = maCongDoan;
@@ -52,19 +52,19 @@ public class BangPhanCongCongNhan {
         this.chiTieu = chiTieu;
     }
 
-    public LocalDate getNgayPC() {
+    public Date getNgayPC() {
         return ngayPC;
     }
 
-    public void setNgayPC(LocalDate ngayPC) {
+    public void setNgayPC(Date ngayPC) {
         this.ngayPC = ngayPC;
     }
 
-    public LocalDate getNgayKT() {
+    public Date getNgayKT() {
         return ngayKT;
     }
 
-    public void setNgayKT(LocalDate ngayKT) {
+    public void setNgayKT(Date ngayKT) {
         this.ngayKT = ngayKT;
     }
 

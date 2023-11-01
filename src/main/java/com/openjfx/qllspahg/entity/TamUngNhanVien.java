@@ -1,15 +1,17 @@
 package com.openjfx.qllspahg.entity;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.Objects;
 
 public class TamUngNhanVien {
     private String maTUNV;
-    private LocalDate ngayTamUng;
+    private Date ngayTamUng;
     private String lyDo;
-    private Double soTienTamUng;
+    private double
+            soTienTamUng;
 
-    public TamUngNhanVien(String maTUNV, LocalDate ngayTamUng, String lyDo, Double soTienTamUng) {
+    public TamUngNhanVien(String maTUNV, Date ngayTamUng, String lyDo, double
+            soTienTamUng) {
         this.maTUNV = maTUNV;
         this.ngayTamUng = ngayTamUng;
         this.lyDo = lyDo;
@@ -24,11 +26,11 @@ public class TamUngNhanVien {
         this.maTUNV = maTUNV;
     }
 
-    public LocalDate getNgayTamUng() {
+    public Date getNgayTamUng() {
         return ngayTamUng;
     }
 
-    public void setNgayTamUng(LocalDate ngayTamUng) {
+    public void setNgayTamUng(Date ngayTamUng) {
         this.ngayTamUng = ngayTamUng;
     }
 
@@ -40,11 +42,13 @@ public class TamUngNhanVien {
         this.lyDo = lyDo;
     }
 
-    public Double getSoTienTamUng() {
+    public double
+    getSoTienTamUng() {
         return soTienTamUng;
     }
 
-    public void setSoTienTamUng(Double soTienTamUng) {
+    public void setSoTienTamUng(double
+                                        soTienTamUng) {
         this.soTienTamUng = soTienTamUng;
     }
 

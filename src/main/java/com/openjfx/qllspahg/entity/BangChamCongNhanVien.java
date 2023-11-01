@@ -1,17 +1,17 @@
 package com.openjfx.qllspahg.entity;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.Objects;
 
 public class BangChamCongNhanVien {
     private String maBCCNV;
     private NhanVien maNhanVien;
-    private LocalDate ngayCC;
-    private Boolean diLam;
-    private Boolean nghiPhep;
-    private Boolean tangCa;
+    private Date ngayCC;
+    private boolean diLam;
+    private boolean nghiPhep;
+    private boolean tangCa;
 
-    public BangChamCongNhanVien(String maBCCNV, NhanVien maNhanVien, LocalDate ngayCC, Boolean diLam, Boolean nghiPhep, Boolean tangCa) {
+    public BangChamCongNhanVien(String maBCCNV, NhanVien maNhanVien, Date ngayCC, boolean diLam, boolean nghiPhep, boolean tangCa) {
         this.maBCCNV = maBCCNV;
         this.maNhanVien = maNhanVien;
         this.ngayCC = ngayCC;
@@ -36,35 +36,35 @@ public class BangChamCongNhanVien {
         this.maNhanVien = maNhanVien;
     }
 
-    public LocalDate getNgayCC() {
+    public Date getNgayCC() {
         return ngayCC;
     }
 
-    public void setNgayCC(LocalDate ngayCC) {
+    public void setNgayCC(Date ngayCC) {
         this.ngayCC = ngayCC;
     }
 
-    public Boolean getDiLam() {
+    public boolean getDiLam() {
         return diLam;
     }
 
-    public void setDiLam(Boolean diLam) {
+    public void setDiLam(boolean diLam) {
         this.diLam = diLam;
     }
 
-    public Boolean getNghiPhep() {
+    public boolean getNghiPhep() {
         return nghiPhep;
     }
 
-    public void setNghiPhep(Boolean nghiPhep) {
+    public void setNghiPhep(boolean nghiPhep) {
         this.nghiPhep = nghiPhep;
     }
 
-    public Boolean getTangCa() {
+    public boolean getTangCa() {
         return tangCa;
     }
 
-    public void setTangCa(Boolean tangCa) {
+    public void setTangCa(boolean tangCa) {
         this.tangCa = tangCa;
     }
 

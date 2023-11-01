@@ -1,6 +1,6 @@
 package com.openjfx.qllspahg.entity;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.Objects;
 
 public class BangChamCongCongNhan {
@@ -8,11 +8,11 @@ public class BangChamCongCongNhan {
     private BangPhanCongCongNhan maBangPhanCongCongNhan;
     private int soLuongLamDuoc;
     private int soLuongLamCa3;
-    private LocalDate ngayCC;
-    private LocalDate ngayKT;
-    private Boolean nghiPhep;
+    private Date ngayCC;
+    private Date ngayKT;
+    private boolean nghiPhep;
 
-    public BangChamCongCongNhan(String maBCCCN, BangPhanCongCongNhan maBangPhanCongCongNhan, int soLuongLamDuoc, int soLuongLamCa3, LocalDate ngayCC, LocalDate ngayKT, Boolean nghiPhep) {
+    public BangChamCongCongNhan(String maBCCCN, BangPhanCongCongNhan maBangPhanCongCongNhan, int soLuongLamDuoc, int soLuongLamCa3, Date ngayCC, Date ngayKT, boolean nghiPhep) {
         this.maBCCCN = maBCCCN;
         this.maBangPhanCongCongNhan = maBangPhanCongCongNhan;
         this.soLuongLamDuoc = soLuongLamDuoc;
@@ -54,27 +54,27 @@ public class BangChamCongCongNhan {
         this.soLuongLamCa3 = soLuongLamCa3;
     }
 
-    public LocalDate getNgayCC() {
+    public Date getNgayCC() {
         return ngayCC;
     }
 
-    public void setNgayCC(LocalDate ngayCC) {
+    public void setNgayCC(Date ngayCC) {
         this.ngayCC = ngayCC;
     }
 
-    public LocalDate getNgayKT() {
+    public Date getNgayKT() {
         return ngayKT;
     }
 
-    public void setNgayKT(LocalDate ngayKT) {
+    public void setNgayKT(Date ngayKT) {
         this.ngayKT = ngayKT;
     }
 
-    public Boolean getNghiPhep() {
+    public boolean getNghiPhep() {
         return nghiPhep;
     }
 
-    public void setNghiPhep(Boolean nghiPhep) {
+    public void setNghiPhep(boolean nghiPhep) {
         this.nghiPhep = nghiPhep;
     }
 

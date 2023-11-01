@@ -5,11 +5,11 @@ import java.util.Objects;
 public class CongDoan {
     private String maCD;
     private String tenCD;
-    private Double giaCD;
+    private double giaCD;
     private int soLuong;
     private SanPham maSanPham;
 
-    public CongDoan(String maCD, String tenCD, Double giaCD, int soLuong, SanPham maSanPham) {
+    public CongDoan(String maCD, String tenCD, double giaCD, int soLuong, SanPham maSanPham) {
         this.maCD = maCD;
         this.tenCD = tenCD;
         this.giaCD = giaCD;
@@ -33,11 +33,11 @@ public class CongDoan {
         this.tenCD = tenCD;
     }
 
-    public Double getGiaCD() {
+    public double getGiaCD() {
         return giaCD;
     }
 
-    public void setGiaCD(Double giaCD) {
+    public void setGiaCD(double giaCD) {
         this.giaCD = giaCD;
     }
 
