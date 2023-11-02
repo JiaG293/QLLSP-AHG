@@ -4,18 +4,22 @@ import com.openjfx.qllspahg.entity.SanPham;
 import javafx.collections.ObservableList;
 
 public interface SanPhamDao<T> {
-    public ObservableList<SanPham> getAllSanPham();
+    public void themSP(SanPham sạnPham);
 
-    public SanPham getSanPhamBangMa(String maSanPham);
+    public void xoaSP(SanPham sanPham);
 
-    public SanPham getSanPhamBangTen(String tenSanPham);
+    public void suaSP(SanPham sanPham);
+    public ObservableList<SanPham> layTatCaSP();
 
-    public void saveSanPham(SanPham sạnPham);
+    public SanPham laySPBangMa(String maSanPham);
 
-    public void updateSanPham(SanPham sanPham);
+    public SanPham laySPBangTen(String tenSanPham);
 
-    public void deleteProduct(SanPham sanPham);
 
-    public ObservableList<String> getTenSanPham();
+    public ObservableList<SanPham> timSPBangMa(String maSanPham);
+
+    public ObservableList<SanPham> timSPBangTen(String tenSanPham);
+
+
 
 }

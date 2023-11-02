@@ -52,4 +52,13 @@ public class SanPham {
     public int hashCode() {
         return Objects.hash(maSP);
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "maSP='" + maSP + '\'' +
+                ", tenSP='" + tenSP + '\'' +
+                ", giaSP=" + giaSP +
+                '}';
+    }
 }
