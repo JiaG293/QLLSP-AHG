@@ -21,6 +21,10 @@ public class PhuCap {
         this.loaiPhuCap = loaiPhuCap;
     }
 
+    public PhuCap(String maPhuCap) {
+        this.maPhuCap = maPhuCap;
+    }
+
     public String getMaPhuCap() {
         return maPhuCap;
     }
