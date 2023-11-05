@@ -235,9 +235,9 @@ public class SanPhamController implements Initializable {
     }
 
     private void xoaTrang() {
-        tfMaSP.setText("");
-        tfGiaSP.setText("");
-        tfTenSP.setText("");
+        tfMaSP.clear();
+        tfGiaSP.clear();
+        tfTenSP.clear();
     }
 
     @FXML
@@ -267,6 +267,7 @@ public class SanPhamController implements Initializable {
                 //Lam moi tableview
                 xoaTrang();
                 taiDuLieuSanPham();
+
             }
         } catch (Exception e) {
             Alerts.showConfirmation("Dữ liệu không hợp lệ!!!", "Vui lòng nhập dữ liệu vào");
