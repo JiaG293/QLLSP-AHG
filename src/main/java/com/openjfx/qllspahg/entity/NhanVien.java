@@ -1,6 +1,6 @@
 package com.openjfx.qllspahg.entity;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 public class NhanVien {
@@ -17,7 +17,9 @@ public class NhanVien {
     private PhongBan phongBan;
     private PhuCap maPhuCap;
 
-    public NhanVien(String maNV, String hoNV, String tenNV, boolean gioiTinh, Date ngaySinh, int sDT, String email, Date ngayVaoLam, String sTK, ChucVu chucVuNV, PhongBan phongBan, PhuCap maPhuCap) {
+    private double luongCoBan;
+
+    public NhanVien(String maNV, String hoNV, String tenNV, boolean gioiTinh, Date ngaySinh, int sDT, String email, Date ngayVaoLam, String sTK, ChucVu chucVuNV, PhongBan phongBan, PhuCap maPhuCap, double luongCoBan) {
         this.maNV = maNV;
         this.hoNV = hoNV;
         this.tenNV = tenNV;
@@ -30,8 +32,12 @@ public class NhanVien {
         this.chucVuNV = chucVuNV;
         this.phongBan = phongBan;
         this.maPhuCap = maPhuCap;
+        this.luongCoBan = luongCoBan;
     }
 
+    public NhanVien(String maNV) {
+        this.maNV = maNV;
+    }
 
     ///Sample
     public NhanVien(String maNV, String hoNV, String tenNV, boolean gioiTinh) {
@@ -137,6 +143,15 @@ public class NhanVien {
     public void setsTK(String sTK) {
         this.sTK = sTK;
     }
+
+    public double getLuongCoBan() {
+        return luongCoBan;
+    }
+
+    public void setLuongCoBan(double luongCoBan) {
+        this.luongCoBan = luongCoBan;
+    }
+
 
     @Override
     public boolean equals(Object o) {

@@ -41,9 +41,8 @@ public class NhanVienDao implements InterfaceNhanViendao {
 
                 String maCV = rs.getString("maCV");
                 String tenCV = rs.getString("tenCV");
-                String loaiCV = rs.getString("loaiCV");
                 double heSoCV = rs.getDouble("heSoCV");
-                ChucVu cv = new ChucVu(maCV,tenCV, loaiCV,heSoCV);
+                ChucVu cv = new ChucVu(maCV,tenCV,heSoCV);
 
                 String maPB = rs.getString("maPB");
                 String tenPB = rs.getString("tenPB");
@@ -52,7 +51,9 @@ public class NhanVienDao implements InterfaceNhanViendao {
                 String maPhuCap = rs.getString("maPhuCap");
                 PhuCap pc = new PhuCap(maPhuCap);
 
-                NhanVien nv = new NhanVien(maNV,hoNV,tenNV,gioiTinh,ngaySinh,sDT,email,ngayVaoLam,sTK,cv,pb,pc);
+                double luongCoBan = rs.getDouble("luongCoBan");
+
+                NhanVien nv = new NhanVien(maNV,hoNV,tenNV,gioiTinh,ngaySinh,sDT,email,ngayVaoLam,sTK,cv,pb,pc, luongCoBan);
                 dsNhanVien.add(nv);
             }
         } catch (SQLException e) {
@@ -84,9 +85,8 @@ public class NhanVienDao implements InterfaceNhanViendao {
 
                 String maCV = rs.getString("maCV");
                 String tenCV = rs.getString("tenCV");
-                String loaiCV = rs.getString("loaiCV");
                 double heSoCV = rs.getDouble("heSoCV");
-                ChucVu cv = new ChucVu(maCV,tenCV, loaiCV,heSoCV);
+                ChucVu cv = new ChucVu(maCV,tenCV,heSoCV);
 
                 String maPB = rs.getString("maPB");
                 String tenPB = rs.getString("tenPB");
@@ -95,7 +95,9 @@ public class NhanVienDao implements InterfaceNhanViendao {
                 String maPhuCap = rs.getString("maPhuCap");
                 PhuCap pc = new PhuCap(maPhuCap);
 
-                NhanVien nv = new NhanVien(maNV,hoNV,tenNV,gioiTinh,ngaySinh,sDT,email,ngayVaoLam,sTK,cv,pb,pc);
+                double luongCoBan = rs.getDouble("luongCoBan");
+
+                NhanVien nv = new NhanVien(maNV,hoNV,tenNV,gioiTinh,ngaySinh,sDT,email,ngayVaoLam,sTK,cv,pb,pc, luongCoBan);
                 dsNhanVien.add(nv);
             }
         }catch (SQLException e){
@@ -136,9 +138,8 @@ public class NhanVienDao implements InterfaceNhanViendao {
 
                 String maCV = rs.getString("maCV");
                 String tenCV = rs.getString("tenCV");
-                String loaiCV = rs.getString("loaiCV");
                 double heSoCV = rs.getDouble("heSoCV");
-                ChucVu cv = new ChucVu(maCV,tenCV, loaiCV,heSoCV);
+                ChucVu cv = new ChucVu(maCV,tenCV,heSoCV);
 
                 String maPB = rs.getString("maPB");
                 String tenPB = rs.getString("tenPB");
@@ -147,7 +148,9 @@ public class NhanVienDao implements InterfaceNhanViendao {
                 String maPhuCap = rs.getString("maPhuCap");
                 PhuCap pc = new PhuCap(maPhuCap);
 
-                NhanVien nv = new NhanVien(maNV,hoNV,tenNV,gioiTinh,ngaySinh,sDT,email,ngayVaoLam,sTK,cv,pb,pc);
+                double luongCoBan = rs.getDouble("luongCoBan");
+
+                NhanVien nv = new NhanVien(maNV,hoNV,tenNV,gioiTinh,ngaySinh,sDT,email,ngayVaoLam,sTK,cv,pb,pc, luongCoBan);
                 dsNhanVien.add(nv);
             }
         } catch (SQLException e){
@@ -182,9 +185,8 @@ public class NhanVienDao implements InterfaceNhanViendao {
 
                 String maCV = rs.getString("maCV");
                 String tenCV = rs.getString("tenCV");
-                String loaiCV = rs.getString("loaiCV");
                 double heSoCV = rs.getDouble("heSoCV");
-                ChucVu cv = new ChucVu(maCV, tenCV, loaiCV, heSoCV);
+                ChucVu cv = new ChucVu(maCV, tenCV, heSoCV);
 
                 String maPB = rs.getString("maPB");
                 String tenPB = rs.getString("tenPB");
@@ -193,7 +195,9 @@ public class NhanVienDao implements InterfaceNhanViendao {
                 String maPhuCap = rs.getString("maPhuCap");
                 PhuCap pc = new PhuCap(maPhuCap);
 
-                NhanVien nv = new NhanVien(maNV, hoNV, tenNV, gioiTinh, ngaySinh, sDT, email, ngayVaoLam, sTK, cv, pb, pc);
+                double luongCoBan = rs.getDouble("luongCoBan");
+
+                NhanVien nv = new NhanVien(maNV, hoNV, tenNV, gioiTinh, ngaySinh, sDT, email, ngayVaoLam, sTK, cv, pb, pc, luongCoBan);
                 dsNhanVien.add(nv);
             }
 
@@ -226,9 +230,8 @@ public class NhanVienDao implements InterfaceNhanViendao {
 
                 String maCV = rs.getString("maCV");
                 String tenCV = rs.getString("tenCV");
-                String loaiCV = rs.getString("loaiCV");
                 double heSoCV = rs.getDouble("heSoCV");
-                ChucVu cv = new ChucVu(maCV, tenCV, loaiCV, heSoCV);
+                ChucVu cv = new ChucVu(maCV, tenCV, heSoCV);
 
                 String maPB = rs.getString("maPB");
                 String tenPB = rs.getString("tenPB");
@@ -237,7 +240,9 @@ public class NhanVienDao implements InterfaceNhanViendao {
                 String maPhuCap = rs.getString("maPhuCap");
                 PhuCap pc = new PhuCap(maPhuCap);
 
-                NhanVien nv = new NhanVien(maNV, hoNV, tenNV, gioiTinh, ngaySinh, sDT, email, ngayVaoLam, sTK, cv, pb, pc);
+                double luongCoBan = rs.getDouble("luongCoBan");
+
+                NhanVien nv = new NhanVien(maNV, hoNV, tenNV, gioiTinh, ngaySinh, sDT, email, ngayVaoLam, sTK, cv, pb, pc, luongCoBan);
                 dsNhanVien.add(nv);
             }
 
@@ -272,9 +277,8 @@ public class NhanVienDao implements InterfaceNhanViendao {
 
                 String maCV = rs.getString("maCV");
                 String tenCV = rs.getString("tenCV");
-                String loaiCV = rs.getString("loaiCV");
                 double heSoCV = rs.getDouble("heSoCV");
-                ChucVu cv = new ChucVu(maCV, tenCV, loaiCV, heSoCV);
+                ChucVu cv = new ChucVu(maCV, tenCV, heSoCV);
 
                 String maPB = rs.getString("maPB");
                 String tenPB = rs.getString("tenPB");
@@ -283,7 +287,9 @@ public class NhanVienDao implements InterfaceNhanViendao {
                 String maPhuCap = rs.getString("maPhuCap");
                 PhuCap pc = new PhuCap(maPhuCap);
 
-                NhanVien nv = new NhanVien(maNV, hoNV, tenNV, gioiTinh, ngaySinh, sDT, email, ngayVaoLam, sTK, cv, pb, pc);
+                double luongCoBan = rs.getDouble("luongCoBan");
+
+                NhanVien nv = new NhanVien(maNV, hoNV, tenNV, gioiTinh, ngaySinh, sDT, email, ngayVaoLam, sTK, cv, pb, pc, luongCoBan);
                 dsNhanVien.add(nv);
             }
 
@@ -318,9 +324,8 @@ public class NhanVienDao implements InterfaceNhanViendao {
 
                 String maCV = rs.getString("maCV");
                 String tenCV = rs.getString("tenCV");
-                String loaiCV = rs.getString("loaiCV");
                 double heSoCV = rs.getDouble("heSoCV");
-                ChucVu cv = new ChucVu(maCV, tenCV, loaiCV, heSoCV);
+                ChucVu cv = new ChucVu(maCV, tenCV, heSoCV);
 
                 String maPB = rs.getString("maPB");
                 String tenPB = rs.getString("tenPB");
@@ -329,7 +334,9 @@ public class NhanVienDao implements InterfaceNhanViendao {
                 String maPhuCap = rs.getString("maPhuCap");
                 PhuCap pc = new PhuCap(maPhuCap);
 
-                NhanVien nv = new NhanVien(maNV, hoNV, tenNV, gioiTinh, ngaySinh, sDT, email, ngayVaoLam, sTK, cv, pb, pc);
+                double luongCoBan = rs.getDouble("luongCoBan");
+
+                NhanVien nv = new NhanVien(maNV, hoNV, tenNV, gioiTinh, ngaySinh, sDT, email, ngayVaoLam, sTK, cv, pb, pc, luongCoBan);
                 dsNhanVien.add(nv);
             }
 
@@ -364,9 +371,8 @@ public class NhanVienDao implements InterfaceNhanViendao {
 
                 String maCV = rs.getString("maCV");
                 String tenCV = rs.getString("tenCV");
-                String loaiCV = rs.getString("loaiCV");
                 double heSoCV = rs.getDouble("heSoCV");
-                ChucVu cv = new ChucVu(maCV, tenCV, loaiCV, heSoCV);
+                ChucVu cv = new ChucVu(maCV, tenCV, heSoCV);
 
                 String maPB = rs.getString("maPB");
                 String tenPB = rs.getString("tenPB");
@@ -375,7 +381,9 @@ public class NhanVienDao implements InterfaceNhanViendao {
                 String maPhuCap = rs.getString("maPhuCap");
                 PhuCap pc = new PhuCap(maPhuCap);
 
-                NhanVien nv = new NhanVien(maNV, hoNV, tenNV, gioiTinh, ngaySinh, sDT, email, ngayVaoLam, sTK, cv, pb, pc);
+                double luongCoBan = rs.getDouble("luongCoBan");
+
+                NhanVien nv = new NhanVien(maNV, hoNV, tenNV, gioiTinh, ngaySinh, sDT, email, ngayVaoLam, sTK, cv, pb, pc, luongCoBan);
                 dsNhanVien.add(nv);
             }
 
@@ -383,6 +391,27 @@ public class NhanVienDao implements InterfaceNhanViendao {
             e.printStackTrace();
         }
         return dsNhanVien;
+    }
+
+    @Override
+    public String getMaNhanVienLonNhat() {
+        NhanVien nv = null;
+        String maNV = null;
+        try {
+            Connection con = Db.getConnection();
+            Statement st = con.createStatement();
+            String truyVan = "Select Max ([maNV])\n" +
+                    "from [dbo].[NhanVien]";
+            ResultSet rs = st.executeQuery(truyVan);
+            while (rs.next()){
+                maNV = rs.getString(1);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return maNV;
     }
 
 }

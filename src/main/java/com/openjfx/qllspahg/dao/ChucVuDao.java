@@ -24,17 +24,16 @@ public class ChucVuDao implements InterfaceChucVudao {
         try {
             Connection con = Db.getConnection();
             Statement st = con.createStatement();
-            String truyVan = "Select * \n" +
-                    "From ChucVu\n" +
-                    "Where ChucVu.loaiCV = 'NV'";
+            String truyVan = "select * \n" +
+                    "from [dbo].[ChucVu] \n" +
+                    "where [maCV] like 'NV%'";
             ResultSet rs = st.executeQuery(truyVan);
             while (rs.next()){
                 String maCV = rs.getString("maCV");
                 String tenCV = rs.getString("tenCV");
-                String loaiCV = rs.getString("loaiCV");
                 double heSoCV = rs.getDouble("heSoCV");
 
-                ChucVu cv = new ChucVu(maCV,tenCV,loaiCV,heSoCV);
+                ChucVu cv = new ChucVu(maCV,tenCV,heSoCV);
                 dsCV.add(cv);
             }
 

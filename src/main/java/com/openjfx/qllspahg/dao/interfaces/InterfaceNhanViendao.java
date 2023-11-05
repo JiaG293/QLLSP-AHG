@@ -15,5 +15,6 @@ public interface InterfaceNhanViendao {
     public ObservableList<NhanVien> getNhanVienTheoGTvaPB(String GT, String PB);
     public ObservableList<NhanVien> getNhanVienTheoCVvaPB(String CV, String PB);
     public ObservableList<NhanVien> getNhanVienTheoGTvaCVvaPB(String GT, String CV, String PB);
+    public String getMaNhanVienLonNhat();
 
 }

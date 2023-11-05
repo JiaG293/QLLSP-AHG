@@ -25,12 +25,13 @@ maCV varchar(6), --khoa ngoai
 maPhuCap varchar(6), --khoa ngoai
 hoNV nvarchar(64),
 tenNV nvarchar(32),
-gioiTinh bit DEFAULT 1,
+gioiTinh bit DEFAULT 0,  --0 la nam, 1 la nu
 ngaySinh smalldatetime,
-sDT Numeric(10),
+sDT numeric(10, 0),
 email varchar(128),
 ngayVaoLam smalldatetime,
 sTK varchar(20),
+luongCoBan numeric(19, 4),
 
 CONSTRAINT PK_NhanVien PRIMARY KEY(maNV)
 )
@@ -47,7 +48,6 @@ CONSTRAINT PK_TaiKhoan PRIMARY KEY CLUSTERED(maTK)
 CREATE TABLE ChucVu(
 maCV varchar(6) NOT NULL, --khoa chinh
 tenCV nvarchar(32),
-loaiCV nvarchar(2),
 heSoCV float(1),
 
 CONSTRAINT PK_ChucVu PRIMARY KEY(maCV)
@@ -63,7 +63,7 @@ hoCN nvarchar(32),
 tenCN nvarchar(32),
 gioiTinh bit DEFAULT 1,
 ngaySinh smalldatetime,
-sDT varchar(10),
+sDT numeric(10, 0),
 email varchar(128),
 ngayVaoLam smalldatetime,
 sTK varchar(20),
@@ -83,12 +83,12 @@ CONSTRAINT PK_ToSanXuat PRIMARY KEY(maTSX)
 CREATE TABLE HopDong(
 maHD varchar(8) NOT NULL, --khoa chinh
 tenKH nvarchar(64),
-sDT varchar(10),
+sDT numeric(10),
 diaChi nvarchar(max),
 email varchar(128),
 ngayKKHD smalldatetime,
 ngayTLHD smalldatetime,
-trangThaiHD bit NULL,
+trangThaiHD bit DEFAULT 0, --0 chua thanh ly, 1 la thanh ly
 
 CONSTRAINT PK_HopDong PRIMARY KEY(maHD)
 )
@@ -144,7 +144,7 @@ maBPCCN varchar(6), --khoa ngoai
 ngayChamCong smalldatetime,
 soLuongLamDuoc int,
 soLuongLamCa3 int,
-nghiPhep bit DEFAULT 1
+nghiPhep bit DEFAULT 1, --0 la khong phep, 1 la co phep
 
 CONSTRAINT PK_BangChamCongCongNhan PRIMARY KEY(maBCCCN)
 )
@@ -166,9 +166,9 @@ CREATE TABLE BangChamCongNhanVien(
 maBCCNV varchar(6) NOT NULL, --khoa chinh
 maNV varchar(8), --khoa ngoai khoa chinh
 ngayChamCong smalldatetime,
-diLam bit DEFAULT 1,
-nghiPhep bit DEFAULT 0,
-tangCa bit DEFAULT 0,
+diLam bit DEFAULT 1, --0 la khong di lam, 1 la co di lam
+nghiPhep bit DEFAULT 0, --0 la khong phep, 1 la co phep
+tangCa bit DEFAULT 0, --0 la khong tang ca, 1 la co tang ca
 
 CONSTRAINT PK_BangChamCongNhanVien PRIMARY KEY (maBCCNV)
 )

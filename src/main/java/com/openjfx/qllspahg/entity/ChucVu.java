@@ -5,14 +5,15 @@ import java.util.Objects;
 public class ChucVu {
     private String maCV;
     private String tenCV;
-    private String loaiCV;
     private double heSoCV;
 
-    public ChucVu(String maCV, String tenCV, String loaiCV, double heSoCV) {
+    public ChucVu(String maCV, String tenCV, double heSoCV) {
         this.maCV = maCV;
         this.tenCV = tenCV;
-        this.loaiCV = loaiCV;
         this.heSoCV = heSoCV;
+    }
+
+    public ChucVu() {
     }
 
     public String getMaCV() {
@@ -29,14 +30,6 @@ public class ChucVu {
 
     public void setTenCV(String tenCV) {
         this.tenCV = tenCV;
-    }
-
-    public String getLoaiCV() {
-        return loaiCV;
-    }
-
-    public void setLoaiCV(String loaiCV) {
-        this.loaiCV = loaiCV;
     }
 
     public double getHeSoCV() {

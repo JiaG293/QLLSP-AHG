@@ -33,3 +33,10 @@ where nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap and n
 Select nv.*, cv.*, pb.*,pc.maPhuCap
 From [dbo].[NhanVien] as nv, [dbo].[ChucVu] as cv, [dbo].[PhongBan] as pb, [dbo].[PhuCap] as pc
 where nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap and cv.tenCV ='Nhan Vien Ke Toan' and pb.tenPB ='Phong Quan Li'
+
+Select *
+From [dbo].[NhanVien]
+Order by [maNV] ASC
+
+Select*
+from [dbo].[PhuCap]
