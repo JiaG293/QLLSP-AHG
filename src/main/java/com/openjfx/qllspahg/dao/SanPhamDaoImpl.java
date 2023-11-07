@@ -27,7 +27,7 @@ public class SanPhamDaoImpl implements SanPhamDao<SanPham> {
             //khai bao tao cau lenh thuc thi
             Statement st = con.createStatement();
             //Khai bao cau lenh sql
-            String sql = "SELECT * FROM SanPham";
+            String sql = "SELECT * FROM SanPham WHERE trangThaiSP = 0";
             //Thuc thi truy van
             ResultSet rs = st.executeQuery(sql);
 
@@ -251,9 +251,11 @@ public class SanPhamDaoImpl implements SanPhamDao<SanPham> {
             //Khai bao cau lenh sql
             /*DELETE FROM SanPham
                      WHERE maSP= 'SP9210'*/
-            String sql = "DELETE FROM SanPham " +
+            String sql = "UPDATE SanPham " +
+                    "SET " + "trangThaiSP = 1 " +
                     "WHERE " + "maSP= '" + sanPham.getMaSP() + "' ";
             //Dong duoc insert thanh cong vao csdl
+            System.out.println(sanPham.getMaSP());
             int rs = st.executeUpdate(sql);
             System.out.println("Da chinh sua " + rs + " san pham tren csdl: ");
 

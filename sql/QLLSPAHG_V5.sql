@@ -12,7 +12,7 @@ GO
 --Table PhongBan
 CREATE TABLE PhongBan(
 maPB varchar(6) NOT NULL, --khoa chinh
-tenPB varchar(50),
+tenPB nvarchar(50),
 
 CONSTRAINT PK_PhongBan PRIMARY KEY(maPB)
 )
@@ -32,6 +32,7 @@ email varchar(128),
 ngayVaoLam date,
 sTK varchar(20),
 luongCoBan numeric(19, 4),
+trangThaiNV bit DEFAULT 0, -- 0 la hoat dong, 1 la khong hoat dong
 
 CONSTRAINT PK_NhanVien PRIMARY KEY(maNV)
 )
@@ -40,6 +41,7 @@ GO
 CREATE TABLE TaiKhoan(
 maTK varchar(8), --khoa ngoai --khoa chinh
 matKhau varchar(max),
+trangThaiTK bit DEFAULT 0, -- 0 la hoat dong, 1 la khong hoat dong
 
 CONSTRAINT PK_TaiKhoan PRIMARY KEY CLUSTERED(maTK)
 )
@@ -67,6 +69,7 @@ sDT numeric(10, 0),
 email varchar(128),
 ngayVaoLam date,
 sTK varchar(20),
+trangThaiNV bit DEFAULT 0, -- 0 la hoat dong, 1 la khong hoat dong
 
 CONSTRAINT PK_CongNhan PRIMARY KEY(maCN)
 )
@@ -109,6 +112,7 @@ maSP varchar(6) NOT NULL, --khoa chinh
 tenLoai nvarchar(32), 
 tenSP nvarchar(128),
 giaSP decimal(19, 4),
+trangThaiSP bit DEFAULT 0, --0 sp duoc lay len, 1 san pham da bi xoa 
 
 CONSTRAINT PK_SanPham PRIMARY KEY(maSP)
 )
