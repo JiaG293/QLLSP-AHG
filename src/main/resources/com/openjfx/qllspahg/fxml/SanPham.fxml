@@ -82,28 +82,76 @@
                         </VBox>
                      </center>
                      <bottom>
-                        <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                           <items>
-                              <Button mnemonicParsing="false" onAction="#themSanPham" text="Thêm sản phẩm">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/icons/add-removebg-preview.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#xoaSanPham" text="Xóa sản phẩm">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/icons/XoaTrang.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                           </items>
-                        </ToolBar>
+                        <VBox BorderPane.alignment="CENTER">
+                           <children>
+                              <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="200.0">
+                                 <items>
+                                    <Button mnemonicParsing="false" onAction="#themSanPham" text="Thêm sản phẩm">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/icons/add-removebg-preview.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#xoaSanPham" text="Xóa sản phẩm">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/icons/XoaTrang.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </items>
+                              </ToolBar>
+                              <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="200.0">
+                                 <items>
+                                    <Button mnemonicParsing="false" onAction="#suaSanPham" text="Sửa sản phẩm">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/icons/add-removebg-preview.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#thanhLySanPham" text="Thanh lý sản phẩm">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/icons/XoaTrang.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </items>
+                              </ToolBar>
+                              <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="200.0">
+                                 <items>
+                                    <Button mnemonicParsing="false" onAction="#xoaTrangTF" text="Xóa trắng">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/icons/add-removebg-preview.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#sampleTest" text="Trống">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/icons/XoaTrang.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </items>
+                              </ToolBar>
+                           </children>
+                        </VBox>
                      </bottom>
                      <top>
                         <Label text="Nhập thông tin sản phẩm" BorderPane.alignment="CENTER">
@@ -122,7 +170,7 @@
                      <items>
                         <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <content>
-                              <TableView fx:id="sanPhamTableView" editable="true" tableMenuButtonVisible="true">
+                              <TableView fx:id="sanPhamTableView" editable="true" onMouseClicked="#chonMotSanPham" tableMenuButtonVisible="true">
                                  <columns>
                                     <TableColumn fx:id="sttSPColumn" prefWidth="36.0" text="STT" />
                                     <TableColumn fx:id="maSPColumn" minWidth="-1.0" prefWidth="180.0" text="Mã sản phẩm" />
@@ -186,7 +234,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button mnemonicParsing="false" text="Lưu">
+                              <Button mnemonicParsing="false" onAction="#luuDSSanPham" text="Lưu">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
