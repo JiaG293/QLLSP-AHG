@@ -32,6 +32,7 @@ email varchar(128),
 ngayVaoLam date,
 sTK varchar(20),
 luongCoBan numeric(19, 4),
+tonTai bit DEFAULT 1, -- neu xoa thi set ton la 0 
 
 CONSTRAINT PK_NhanVien PRIMARY KEY(maNV)
 )
