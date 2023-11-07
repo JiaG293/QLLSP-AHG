@@ -423,7 +423,7 @@ public class NhanVienDao implements InterfaceNhanViendao {
                 String maNV = nv.getMaNV();
                 String maPB = nv.getPhongBan().getMaPB();
                 String maCV = nv.getChucVuNV().getMaCV();
-                String maPhuCap = nv.getMaPhuCap().getMaPhuCap();
+                String maPhuCap = nv.getPhuCap().getMaPhuCap();
                 String hoNV= nv.getHoNV();
                 String tenNV = nv.getTenNV();
                 boolean gioiTinh = nv.getGioiTinh();

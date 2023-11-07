@@ -33,7 +33,6 @@ import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
@@ -190,6 +189,7 @@ public class NhanVienController implements Initializable{
     /**
      * Phan load du lieu
      */
+
     private void loadComboxChucVuNhapTTNhanVien(){
         if (!DSChucVu.isEmpty())
             DSChucVu.clear();
@@ -393,7 +393,7 @@ public class NhanVienController implements Initializable{
         colChiTietPhuCapTTNhanVien.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<NhanVien, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<NhanVien, String> nhanVienStringCellDataFeatures) {
-                return new SimpleStringProperty(nhanVienStringCellDataFeatures.getValue().getMaPhuCap().getMaPhuCap() == "PCNVCI" ? "Co" : "Khong");
+                return new SimpleStringProperty(nhanVienStringCellDataFeatures.getValue().getPhuCap().getMaPhuCap() == "PCNVCI" ? "Co" : "Khong");
             }
         });
         colChiTietLuongTTNhanVien.setCellValueFactory(new PropertyValueFactory<>("luongCoBan"));
@@ -686,7 +686,7 @@ public class NhanVienController implements Initializable{
 
     }
     public boolean KiemTraPhuCap(NhanVien nv){
-        if ("PCNVTT" != nv.getMaPhuCap().getMaPhuCap())
+        if ("PCNVTT" != nv.getPhuCap().getMaPhuCap())
             return true;
         return false;
     }
@@ -707,7 +707,7 @@ public class NhanVienController implements Initializable{
             tfSoTaiKhoanTTNhanVien.setText(nvDuocChon.getsTK());
             tfLuongCoBanTTNhanVien.setText(String.valueOf(nvDuocChon.getLuongCoBan()));
             ckGioiTinhTTNhanVien.setSelected(nvDuocChon.getGioiTinh());
-            String phuCap = nvDuocChon.getMaPhuCap().getMaPhuCap();
+            String phuCap = nvDuocChon.getPhuCap().getMaPhuCap();
             ckPhuCapTTNhanVien.setSelected(phuCap == "PCNVTT"? false : true);
             cbxChucVuTTNhanVien.setValue(nvDuocChon.getChucVuNV().getTenCV());
             cbxPhongBanTTNhanVien.setValue(nvDuocChon.getPhongBan().getTenPB());

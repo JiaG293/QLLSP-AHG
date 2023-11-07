@@ -16,11 +16,11 @@ public class NhanVien {
     private String sTK;
     private ChucVu chucVuNV;
     private PhongBan phongBan;
-    private PhuCap maPhuCap;
+    private PhuCap phuCap;
 
     private double luongCoBan;
 
-    public NhanVien(String maNV, String hoNV, String tenNV, boolean gioiTinh, Date ngaySinh, int sDT, String email, Date ngayVaoLam, String sTK, ChucVu chucVuNV, PhongBan phongBan, PhuCap maPhuCap, double luongCoBan) {
+    public NhanVien(String maNV, String hoNV, String tenNV, boolean gioiTinh, Date ngaySinh, int sDT, String email, Date ngayVaoLam, String sTK, ChucVu chucVuNV, PhongBan phongBan, PhuCap phuCap, double luongCoBan) {
         this.maNV = maNV;
         this.hoNV = hoNV;
         this.tenNV = tenNV;
@@ -32,7 +32,7 @@ public class NhanVien {
         this.sTK = sTK;
         this.chucVuNV = chucVuNV;
         this.phongBan = phongBan;
-        this.maPhuCap = maPhuCap;
+        this.phuCap = phuCap;
         this.luongCoBan = luongCoBan;
     }
 
@@ -41,12 +41,12 @@ public class NhanVien {
     }
 
     ///Sample
-    public NhanVien(String maNV, String hoNV, String tenNV, boolean gioiTinh) {
-        this.maNV = maNV;
-        this.hoNV = hoNV;
-        this.tenNV = tenNV;
-        this.gioiTinh = gioiTinh;
-    }
+//    public NhanVien(String maNV, String hoNV, String tenNV, boolean gioiTinh) {
+//        this.maNV = maNV;
+//        this.hoNV = hoNV;
+//        this.tenNV = tenNV;
+//        this.gioiTinh = gioiTinh;
+//    }
 
     public ChucVu getChucVuNV() {
         return chucVuNV;
@@ -64,12 +64,12 @@ public class NhanVien {
         this.phongBan = phongBan;
     }
 
-    public PhuCap getMaPhuCap() {
-        return maPhuCap;
+    public PhuCap getPhuCap() {
+        return phuCap;
     }
 
-    public void setMaPhuCap(PhuCap maPhuCap) {
-        this.maPhuCap = maPhuCap;
+    public void setPhuCap(PhuCap phuCap) {
+        this.phuCap = phuCap;
     }
 
 
