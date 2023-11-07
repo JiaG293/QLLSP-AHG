@@ -7,18 +7,31 @@ public class PhuCap {
     private double tienChuyenCan;
     private double tienNangSuat;
     private double tienDienThoai;
+    private double tienDiLai;
     private double tienNhaTro;
     private double tienConNho;
-    private String loaiPhuCap;
 
-    public PhuCap(String maPhuCap, double tienChuyenCan, double tienNangSuat, double tienDienThoai, double tienNhaTro, double tienConNho, String loaiPhuCap) {
+
+    public PhuCap(String maPhuCap, double tienChuyenCan, double tienNangSuat, double tienDienThoai, double tienDiLai, double tienNhaTro, double tienConNho) {
         this.maPhuCap = maPhuCap;
         this.tienChuyenCan = tienChuyenCan;
         this.tienNangSuat = tienNangSuat;
         this.tienDienThoai = tienDienThoai;
+        this.tienDiLai = tienDiLai;
         this.tienNhaTro = tienNhaTro;
         this.tienConNho = tienConNho;
-        this.loaiPhuCap = loaiPhuCap;
+    }
+
+    public double getTienDiLai() {
+        return tienDiLai;
+    }
+
+    public void setTienDiLai(double tienDiLai) {
+        this.tienDiLai = tienDiLai;
+    }
+
+    public PhuCap(String maPhuCap) {
+        this.maPhuCap = maPhuCap;
     }
 
     public String getMaPhuCap() {
@@ -69,13 +82,7 @@ public class PhuCap {
         this.tienConNho = tienConNho;
     }
 
-    public String getLoaiPhuCap() {
-        return loaiPhuCap;
-    }
 
-    public void setLoaiPhuCap(String loaiPhuCap) {
-        this.loaiPhuCap = loaiPhuCap;
-    }
 
     @Override
     public boolean equals(Object o) {

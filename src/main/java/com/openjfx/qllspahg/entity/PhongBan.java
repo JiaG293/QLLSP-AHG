@@ -11,6 +11,9 @@ public class PhongBan {
         this.tenPB = tenPB;
     }
 
+    public PhongBan() {
+    }
+
     public String getMaPB() {
         return maPB;
     }
