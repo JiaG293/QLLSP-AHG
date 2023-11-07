@@ -13,6 +13,9 @@ public class ChucVu {
         this.heSoCV = heSoCV;
     }
 
+    public ChucVu() {
+    }
+
     public String getMaCV() {
         return maCV;
     }

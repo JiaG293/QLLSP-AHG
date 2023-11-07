@@ -181,7 +181,7 @@
       </SplitPane>
    </top>
    <bottom>
-      <HBox id="HBox" alignment="CENTER_LEFT" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="1920.0" spacing="5.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+      <HBox id="HBox" alignment="CENTER_LEFT" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="1500.0" spacing="5.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
          <children>
             <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Thời gian làm việc" HBox.hgrow="ALWAYS">
                <font>
