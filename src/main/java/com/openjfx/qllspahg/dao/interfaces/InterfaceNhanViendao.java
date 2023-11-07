@@ -7,6 +7,11 @@ import javafx.collections.ObservableList;
 public interface InterfaceNhanViendao {
     //Khoi tao
     public ObservableList<NhanVien> DSNhanVien = FXCollections.observableArrayList();
+    public ObservableList<NhanVien> DSNhanVienThem = FXCollections.observableArrayList();
+    public ObservableList<NhanVien> DSNhanVienXoa = FXCollections.observableArrayList();
+    public ObservableList<NhanVien> DSNhanVienSua = FXCollections.observableArrayList();
+    public ObservableList<NhanVien> DSNhanVienreset = FXCollections.observableArrayList();
+    public ObservableList<NhanVien> DSNhanVienphu = FXCollections.observableArrayList();
     public ObservableList<NhanVien> getAllNhanVien();
     public ObservableList<NhanVien> getNhanVienTheoGT(String GT);
     public ObservableList<NhanVien> getNhanVienTheoCV(String CV);
@@ -16,5 +21,7 @@ public interface InterfaceNhanViendao {
     public ObservableList<NhanVien> getNhanVienTheoCVvaPB(String CV, String PB);
     public ObservableList<NhanVien> getNhanVienTheoGTvaCVvaPB(String GT, String CV, String PB);
     public String getMaNhanVienLonNhat();
+    public boolean saveDSNhanVienThem(ObservableList<NhanVien> dsNhanVienSave);
+    public boolean saveDSNhanVienXoa(ObservableList<NhanVien> dsNhanVienXoa);
 
 }

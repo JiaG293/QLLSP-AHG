@@ -26,7 +26,7 @@ public class NhanVienDao implements InterfaceNhanViendao {
             Statement st = con.createStatement();
             String truyVan = "SELECT nv.*, cv.*, pb.*,pc.maPhuCap\n" +
                     "FROM dbo.NhanVien as nv, dbo.ChucVu as cv, dbo.PhongBan as pb, dbo.PhuCap as pc\n" +
-                    "WHERE nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap";
+                    "WHERE nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap and nv.tonTai !=0";
             ResultSet rs = st.executeQuery(truyVan);
             while (rs.next()){  //con dong tiep theo thi tiep tuc lam
                 String maNV = rs.getString("maNV");
@@ -70,7 +70,7 @@ public class NhanVienDao implements InterfaceNhanViendao {
             Statement st = con.createStatement();
             String truyVan = "Select nv.*, cv.*, pb.*,pc.maPhuCap\n" +
                     "From [dbo].[NhanVien] as nv, [dbo].[ChucVu] as cv, [dbo].[PhongBan] as pb, [dbo].[PhuCap] as pc\n" +
-                    "where nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap and nv.gioiTinh = " + GT;
+                    "where nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap and nv.gioiTinh = " + GT + " and nv.tonTai !=0";
             ResultSet rs = st.executeQuery(truyVan);
             while (rs.next()){
                 String maNV = rs.getString("maNV");
@@ -121,7 +121,7 @@ public class NhanVienDao implements InterfaceNhanViendao {
             Statement st = con.createStatement();
             String truyVan = "Select nv.*, cv.*, pb.*,pc.maPhuCap\n" +
                     "From [dbo].[NhanVien] as nv, [dbo].[ChucVu] as cv, [dbo].[PhongBan] as pb, [dbo].[PhuCap] as pc\n" +
-                    "Where nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap and cv.tenCV = " + CV1;
+                    "Where nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap and cv.tenCV = " + CV1 + " and nv.tonTai !=0";
             ResultSet rs = st.executeQuery(truyVan);
 
             while (rs.next()){
@@ -168,7 +168,7 @@ public class NhanVienDao implements InterfaceNhanViendao {
             Statement st = con.createStatement();
             String truyVan = "Select nv.*, cv.*, pb.*,pc.maPhuCap\n" +
                     "From [dbo].[NhanVien] as nv, [dbo].[ChucVu] as cv, [dbo].[PhongBan] as pb, [dbo].[PhuCap] as pc\n" +
-                    "where nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap and pb.tenPB =" + PB1;
+                    "where nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap and pb.tenPB =" + PB1 +" and nv.tonTai !=0";
             ResultSet rs = st.executeQuery(truyVan);
 
             while (rs.next()) {
@@ -215,7 +215,7 @@ public class NhanVienDao implements InterfaceNhanViendao {
             Statement st = con.createStatement();
             String truyVan = "Select nv.*, cv.*, pb.*,pc.maPhuCap\n" +
                     "From [dbo].[NhanVien] as nv, [dbo].[ChucVu] as cv, [dbo].[PhongBan] as pb, [dbo].[PhuCap] as pc\n" +
-                    "where nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap and nv.gioiTinh =" + GT + "and cv.tenCV =" + CV1;
+                    "where nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap and nv.gioiTinh =" + GT + "and cv.tenCV =" + CV1 + " and nv.tonTai !=0";
             ResultSet rs = st.executeQuery(truyVan);
             while (rs.next()){
                 String maNV = rs.getString("maNV");
@@ -261,7 +261,7 @@ public class NhanVienDao implements InterfaceNhanViendao {
             Statement st = con.createStatement();
             String truyVan = "Select nv.*, cv.*, pb.*,pc.maPhuCap\n" +
                     "From [dbo].[NhanVien] as nv, [dbo].[ChucVu] as cv, [dbo].[PhongBan] as pb, [dbo].[PhuCap] as pc\n" +
-                    "where nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap and nv.gioiTinh =" + GT + " and pb.tenPB ="+ PB1;
+                    "where nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap and nv.gioiTinh =" + GT + " and pb.tenPB ="+ PB1 + " and nv.tonTai !=0";
             ResultSet rs = st.executeQuery(truyVan);
 
             while (rs.next()){
@@ -308,7 +308,7 @@ public class NhanVienDao implements InterfaceNhanViendao {
             Statement st = con.createStatement();
             String truyVan = "Select nv.*, cv.*, pb.*,pc.maPhuCap\n" +
                     "From [dbo].[NhanVien] as nv, [dbo].[ChucVu] as cv, [dbo].[PhongBan] as pb, [dbo].[PhuCap] as pc\n" +
-                    "where nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap  and cv.tenCV ="+ CV1+ "and pb.tenPB =" +PB1;
+                    "where nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap  and cv.tenCV ="+ CV1+ "and pb.tenPB =" +PB1 + " and nv.tonTai !=0";
             ResultSet rs = st.executeQuery(truyVan);
 
             while (rs.next()){
@@ -355,7 +355,7 @@ public class NhanVienDao implements InterfaceNhanViendao {
             Statement st = con.createStatement();
             String truyVan = "Select nv.*, cv.*, pb.*,pc.maPhuCap\n" +
                     "From [dbo].[NhanVien] as nv, [dbo].[ChucVu] as cv, [dbo].[PhongBan] as pb, [dbo].[PhuCap] as pc\n" +
-                    "where nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap and nv.gioiTinh =" + GT + "and cv.tenCV =" +CV1+ "and pb.tenPB ="+PB1;
+                    "where nv.maCV = cv.maCV AND nv.maPB =pb.maPB AND nv.maPhuCap = pc.maPhuCap and nv.gioiTinh =" + GT + "and cv.tenCV =" +CV1+ "and pb.tenPB ="+PB1 + " and nv.tonTai !=0";
             ResultSet rs = st.executeQuery(truyVan);
 
             while (rs.next()){
@@ -413,5 +413,84 @@ public class NhanVienDao implements InterfaceNhanViendao {
         }
         return maNV;
     }
+
+    @Override
+    public boolean saveDSNhanVienThem(ObservableList<NhanVien> dsNhanVienSave) {
+        if (dsNhanVienSave.isEmpty()){
+            return true;
+        } else if (!(dsNhanVienSave.isEmpty())) {
+            for (NhanVien nv : dsNhanVienSave){
+                String maNV = nv.getMaNV();
+                String maPB = nv.getPhongBan().getMaPB();
+                String maCV = nv.getChucVuNV().getMaCV();
+                String maPhuCap = nv.getMaPhuCap().getMaPhuCap();
+                String hoNV= nv.getHoNV();
+                String tenNV = nv.getTenNV();
+                boolean gioiTinh = nv.getGioiTinh();
+                java.util.Date ngaySinh = nv.getNgaySinh();
+                java.sql.Date ngaySinhSQL = new java.sql.Date(ngaySinh.getTime());
+
+                int sDT = nv.getsDT();
+                String email = nv.getEmail();
+                String sTK = nv.getsTK();
+                java.util.Date ngayVaoLam = nv.getNgayVaoLam();
+                java.sql.Date ngayVaoLamSQL = new java.sql.Date(ngayVaoLam.getTime());
+                double luongCobAN = nv.getLuongCoBan();
+                try {
+                    Connection con = Db.getConnection();
+                    String truyVan = "INSERT [dbo].[NhanVien] ([maNV], [maPB], [maCV], [maPhuCap], [hoNV], [tenNV]," +
+                            " [gioiTinh], [ngaySinh], [sDT], [email], [ngayVaoLam], [sTK], [luongCoBan]) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    PreparedStatement st = con.prepareStatement(truyVan);
+                    st.setString(1,maNV);
+                    st.setString(2,maPB);
+                    st.setString(3,maCV);
+                    st.setString(4,maPhuCap);
+                    st.setString(5,hoNV);
+                    st.setString(6,tenNV);
+                    st.setBoolean(7,gioiTinh);
+                    st.setDate(8,ngaySinhSQL);
+                    st.setInt(9,sDT);
+                    st.setString(10,email);
+                    st.setDate(11,ngayVaoLamSQL);
+                    st.setString(12,sTK);
+                    st.setDouble(13,luongCobAN);
+
+                    st.executeUpdate();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean saveDSNhanVienXoa(ObservableList<NhanVien> dsNhanVienXoa) {
+
+        if (dsNhanVienXoa.isEmpty()){
+            return true;
+        }else if (!dsNhanVienXoa.isEmpty()){
+            for (NhanVien nv : dsNhanVienXoa){
+                String maNV = nv.getMaNV();
+                String maNVSQL = "'" + maNV + "'";
+                try {
+                    Connection con = Db.getConnection();
+                    String truyVan = "update [dbo].[NhanVien] \n" +
+                            "set tonTai = 0 \n" +
+                            "where [dbo].[NhanVien].maNV= " + maNVSQL;
+                    PreparedStatement st = con.prepareStatement(truyVan);
+
+                    st.executeUpdate();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
 
 }

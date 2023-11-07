@@ -3,15 +3,19 @@ package com.openjfx.qllspahg.gui;
 import com.openjfx.qllspahg.dao.ChucVuDao;
 import com.openjfx.qllspahg.dao.NhanVienDao;
 import  static com.openjfx.qllspahg.dao.interfaces.InterfaceNhanViendao.DSNhanVien;
+import static com.openjfx.qllspahg.dao.interfaces.InterfaceNhanViendao.DSNhanVienThem;
+import static com.openjfx.qllspahg.dao.interfaces.InterfaceNhanViendao.DSNhanVienXoa;
+import static com.openjfx.qllspahg.dao.interfaces.InterfaceNhanViendao.DSNhanVienSua;
+import static com.openjfx.qllspahg.dao.interfaces.InterfaceNhanViendao.DSNhanVienreset;
+import static com.openjfx.qllspahg.dao.interfaces.InterfaceNhanViendao.DSNhanVienphu;
+
 import static com.openjfx.qllspahg.dao.interfaces.InterfacePhongBandao.DSPhongBan;
 import static com.openjfx.qllspahg.dao.interfaces.InterfaceChucVudao.DSChucVu;
-import static com.openjfx.qllspahg.dao.interfaces.InterfacePhuCapDao.DSPhuCap;
+
+
 
 import com.openjfx.qllspahg.dao.PhongBanDao;
-import com.openjfx.qllspahg.entity.ChucVu;
-import com.openjfx.qllspahg.entity.NhanVien;
-import com.openjfx.qllspahg.entity.PhongBan;
-import com.openjfx.qllspahg.entity.PhuCap;
+import com.openjfx.qllspahg.entity.*;
 import com.openjfx.qllspahg.gui.util.Alerts;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -22,15 +26,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 public class NhanVienController implements Initializable{
 
@@ -77,37 +85,40 @@ public class NhanVienController implements Initializable{
     private CheckBox ckPhuCapTTNhanVien;
 
     @FXML
-    private TableColumn<?, ?> colChiTietChucVuTTNhanVien;
+    private TableColumn<NhanVien, String> colChiTietChucVuTTNhanVien;
 
     @FXML
-    private TableColumn<?, ?> colChiTietEmailTTNhanVien;
+    private TableColumn<NhanVien, String > colChiTietEmailTTNhanVien;
 
     @FXML
-    private TableColumn<?, ?> colChiTietGioiTinhTTNhanVien;
+    private TableColumn<NhanVien, String> colChiTietGioiTinhTTNhanVien;
 
     @FXML
-    private TableColumn<?, ?> colChiTietHovaTenTTNhanVien;
+    private TableColumn<NhanVien, String> colChiTietHovaTenTTNhanVien;
 
     @FXML
-    private TableColumn<?, ?> colChiTietMaTTNhanVien;
+    private TableColumn<NhanVien, String> colChiTietMaTTNhanVien;
 
     @FXML
-    private TableColumn<?, ?> colChiTietNgaySinhTTNhanVien;
+    private TableColumn<NhanVien, Double> colChiTietLuongTTNhanVien;
 
     @FXML
-    private TableColumn<?, ?> colChiTietNgayVaoLamTTNhanVien;
+    private TableColumn<NhanVien, String> colChiTietNgaySinhTTNhanVien;
 
     @FXML
-    private TableColumn<?, ?> colChiTietPhongBanTTNhanVien;
+    private TableColumn<NhanVien, String> colChiTietNgayVaoLamTTNhanVien;
 
     @FXML
-    private TableColumn<?, ?> colChiTietPhuCapTTNhanVien;
+    private TableColumn<NhanVien, String> colChiTietPhongBanTTNhanVien;
 
     @FXML
-    private TableColumn<?, ?> colChiTietSoDienThoaiTTNhanVien;
+    private TableColumn<NhanVien, String> colChiTietPhuCapTTNhanVien;
 
     @FXML
-    private TableColumn<?, ?> colChiTietSoTaiKhoanTTNhanVien;
+    private TableColumn<NhanVien, Integer> colChiTietSoDienThoaiTTNhanVien;
+
+    @FXML
+    private TableColumn<NhanVien, String> colChiTietSoTaiKhoanTTNhanVien;
 
     @FXML
     private TableColumn<NhanVien, String> colChucVuTTNhanVien;
@@ -140,7 +151,7 @@ public class NhanVienController implements Initializable{
     private TableView<NhanVien> tblViewTTNhanVien;
 
     @FXML
-    private TableView<?> tblviewChiTietNhanVien;
+    private TableView<NhanVien> tblviewChiTietNhanVien;
 
     @FXML
     private TextField tfEmailTTNhanVien;
@@ -153,7 +164,7 @@ public class NhanVienController implements Initializable{
 
     @FXML
     private TextField tfTenTTNhanVien;
-    private int giaTriReset = 0;
+
 
 
     @Override
@@ -165,6 +176,10 @@ public class NhanVienController implements Initializable{
         loadComboboxPhongBanNhapTTNhanVien();
         datepickNgayVaoLamTTNhanVien.setValue(LocalDate.now());
         docDuLieuNVVaoTableTTNhanVien();
+
+        ckPhuCapTTNhanVien.setSelected(true);
+
+        docDuLieuVaoTableChiTiet();
 
     }
 
@@ -235,51 +250,52 @@ public class NhanVienController implements Initializable{
             xoaDuLieuDSNhanVienNeuDaCoDuL();
             DSNhanVien.addAll(NhanVienDao.getInstance().getAllNhanVien());
             docDuLieuNVVaoTableTTNhanVien();
-            giaTriReset = 1;
+
          //cbx load phòng ban không được chọn và cbx chúc vụ và giới tính được chọn
         }  else if (cbxLoadPhongBanTTNhanVien.getSelectionModel().isEmpty() && !cbxLoadChucVuTTNhanVien.getSelectionModel().isEmpty() && !cbxLoadGioiTinhTTNhanVien.getSelectionModel().isEmpty())  {
             xoaDuLieuDSNhanVienNeuDaCoDuL();
             DSNhanVien.addAll(NhanVienDao.getInstance().getNhanVienTheoGTvaCV(cbxLoadGioiTinhTTNhanVien.getValue().toString()=="Nu"? "1" : "0",cbxLoadChucVuTTNhanVien.getValue().toString()));
             docDuLieuNVVaoTableTTNhanVien();
-            giaTriReset = 2 ;
+
             //cbx load phòng ban được chọn, cbx chức vụ,giới tính ko được chọn
         } else if (!cbxLoadPhongBanTTNhanVien.getSelectionModel().isEmpty() && cbxLoadChucVuTTNhanVien.getSelectionModel().isEmpty() && cbxLoadGioiTinhTTNhanVien.getSelectionModel().isEmpty()) {
             xoaDuLieuDSNhanVienNeuDaCoDuL();
             DSNhanVien.addAll(NhanVienDao.getInstance().getNhanVienTheoPB(cbxLoadPhongBanTTNhanVien.getValue().toString()));
             docDuLieuNVVaoTableTTNhanVien();
-            giaTriReset = 3;
+
             //cbx load chức vụ ko được chọn, cbx giới tính và phòng ban được chọn
         } else if (cbxLoadChucVuTTNhanVien.getSelectionModel().isEmpty() && !cbxLoadGioiTinhTTNhanVien.getSelectionModel().isEmpty() && !cbxLoadPhongBanTTNhanVien.getSelectionModel().isEmpty()) {
             xoaDuLieuDSNhanVienNeuDaCoDuL();
             DSNhanVien.addAll(NhanVienDao.getInstance().getNhanVienTheoGTvaPB(cbxLoadGioiTinhTTNhanVien.getValue().toString()=="Nu" ? "1" : "0",cbxLoadPhongBanTTNhanVien.getValue().toString()));
             docDuLieuNVVaoTableTTNhanVien();
-            giaTriReset = 4;
+
             //cbx load chúc vụ được chọn và, cbx giới tính, phòng ban không đoc75 chọn
         } else if (!cbxLoadChucVuTTNhanVien.getSelectionModel().isEmpty() && cbxLoadGioiTinhTTNhanVien.getSelectionModel().isEmpty() && cbxLoadPhongBanTTNhanVien.getSelectionModel().isEmpty()) {
             xoaDuLieuDSNhanVienNeuDaCoDuL();
             DSNhanVien.addAll(NhanVienDao.getInstance().getNhanVienTheoCV(cbxLoadChucVuTTNhanVien.getValue().toString()));
             docDuLieuNVVaoTableTTNhanVien();
-            giaTriReset = 5;
+
             //cbx load giới tính không được chọn, cbx load chức vụ, phòng ban được chọn
         } else if (cbxLoadGioiTinhTTNhanVien.getSelectionModel().isEmpty() && !cbxLoadChucVuTTNhanVien.getSelectionModel().isEmpty() && !cbxLoadPhongBanTTNhanVien.getSelectionModel().isEmpty()) {
             xoaDuLieuDSNhanVienNeuDaCoDuL();
             DSNhanVien.addAll(NhanVienDao.getInstance().getNhanVienTheoCVvaPB(cbxLoadChucVuTTNhanVien.getValue().toString(),cbxLoadPhongBanTTNhanVien.getValue().toString()));
             docDuLieuNVVaoTableTTNhanVien();
-            giaTriReset = 6;
+
             //cbx load giới tính được chọn, cbx load chức vụ, phòng ban không được chọn
         } else if (!cbxLoadGioiTinhTTNhanVien.getSelectionModel().isEmpty() && cbxLoadChucVuTTNhanVien.getSelectionModel().isEmpty() && cbxLoadPhongBanTTNhanVien.getSelectionModel().isEmpty()) {
             xoaDuLieuDSNhanVienNeuDaCoDuL();
             DSNhanVien.addAll(NhanVienDao.getInstance().getNhanVienTheoGT(cbxLoadGioiTinhTTNhanVien.getValue().toString()=="Nu"? "1" : "0"));
             docDuLieuNVVaoTableTTNhanVien();
-            giaTriReset = 7;
+
             // cbx load giới tính, phòng ban, chúc vụ được chọn
         } else if (!(cbxLoadGioiTinhTTNhanVien.getSelectionModel().isEmpty() && cbxLoadChucVuTTNhanVien.getSelectionModel().isEmpty() && cbxLoadPhongBanTTNhanVien.getSelectionModel().isEmpty())) {
             xoaDuLieuDSNhanVienNeuDaCoDuL();
             DSNhanVien.addAll(NhanVienDao.getInstance().getNhanVienTheoGTvaCVvaPB(cbxLoadGioiTinhTTNhanVien.getValue().toString()=="Nu"? "1" :"0",cbxLoadChucVuTTNhanVien.getValue().toString(),cbxLoadPhongBanTTNhanVien.getValue().toString()));
             docDuLieuNVVaoTableTTNhanVien();
-            giaTriReset = 8;
 
         }
+        DSNhanVienreset.clear();
+        DSNhanVienreset.addAll(DSNhanVien);
         xoaChonCbxLoadDuLieu();
     }
     private void xoaDuLieuDSPhongBanNeuDaCoDuL (){
@@ -293,10 +309,6 @@ public class NhanVienController implements Initializable{
     private void xoaDuLieuDSNhanVienNeuDaCoDuL(){
         if(!DSNhanVien.isEmpty())
             DSNhanVien.clear();
-    }
-    private void xoaDuLieuDSPhuCapNeuDaCoDuL(){
-        if (!DSChucVu.isEmpty())
-            DSChucVu.clear();
     }
     private void xoaChonCbxLoadDuLieu(){
         cbxLoadGioiTinhTTNhanVien.getSelectionModel().clearSelection();
@@ -330,6 +342,7 @@ public class NhanVienController implements Initializable{
          *       nhanVienStringCellDataFeatures.getValue() lấy kiểu dữ liệu kết nối của
          *       TableColumn.CellDataFeatures<NhanVien, String> là NhanVien sau đó lay kieu du lieu ma minh muon
          */
+
         colChucVuTTNhanVien.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<NhanVien, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<NhanVien, String> nhanVienStringCellDataFeatures) {
@@ -345,33 +358,72 @@ public class NhanVienController implements Initializable{
 
         tblViewTTNhanVien.setItems(DSNhanVien);
     }
+
+    public void docDuLieuVaoTableChiTiet(){
+        colChiTietMaTTNhanVien.setCellValueFactory(new PropertyValueFactory<>("maNV"));
+        colChiTietHovaTenTTNhanVien.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<NhanVien, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<NhanVien, String> nhanVienStringCellDataFeatures) {
+                return new SimpleStringProperty(nhanVienStringCellDataFeatures.getValue().getHoNV()+ " " + nhanVienStringCellDataFeatures.getValue().getTenNV());
+            }
+        });
+        colChiTietGioiTinhTTNhanVien.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<NhanVien, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<NhanVien, String> nhanVienStringCellDataFeatures) {
+                return new SimpleStringProperty(nhanVienStringCellDataFeatures.getValue().getGioiTinh()? "Nu" : "Nam");
+            }
+        });
+        colChiTietNgaySinhTTNhanVien.setCellValueFactory(new PropertyValueFactory<>("ngaySinh"));
+        colChiTietNgayVaoLamTTNhanVien.setCellValueFactory(new PropertyValueFactory<>("ngayVaoLam"));
+        colChiTietSoDienThoaiTTNhanVien.setCellValueFactory(new PropertyValueFactory<>("sDT"));
+        colChiTietEmailTTNhanVien.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colChiTietSoTaiKhoanTTNhanVien.setCellValueFactory(new PropertyValueFactory<>("sTK"));
+        colChiTietPhongBanTTNhanVien.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<NhanVien, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<NhanVien, String> nhanVienStringCellDataFeatures) {
+                return new SimpleStringProperty(nhanVienStringCellDataFeatures.getValue().getPhongBan().getTenPB());
+            }
+        });
+        colChiTietChucVuTTNhanVien.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<NhanVien, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<NhanVien, String> nhanVienStringCellDataFeatures) {
+                return new SimpleStringProperty(nhanVienStringCellDataFeatures.getValue().getChucVuNV().getTenCV());
+            }
+        });
+        colChiTietPhuCapTTNhanVien.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<NhanVien, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<NhanVien, String> nhanVienStringCellDataFeatures) {
+                return new SimpleStringProperty(nhanVienStringCellDataFeatures.getValue().getMaPhuCap().getMaPhuCap() == "PCNVCI" ? "Co" : "Khong");
+            }
+        });
+        colChiTietLuongTTNhanVien.setCellValueFactory(new PropertyValueFactory<>("luongCoBan"));
+        tblviewChiTietNhanVien.setItems(DSNhanVienphu);
+    }
+
     /**
      * Phần xử lý Thêm xóa sửa nhân viên
      */
 
-    public void resetBangTTNhanVien(ActionEvent actionEvent) {
-
-    }
 
     private String tachHoTuHovaTen(String hoVaTen){
-        String ho = hoVaTen.substring(0,hoVaTen.indexOf(" "));
+        String ho = hoVaTen.substring(0,hoVaTen.lastIndexOf(" "));
         /**
          * subtring truyền vào thứ tự bắt đầu của chuỗi và thứ tự kết thúc của chuỗi muốn ngắt
          * hoVaten.indexof trả về thứ tự mà khoảng trắng xuất hiện đầu tiên
          */
-        return ho;
+        return ho.trim();
     }
     public String tachTenTuHovaTen (String hovaTen){
         String ten ;
         if (!(hovaTen.lastIndexOf(" ") == -1)){
-            ten = hovaTen.substring(hovaTen.indexOf(" "));
+            ten = hovaTen.substring(hovaTen.lastIndexOf(" "));
         }else {
             ten = "";
         }
         /**
          * Loại subtring truyền vào thứ tự bắt đầu của chuỗi muốn ngắt và trả về toàn bộ chuỗi phía sau.
          */
-        return ten;
+        return ten.trim();
     }
 
     private boolean kiemTraNhapTTNhanVien(){
@@ -386,7 +438,7 @@ public class NhanVienController implements Initializable{
             tfTenTTNhanVien.setText("");
             tfTenTTNhanVien.requestFocus();
             return false;
-        } else if (!(tfTenTTNhanVien.getText().toString().matches("([A-Z]{1}[a-z' ]+)+"))){
+        } else if (!(tfTenTTNhanVien.getText().toString().matches("([A-Z]{1}[a-z' ]*)+"))){
             Alerts.showConfirmation("Thông báo", "Tên phải bắt đầu là chữ cái in hoa và không chứa số");
             tfTenTTNhanVien.setText("");
             tfTenTTNhanVien.requestFocus();
@@ -449,16 +501,8 @@ public class NhanVienController implements Initializable{
             tfSoTaiKhoanTTNhanVien.requestFocus();
             tfSoTaiKhoanTTNhanVien.setText("");
             return false;
-        }else {
-            try {
-                int soTK = Integer.parseInt(tfSoTaiKhoanTTNhanVien.getText().trim());
-            }catch (NumberFormatException e){
-                Alerts.showConfirmation("Thông báp","Số tài khoản là phải là số");
-                tfSoTaiKhoanTTNhanVien.requestFocus();
-                tfSoTaiKhoanTTNhanVien.setText("");
-                return false;
-            }
         }
+
         //Kiểm tra phòng ban có chọn không
         if (cbxPhongBanTTNhanVien.getSelectionModel().isEmpty()){
             Alerts.showConfirmation("Thông báo", "Phải chọn phòng ban");
@@ -479,7 +523,7 @@ public class NhanVienController implements Initializable{
             return false;
         }else {
             try {
-                int luong = Integer.parseInt(tfLuongCoBanTTNhanVien.getText().trim());
+                double luong = Double.parseDouble(tfLuongCoBanTTNhanVien.getText().trim());
             }catch (NumberFormatException e){
                 Alerts.showConfirmation("Thông báo","Lương cơ bản phải là số");
                 tfLuongCoBanTTNhanVien.requestFocus();
@@ -514,8 +558,15 @@ public class NhanVienController implements Initializable{
         return maNVLonNhatTuBang;
     }
     private String taoMaNhanVien(){
+
         String maNVLonNhatTuCSDL = NhanVienDao.getInstance().getMaNhanVienLonNhat();
-        int maNVLonNhaTtuCSDLChuyenSangSo = Integer.parseInt(maNVLonNhatTuCSDL.substring(2)); //Lấy sau phần tử thứ 2 tới hết vì mã có định dạng chung là CN****
+
+        int maNVLonNhaTtuCSDLChuyenSangSo;
+        if (maNVLonNhatTuCSDL.equals(null)){
+            maNVLonNhaTtuCSDLChuyenSangSo =0;
+        }else {
+            maNVLonNhaTtuCSDLChuyenSangSo = Integer.parseInt(maNVLonNhatTuCSDL.substring(2)); //Lấy sau phần tử thứ 2 tới hết vì mã có định dạng chung là CN****
+        }
         int maNVLonNhattuBang = timMANhanVienLonNhatTrenBang();
         int maNVLonNhat = 0;
         if (maNVLonNhaTtuCSDLChuyenSangSo > maNVLonNhattuBang){
@@ -555,7 +606,7 @@ public class NhanVienController implements Initializable{
         //không biết chuyển datepick sang Date nên cop code mạng...
         LocalDate localDate = datepickNgaySinhTTNhanVien.getValue();
         Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-        Date ngaySinh =  java.sql.Date.from(instant);
+        Date ngaySinh = Date.from(instant);
 
         int sDT = Integer.parseInt(tfSoDienThoaiTTNhanVien.getText().trim());
         String email = tfEmailTTNhanVien.getText().trim();
@@ -563,7 +614,7 @@ public class NhanVienController implements Initializable{
         //không biết chuyển datepick sang Date nên cop code mạng...
         LocalDate localDate2 = datepickNgayVaoLamTTNhanVien.getValue();
         Instant instant2 = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-        Date ngayVaoLam= Date.from(instant2);
+        Date ngayVaoLam=  Date.from(instant2);
 
         String sTK = tfSoTaiKhoanTTNhanVien.getText().trim();
 
@@ -603,14 +654,121 @@ public class NhanVienController implements Initializable{
 
     public void themTTNhanVien(ActionEvent actionEvent) {
         if (kiemTraNhapTTNhanVien()){
-            Alerts.showConfirmation("Thong bao","Đã thêm nhân viên");
-            NhanVien nv = taoNhanVien();
-            DSNhanVien.add(nv);
-            docDuLieuNVVaoTableTTNhanVien();
-
+            Optional<ButtonType> result = Alerts.showConfirmation("Thong bao","Đã thêm nhân viên");
+            if (result.isPresent() && result.get()==ButtonType.OK){
+                NhanVien nv = taoNhanVien();
+                DSNhanVien.add(nv);
+                DSNhanVienThem.add(nv);
+                docDuLieuNVVaoTableTTNhanVien();
+            }else
+                return;
         }
 
     }
+    public void xoaTTNhanVien(ActionEvent actionEvent) {
+        NhanVien nv = tblViewTTNhanVien.getSelectionModel().getSelectedItem();
+        //Nếu nv ko tồn tại trong DSNhanVienThem thì lưu vào DSXoa
+        if (!DSNhanVienThem.contains(nv))
+            DSNhanVienXoa.add(nv);
+        else if (DSNhanVienThem.contains(nv))
+            DSNhanVienThem.remove(nv);
 
+        DSNhanVien.remove(nv);
+    }
+
+    public void xoaTrangTTNhanVien(ActionEvent actionEvent) {
+        tfTenTTNhanVien.clear();
+        tfLuongCoBanTTNhanVien.clear();
+        tfSoTaiKhoanTTNhanVien.clear();
+        tfEmailTTNhanVien.clear();
+        tfSoDienThoaiTTNhanVien.clear();
+        datepickNgaySinhTTNhanVien.setValue(null);
+
+    }
+    public boolean KiemTraPhuCap(NhanVien nv){
+        if ("PCNVTT" != nv.getMaPhuCap().getMaPhuCap())
+            return true;
+        return false;
+    }
+
+    public void chonROWTTNhanVien(MouseEvent mouseEvent) {
+        //DSNhanVien chua co neu chon vao se bi loi
+        if (!DSNhanVien.isEmpty()){
+            NhanVien nvDuocChon = tblViewTTNhanVien.getSelectionModel().getSelectedItem();
+
+                if (!DSNhanVienphu.contains(nvDuocChon))
+                    DSNhanVienphu.add(nvDuocChon);
+
+
+
+            tfTenTTNhanVien.setText(nvDuocChon.getHoNV() + " " + nvDuocChon.getTenNV());
+            tfSoDienThoaiTTNhanVien.setText(String.valueOf(nvDuocChon.getsDT()));
+            tfEmailTTNhanVien.setText(nvDuocChon.getEmail());
+            tfSoTaiKhoanTTNhanVien.setText(nvDuocChon.getsTK());
+            tfLuongCoBanTTNhanVien.setText(String.valueOf(nvDuocChon.getLuongCoBan()));
+            ckGioiTinhTTNhanVien.setSelected(nvDuocChon.getGioiTinh());
+            String phuCap = nvDuocChon.getMaPhuCap().getMaPhuCap();
+            ckPhuCapTTNhanVien.setSelected(phuCap == "PCNVTT"? false : true);
+            cbxChucVuTTNhanVien.setValue(nvDuocChon.getChucVuNV().getTenCV());
+            cbxPhongBanTTNhanVien.setValue(nvDuocChon.getPhongBan().getTenPB());
+//        //ngay sinh
+//        java.util.Date ngaySinh =nvDuocChon.getNgaySinh();
+//        Instant instant = ngaySinh.toInstant();
+//        ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
+//        LocalDate localDate = zdt.toLocalDate();
+//
+//        datepickNgaySinhTTNhanVien.setValue(localDate);
+//
+//        //ngay vao lam
+//        Instant ins = nvDuocChon.getNgayVaoLam().toInstant();
+//        ZonedDateTime zdtime = ins.atZone(ZoneId.systemDefault());
+////        LocalDate lc = zdtime.toLocalDate();
+//
+//        datepickNgayVaoLamTTNhanVien.setValue(lc);
+        }else
+            return;
+
+
+
+    }
+    /**
+     * Lưu và reset tt nhân viên
+    **/
+
+    public void luuTTNhanVien(ActionEvent actionEvent) throws InterruptedException {
+        Optional<ButtonType> reslut = Alerts.showConfirmation("Thông báo","Có muốn lưu không");
+        if (reslut.isPresent() && reslut.get() == ButtonType.OK){
+            //Có thể sai lưu dưới csdl sai vì cha biet khi nao bug
+            // ...nên mấy cái lưu này tôi để true false, 3 cái đúng hết mới thông báo lưu thành công
+            TimeUnit.SECONDS.sleep(1); // cho dung lai 1 giay truoc khi hien len va nay phai throws InterrupteddException
+            if(NhanVienDao.getInstance().saveDSNhanVienThem(DSNhanVienThem) && NhanVienDao.getInstance().saveDSNhanVienXoa(DSNhanVienXoa)){
+                Alerts.showConfirmation("Thông báo","Lưu thành công");
+            }else
+                Alerts.showConfirmation("Thông báo","Lưu thất bại");
+            //Luu DS Xoa
+            //LuuDS Sua
+            DSNhanVienreset.clear();
+            DSNhanVienreset.addAll(DSNhanVien);
+            DSNhanVienThem.clear();
+            DSNhanVienXoa.clear();
+            DSNhanVienSua.clear();
+        }else{
+            return;
+        }
+    }
+    public void resetBangTTNhanVien(ActionEvent actionEvent) {
+
+        Optional<ButtonType> result = Alerts.showConfirmation("Thông báo", "Xác nhận muốn reset, sau khi xóa sẽ mất hết dữ liệu chưa lưu");
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            xoaDuLieuDSNhanVienNeuDaCoDuL();
+            DSNhanVien.addAll(DSNhanVienreset);
+            DSNhanVienSua.clear();
+            DSNhanVienThem.clear();
+            DSNhanVienXoa.clear();
+            DSNhanVienphu.clear();
+        }else {
+            return;
+        }
+    }
 
 }

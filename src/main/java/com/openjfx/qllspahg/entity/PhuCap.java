@@ -22,6 +22,7 @@ public class PhuCap {
         this.tienConNho = tienConNho;
     }
 
+
     public double getTienDiLai() {
         return tienDiLai;
     }

@@ -1,5 +1,6 @@
 package com.openjfx.qllspahg.entity;
 
+
 import java.util.Date;
 import java.util.Objects;
 

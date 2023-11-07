@@ -31,11 +31,11 @@
                             <items>
                                 <ScrollPane fitToHeight="true" fitToWidth="true">
                                     <content>
-                                        <TableView fx:id="tblViewTTNhanVien" editable="true" prefHeight="300.0" tableMenuButtonVisible="true">
+                                        <TableView fx:id="tblViewTTNhanVien" editable="true" onMouseClicked="#chonROWTTNhanVien" prefHeight="300.0" tableMenuButtonVisible="true">
                                             <columns>
                                                 <TableColumn fx:id="colMaTTNhanVien" prefWidth="133.60003048181534" text="Mã nhân viên" />
-                                                <TableColumn fx:id="colHoTTNhanVien" minWidth="-1.0" prefWidth="81.59994506835938" text="Họ" />
-                                                <TableColumn fx:id="colTenTTNhanVien" minWidth="-1.0" prefWidth="257.6000061035156" text="Tên" />
+                                                <TableColumn fx:id="colHoTTNhanVien" minWidth="-1.0" prefWidth="232.80007934570312" text="Họ" />
+                                                <TableColumn fx:id="colTenTTNhanVien" minWidth="-1.0" prefWidth="107.199951171875" text="Tên" />
                                                 <TableColumn fx:id="colGioiTinhTTNhanVien" minWidth="-1.0" prefWidth="75.199951171875" text="Giới tính" />
                                                 <TableColumn fx:id="colChucVuTTNhanVien" minWidth="-1.0" prefWidth="143.20001220703125" text="Chức vụ" />
                                                 <TableColumn fx:id="colPhongBanTTNhanVien" minWidth="-1.0" prefWidth="166.4000244140625" text="Phòng ban" />
@@ -58,6 +58,7 @@
                                                 <TableColumn fx:id="colChiTietPhongBanTTNhanVien" minWidth="-1.0" prefWidth="69.5999755859375" text="Phòng ban" />
                                                 <TableColumn fx:id="colChiTietChucVuTTNhanVien" minWidth="-1.0" prefWidth="78.4000244140625" text="Chức vụ" />
                                                 <TableColumn fx:id="colChiTietPhuCapTTNhanVien" minWidth="-1.0" prefWidth="85.5999755859375" text="Phụ cấp" />
+                                    <TableColumn fx:id="colChiTietLuongTTNhanVien" minWidth="-1.0" prefWidth="85.5999755859375" text="Lương cơ bản" />
                                             </columns>
                                         </TableView>
                                     </content>
@@ -242,7 +243,7 @@
                                                 </ImageView>
                                             </graphic>
                                         </Button>
-                                        <Button fx:id="btnLamMoiTTNhanVien" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Làm mới">
+                                        <Button fx:id="btnLamMoiTTNhanVien" mnemonicParsing="false" onAction="#xoaTrangTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Làm mới">
                                             <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
@@ -270,7 +271,7 @@
                                                 </ImageView>
                                             </graphic>
                                         </Button>
-                                        <Button fx:id="btnXoaTTNhanVien" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Xóa">
+                                        <Button fx:id="btnXoaTTNhanVien" mnemonicParsing="false" onAction="#xoaTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Xóa">
                                             <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
@@ -302,7 +303,7 @@
                                         </ImageView>
                                     </graphic>
                                 </Button>
-                                <Button fx:id="btnLuuTTNhanVien" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Lưu">
+                                <Button fx:id="btnLuuTTNhanVien" mnemonicParsing="false" onAction="#luuTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Lưu">
                                     <graphic>
                                         <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
