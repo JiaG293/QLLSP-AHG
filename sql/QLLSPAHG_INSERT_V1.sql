@@ -1,4 +1,7 @@
-﻿--PhongBan
+﻿
+USE QLLSPAHG
+GO
+--PhongBan
   INSERT INTO [PhongBan] (maPB, tenPB)
   VALUES
 	('PBHCNS', N'Phòng nhân sự'),
