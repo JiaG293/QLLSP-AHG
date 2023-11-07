@@ -48,15 +48,15 @@
                                         <TableView fx:id="tblviewChiTietNhanVien" editable="true" prefHeight="300.0" tableMenuButtonVisible="true">
                                             <columns>
                                                 <TableColumn fx:id="colChiTietMaTTNhanVien" prefWidth="96.80001217126846" text="Mã nhân viên" />
-                                                <TableColumn fx:id="colChiTietHovaTenTTNhanVien" minWidth="-1.0" prefWidth="93.60000610351562" text="Họ và tên" />
+                                                <TableColumn fx:id="colChiTietHovaTenTTNhanVien" minWidth="-1.0" prefWidth="200.0" text="Họ và tên" />
                                                 <TableColumn fx:id="colChiTietGioiTinhTTNhanVien" minWidth="-1.0" prefWidth="64.0" text="Giới tính" />
                                     <TableColumn fx:id="colChiTietNgaySinhTTNhanVien" minWidth="-1.0" prefWidth="72.800048828125" text="Ngày sinh" />
                                                 <TableColumn fx:id="colChiTietNgayVaoLamTTNhanVien" minWidth="-1.0" prefWidth="90.39996337890625" text="Ngày vào làm" />
                                                 <TableColumn fx:id="colChiTietSoDienThoaiTTNhanVien" minWidth="-1.0" prefWidth="108.00006103515625" text="Số điện thoại" />
-                                                <TableColumn fx:id="colChiTietEmailTTNhanVien" minWidth="-1.0" prefWidth="62.39996337890625" text="Email" />
+                                                <TableColumn fx:id="colChiTietEmailTTNhanVien" minWidth="-1.0" prefWidth="100.0" text="Email" />
                                                 <TableColumn fx:id="colChiTietSoTaiKhoanTTNhanVien" minWidth="-1.0" prefWidth="97.5999755859375" text="Só tài khoản" />
-                                                <TableColumn fx:id="colChiTietPhongBanTTNhanVien" minWidth="-1.0" prefWidth="69.5999755859375" text="Phòng ban" />
-                                                <TableColumn fx:id="colChiTietChucVuTTNhanVien" minWidth="-1.0" prefWidth="78.4000244140625" text="Chức vụ" />
+                                                <TableColumn fx:id="colChiTietPhongBanTTNhanVien" minWidth="-1.0" prefWidth="100.0" text="Phòng ban" />
+                                                <TableColumn fx:id="colChiTietChucVuTTNhanVien" minWidth="-1.0" prefWidth="100.0" text="Chức vụ" />
                                                 <TableColumn fx:id="colChiTietPhuCapTTNhanVien" minWidth="-1.0" prefWidth="85.5999755859375" text="Phụ cấp" />
                                     <TableColumn fx:id="colChiTietLuongTTNhanVien" minWidth="-1.0" prefWidth="85.5999755859375" text="Lương cơ bản" />
                                             </columns>
