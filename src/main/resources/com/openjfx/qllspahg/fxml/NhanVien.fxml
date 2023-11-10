@@ -45,7 +45,7 @@
                                 </ScrollPane>
                                 <ScrollPane fitToHeight="true" fitToWidth="true">
                                     <content>
-                                        <TableView fx:id="tblviewChiTietNhanVien" editable="true" prefHeight="300.0" tableMenuButtonVisible="true">
+                                        <TableView fx:id="tblviewChiTietNhanVien" editable="true" onMouseClicked="#chonROWChiTietTTNhanVien" prefHeight="300.0" tableMenuButtonVisible="true">
                                             <columns>
                                                 <TableColumn fx:id="colChiTietMaTTNhanVien" prefWidth="96.80001217126846" text="Mã nhân viên" />
                                                 <TableColumn fx:id="colChiTietHovaTenTTNhanVien" minWidth="-1.0" prefWidth="200.0" text="Họ và tên" />
@@ -53,12 +53,12 @@
                                     <TableColumn fx:id="colChiTietNgaySinhTTNhanVien" minWidth="-1.0" prefWidth="72.800048828125" text="Ngày sinh" />
                                                 <TableColumn fx:id="colChiTietNgayVaoLamTTNhanVien" minWidth="-1.0" prefWidth="90.39996337890625" text="Ngày vào làm" />
                                                 <TableColumn fx:id="colChiTietSoDienThoaiTTNhanVien" minWidth="-1.0" prefWidth="108.00006103515625" text="Số điện thoại" />
-                                                <TableColumn fx:id="colChiTietEmailTTNhanVien" minWidth="-1.0" prefWidth="100.0" text="Email" />
-                                                <TableColumn fx:id="colChiTietSoTaiKhoanTTNhanVien" minWidth="-1.0" prefWidth="97.5999755859375" text="Só tài khoản" />
-                                                <TableColumn fx:id="colChiTietPhongBanTTNhanVien" minWidth="-1.0" prefWidth="100.0" text="Phòng ban" />
-                                                <TableColumn fx:id="colChiTietChucVuTTNhanVien" minWidth="-1.0" prefWidth="100.0" text="Chức vụ" />
-                                                <TableColumn fx:id="colChiTietPhuCapTTNhanVien" minWidth="-1.0" prefWidth="85.5999755859375" text="Phụ cấp" />
-                                    <TableColumn fx:id="colChiTietLuongTTNhanVien" minWidth="-1.0" prefWidth="85.5999755859375" text="Lương cơ bản" />
+                                                <TableColumn fx:id="colChiTietEmailTTNhanVien" minWidth="-1.0" prefWidth="209.60003662109375" text="Email" />
+                                                <TableColumn fx:id="colChiTietSoTaiKhoanTTNhanVien" minWidth="-1.0" prefWidth="117.60003662109375" text="Só tài khoản" />
+                                                <TableColumn fx:id="colChiTietPhongBanTTNhanVien" minWidth="-1.0" prefWidth="114.39996337890625" text="Phòng ban" />
+                                                <TableColumn fx:id="colChiTietChucVuTTNhanVien" minWidth="-1.0" prefWidth="90.39996337890625" text="Chức vụ" />
+                                                <TableColumn fx:id="colChiTietPhuCapTTNhanVien" minWidth="-1.0" prefWidth="125.5999755859375" text="Phụ cấp" />
+                                    <TableColumn fx:id="colChiTietLuongTTNhanVien" minWidth="-1.0" prefWidth="148.0" text="Lương cơ bản" />
                                             </columns>
                                         </TableView>
                                     </content>
@@ -110,11 +110,20 @@
                     <right>
                         <VBox alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
                             <children>
-                                <ImageView fitHeight="160.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="106.66666666667" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../images/icons/avatar.png" />
                                     </image>
                                 </ImageView>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Mã số nhân viên" />
+                              <TextField fx:id="tfMaTTNhanVien" disable="true" editable="false" prefHeight="26.0" prefWidth="210.0" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </HBox>
                                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                                     <children>
                                         <Label text="Tên nhân viên: " />
@@ -189,6 +198,15 @@
                                         <Insets left="5.0" right="5.0" />
                                     </padding>
                                 </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Phụ cấp :" />
+                              <ComboBox fx:id="cbxPhuCapTTNhanVien" prefWidth="150.0" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </HBox>
                                 <HBox alignment="CENTER_LEFT" spacing="20.0">
                                     <children>
                                         <HBox alignment="CENTER" spacing="10.0">
@@ -200,11 +218,7 @@
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                             </padding>
                                         </HBox>
-                                        <HBox alignment="CENTER_LEFT">
-                                            <children>
-                                                <CheckBox fx:id="ckPhuCapTTNhanVien" mnemonicParsing="false" text="Phụ cấp" />
-                                            </children>
-                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" />
                                     </children>
                                     <padding>
                                         <Insets left="5.0" right="5.0" />
@@ -262,7 +276,7 @@
                                 </HBox>
                                 <HBox alignment="CENTER" spacing="120.0">
                                     <children>
-                                        <Button fx:id="btnSuaTTNhanVien" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Sửa">
+                                        <Button fx:id="btnSuaTTNhanVien" mnemonicParsing="false" onAction="#suaTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Sửa">
                                             <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>

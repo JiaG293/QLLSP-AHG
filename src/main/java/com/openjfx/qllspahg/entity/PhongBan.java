@@ -42,4 +42,12 @@ public class PhongBan {
     public int hashCode() {
         return Objects.hash(maPB);
     }
+
+    @Override
+    public String toString() {
+        return "PhongBan{" +
+                "maPB='" + maPB + '\'' +
+                ", tenPB='" + tenPB + '\'' +
+                '}';
+    }
 }

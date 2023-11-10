@@ -22,6 +22,9 @@ public class PhuCap {
         this.tienConNho = tienConNho;
     }
 
+    public PhuCap() {
+    }
+
 
     public double getTienDiLai() {
         return tienDiLai;
@@ -83,7 +86,12 @@ public class PhuCap {
         this.tienConNho = tienConNho;
     }
 
-
+    @Override
+    public String toString() {
+        return "PhuCap{" +
+                "maPhuCap='" + maPhuCap + '\'' +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {

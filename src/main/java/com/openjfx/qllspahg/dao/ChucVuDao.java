@@ -1,18 +1,17 @@
 package com.openjfx.qllspahg.dao;
 
-import com.openjfx.qllspahg.dao.interfaces.InterfaceChucVudao;
+import com.openjfx.qllspahg.dao.interfaces.QuanLyTTNhanVienChucVuDao;
 import com.openjfx.qllspahg.database.Db;
 import com.openjfx.qllspahg.entity.ChucVu;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ChucVuDao implements InterfaceChucVudao {
+public class ChucVuDao implements QuanLyTTNhanVienChucVuDao {
 
     ObservableList<ChucVu> dsCV = FXCollections.observableArrayList();
     public static ChucVuDao getInstance(){
@@ -26,7 +25,7 @@ public class ChucVuDao implements InterfaceChucVudao {
             Statement st = con.createStatement();
             String truyVan = "select * \n" +
                     "from [dbo].[ChucVu] \n" +
-                    "where [maCV] like 'NV%'";
+                    "where [maCV] like 'CVNV%'";
             ResultSet rs = st.executeQuery(truyVan);
             while (rs.next()){
                 String maCV = rs.getString("maCV");

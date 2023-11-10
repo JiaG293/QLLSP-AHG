@@ -10,17 +10,16 @@ public class NhanVien {
     private String tenNV;
     private boolean gioiTinh;
     private Date ngaySinh;
-    private int sDT;
+    private String sDT;
     private String email;
     private Date ngayVaoLam;
     private String sTK;
     private ChucVu chucVuNV;
     private PhongBan phongBan;
     private PhuCap phuCap;
-
     private double luongCoBan;
 
-    public NhanVien(String maNV, String hoNV, String tenNV, boolean gioiTinh, Date ngaySinh, int sDT, String email, Date ngayVaoLam, String sTK, ChucVu chucVuNV, PhongBan phongBan, PhuCap phuCap, double luongCoBan) {
+    public NhanVien(String maNV, String hoNV, String tenNV, boolean gioiTinh, Date ngaySinh, String sDT, String email, Date ngayVaoLam, String sTK, ChucVu chucVuNV, PhongBan phongBan, PhuCap phuCap, double luongCoBan) {
         this.maNV = maNV;
         this.hoNV = hoNV;
         this.tenNV = tenNV;
@@ -36,10 +35,19 @@ public class NhanVien {
         this.luongCoBan = luongCoBan;
     }
 
+    public NhanVien() {
+    }
+
     public NhanVien(String maNV) {
         this.maNV = maNV;
     }
+    public boolean getGioiTinh() {
+        return gioiTinh;
+    }
 
+    public void setGioiTinh(boolean gioiTinh) {
+        this.gioiTinh = gioiTinh;
+    }
     ///Sample
 //    public NhanVien(String maNV, String hoNV, String tenNV, boolean gioiTinh) {
 //        this.maNV = maNV;
@@ -97,13 +105,7 @@ public class NhanVien {
         this.tenNV = tenNV;
     }
 
-    public boolean getGioiTinh() {
-        return gioiTinh;
-    }
 
-    public void setGioiTinh(boolean gioiTinh) {
-        this.gioiTinh = gioiTinh;
-    }
 
     public Date getNgaySinh() {
         return ngaySinh;
@@ -113,11 +115,11 @@ public class NhanVien {
         this.ngaySinh = ngaySinh;
     }
 
-    public int getsDT() {
+    public String getsDT() {
         return sDT;
     }
 
-    public void setsDT(int sDT) {
+    public void setsDT(String sDT) {
         this.sDT = sDT;
     }
 
@@ -165,6 +167,25 @@ public class NhanVien {
     @Override
     public int hashCode() {
         return Objects.hash(maNV);
+    }
+
+    @Override
+    public String toString() {
+        return "NhanVien{" +
+                "maNV='" + maNV + '\'' +
+                ", hoNV='" + hoNV + '\'' +
+                ", tenNV='" + tenNV + '\'' +
+                ", gioiTinh=" + gioiTinh +
+                ", ngaySinh=" + ngaySinh +
+                ", sDT='" + sDT + '\'' +
+                ", email='" + email + '\'' +
+                ", ngayVaoLam=" + ngayVaoLam +
+                ", sTK='" + sTK + '\'' +
+                ", chucVuNV=" + chucVuNV +
+                ", phongBan=" + phongBan +
+                ", phuCap=" + phuCap +
+                ", luongCoBan=" + luongCoBan +
+                '}';
     }
 }
 

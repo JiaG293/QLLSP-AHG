@@ -1,6 +1,6 @@
 package com.openjfx.qllspahg.dao;
 
-import com.openjfx.qllspahg.dao.interfaces.InterfacePhuCapDao;
+import com.openjfx.qllspahg.dao.interfaces.QuanLyTTNhanVienPhuCapDao;
 import com.openjfx.qllspahg.database.Db;
 import com.openjfx.qllspahg.entity.PhuCap;
 import javafx.collections.FXCollections;
@@ -11,9 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class PhuCapDao implements InterfacePhuCapDao {
+public class PhuCapDao implements QuanLyTTNhanVienPhuCapDao {
     ObservableList dsPhuCap = FXCollections.observableArrayList();
-    public PhuCapDao getInstance(){
+    public static PhuCapDao getInstance(){
         return new PhuCapDao();
     }
     @Override
@@ -23,7 +23,7 @@ public class PhuCapDao implements InterfacePhuCapDao {
             Statement st = con.createStatement();
             String truyVan = "select * \n" +
                     "from  [dbo].[PhuCap]\n" +
-                    "where [maPhuCap] like 'PCCN%'";
+                    "where [maPhuCap] like 'PCNV%'";
             ResultSet rs = st.executeQuery(truyVan);
             while (rs.next()){
                 String maPhuCap = rs.getString("maPhuCap");
