@@ -6,6 +6,7 @@ import static com.openjfx.qllspahg.dao.interfaces.DSPhanCongCongNhan.DSChiTietHo
 import com.openjfx.qllspahg.dao.PhanCongCongNhanChiTietHDDaoimpl;
 import com.openjfx.qllspahg.dao.PhanCongCongNhanHopDongimpl;
 import com.openjfx.qllspahg.entity.ChiTietHopDong;
+import com.openjfx.qllspahg.entity.CongDoan;
 import com.openjfx.qllspahg.entity.HopDong;
 import com.openjfx.qllspahg.gui.util.Alerts;
 import javafx.beans.property.SimpleStringProperty;
@@ -24,6 +25,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 import java.net.URL;
@@ -31,9 +33,6 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class CongNhanControler implements Initializable {
-
-    @FXML
-    private Button btnLamMoiTTNhanVien;
 
     @FXML
     private Button btnLayDuLieuPhanCongCongNhan;
@@ -51,25 +50,13 @@ public class CongNhanControler implements Initializable {
     private Button btnSuaTTNhanVien;
 
     @FXML
-    private Button btnThemTTNhanVien;
-
-    @FXML
-    private Button btnXoaTTNhanVien;
-
-    @FXML
-    private ComboBox<?> cbxChucVuTTNhanVien;
-
-    @FXML
     private ComboBox<String> cbxLayTTHopDongPhanCongCongNh;
 
     @FXML
-    private ComboBox<?> cbxPhongBanTTNhanVien;
-
-    @FXML
-    private ComboBox<?> cbxPhuCapTTNhanVien;
-
-    @FXML
     private CheckBox ckGioiTinhTTNhanVien;
+
+    @FXML
+    private TableColumn<?, ?> colCongDoanTTPhanCongToCongNhan;
 
     @FXML
     private TableColumn<?, ?> colHovaTenTTPhanCongTungCongNhan;
@@ -78,10 +65,7 @@ public class CongNhanControler implements Initializable {
     private TableColumn<?, ?> colMaChamCongTTPhanCongTungCongNhan;
 
     @FXML
-    private TableColumn<?, ?> colMaCongDoanPhanCongCongNhan;
-
-    @FXML
-    private TableColumn<ChiTietHopDong, String> colMaSanPhamPhanCongCongNhan;
+    private TableColumn<CongDoan, String> colMaCongDoanPhanCongCongNhan;
 
     @FXML
     private TableColumn<ChiTietHopDong, String> colMaSanPhamPhanCongCongNhan1;
@@ -102,22 +86,28 @@ public class CongNhanControler implements Initializable {
     private TableColumn<?, ?> colNgayPhanCongTTPhanCongToCongNhan;
 
     @FXML
+    private TableColumn<ChiTietHopDong, Integer> colSLSanPhamPhanCongCongNhan;
+
+    @FXML
+    private TableColumn<?, ?> colSanPhamTTPhanCongToCongNhan11;
+
+    @FXML
     private TableColumn<?, ?> colSoLuongLamTTPhanCongTungCongNhan;
 
     @FXML
     private TableColumn<?, ?> colSoLuongNguoiTrongToPhanCongCongNhan;
 
     @FXML
-    private TableColumn<?, ?> colTenCongDoanPhanCongCongNhan;
+    private TableColumn<CongDoan, String> colTenCongDoanPhanCongCongNhan;
 
     @FXML
     private TableColumn<?, ?> colTenCongDoanTTPhanCongTungCongNhan;
 
     @FXML
-    private TableColumn<?, ?> colTenSanPhamCDPhanCongCongNhan;
+    private TableColumn<CongDoan, String> colTenSanPhamCDPhanCongCongNhan;
 
     @FXML
-    private TableColumn<ChiTietHopDong, Integer> colTenSanPhamPhanCongCongNhan;
+    private TableColumn<ChiTietHopDong, String> colTenSanPhamPhanCongCongNhan;
 
     @FXML
     private TableColumn<?, ?> colTenSanPhamTTPhanCongTungCongNhan;
@@ -141,13 +131,7 @@ public class CongNhanControler implements Initializable {
     private DatePicker datepickNgayPhanCong;
 
     @FXML
-    private DatePicker datepickNgaySinhTTNhanVien;
-
-    @FXML
-    private DatePicker datepickNgayVaoLamTTNhanVien;
-
-    @FXML
-    private TableView<?> tblViewTTCongDoanPhanCongCongNhan;
+    private TableView<CongDoan> tblViewTTCongDoanPhanCongCongNhan;
 
     @FXML
     private TableView<?> tblViewTTPhanCongToCongNhan;
@@ -162,22 +146,7 @@ public class CongNhanControler implements Initializable {
     private TableView<?> tblViewTTToPhanCongCongNhan;
 
     @FXML
-    private TextField tfEmailTTNhanVien;
-
-    @FXML
-    private TextField tfMaTTNhanVien;
-
-    @FXML
-    private TextField tfSoDienThoaiTTNhanVien;
-
-    @FXML
     private TextField tfSoLuongPhanCongTungNguoi;
-
-    @FXML
-    private TextField tfSoTaiKhoanTTNhanVien;
-
-    @FXML
-    private TextField tfTenTTNhanVien;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -215,13 +184,26 @@ public class CongNhanControler implements Initializable {
                 return new SimpleStringProperty(chiTietHopDongStringCellDataFeatures.getValue().getMaSanPham().getMaSP());
             }
         });
-        colMaSanPhamPhanCongCongNhan.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietHopDong, String>, ObservableValue<String>>() {
+        colTenSanPhamPhanCongCongNhan.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietHopDong, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<ChiTietHopDong, String> chiTietHopDongStringCellDataFeatures) {
                 return new SimpleStringProperty(chiTietHopDongStringCellDataFeatures.getValue().getMaSanPham().getTenSP());
             }
         });
-        colMaSanPhamPhanCongCongNhan.setCellValueFactory(new PropertyValueFactory<>("soLuong"));
+        colSLSanPhamPhanCongCongNhan.setCellValueFactory(new PropertyValueFactory<>("soLuong"));
         tblViewTTSanPhamPhanCongCongNhan.setItems(DSChiTietHopDong);
     }
+    private void docDuLieuVaotblViewTTCongDoanPhanCongCongNhan(){
+
+    }
+
+    public void chonROWTTChiTietSanPham(MouseEvent mouseEvent) {
+
+
+        ChiTietHopDong cthd = tblViewTTSanPhamPhanCongCongNhan.getSelectionModel().getSelectedItem();
+
+    }
+
+
+
 }
