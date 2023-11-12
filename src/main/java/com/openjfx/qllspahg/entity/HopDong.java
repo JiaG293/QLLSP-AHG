@@ -22,6 +22,10 @@ public class HopDong {
         this.ngayTLHD = ngayTLHD;
     }
 
+    public HopDong(String maHD) {
+        this.maHD = maHD;
+    }
+
     public HopDong() {
     }
 

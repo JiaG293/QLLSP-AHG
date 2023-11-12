@@ -31,7 +31,7 @@
                             <items>
                                 <ScrollPane fitToHeight="true" fitToWidth="true">
                                     <content>
-                                        <TableView fx:id="tblViewTTNhanVien" editable="true" onMouseClicked="#chonROWTTNhanVien" prefHeight="300.0" tableMenuButtonVisible="true">
+                                        <TableView fx:id="tblViewTTNhanVien" editable="true" onMouseClicked="#chonROWTTNhanVien" prefHeight="300.0">
                                             <columns>
                                                 <TableColumn fx:id="colMaTTNhanVien" prefWidth="133.60003048181534" text="Mã nhân viên" />
                                                 <TableColumn fx:id="colHoTTNhanVien" minWidth="-1.0" prefWidth="232.80007934570312" text="Họ" />
@@ -45,7 +45,7 @@
                                 </ScrollPane>
                                 <ScrollPane fitToHeight="true" fitToWidth="true">
                                     <content>
-                                        <TableView fx:id="tblviewChiTietNhanVien" editable="true" onMouseClicked="#chonROWChiTietTTNhanVien" prefHeight="300.0" tableMenuButtonVisible="true">
+                                        <TableView fx:id="tblviewChiTietNhanVien" editable="true" onMouseClicked="#chonROWChiTietTTNhanVien" prefHeight="300.0">
                                             <columns>
                                                 <TableColumn fx:id="colChiTietMaTTNhanVien" prefWidth="96.80001217126846" text="Mã nhân viên" />
                                                 <TableColumn fx:id="colChiTietHovaTenTTNhanVien" minWidth="-1.0" prefWidth="200.0" text="Họ và tên" />
@@ -103,7 +103,7 @@
                                 </Button>
                             </children>
                             <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                             </padding>
                         </HBox>
                     </top>

@@ -11,6 +11,10 @@ public class ChiTietHopDong {
         this.soLuong = soLuong;
     }
 
+    public ChiTietHopDong(HopDong maHopDong) {
+        this.maHopDong = maHopDong;
+    }
+
     public HopDong getMaHopDong() {
         return maHopDong;
     }

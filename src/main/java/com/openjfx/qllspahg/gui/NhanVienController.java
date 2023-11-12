@@ -1,8 +1,8 @@
 package com.openjfx.qllspahg.gui;
 
 import com.microsoft.sqlserver.jdbc.StringUtils;
-import com.openjfx.qllspahg.dao.ChucVuDao;
-import com.openjfx.qllspahg.dao.NhanVienDao;
+import com.openjfx.qllspahg.dao.QuanLyTTNhanVienChucVuDaoimpl;
+import com.openjfx.qllspahg.dao.QuanLyTTNhanVienNhanVienDaoimpl;
 import  static com.openjfx.qllspahg.dao.interfaces.DSQLThongTinNhanVien.DSNhanVien;
 import static com.openjfx.qllspahg.dao.interfaces.DSQLThongTinNhanVien.DSNhanVienThem;
 import static com.openjfx.qllspahg.dao.interfaces.DSQLThongTinNhanVien.DSNhanVienXoa;
@@ -15,8 +15,8 @@ import static com.openjfx.qllspahg.dao.interfaces.DSQLThongTinNhanVien.DSChucVu;
 import static com.openjfx.qllspahg.dao.interfaces.DSQLThongTinNhanVien.DSPhuCap;
 
 
-import com.openjfx.qllspahg.dao.PhongBanDao;
-import com.openjfx.qllspahg.dao.PhuCapDao;
+import com.openjfx.qllspahg.dao.QuanLyTTNhanVienPhongBanDaoimpl;
+import com.openjfx.qllspahg.dao.QuanLyTTNhanVienPhuCapDaoimpl;
 import com.openjfx.qllspahg.entity.*;
 import com.openjfx.qllspahg.gui.util.Alerts;
 import com.openjfx.qllspahg.gui.util.Utils;
@@ -33,11 +33,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
@@ -204,7 +202,7 @@ public class NhanVienController implements Initializable{
     private void loadComboxChucVuNhapTTNhanVien(){
         if (!DSChucVu.isEmpty())
             DSChucVu.clear();
-        DSChucVu.addAll(ChucVuDao.getInstance().getAllChucVuNhanVien());
+        DSChucVu.addAll(QuanLyTTNhanVienChucVuDaoimpl.getInstance().getAllChucVuNhanVien());
         ObservableList<String> dsChucVu = FXCollections.observableArrayList();
         for (ChucVu cv : DSChucVu){
             dsChucVu.add(cv.getTenCV());
@@ -214,7 +212,7 @@ public class NhanVienController implements Initializable{
     private void loadComboboxPhongBanNhapTTNhanVien(){
         if (!DSPhongBan.isEmpty())
             DSPhongBan.clear();
-        DSPhongBan.addAll(PhongBanDao.getInstance().getAllPhongBan());
+        DSPhongBan.addAll(QuanLyTTNhanVienPhongBanDaoimpl.getInstance().getAllPhongBan());
         ObservableList<String> dsPB = FXCollections.observableArrayList();
         for(PhongBan pb : DSPhongBan)
             dsPB.add(pb.getTenPB());
@@ -224,7 +222,7 @@ public class NhanVienController implements Initializable{
     private void loadComboboxPhuCapNhapTTNhanVien(){
         if (!DSPhuCap.isEmpty())
             DSPhuCap.clear();
-        DSPhuCap.addAll(PhuCapDao.getInstance().getAllPhuCapNhanVien());
+        DSPhuCap.addAll(QuanLyTTNhanVienPhuCapDaoimpl.getInstance().getAllPhuCapNhanVien());
         ObservableList<String> dsPC = FXCollections.observableArrayList();
         for (PhuCap pc : DSPhuCap)
             dsPC.add(pc.getMaPhuCap());
@@ -239,7 +237,7 @@ public class NhanVienController implements Initializable{
     private void loadComboboxChucVu(){
         if (!DSChucVu.isEmpty())
             DSChucVu.clear();
-        DSChucVu.addAll(ChucVuDao.getInstance().getAllChucVuNhanVien());
+        DSChucVu.addAll(QuanLyTTNhanVienChucVuDaoimpl.getInstance().getAllChucVuNhanVien());
         ObservableList<String> dsTenChucVu = FXCollections.observableArrayList();
         for (ChucVu cv :DSChucVu){
             dsTenChucVu.add(cv.getTenCV());
@@ -249,7 +247,7 @@ public class NhanVienController implements Initializable{
     private void loadComboboxPhongBan(){
         if (!DSPhongBan.isEmpty())
             DSPhongBan.clear();
-        DSPhongBan.addAll(PhongBanDao.getInstance().getAllPhongBan());
+        DSPhongBan.addAll(QuanLyTTNhanVienPhongBanDaoimpl.getInstance().getAllPhongBan());
         ObservableList<String> dsTenPB = FXCollections.observableArrayList();
         for (PhongBan pb : DSPhongBan){
             dsTenPB.add(pb.getTenPB());
@@ -268,49 +266,49 @@ public class NhanVienController implements Initializable{
         //cbx load giới tính, phòng ban,chức vụ không được chọn là lấy hết
         if (cbxLoadGioiTinhTTNhanVien.getSelectionModel().isEmpty() && cbxLoadChucVuTTNhanVien.getSelectionModel().isEmpty() && cbxLoadPhongBanTTNhanVien.getSelectionModel().isEmpty()) {
             xoaDuLieuDSNhanVienNeuDaCoDuL();
-            DSNhanVien.addAll(NhanVienDao.getInstance().getAllNhanVien());
+            DSNhanVien.addAll(QuanLyTTNhanVienNhanVienDaoimpl.getInstance().getAllNhanVien());
             docDuLieuNVVaoTableTTNhanVien();
 
          //cbx load phòng ban không được chọn và cbx chúc vụ và giới tính được chọn
         }  else if (cbxLoadPhongBanTTNhanVien.getSelectionModel().isEmpty() && !cbxLoadChucVuTTNhanVien.getSelectionModel().isEmpty() && !cbxLoadGioiTinhTTNhanVien.getSelectionModel().isEmpty())  {
             xoaDuLieuDSNhanVienNeuDaCoDuL();
-            DSNhanVien.addAll(NhanVienDao.getInstance().getNhanVienTheoGTvaCV(cbxLoadGioiTinhTTNhanVien.getValue().trim().equals("Nu") ? "1" : "0",cbxLoadChucVuTTNhanVien.getValue().trim()));
+            DSNhanVien.addAll(QuanLyTTNhanVienNhanVienDaoimpl.getInstance().getNhanVienTheoGTvaCV(cbxLoadGioiTinhTTNhanVien.getValue().trim().equals("Nu") ? "1" : "0",cbxLoadChucVuTTNhanVien.getValue().trim()));
             docDuLieuNVVaoTableTTNhanVien();
 
             //cbx load phòng ban được chọn, cbx chức vụ,giới tính ko được chọn
         } else if (!cbxLoadPhongBanTTNhanVien.getSelectionModel().isEmpty() && cbxLoadChucVuTTNhanVien.getSelectionModel().isEmpty() && cbxLoadGioiTinhTTNhanVien.getSelectionModel().isEmpty()) {
             xoaDuLieuDSNhanVienNeuDaCoDuL();
-            DSNhanVien.addAll(NhanVienDao.getInstance().getNhanVienTheoPB(cbxLoadPhongBanTTNhanVien.getValue().trim()));
+            DSNhanVien.addAll(QuanLyTTNhanVienNhanVienDaoimpl.getInstance().getNhanVienTheoPB(cbxLoadPhongBanTTNhanVien.getValue().trim()));
             docDuLieuNVVaoTableTTNhanVien();
 
             //cbx load chức vụ ko được chọn, cbx giới tính và phòng ban được chọn
         } else if (cbxLoadChucVuTTNhanVien.getSelectionModel().isEmpty() && !cbxLoadGioiTinhTTNhanVien.getSelectionModel().isEmpty() && !cbxLoadPhongBanTTNhanVien.getSelectionModel().isEmpty()) {
             xoaDuLieuDSNhanVienNeuDaCoDuL();
-            DSNhanVien.addAll(NhanVienDao.getInstance().getNhanVienTheoGTvaPB(cbxLoadGioiTinhTTNhanVien.getValue().trim().equals("Nu") ? "1" : "0",cbxLoadPhongBanTTNhanVien.getValue().trim()));
+            DSNhanVien.addAll(QuanLyTTNhanVienNhanVienDaoimpl.getInstance().getNhanVienTheoGTvaPB(cbxLoadGioiTinhTTNhanVien.getValue().trim().equals("Nu") ? "1" : "0",cbxLoadPhongBanTTNhanVien.getValue().trim()));
             docDuLieuNVVaoTableTTNhanVien();
 
             //cbx load chúc vụ được chọn và, cbx giới tính, phòng ban không đoc75 chọn
         } else if (!cbxLoadChucVuTTNhanVien.getSelectionModel().isEmpty() && cbxLoadGioiTinhTTNhanVien.getSelectionModel().isEmpty() && cbxLoadPhongBanTTNhanVien.getSelectionModel().isEmpty()) {
             xoaDuLieuDSNhanVienNeuDaCoDuL();
-            DSNhanVien.addAll(NhanVienDao.getInstance().getNhanVienTheoCV(cbxLoadChucVuTTNhanVien.getValue().trim()));
+            DSNhanVien.addAll(QuanLyTTNhanVienNhanVienDaoimpl.getInstance().getNhanVienTheoCV(cbxLoadChucVuTTNhanVien.getValue().trim()));
             docDuLieuNVVaoTableTTNhanVien();
 
             //cbx load giới tính không được chọn, cbx load chức vụ, phòng ban được chọn
         } else if (cbxLoadGioiTinhTTNhanVien.getSelectionModel().isEmpty() && !cbxLoadChucVuTTNhanVien.getSelectionModel().isEmpty() && !cbxLoadPhongBanTTNhanVien.getSelectionModel().isEmpty()) {
             xoaDuLieuDSNhanVienNeuDaCoDuL();
-            DSNhanVien.addAll(NhanVienDao.getInstance().getNhanVienTheoCVvaPB(cbxLoadChucVuTTNhanVien.getValue().trim(),cbxLoadPhongBanTTNhanVien.getValue().trim()));
+            DSNhanVien.addAll(QuanLyTTNhanVienNhanVienDaoimpl.getInstance().getNhanVienTheoCVvaPB(cbxLoadChucVuTTNhanVien.getValue().trim(),cbxLoadPhongBanTTNhanVien.getValue().trim()));
             docDuLieuNVVaoTableTTNhanVien();
 
             //cbx load giới tính được chọn, cbx load chức vụ, phòng ban không được chọn
         } else if (!cbxLoadGioiTinhTTNhanVien.getSelectionModel().isEmpty() && cbxLoadChucVuTTNhanVien.getSelectionModel().isEmpty() && cbxLoadPhongBanTTNhanVien.getSelectionModel().isEmpty()) {
             xoaDuLieuDSNhanVienNeuDaCoDuL();
-            DSNhanVien.addAll(NhanVienDao.getInstance().getNhanVienTheoGT(cbxLoadGioiTinhTTNhanVien.getValue().trim().equals("Nu") ? "1" : "0"));
+            DSNhanVien.addAll(QuanLyTTNhanVienNhanVienDaoimpl.getInstance().getNhanVienTheoGT(cbxLoadGioiTinhTTNhanVien.getValue().trim().equals("Nu") ? "1" : "0"));
             docDuLieuNVVaoTableTTNhanVien();
 
             // cbx load giới tính, phòng ban, chúc vụ được chọn
         } else if (!(cbxLoadGioiTinhTTNhanVien.getSelectionModel().isEmpty() && cbxLoadChucVuTTNhanVien.getSelectionModel().isEmpty() && cbxLoadPhongBanTTNhanVien.getSelectionModel().isEmpty())) {
             xoaDuLieuDSNhanVienNeuDaCoDuL();
-            DSNhanVien.addAll(NhanVienDao.getInstance().getNhanVienTheoGTvaCVvaPB(cbxLoadGioiTinhTTNhanVien.getValue().trim().equals("Nu") ? "1" :"0",cbxLoadChucVuTTNhanVien.getValue().trim(),cbxLoadPhongBanTTNhanVien.getValue().trim()));
+            DSNhanVien.addAll(QuanLyTTNhanVienNhanVienDaoimpl.getInstance().getNhanVienTheoGTvaCVvaPB(cbxLoadGioiTinhTTNhanVien.getValue().trim().equals("Nu") ? "1" :"0",cbxLoadChucVuTTNhanVien.getValue().trim(),cbxLoadPhongBanTTNhanVien.getValue().trim()));
             docDuLieuNVVaoTableTTNhanVien();
 
         }
@@ -604,7 +602,7 @@ public class NhanVienController implements Initializable{
     }
     private String taoMaNhanVien(){
 
-        String maNVLonNhatTuCSDL = NhanVienDao.getInstance().getMaNhanVienLonNhat();
+        String maNVLonNhatTuCSDL = QuanLyTTNhanVienNhanVienDaoimpl.getInstance().getMaNhanVienLonNhat();
 
         int maNVLonNhaTtuCSDLChuyenSangSo;
         if (maNVLonNhatTuCSDL == null){
@@ -645,9 +643,9 @@ public class NhanVienController implements Initializable{
 
     private NhanVien taoNhanVien(){
         xoaDuLieuDSChucVuNeuDaCoDuL();
-        DSChucVu.addAll(ChucVuDao.getInstance().getAllChucVuNhanVien());
+        DSChucVu.addAll(QuanLyTTNhanVienChucVuDaoimpl.getInstance().getAllChucVuNhanVien());
         xoaDuLieuDSPhongBanNeuDaCoDuL();
-        DSPhongBan.addAll(PhongBanDao.getInstance().getAllPhongBan());
+        DSPhongBan.addAll(QuanLyTTNhanVienPhongBanDaoimpl.getInstance().getAllPhongBan());
 
 
         String maNV = taoMaNhanVien();
@@ -837,7 +835,7 @@ public class NhanVienController implements Initializable{
             //Có thể sai lưu dưới csdl sai vì cha biet khi nao bug
             // ...nên mấy cái lưu này tôi để true false, 3 cái đúng hết mới thông báo lưu thành công
             TimeUnit.SECONDS.sleep(1); // cho dung lai 1 giay truoc khi hien len va nay phai throws InterrupteddException
-            if(NhanVienDao.getInstance().saveDSNhanVienThem(DSNhanVienThem) && NhanVienDao.getInstance().saveDSNhanVienXoa(DSNhanVienXoa) && NhanVienDao.getInstance().svaeDSNhanVienSua(DSNhanVienSua)){
+            if(QuanLyTTNhanVienNhanVienDaoimpl.getInstance().saveDSNhanVienThem(DSNhanVienThem) && QuanLyTTNhanVienNhanVienDaoimpl.getInstance().saveDSNhanVienXoa(DSNhanVienXoa) && QuanLyTTNhanVienNhanVienDaoimpl.getInstance().svaeDSNhanVienSua(DSNhanVienSua)){
                 Alerts.showConfirmation("Thông báo","Lưu thành công");
             }else
                 Alerts.showConfirmation("Thông báo","Lưu thất bại");
@@ -876,9 +874,9 @@ public class NhanVienController implements Initializable{
         if (kiemTraNhapTTNhanVien()){
 
             xoaDuLieuDSChucVuNeuDaCoDuL();
-            DSChucVu.addAll(ChucVuDao.getInstance().getAllChucVuNhanVien());
+            DSChucVu.addAll(QuanLyTTNhanVienChucVuDaoimpl.getInstance().getAllChucVuNhanVien());
             xoaDuLieuDSPhongBanNeuDaCoDuL();
-            DSPhongBan.addAll(PhongBanDao.getInstance().getAllPhongBan());
+            DSPhongBan.addAll(QuanLyTTNhanVienPhongBanDaoimpl.getInstance().getAllPhongBan());
 
             String hoNV = tachHoTuHovaTen(tfTenTTNhanVien.getText().trim());
             String tenNV = tachTenTuHovaTen(tfTenTTNhanVien.getText().trim());

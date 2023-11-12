@@ -1,6 +1,5 @@
 package com.openjfx.qllspahg.dao;
 
-import com.openjfx.qllspahg.dao.interfaces.QuanLyTTNhanVienNhanVienDao;
 import com.openjfx.qllspahg.database.Db;
 import com.openjfx.qllspahg.entity.ChucVu;
 import com.openjfx.qllspahg.entity.NhanVien;
@@ -11,12 +10,12 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
-public class NhanVienDao implements QuanLyTTNhanVienNhanVienDao {
+public class QuanLyTTNhanVienNhanVienDaoimpl implements com.openjfx.qllspahg.dao.interfaces.QuanLyTTNhanVienNhanVienDao {
 
     private ObservableList<NhanVien> dsNhanVien = FXCollections.observableArrayList();
     //Khoi tao
-    public static NhanVienDao getInstance(){
-        return new NhanVienDao();
+    public static QuanLyTTNhanVienNhanVienDaoimpl getInstance(){
+        return new QuanLyTTNhanVienNhanVienDaoimpl();
     }
 
     @Override

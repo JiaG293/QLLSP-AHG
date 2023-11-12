@@ -13,6 +13,11 @@ public class SanPham {
         this.giaSP = giaSP;
     }
 
+    public SanPham(String maSP, String tenSP) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+    }
+
     public SanPham() {
     }
 

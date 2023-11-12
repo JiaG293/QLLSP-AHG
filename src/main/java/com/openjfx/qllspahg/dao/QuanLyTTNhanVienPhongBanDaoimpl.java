@@ -1,6 +1,5 @@
 package com.openjfx.qllspahg.dao;
 
-import com.openjfx.qllspahg.dao.interfaces.QuanLyTTNhanVienPhongBanDao;
 import com.openjfx.qllspahg.database.Db;
 import com.openjfx.qllspahg.entity.PhongBan;
 import javafx.collections.FXCollections;
@@ -12,11 +11,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-public class PhongBanDao implements QuanLyTTNhanVienPhongBanDao {
+public class QuanLyTTNhanVienPhongBanDaoimpl implements com.openjfx.qllspahg.dao.interfaces.QuanLyTTNhanVienPhongBanDao {
     ObservableList<PhongBan> dsPB = FXCollections.observableArrayList();
 
-    public static PhongBanDao getInstance(){
-        return new PhongBanDao();
+    public static QuanLyTTNhanVienPhongBanDaoimpl getInstance(){
+        return new QuanLyTTNhanVienPhongBanDaoimpl();
     }
 
     @Override

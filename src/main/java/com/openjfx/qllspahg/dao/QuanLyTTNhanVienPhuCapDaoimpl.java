@@ -1,6 +1,5 @@
 package com.openjfx.qllspahg.dao;
 
-import com.openjfx.qllspahg.dao.interfaces.QuanLyTTNhanVienPhuCapDao;
 import com.openjfx.qllspahg.database.Db;
 import com.openjfx.qllspahg.entity.PhuCap;
 import javafx.collections.FXCollections;
@@ -11,10 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class PhuCapDao implements QuanLyTTNhanVienPhuCapDao {
+public class QuanLyTTNhanVienPhuCapDaoimpl implements com.openjfx.qllspahg.dao.interfaces.QuanLyTTNhanVienPhuCapDao {
     ObservableList dsPhuCap = FXCollections.observableArrayList();
-    public static PhuCapDao getInstance(){
-        return new PhuCapDao();
+    public static QuanLyTTNhanVienPhuCapDaoimpl getInstance(){
+        return new QuanLyTTNhanVienPhuCapDaoimpl();
     }
     @Override
     public ObservableList<PhuCap> getAllPhuCapNhanVien() {
