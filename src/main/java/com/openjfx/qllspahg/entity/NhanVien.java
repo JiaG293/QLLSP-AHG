@@ -1,6 +1,8 @@
 package com.openjfx.qllspahg.entity;
 
 
+import com.openjfx.qllspahg.gui.util.Utils;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -33,6 +35,13 @@ public class NhanVien {
         this.phongBan = phongBan;
         this.phuCap = phuCap;
         this.luongCoBan = luongCoBan;
+    }
+
+    public NhanVien(String maNV, String hoNV, String tenNV, PhongBan phongBan) {
+        this.maNV = maNV;
+        this.hoNV = hoNV;
+        this.tenNV = tenNV;
+        this.phongBan = phongBan;
     }
 
     public NhanVien() {
@@ -185,6 +194,15 @@ public class NhanVien {
                 ", phongBan=" + phongBan +
                 ", phuCap=" + phuCap +
                 ", luongCoBan=" + luongCoBan +
+                '}';
+    }
+
+    public String toStringChamCongNhanVien() {
+        return "NhanVienChamCong{" +
+                "maNV='" + maNV + '\'' +
+                ", hoNV='" + hoNV + '\'' +
+                ", tenNV='" + tenNV + '\'' +
+                ", phongBan=" + phongBan +
                 '}';
     }
 }

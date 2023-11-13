@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 //Thuc thi va xu li sql o day
-public class QuanLySanPhamDaoImpl implements QuanLySanPhamDao<SanPham> {
+public class QuanLySanPhamDaoImpl implements QuanLySanPhamDao {
 
     //Khoi tao doi tuong - goi ham truoc khi muon goi cac ham khac
     public static QuanLySanPhamDaoImpl getInstance() {
