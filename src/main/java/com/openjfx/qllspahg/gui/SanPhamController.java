@@ -1,6 +1,6 @@
 package com.openjfx.qllspahg.gui;
 
-import com.openjfx.qllspahg.dao.SanPhamDaoImpl;
+import com.openjfx.qllspahg.dao.QuanLySanPhamDaoImpl;
 
 import static com.openjfx.qllspahg.dao.interfaces.DSDao.DSSANPHAM;
 
@@ -71,7 +71,7 @@ public class SanPhamController implements Initializable {
             DSSANPHAM.clear();
         }
         //Goi toi phuong thuoc DaoImplement de thuc hien ket noi lay du lieu tu jdbc
-        DSSANPHAM.addAll(SanPhamDaoImpl.getInstance().layTatCaSP());
+        DSSANPHAM.addAll(QuanLySanPhamDaoImpl.getInstance().layTatCaSP());
 
         //dua du lieu san pham tu observablelist len tableview
         sanPhamTableView.setItems(DSSANPHAM);
@@ -103,7 +103,7 @@ public class SanPhamController implements Initializable {
         }
 
         //Goi toi phuong thuoc DaoImplement de thuc hien ket noi lay du lieu tu jdbc
-        DSSANPHAM.addAll(SanPhamDaoImpl.getInstance().layTatCaSP());
+        DSSANPHAM.addAll(QuanLySanPhamDaoImpl.getInstance().layTatCaSP());
 //        sttSPColumn.setCellValueFactory(DSSANPHAM.size());
 
         //Dinh dang kieu du lieu hien thi tren cot cua tableview
@@ -180,7 +180,7 @@ public class SanPhamController implements Initializable {
         SanPham spDuocChon = sanPhamTableView.getSelectionModel().getSelectedItem();
 
         //Xoa sp tren csdl
-        SanPhamDaoImpl.getInstance().xoaSP(spDuocChon);
+        QuanLySanPhamDaoImpl.getInstance().xoaSP(spDuocChon);
 
         //Tai lai du lieu bang
         taiDuLieuSanPham();
@@ -195,7 +195,7 @@ public class SanPhamController implements Initializable {
         SanPham spDuocChon = sanPhamTableView.getSelectionModel().getSelectedItem();
         System.out.println("San pham duoc chon: " + spDuocChon);
 
-        SanPhamDaoImpl.getInstance().suaSP(spDuocChon);
+        QuanLySanPhamDaoImpl.getInstance().suaSP(spDuocChon);
     }
 
     @FXML
@@ -216,7 +216,7 @@ public class SanPhamController implements Initializable {
         SanPham spMoi = new SanPham(masp, tensp, giasp);
 
         //Them sp vao csdl
-        SanPhamDaoImpl.getInstance().themSP(spMoi);
+        QuanLySanPhamDaoImpl.getInstance().themSP(spMoi);
         //Lam moi tableview
         xoaTrang();
         taiDuLieuSanPham();
@@ -263,7 +263,7 @@ public class SanPhamController implements Initializable {
             SanPham spSua = layDuLieuTF();
 
             if (spSua != null) {
-                SanPhamDaoImpl.getInstance().suaSP(spSua);
+                QuanLySanPhamDaoImpl.getInstance().suaSP(spSua);
                 //Lam moi tableview
                 xoaTrang();
                 taiDuLieuSanPham();

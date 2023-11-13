@@ -1,6 +1,6 @@
 package com.openjfx.qllspahg.dao;
 
-import com.openjfx.qllspahg.dao.interfaces.SanPhamDao;
+import com.openjfx.qllspahg.dao.interfaces.QuanLySanPhamDao;
 import com.openjfx.qllspahg.database.Db;
 import com.openjfx.qllspahg.entity.SanPham;
 import javafx.collections.FXCollections;
@@ -11,11 +11,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 //Thuc thi va xu li sql o day
-public class SanPhamDaoImpl implements SanPhamDao<SanPham> {
+public class QuanLySanPhamDaoImpl implements QuanLySanPhamDao<SanPham> {
 
     //Khoi tao doi tuong - goi ham truoc khi muon goi cac ham khac
-    public static SanPhamDaoImpl getInstance() {
-        return new SanPhamDaoImpl();
+    public static QuanLySanPhamDaoImpl getInstance() {
+        return new QuanLySanPhamDaoImpl();
     }
 
     @Override

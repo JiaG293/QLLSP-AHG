@@ -32,7 +32,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class CongNhanControler implements Initializable {
+public class CongNhanController implements Initializable {
 
     @FXML
     private Button btnLayDuLieuPhanCongCongNhan;

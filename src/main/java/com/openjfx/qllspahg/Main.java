@@ -13,7 +13,7 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/DangNhap.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1500, 900);
+        Scene scene = new Scene(fxmlLoader.load(), 1200, 700);
 
         stage.centerOnScreen(); // Trung tam man hinh
         stage.setTitle("Đăng nhập");

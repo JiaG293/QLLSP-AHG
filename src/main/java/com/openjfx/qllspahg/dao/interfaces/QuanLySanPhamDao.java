@@ -3,7 +3,7 @@ package com.openjfx.qllspahg.dao.interfaces;
 import com.openjfx.qllspahg.entity.SanPham;
 import javafx.collections.ObservableList;
 
-public interface SanPhamDao<T> {
+public interface QuanLySanPhamDao<T> {
     public void themSP(SanPham sạnPham);
 
     public void xoaSP(SanPham sanPham);
