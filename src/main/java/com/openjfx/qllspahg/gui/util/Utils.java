@@ -1,10 +1,9 @@
 package com.openjfx.qllspahg.gui.util;
 
+import com.openjfx.qllspahg.entity.NhanVien;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -112,5 +111,37 @@ public class Utils {
         }
         return cf;
     }
+
+    //Tạo ma bang cham cong gom 8 số đầu là mã nhân sự 6 số sau là ngày tháng năm hiện tại yy-MM-dd
+    public static String TaoMaBangChamCong(String maNhanSu) {
+        LocalDate ngayHienTai = LocalDate.now();
+
+        return maNhanSu + DinhDangNgayHienTai(ngayHienTai, "yyMMdd");
+    }
+
+
+    public static CheckBox TaoCheckBox(boolean selected) {
+        CheckBox checkBox = new CheckBox();
+        checkBox.setSelected(selected);
+        return checkBox;
+    }
+
+    public static String TaoNgayHienTai() {
+        LocalDate ngayHienTai = LocalDate.now();
+//        String maNgayHienTai = String.format(ngayHienTai.getYear() + "-" + ngayHienTai.getMonthValue() + "-" + ngayHienTai.getDayOfMonth());
+        return DinhDangNgayHienTai(ngayHienTai, "yyyy-MM-dd");
+    }
+
+    public static String DinhDangNgayHienTai(LocalDate date, String pattern){
+        DateTimeFormatter patternFormat = DateTimeFormatter.ofPattern(pattern);
+        return patternFormat.format(date);
+    }
+
+
+
+
+
+
+
 
 }

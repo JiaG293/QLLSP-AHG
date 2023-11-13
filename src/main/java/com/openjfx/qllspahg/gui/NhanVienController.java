@@ -2,18 +2,22 @@ package com.openjfx.qllspahg.gui;
 
 import com.openjfx.qllspahg.dao.ChucVuDao;
 import com.openjfx.qllspahg.dao.NhanVienDao;
+
+import static com.openjfx.qllspahg.dao.interfaces.DSDao.DSSANPHAM;
 import  static com.openjfx.qllspahg.dao.interfaces.InterfaceNhanViendao.DSNhanVien;
 import static com.openjfx.qllspahg.dao.interfaces.InterfacePhongBandao.DSPhongBan;
 import static com.openjfx.qllspahg.dao.interfaces.InterfaceChucVudao.DSChucVu;
+import static com.openjfx.qllspahg.dao.interfaces.InterfaceNhanViendao.DSChamCongNhanVien;
 import static com.openjfx.qllspahg.dao.interfaces.InterfacePhuCapDao.DSPhuCap;
 
 import com.openjfx.qllspahg.dao.PhongBanDao;
-import com.openjfx.qllspahg.entity.ChucVu;
-import com.openjfx.qllspahg.entity.NhanVien;
-import com.openjfx.qllspahg.entity.PhongBan;
-import com.openjfx.qllspahg.entity.PhuCap;
+import com.openjfx.qllspahg.entity.*;
 import com.openjfx.qllspahg.gui.util.Alerts;
+import com.openjfx.qllspahg.gui.util.CheckCell;
+import com.openjfx.qllspahg.gui.util.Utils;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +26,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 import java.net.URL;
@@ -143,6 +148,18 @@ public class NhanVienController implements Initializable{
     private TableView<?> tblviewChiTietNhanVien;
 
     @FXML
+    private TableColumn<?, ?> colHoTenChamCongNV;
+
+    @FXML
+    private TableColumn<?, ?> colMaChamCongNV;
+
+    @FXML
+    private TableColumn<NhanVien, String> colPhongBanChamCongNV;
+
+    @FXML
+    private TableView<NhanVien> tblviewChamCongNV;
+
+    @FXML
     private TextField tfEmailTTNhanVien;
 
     @FXML
@@ -155,16 +172,35 @@ public class NhanVienController implements Initializable{
     private TextField tfTenTTNhanVien;
     private int giaTriReset = 0;
 
+    @FXML
+    private Tab tabChamCongNhanVien;
+
+    @FXML
+    private TableColumn<BangChamCongNhanVien, Date> colNgayChamCong;
+
+    @FXML
+    private TableColumn<BangChamCongNhanVien, Boolean> colCheckDiLam;
+
+    @FXML
+    private TableColumn<BangChamCongNhanVien, Boolean> colCheckNghiPhep;
+
+    @FXML
+    private TableColumn<BangChamCongNhanVien, Boolean> colCheckTangCa;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loaComboboxGioiTinh();
+        /*loaComboboxGioiTinh();
         loadComboboxChucVu();
         loadComboboxPhongBan();
         loadComboxChucVuNhapTTNhanVien();
         loadComboboxPhongBanNhapTTNhanVien();
         datepickNgayVaoLamTTNhanVien.setValue(LocalDate.now());
-        docDuLieuNVVaoTableTTNhanVien();
+        docDuLieuNVVaoTableTTNhanVien();*/
+
+
+        chamCongNhanVien();
 
     }
 
@@ -197,7 +233,7 @@ public class NhanVienController implements Initializable{
     }
     private void loaComboboxGioiTinh(){
         ObservableList<String> gioiTinh= FXCollections.observableArrayList(
-                "Nam","Nu"
+                "Nam","Nữ"
         );
         cbxLoadGioiTinhTTNhanVien.setItems(gioiTinh);
     }
@@ -205,11 +241,11 @@ public class NhanVienController implements Initializable{
         if (!DSChucVu.isEmpty())
             DSChucVu.clear();
         DSChucVu.addAll(ChucVuDao.getInstance().getAllChucVuNhanVien());
-        ObservableList<String> dsTenChucVu = FXCollections.observableArrayList();
+        ObservableList<String> dsChucVu = FXCollections.observableArrayList();
         for (ChucVu cv :DSChucVu){
-            dsTenChucVu.add(cv.getTenCV());
+            dsChucVu.add(cv.getTenCV());
         }
-        cbxLoadChucVuTTNhanVien.setItems(dsTenChucVu);
+        cbxLoadChucVuTTNhanVien.setItems(dsChucVu);
     }
     private void loadComboboxPhongBan(){
         if (!DSPhongBan.isEmpty())
@@ -607,10 +643,72 @@ public class NhanVienController implements Initializable{
             NhanVien nv = taoNhanVien();
             DSNhanVien.add(nv);
             docDuLieuNVVaoTableTTNhanVien();
-
         }
 
     }
+
+
+    /*Cham Cong Nhan Vien*/
+    public void tabChamCongNhanVien() {
+
+        colMaChamCongNV.setCellValueFactory(new PropertyValueFactory<>("maNV"));
+        colHoTenChamCongNV.setCellValueFactory(new PropertyValueFactory<>("hoNV"));
+        colTenTTNhanVien.setCellValueFactory(new PropertyValueFactory<>("tenNV"));
+        colPhongBanChamCongNV.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<NhanVien, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<NhanVien, String> nhanVienStringCellDataFeatures) {
+                return new SimpleStringProperty(nhanVienStringCellDataFeatures.getValue().getPhongBan().getTenPB());
+            }
+        });
+        colNgayChamCong.setCellValueFactory(new PropertyValueFactory<>("ngayCC"));
+
+        colCheckDiLam.setCellFactory(new Callback<TableColumn<BangChamCongNhanVien, Boolean>, TableCell<BangChamCongNhanVien, Boolean>>() {
+            @Override
+            public TableCell<BangChamCongNhanVien, Boolean> call(TableColumn<BangChamCongNhanVien, Boolean> param) {
+                return new CheckCell();
+            }
+        });
+
+        colCheckNghiPhep.setCellFactory(new Callback<TableColumn<BangChamCongNhanVien, Boolean>, TableCell<BangChamCongNhanVien, Boolean>>() {
+            @Override
+            public TableCell<BangChamCongNhanVien, Boolean> call(TableColumn<BangChamCongNhanVien, Boolean> param) {
+                return new CheckCell();
+            }
+        });
+        colCheckTangCa.setCellFactory(new Callback<TableColumn<BangChamCongNhanVien, Boolean>, TableCell<BangChamCongNhanVien, Boolean>>() {
+                    @Override
+                    public TableCell<BangChamCongNhanVien, Boolean> call(TableColumn<BangChamCongNhanVien, Boolean> param) {
+                        return new CheckCell();
+                    }
+                });
+
+
+    }
+
+
+    public void chamCongNhanVien(){
+        if (!DSChamCongNhanVien.isEmpty()) {
+            DSChamCongNhanVien.clear();
+        }
+        tabChamCongNhanVien();
+        DSChamCongNhanVien.addAll(NhanVienDao.getInstance().getBangChamCongNV());
+        tblviewChamCongNV.setItems(DSChamCongNhanVien);
+    }
+
+    public void taoTableChamCong(){
+
+    }
+
+    @FXML
+    void chonMotNhanVien(MouseEvent event) {
+        //Lay vi tri san pham duoc chon
+        NhanVien nvDuocChon = tblviewChamCongNV.getSelectionModel().getSelectedItem();
+        System.out.println("nhan vien duoc chon" + nvDuocChon.toString());
+
+        System.out.println(NhanVienDao.getInstance().InsertBangChamCong(NhanVienDao.getInstance().getBangChamCongNV()));
+    }
+
+
 
 
 }

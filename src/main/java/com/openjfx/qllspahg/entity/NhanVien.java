@@ -1,5 +1,7 @@
 package com.openjfx.qllspahg.entity;
 
+import javafx.util.StringConverter;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -45,6 +47,13 @@ public class NhanVien {
         this.hoNV = hoNV;
         this.tenNV = tenNV;
         this.gioiTinh = gioiTinh;
+    }
+
+    public NhanVien(String maNV, String hoNV, String tenNV, PhongBan phongBan) {
+        this.maNV = maNV;
+        this.hoNV = hoNV;
+        this.tenNV = tenNV;
+        this.phongBan = phongBan;
     }
 
     public ChucVu getChucVuNV() {
@@ -165,5 +174,16 @@ public class NhanVien {
     public int hashCode() {
         return Objects.hash(maNV);
     }
+
+    @Override
+    public String toString() {
+        return "NhanVien{" +
+                "maNV='" + maNV + '\'' +
+                ", hoNV='" + hoNV + '\'' +
+                ", tenNV='" + tenNV + '\'' +
+                ", phongBan=" + phongBan.getTenPB() +
+                '}';
+    }
+
 }
 

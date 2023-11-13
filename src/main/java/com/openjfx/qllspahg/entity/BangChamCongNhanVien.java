@@ -20,6 +20,8 @@ public class BangChamCongNhanVien {
         this.tangCa = tangCa;
     }
 
+
+
     public String getMaBCCNV() {
         return maBCCNV;
     }
@@ -48,7 +50,7 @@ public class BangChamCongNhanVien {
         return diLam;
     }
 
-    public void setDiLam(boolean diLam) {
+    public void setDiLam() {
         this.diLam = diLam;
     }
 

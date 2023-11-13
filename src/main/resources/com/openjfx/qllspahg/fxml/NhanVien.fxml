@@ -408,22 +408,22 @@
                 </BorderPane>
             </content>
         </Tab>
-        <Tab text="Chấm công nhân viên">
+        <Tab fx:id="tabChamCongNhanVien" onSelectionChanged="#chamCongNhanVien" text="Chấm công nhân viên">
             <content>
                 <BorderPane>
                     <center>
                         <ScrollPane fitToHeight="true" pannable="true" BorderPane.alignment="CENTER">
                             <content>
-                                <TableView editable="true" tableMenuButtonVisible="true">
+                                <TableView fx:id="tblviewChamCongNV" editable="true" onMouseClicked="#chonMotNhanVien" tableMenuButtonVisible="true">
                                     <columns>
-                                        <TableColumn prefWidth="85.59999996423721" text="Mã nhân viên" />
-                                        <TableColumn prefWidth="190.40005493164062" text="Họ tên" />
-                                        <TableColumn prefWidth="135.199951171875" text="Phòng ban" />
-                                        <TableColumn prefWidth="151.20001220703125" text="Ngày 01/xx/xxxx">
+                                        <TableColumn fx:id="colMaChamCongNV" prefWidth="85.59999996423721" text="Mã nhân viên" />
+                                        <TableColumn fx:id="colHoTenChamCongNV" prefWidth="190.40005493164062" text="Họ tên" />
+                                        <TableColumn fx:id="colPhongBanChamCongNV" prefWidth="135.199951171875" text="Phòng ban" />
+                                        <TableColumn fx:id="colNgayChamCong" prefWidth="151.20001220703125" text="Ngày 01/xx/xxxx">
                                             <columns>
-                                                <TableColumn prefWidth="75.0" text="Đi làm" />
-                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
-                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                                <TableColumn fx:id="colCheckDiLam" prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn fx:id="colCheckTangCa" prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn fx:id="colCheckNghiPhep" prefWidth="75.0" text="Nghỉ phép" />
                                             </columns>
                                         </TableColumn>
                                         <TableColumn prefWidth="114.40005493164062" text="Ngày 02/xx/xxxx">

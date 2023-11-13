@@ -131,7 +131,7 @@ CONSTRAINT PK_CongDoan PRIMARY KEY(maCD)
 
 --Table BangPhanCongCongNhan
 CREATE TABLE BangPhanCongCongNhan(
-maBPCCN varchar(6) NOT NULL, --khoa chinh
+maBPCCN varchar(14) NOT NULL, --khoa chinh
 maCN varchar(8), --khoa ngoai
 maCD varchar(6), --khoa ngoai
 chiTieu int,
@@ -143,8 +143,8 @@ CONSTRAINT PK_BangPhanCongCongNhan PRIMARY KEY(maBPCCN)
 
 --Table BangChamCongCongNhan
 CREATE TABLE BangChamCongCongNhan(
-maBCCCN varchar(6) NOT NULL, --khoa chinh
-maBPCCN varchar(6), --khoa ngoai
+maBCCCN varchar(14) NOT NULL, --khoa chinh
+maBPCCN varchar(14), --khoa ngoai
 ngayChamCong date,
 soLuongLamDuoc int,
 soLuongLamCa3 int,
@@ -167,7 +167,7 @@ CONSTRAINT PK_BangChamCongCongNhan PRIMARY KEY(maBCCCN)
 
 --Table BangChamCongNhanVien
 CREATE TABLE BangChamCongNhanVien(
-maBCCNV varchar(6) NOT NULL, --khoa chinh
+maBCCNV varchar(14) NOT NULL, --khoa chinh
 maNV varchar(8), --khoa ngoai khoa chinh
 ngayChamCong date,
 diLam bit DEFAULT 1, --0 la khong di lam, 1 la co di lam
@@ -190,7 +190,7 @@ CONSTRAINT PK_TamUngNhanVien PRIMARY KEY(maTUNV)
 
 --Table BangLuongNhanVien
 CREATE TABLE BangLuongNhanVien(
-maBCCNV varchar(6), --khoa ngoai --
+maBCCNV varchar(14), --khoa ngoai --
 maTUNV varchar(6), --khoa ngoai --khoa chinh
 luongNV decimal(19, 4),
 bhxhNV decimal(19, 4),
@@ -226,7 +226,7 @@ CONSTRAINT PK_TamUngCongNhan PRIMARY KEY(maTUCN)
 
 --Table BangLuongCongNhan
 CREATE TABLE BangLuongCongNhan(
-maBCCCN varchar(6), --khoa ngoai --khoa chinh
+maBCCCN varchar(14), --khoa ngoai --khoa chinh
 maTUCN varchar(6), --khoa ngoai --khoa chinh
 luongCN decimal(19, 4),
 bhxhCN decimal(19, 4),
