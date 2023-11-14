@@ -56,7 +56,7 @@
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </padding>
                         </HBox>
-                        <Button mnemonicParsing="false" text="Lấy dữ liệu " />
+                        <Button fx:id="btnLayDuLieu" mnemonicParsing="false" onAction="#locDuLieuChamCongNV" text="Lấy dữ liệu " />
                     </children>
                     <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -74,7 +74,7 @@
     <bottom>
         <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="20.0" BorderPane.alignment="CENTER">
             <children>
-                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Reset">
+                <Button mnemonicParsing="false" onAction="#lamMoiDuLieuBangChamCongNhanVien" prefHeight="30.0" prefWidth="94.0" text="Làm mới">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -83,7 +83,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Lưu">
+                <Button mnemonicParsing="false" onAction="#luuBangChamCongNhanVien" prefHeight="30.0" prefWidth="94.0" text="Lưu">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>

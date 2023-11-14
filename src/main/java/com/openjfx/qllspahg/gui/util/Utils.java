@@ -101,7 +101,7 @@ public class Utils {
         });
     }
 
-    public static String FormatCurrency(Double price) {
+    public static String formatCurrency(Double price) {
         String cf = null;
         try {
             NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
@@ -113,29 +113,29 @@ public class Utils {
     }
 
     //Tạo ma bang cham cong gom 8 số đầu là mã nhân sự 6 số sau là ngày tháng năm hiện tại yy-MM-dd
-    public static String TaoMaBangChamCong(String maNhanSu, String ngayChamCong) {
+    public static String taoMaBangChamCong(String maNhanSu, String ngayChamCong) {
         return maNhanSu + ngayChamCong;
     }
 
 
-    public static CheckBox TaoCheckBox(boolean selected) {
+    public static CheckBox taoCheckBox(boolean selected) {
         CheckBox checkBox = new CheckBox();
         checkBox.setSelected(selected);
         return checkBox;
     }
 
-    public static String TaoNgayHienTai() {
+    public static String taoNgayHienTai() {
         LocalDate ngayHienTai = LocalDate.now();
 //        String maNgayHienTai = String.format(ngayHienTai.getYear() + "-" + ngayHienTai.getMonthValue() + "-" + ngayHienTai.getDayOfMonth());
-        return DinhDangNgayHienTai(ngayHienTai, "yyyy-MM-dd");
+        return dinhDangNgayHienTai(ngayHienTai, "yyyy-MM-dd");
     }
 
-    public static String DinhDangNgayHienTai(LocalDate date, String pattern){
+    public static String dinhDangNgayHienTai(LocalDate date, String pattern){
         DateTimeFormatter patternFormat = DateTimeFormatter.ofPattern(pattern);
         return patternFormat.format(date);
     }
 
-    public static List<String> TaoDanhSachNgayTrongThang(int year, int month) {
+    public static List<String> taoDanhSachNgayTrongThang(int year, int month) {
         List<String> daysInMonth = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month - 1, 1); // Tháng trong Calendar bắt đầu từ 0
@@ -150,9 +150,9 @@ public class Utils {
         }
 
         return daysInMonth;
-    }
+}
 
-    public static List<String> TaoDanhSachNgayTrongThangHienTai(String pattern) {
+    public static List<String> taoDanhSachNgayTrongThangHienTai(String pattern) {
         List<String> currentDates = new ArrayList<>();
 
         // Lấy ngày đầu tiên của tháng hiện tại
@@ -169,7 +169,7 @@ public class Utils {
         return currentDates;
     }
 
-    public static List<String> TaoDanhSachNgayTrongThangTiepTheo(String pattern) {
+    public static List<String> taoDanhSachNgayTrongThangTiepTheo(String pattern) {
         List<String> nextMonthDates = new ArrayList<>();
 
         // Lấy ngày đầu tiên của tháng tiếp theo

@@ -12,6 +12,8 @@ import com.openjfx.qllspahg.gui.util.Utils;
 import javafx.collections.*;
 
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class ChamCongNhanVienDaoImpl {
@@ -19,7 +21,7 @@ public class ChamCongNhanVienDaoImpl {
         return new ChamCongNhanVienDaoImpl();
     }
 
-    public ObservableList<NhanVien> LayDuLieuNhanVien() {
+    public ObservableList<NhanVien> layDuLieuNhanVien() {
         Connection con = null;
         ObservableList<NhanVien> listNV = FXCollections.observableArrayList();
         try {
@@ -50,7 +52,7 @@ public class ChamCongNhanVienDaoImpl {
     }
 
     //Lay du lieu phong ban
-    public ObservableList<String> LayDuLieuPhongBanNhanVien() {
+    public ObservableList<String> layDuLieuPhongBanNhanVien() {
         Connection con = null;
         ObservableList<String> listTenPB = FXCollections.observableArrayList();
         try {
@@ -112,13 +114,9 @@ public class ChamCongNhanVienDaoImpl {
         return listBCCNV;
     }
 
-    public static void main(String[] args) {
-        getInstance().locDuLieuPhongBanNhanVien(null, null, null, "Phòng nhân sự");
-    }
-
 
     //Tao du lieu bang cham cong thang tiep theo
-    public boolean TaoBangChamCongNhanVienThangTiepTheo(ObservableList<NhanVien> listNV) {
+    public boolean taoBangChamCongNhanVienThangTiepTheo(ObservableList<NhanVien> listNV) {
         Connection con = null;
         PreparedStatement pst = null;
         try {
@@ -127,13 +125,13 @@ public class ChamCongNhanVienDaoImpl {
             con = Db.getConnection();
             pst = con.prepareStatement(sql);
 
-            List<String> ngayTiepTheo = Utils.TaoDanhSachNgayTrongThangTiepTheo("dd/MM/yyyy");
-            List<String> ngayTiepTheoMaNV = Utils.TaoDanhSachNgayTrongThangTiepTheo("ddMMyy");
+            List<String> ngayTiepTheo = Utils.taoDanhSachNgayTrongThangTiepTheo("dd/MM/yyyy");
+            List<String> ngayTiepTheoMaNV = Utils.taoDanhSachNgayTrongThangTiepTheo("ddMMyy");
             for (NhanVien nv : listNV) {
                 for (int i = 0; i < ngayTiepTheo.size(); i++) {
-                    pst.setString(1, Utils.TaoMaBangChamCong(nv.getMaNV(), ngayTiepTheoMaNV.get(i)));
+                    pst.setString(1, Utils.taoMaBangChamCong(nv.getMaNV(), ngayTiepTheoMaNV.get(i)));
                     pst.setString(2, nv.getMaNV());
-                    pst.setString(3, DateUtils.ChuyenDoiSangNgaySQL(ngayTiepTheo.get(i), "dd/MM/yyyy", "yyyy-MM-dd"));
+                    pst.setString(3, DateUtils.chuyenDoiSangNgaySQL(ngayTiepTheo.get(i), "dd/MM/yyyy", "yyyy-MM-dd"));
                     pst.addBatch();
                 }
                 pst.executeBatch();
@@ -150,7 +148,7 @@ public class ChamCongNhanVienDaoImpl {
     }
 
     //Tao du lieu bang cham cong thang hien tai
-    public boolean TaoBangChamCongNhanVienThangHienTai(ObservableList<NhanVien> listNV) {
+    public boolean taoBangChamCongNhanVienThangHienTai(ObservableList<NhanVien> listNV) {
         Connection con = null;
         PreparedStatement pst = null;
         try {
@@ -159,13 +157,13 @@ public class ChamCongNhanVienDaoImpl {
             con = Db.getConnection();
             pst = con.prepareStatement(sql);
 
-            List<String> ngayTiepTheo = Utils.TaoDanhSachNgayTrongThangHienTai("dd/MM/yyyy");
-            List<String> ngayTiepTheoMaNV = Utils.TaoDanhSachNgayTrongThangHienTai("ddMMyy");
+            List<String> ngayTiepTheo = Utils.taoDanhSachNgayTrongThangHienTai("dd/MM/yyyy");
+            List<String> ngayTiepTheoMaNV = Utils.taoDanhSachNgayTrongThangHienTai("ddMMyy");
             for (NhanVien nv : listNV) {
                 for (int i = 0; i < ngayTiepTheo.size(); i++) {
-                    pst.setString(1, Utils.TaoMaBangChamCong(nv.getMaNV(), ngayTiepTheoMaNV.get(i)));
+                    pst.setString(1, Utils.taoMaBangChamCong(nv.getMaNV(), ngayTiepTheoMaNV.get(i)));
                     pst.setString(2, nv.getMaNV());
-                    pst.setString(3, DateUtils.ChuyenDoiSangNgaySQL(ngayTiepTheo.get(i), "dd/MM/yyyy", "yyyy-MM-dd"));
+                    pst.setString(3, DateUtils.chuyenDoiSangNgaySQL(ngayTiepTheo.get(i), "dd/MM/yyyy", "yyyy-MM-dd"));
                     pst.addBatch();
                 }
                 pst.executeBatch();
@@ -182,7 +180,7 @@ public class ChamCongNhanVienDaoImpl {
     }
 
     //Lay du lieu bang cham cong ngay hien tai
-    public ObservableList<BangChamCongNhanVien> LayDuLieuChamCongNhanVienNgayHienTai() {
+    public ObservableList<BangChamCongNhanVien> layDuLieuChamCongNhanVienNgayHienTai() {
         Connection con = null;
         ObservableList<BangChamCongNhanVien> listBCCNV = FXCollections.observableArrayList();
         try {
@@ -192,7 +190,7 @@ public class ChamCongNhanVienDaoImpl {
                     "FROM NhanVien AS NV " +
                     "JOIN PhongBan AS PB ON NV.maPB = PB.maPB " +
                     "JOIN BangChamCongNhanVien AS BCCNV ON NV.maNV = BCCNV.maNV " +
-                    "WHERE BCCNV.ngayChamCong = '" + Utils.TaoNgayHienTai() + "'";
+                    "WHERE BCCNV.ngayChamCong = '" + Utils.taoNgayHienTai() + "'";
 
             ResultSet rs = st.executeQuery(sql);
 
@@ -221,7 +219,7 @@ public class ChamCongNhanVienDaoImpl {
     }
 
     //Lay du lieu cham cong nhan vien ngay tuy chon cho format date picker
-    public ObservableList<BangChamCongNhanVien> LayDuLieuChamCongNhanVienNgayTuyChon(String ngayTuyChon) {
+    public ObservableList<BangChamCongNhanVien> layDuLieuChamCongNhanVienNgayTuyChon(String ngayTuyChon) {
         Connection con = null;
         ObservableList<BangChamCongNhanVien> listBCCNV = FXCollections.observableArrayList();
         try {
@@ -260,4 +258,41 @@ public class ChamCongNhanVienDaoImpl {
     }
 
 
+    //Cap nhat bang cham cong nhan vien
+    public boolean capNhatBangChamCongNhanVien(ObservableList<BangChamCongNhanVien> listUpdateBCCNV) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        try {
+            String sql = "UPDATE BangChamCongNhanVien SET diLam = ?, tangCa = ?, nghiPhep = ? WHERE maBCCNV = ?";
+
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            for (BangChamCongNhanVien bccnv : listUpdateBCCNV) {
+                pst.setBoolean(1, bccnv.getDiLam());
+                pst.setBoolean(2, bccnv.getTangCa());
+                pst.setBoolean(3, bccnv.getNghiPhep());
+                pst.setString(4, bccnv.getMaBCCNV());
+                pst.addBatch();
+                System.out.println("Da cap nhat bang cham cong vao csdl!!! ");
+            }
+            pst.executeBatch();
+            con.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+
+
+
+
+    /*public static void main(String[] args) throws ParseException {
+
+        getInstance().TaoBangChamCongNhanVienThangHienTai(getInstance().LayDuLieuNhanVien());
+    }*/
 }

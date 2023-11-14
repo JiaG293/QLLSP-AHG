@@ -149,7 +149,7 @@ public class SanPhamController implements Initializable {
                 if (empty) {
                     setText(null);
                 } else {
-                    setText(Utils.FormatCurrency(price));
+                    setText(Utils.formatCurrency(price));
                 }
             }
 
