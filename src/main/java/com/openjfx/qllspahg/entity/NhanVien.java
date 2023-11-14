@@ -203,7 +203,7 @@ public class NhanVien {
                 ", hoNV='" + hoNV + '\'' +
                 ", tenNV='" + tenNV + '\'' +
                 ", phongBan=" + phongBan +
-                '}';
+                '}' + "\n";
     }
 }
 

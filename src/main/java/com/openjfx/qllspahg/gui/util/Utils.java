@@ -1,5 +1,6 @@
 package com.openjfx.qllspahg.gui.util;
 
+import com.openjfx.qllspahg.dao.ChamCongNhanVienDaoImpl;
 import com.openjfx.qllspahg.entity.NhanVien;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
@@ -11,8 +12,7 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Locale;
+import java.util.*;
 
 public class Utils {
     public static Stage currentStage(ActionEvent event) {
@@ -113,10 +113,8 @@ public class Utils {
     }
 
     //Tạo ma bang cham cong gom 8 số đầu là mã nhân sự 6 số sau là ngày tháng năm hiện tại yy-MM-dd
-    public static String TaoMaBangChamCong(String maNhanSu) {
-        LocalDate ngayHienTai = LocalDate.now();
-
-        return maNhanSu + DinhDangNgayHienTai(ngayHienTai, "yyMMdd");
+    public static String TaoMaBangChamCong(String maNhanSu, String ngayChamCong) {
+        return maNhanSu + ngayChamCong;
     }
 
 
@@ -136,6 +134,61 @@ public class Utils {
         DateTimeFormatter patternFormat = DateTimeFormatter.ofPattern(pattern);
         return patternFormat.format(date);
     }
+
+    public static List<String> TaoDanhSachNgayTrongThang(int year, int month) {
+        List<String> daysInMonth = new ArrayList<>();
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month - 1, 1); // Tháng trong Calendar bắt đầu từ 0
+        int lastDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        for (int day = 1; day <= lastDay; day++) {
+            calendar.set(year, month - 1, day); // Đặt ngày trong tháng
+            Date date = calendar.getTime();
+            daysInMonth.add(dateFormat.format(date));
+        }
+
+        return daysInMonth;
+    }
+
+    public static List<String> TaoDanhSachNgayTrongThangHienTai(String pattern) {
+        List<String> currentDates = new ArrayList<>();
+
+        // Lấy ngày đầu tiên của tháng hiện tại
+        LocalDate firstDayOfMonth = LocalDate.now().withDayOfMonth(1);
+        int numberOfDaysInMonth = firstDayOfMonth.lengthOfMonth();
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
+
+        for (int i = 0; i < numberOfDaysInMonth; i++) {
+            LocalDate currentDate = firstDayOfMonth.plusDays(i);
+            currentDates.add(dateFormatter.format(currentDate));
+        }
+
+        return currentDates;
+    }
+
+    public static List<String> TaoDanhSachNgayTrongThangTiepTheo(String pattern) {
+        List<String> nextMonthDates = new ArrayList<>();
+
+        // Lấy ngày đầu tiên của tháng tiếp theo
+        LocalDate firstDayOfNextMonth = LocalDate.now().plusMonths(1).withDayOfMonth(1);
+        int numberOfDaysInNextMonth = firstDayOfNextMonth.lengthOfMonth();
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
+
+        for (int i = 0; i < numberOfDaysInNextMonth; i++) {
+            LocalDate currentDate = firstDayOfNextMonth.plusDays(i);
+            nextMonthDates.add(dateFormatter.format(currentDate));
+        }
+
+        return nextMonthDates;
+    }
+
+
+
+
 
 
 

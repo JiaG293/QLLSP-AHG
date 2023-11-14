@@ -1,7 +1,10 @@
 package com.openjfx.qllspahg.gui.util;
 
 import com.openjfx.qllspahg.entity.BangChamCongNhanVien;
+import com.openjfx.qllspahg.entity.model.ChamCongNhanVienDTO;
+import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TableCell;
 
 public class CheckCell extends TableCell<BangChamCongNhanVien, Boolean> {
@@ -10,7 +13,13 @@ public class CheckCell extends TableCell<BangChamCongNhanVien, Boolean> {
 
     public CheckCell() {
         checkBox = new CheckBox();
+        checkBox.setOnAction(event -> {
+            if (getTableRow() != null) {
+                commitEdit(checkBox.isSelected());
+            }
+        });
         setGraphic(checkBox);
+        setAlignment(Pos.CENTER);
     }
 
     @Override

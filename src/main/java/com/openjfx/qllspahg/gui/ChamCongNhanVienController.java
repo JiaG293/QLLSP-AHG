@@ -2,48 +2,53 @@ package com.openjfx.qllspahg.gui;
 
 import com.openjfx.qllspahg.dao.ChamCongNhanVienDaoImpl;
 
-import com.openjfx.qllspahg.dao.interfaces.DSDao;
 import com.openjfx.qllspahg.entity.BangChamCongNhanVien;
-import com.openjfx.qllspahg.entity.NhanVien;
 import com.openjfx.qllspahg.entity.PhongBan;
-import com.openjfx.qllspahg.gui.util.CheckCell;
+import com.openjfx.qllspahg.gui.util.Alerts;
+import com.openjfx.qllspahg.gui.util.DateUtils;
+import com.openjfx.qllspahg.gui.util.Utils;
+import javafx.beans.Observable;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Callback;
 
 import static com.openjfx.qllspahg.dao.interfaces.DSDao.DSCCNHANVIEN;
-import static com.openjfx.qllspahg.dao.interfaces.DSDao.DSNHANVIEN;
+import static com.openjfx.qllspahg.dao.interfaces.DSDao.DSPHONGBAN;
 
 import java.net.URL;
-import java.util.Date;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ChamCongNhanVienController implements Initializable {
     @FXML
-    private TableColumn<?, ?> colHoTenChamCongNV;
+    private TableColumn<BangChamCongNhanVien, String> colHoTenChamCongNV;
 
     @FXML
-    private TableColumn<?, ?> colMaChamCongNV;
+    private TableColumn<BangChamCongNhanVien, String> colMaChamCongNV;
 
     @FXML
-    private TableColumn<NhanVien, String> colPhongBanChamCongNV;
+    private TableColumn<BangChamCongNhanVien, String> colPhongBanChamCongNV;
 
     @FXML
-    private TableView<NhanVien> tblviewChamCongNV;
-
+    private TableView<BangChamCongNhanVien> tblviewChamCongNV;
 
     @FXML
     private BorderPane borderChamCongNhanVien;
 
     @FXML
-    private TableColumn<BangChamCongNhanVien, Date> colNgayChamCong;
+    private TableColumn<BangChamCongNhanVien, String> colNgayChamCong;
 
     @FXML
     private TableColumn<BangChamCongNhanVien, Boolean> colCheckDiLam;
@@ -54,65 +59,144 @@ public class ChamCongNhanVienController implements Initializable {
     @FXML
     private TableColumn<BangChamCongNhanVien, Boolean> colCheckTangCa;
 
+    @FXML
+    private ComboBox<String> cbxLocPhongBan;
+
+    @FXML
+    private DatePicker datepickLocNgayChamCong;
+
+    @FXML
+    private TextField tfLocMaNV;
+
+    @FXML
+    private TextField tfLocTenNV;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        chamCongNhanVien();
-
-    }
-
-    public void tabChamCongNhanVien() {
-
-
-        colMaChamCongNV.setCellValueFactory(new PropertyValueFactory<>("maNV"));
-        colHoTenChamCongNV.setCellValueFactory(new PropertyValueFactory<>("hoNV"));
-        colPhongBanChamCongNV.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<NhanVien, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<NhanVien, String> nhanVienStringCellDataFeatures) {
-                return new SimpleStringProperty(nhanVienStringCellDataFeatures.getValue().getPhongBan().getTenPB());
-            }
-        });
-        colNgayChamCong.setCellValueFactory(new PropertyValueFactory<>("ngayCC"));
-
-        colCheckDiLam.setCellFactory(new Callback<TableColumn<BangChamCongNhanVien, Boolean>, TableCell<BangChamCongNhanVien, Boolean>>() {
-            @Override
-            public TableCell<BangChamCongNhanVien, Boolean> call(TableColumn<BangChamCongNhanVien, Boolean> param) {
-                return new CheckCell();
-            }
-        });
-
-        colCheckNghiPhep.setCellFactory(new Callback<TableColumn<BangChamCongNhanVien, Boolean>, TableCell<BangChamCongNhanVien, Boolean>>() {
-            @Override
-            public TableCell<BangChamCongNhanVien, Boolean> call(TableColumn<BangChamCongNhanVien, Boolean> param) {
-                return new CheckCell();
-            }
-        });
-        colCheckTangCa.setCellFactory(new Callback<TableColumn<BangChamCongNhanVien, Boolean>, TableCell<BangChamCongNhanVien, Boolean>>() {
-            @Override
-            public TableCell<BangChamCongNhanVien, Boolean> call(TableColumn<BangChamCongNhanVien, Boolean> param) {
-                return new CheckCell();
-            }
-        });
-
-
-    }
-
-
-    public void chamCongNhanVien() {
-        if (!DSNHANVIEN.isEmpty()) {
-            DSNHANVIEN.clear();
-        }
-        tabChamCongNhanVien();
-        DSNHANVIEN.addAll(ChamCongNhanVienDaoImpl.getInstance().LayDuLieuNhanVien());
-        tblviewChamCongNV.setItems(DSNHANVIEN);
+        khoiTaoTableChamCongNhanVien();
+        taiDuLieuNhanVien(ChamCongNhanVienDaoImpl.getInstance().LayDuLieuChamCongNhanVienNgayHienTai());
     }
 
     @FXML
-    void chonMotNhanVien(MouseEvent event) {
-        NhanVien nvDuocChon = tblviewChamCongNV.getSelectionModel().getSelectedItem();
-        System.out.println("nhan vien duoc chon:\n" + nvDuocChon.toStringChamCongNhanVien());
+    private void taiDuLieuChamCongNVNgayDuocChon(ActionEvent event) {
+        LocalDate ndc = datepickLocNgayChamCong.getValue();
+        System.out.println("Ngay duoc chon: " + ndc);
+        try {
+            ObservableList<BangChamCongNhanVien> listTemp = FXCollections.observableArrayList();
+            listTemp.addAll(ChamCongNhanVienDaoImpl.getInstance().LayDuLieuChamCongNhanVienNgayTuyChon(Utils.DinhDangNgayHienTai(ndc, "yyyy-MM-dd")));
+            if (listTemp.isEmpty()) {
+                Alerts.showAlert("Cảnh báo", "Ngày chọn không phù hợp!!!", "Không có dữ liệu ngày được chọn!!!", Alert.AlertType.ERROR);
+            } else {
+                taiDuLieuNhanVien(listTemp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-//        System.out.println(ChamCongNhanVienDaoImpl.getInstance().TaoBangChamCongNhanVien(ChamCongNhanVienDaoImpl.getInstance().LayDuLieuNhanVien()));
+    private void taiDuLieuChamCongNgayDuocChon() {
+
+    }
+
+    private void taiDuLieuComboBoxPhongBan() {
+        cbxLocPhongBan.setPromptText("Chọn phòng ban");
+        ObservableList<String> listPB= FXCollections.observableArrayList();
+        listPB.add("Trống");
+        listPB.addAll(ChamCongNhanVienDaoImpl.getInstance().LayDuLieuPhongBanNhanVien());
+        cbxLocPhongBan.setItems(listPB);
+    }
+
+    public void khoiTaoTableChamCongNhanVien() {
+
+        //Khoi tao du lieu combobox phong ban
+        taiDuLieuComboBoxPhongBan();
+
+        //Khoi tao ngay duoc chon
+        datepickLocNgayChamCong.setValue(LocalDate.parse(Utils.TaoNgayHienTai()));
+        colMaChamCongNV.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangChamCongNhanVien, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<BangChamCongNhanVien, String> nhanVienStringCellDataFeatures) {
+                return new SimpleStringProperty(nhanVienStringCellDataFeatures.getValue().getMaNhanVien().getMaNV());
+            }
+        });
+        colHoTenChamCongNV.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangChamCongNhanVien, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<BangChamCongNhanVien, String> nhanVienStringCellDataFeatures) {
+                return new SimpleStringProperty(nhanVienStringCellDataFeatures.getValue().getMaNhanVien().getHoNV() + " " + nhanVienStringCellDataFeatures.getValue().getMaNhanVien().getTenNV());
+            }
+        });
+        colMaChamCongNV.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangChamCongNhanVien, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<BangChamCongNhanVien, String> nhanVienStringCellDataFeatures) {
+                return new SimpleStringProperty(nhanVienStringCellDataFeatures.getValue().getMaNhanVien().getMaNV());
+            }
+        });
+        colPhongBanChamCongNV.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangChamCongNhanVien, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<BangChamCongNhanVien, String> nhanVienStringCellDataFeatures) {
+                return new SimpleStringProperty(nhanVienStringCellDataFeatures.getValue().getMaNhanVien().getPhongBan().getTenPB());
+            }
+        });
+        colNgayChamCong.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangChamCongNhanVien, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<BangChamCongNhanVien, String> nhanVienStringCellDataFeatures) {
+                return new SimpleStringProperty(DateUtils.formatStringVietnamDate(nhanVienStringCellDataFeatures.getValue().getNgayCC()));
+            }
+        });
+
+        colCheckDiLam.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangChamCongNhanVien, Boolean>, ObservableValue<Boolean>>() {
+            @Override
+            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<BangChamCongNhanVien, Boolean> nhanVienStringCellDataFeatures) {
+                return new SimpleBooleanProperty(nhanVienStringCellDataFeatures.getValue().getDiLam());
+            }
+        });
+        colCheckDiLam.setCellFactory(CheckBoxTableCell.forTableColumn(colCheckDiLam));
+
+        colCheckNghiPhep.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangChamCongNhanVien, Boolean>, ObservableValue<Boolean>>() {
+            @Override
+            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<BangChamCongNhanVien, Boolean> nhanVienStringCellDataFeatures) {
+                return new SimpleBooleanProperty(nhanVienStringCellDataFeatures.getValue().getNghiPhep());
+            }
+        });
+        colCheckNghiPhep.setCellFactory(CheckBoxTableCell.forTableColumn(colCheckNghiPhep));
+
+        colCheckTangCa.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangChamCongNhanVien, Boolean>, ObservableValue<Boolean>>() {
+            @Override
+            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<BangChamCongNhanVien, Boolean> nhanVienStringCellDataFeatures) {
+                return new SimpleBooleanProperty(nhanVienStringCellDataFeatures.getValue().getTangCa());
+            }
+        });
+        colCheckTangCa.setCellFactory(CheckBoxTableCell.forTableColumn(colCheckTangCa));
+
+
+    }
+
+    private void taiDuLieuNhanVien(ObservableList<BangChamCongNhanVien> method) {
+        if (!DSCCNHANVIEN.isEmpty()) {
+            DSCCNHANVIEN.clear();
+        }
+        DSCCNHANVIEN.addAll(method);
+        tblviewChamCongNV.setItems(DSCCNHANVIEN);
+    }
+
+    public void kiemTraNgayHienTai() {
+    }
+
+    /*public void LayDuLieuChamCongNhanVien() {
+        if (!DSNHANVIEN.isEmpty()) {
+            DSNHANVIEN.clear();
+        }
+        KhoiTaoTableChamCongNhanVien();
+        DSNHANVIEN.addAll(ChamCongNhanVienDaoImpl.getInstance().LayDuLieuNhanVien());
+        tblviewChamCongNV.setItems(DSNHANVIEN);
+    }*/
+
+    @FXML
+    private void chonMotNhanVien(MouseEvent event) {
+        /*BangChamCongNhanVien nvDuocChon = tblviewChamCongNV.getSelectionModel().getSelectedItem();
+        System.out.println("nhan vien cham cong duoc chon:\n" + nvDuocCho);*/
     }
 
 }

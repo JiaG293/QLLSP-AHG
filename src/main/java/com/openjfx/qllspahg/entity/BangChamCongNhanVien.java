@@ -1,5 +1,7 @@
 package com.openjfx.qllspahg.entity;
 
+import javafx.beans.property.BooleanProperty;
+
 import java.sql.Date;
 import java.util.Objects;
 
@@ -79,5 +81,17 @@ public class BangChamCongNhanVien {
     @Override
     public int hashCode() {
         return Objects.hash(maBCCNV);
+    }
+
+    @Override
+    public String toString() {
+        return "BangChamCongNhanVien{" +
+                "maBCCNV='" + maBCCNV + '\'' +
+                ", maNhanVien=" + maNhanVien +
+                ", ngayCC=" + ngayCC +
+                ", diLam=" + diLam +
+                ", nghiPhep=" + nghiPhep +
+                ", tangCa=" + tangCa +
+                '}';
     }
 }

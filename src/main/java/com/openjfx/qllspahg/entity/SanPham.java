@@ -18,6 +18,10 @@ public class SanPham {
         this.tenSP = tenSP;
     }
 
+    public SanPham(String maSP) {
+        this.maSP = maSP;
+    }
+
     public SanPham() {
     }
 
