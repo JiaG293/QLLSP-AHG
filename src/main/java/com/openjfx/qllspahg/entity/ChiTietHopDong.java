@@ -39,5 +39,12 @@ public class ChiTietHopDong {
         this.soLuong = soLuong;
     }
 
-
+    @Override
+    public String toString() {
+        return "ChiTietHopDong{" +
+                "maHopDong=" + maHopDong +
+                ", maSanPham=" + maSanPham +
+                ", soLuong=" + soLuong +
+                '}';
+    }
 }

@@ -6,6 +6,14 @@ public class SanPham {
     private String maSP;
     private String tenSP;
     private double giaSP;
+    private boolean trangThaiSP;
+
+    public SanPham(String maSP, String tenSP, double giaSP, boolean trangThaiSP) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.giaSP = giaSP;
+        this.trangThaiSP = trangThaiSP;
+    }
 
     public SanPham(String maSP, String tenSP, double giaSP) {
         this.maSP = maSP;
@@ -16,6 +24,14 @@ public class SanPham {
     public SanPham(String maSP, String tenSP) {
         this.maSP = maSP;
         this.tenSP = tenSP;
+    }
+
+    public boolean isTrangThaiSP() {
+        return trangThaiSP;
+    }
+
+    public void setTrangThaiSP(boolean trangThaiSP) {
+        this.trangThaiSP = trangThaiSP;
     }
 
     public SanPham(String maSP) {
@@ -64,10 +80,11 @@ public class SanPham {
 
     @Override
     public String toString() {
-        return "{" +
+        return "SanPham{" +
                 "maSP='" + maSP + '\'' +
                 ", tenSP='" + tenSP + '\'' +
                 ", giaSP=" + giaSP +
+                ", trangThaiSP=" + trangThaiSP +
                 '}';
     }
 }
