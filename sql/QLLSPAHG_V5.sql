@@ -27,7 +27,7 @@ CREATE TABLE NhanVien(
                          tenNV nvarchar(32),
                          gioiTinh bit DEFAULT 0,  --0 la nam, 1 la nu
                          ngaySinh date,
-                         sDT numeric(10, 0),
+                         sDT varchar(10),
                          email varchar(128),
                          ngayVaoLam date,
                          sTK varchar(20),
@@ -65,7 +65,7 @@ CREATE TABLE CongNhan(
                          tenCN nvarchar(32),
                          gioiTinh bit DEFAULT 1,
                          ngaySinh date,
-                         sDT numeric(10, 0),
+                         sDT varchar(10),
                          email varchar(128),
                          ngayVaoLam date,
                          sTK varchar(20),
@@ -86,7 +86,7 @@ CREATE TABLE ToSanXuat(
 CREATE TABLE HopDong(
                         maHD varchar(8) NOT NULL, --khoa chinh
                         tenKH nvarchar(64),
-                        sDT numeric(10),
+                        sDT varchar(10),
                         diaChi nvarchar(max),
                         email varchar(128),
                         ngayKKHD date,
