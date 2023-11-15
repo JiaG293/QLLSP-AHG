@@ -292,6 +292,11 @@ public class ChamCongNhanVienController implements Initializable {
         taiDuLieuChamCongNhanVien(ChamCongNhanVienDaoImpl.getInstance().layDuLieuChamCongNhanVienNgayHienTai());
     }
 
+    @FXML
+    void taoChamCongHienTai(ActionEvent event) {
+        ChamCongNhanVienDaoImpl.getInstance().taoBangChamCongNhanVienThangHienTai(ChamCongNhanVienDaoImpl.getInstance().layDuLieuNhanVien());
+    }
+
 
 }
 
