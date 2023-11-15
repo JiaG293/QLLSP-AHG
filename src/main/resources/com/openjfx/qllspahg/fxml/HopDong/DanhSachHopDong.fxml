@@ -45,6 +45,7 @@
                            <children>
                               <Label text="Mã hợp đồng" HBox.hgrow="ALWAYS" />
                               <TextField fx:id="tfMaHD" editable="false" prefHeight="26.0" prefWidth="227.0" HBox.hgrow="ALWAYS" />
+                              <Button mnemonicParsing="false" onAction="#lamMoiMaHD" text="Làm mới mã" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" spacing="10.0" VBox.vgrow="ALWAYS">
@@ -150,12 +151,12 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" onDragDetected="#themSanPhamChoHopDong" spacing="20.0" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" spacing="20.0" VBox.vgrow="ALWAYS">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                            <children>
-                              <Button mnemonicParsing="false" text="Thêm sản phẩm" HBox.hgrow="ALWAYS">
+                              <Button mnemonicParsing="false" onAction="#themSanPhamChoHopDong" text="Thêm sản phẩm" HBox.hgrow="ALWAYS">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -237,6 +238,19 @@
                               </Button>
                            </children>
                         </HBox>
+                        <HBox fillHeight="false" spacing="20.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#xoaTrangTextFieldDuLieu" text="Xóa trắng">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/icons/add-removebg-preview.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -262,12 +276,13 @@
                         <TableColumn fx:id="colHoTenKHHD" minWidth="-1.0" prefWidth="192.0" text="Họ tên khách hàng" />
                         <TableColumn fx:id="colDiaChiHD" minWidth="-1.0" prefWidth="189.0" text="Địa chỉ" />
                         <TableColumn fx:id="colSDTHD" minWidth="-1.0" prefWidth="135.0" text="SDT" />
-                        <TableColumn fx:id="colEmailHD" minWidth="-1.0" prefWidth="210.0" text="Email" />
-                        <TableColumn fx:id="colNgayBatDauHD" minWidth="-1.0" prefWidth="108.0" text="Ngày bắt đầu" />
-                        <TableColumn fx:id="colNgayKetThucHD" minWidth="-1.0" prefWidth="136.0" text="Ngày kết thúc" />
+                        <TableColumn fx:id="colEmailHD" minWidth="-1.0" prefWidth="160.0" text="Email" />
+                        <TableColumn fx:id="colNgayBatDauHD" minWidth="-1.0" prefWidth="115.0" text="Ngày bắt đầu" />
+                        <TableColumn fx:id="colNgayKetThucHD" minWidth="-1.0" prefWidth="117.0" text="Ngày kết thúc" />
+                        <TableColumn fx:id="colTrangThaiHD" prefWidth="98.0" text="Trạng thái" />
                      </columns>
                   </TableView>
-                  <TableView fx:id="tblviewChiTietHopDong" editable="true" onMouseClicked="#chonMotChiTietHopDong" tableMenuButtonVisible="true">
+                  <TableView fx:id="tblviewChiTietHopDong" editable="true" onMouseClicked="#chonMotChiTietHopDong" prefWidth="1140.0" tableMenuButtonVisible="true">
                      <columns>
                         <TableColumn fx:id="colSTTSanPham" prefWidth="96.80001217126846" text="STT" />
                         <TableColumn fx:id="colMaSP" minWidth="-1.0" prefWidth="93.60000610351562" text="Mã sản phẩm" />

@@ -3,6 +3,7 @@ package com.openjfx.qllspahg.dao;
 import com.openjfx.qllspahg.database.Db;
 import com.openjfx.qllspahg.entity.*;
 import com.openjfx.qllspahg.gui.util.DateUtils;
+import com.openjfx.qllspahg.gui.util.SqlQueryBuilder;
 import com.openjfx.qllspahg.gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -83,6 +84,41 @@ public class DanhSachHopDongImpl {
         return listCTHD;
     }
 
+    //Lay du lieu hop dong
+    public ObservableList<HopDong> layDuLieuHopDongTrangThaiTuyChon(String trangThaiHopDong) {
+        Connection con = null;
+        ObservableList<HopDong> listHD = FXCollections.observableArrayList();
+        try {
+            con = Db.getConnection();
+            Statement st = con.createStatement();
+            String sql = "SELECT HD.* " +
+                    "FROM HopDong AS HD " +
+                    "WHERE HD.trangThaiHD = '" + trangThaiHopDong + "'";
+
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                String maHD = rs.getString("maHD");
+                String tenKH = rs.getString("tenKH");
+                Date ngayKKHD = rs.getDate("ngayKKHD");
+                Date ngayTLHD = rs.getDate("ngayTLHD");
+                boolean trangThaiHD = rs.getBoolean("trangThaiHD");
+                String sDT = rs.getString("sDT");
+                String diaChi = rs.getString("diaChi");
+                String email = rs.getString("email");
+
+                HopDong dshd = new HopDong(maHD, tenKH, sDT, diaChi, email, ngayKKHD, ngayTLHD, trangThaiHD);
+                listHD.add(dshd);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("List LayDuLieuDanhSachHopDongTuyChon:\n" + listHD + "\n");
+        return listHD;
+    }
+
+
+    //Lay toan bo hop dong gom trang thai hd la thanh ly va chua thanh ly
     public ObservableList<String> layDanhSachMaHopDong() {
         Connection con = null;
         ObservableList<String> listMaHD = FXCollections.observableArrayList();
@@ -105,6 +141,7 @@ public class DanhSachHopDongImpl {
         return listMaHD;
     }
 
+    //Lay toan bo du lieu san pham
     public ObservableList<SanPham> layDuLieuSanPham() {
         Connection con = null;
         ObservableList<SanPham> listSP = FXCollections.observableArrayList();
@@ -177,6 +214,89 @@ public class DanhSachHopDongImpl {
         return true;
     }
 
+    //Thanh ly hop dong
+    public boolean thanhLyHopDong(String maHopDong) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        String sql = "UPDATE HopDong SET trangThaiHD = 1 WHERE maHD = ?"; //trangThaiHD: 0 la chua thanh ly, 1 la thanh ly roi
+        try {
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+            pst.setString(1, maHopDong);
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        System.out.println("Da cap nhat trang thai hop dong duoc chon csdl!!! ");
+        return true;
+    }
+
+    //Them danh sach san pham cho hop dong
+    public boolean themDSSanPhamChoMotHopDong(String maHD, ObservableList<ChiTietHopDong> chiTietHDSP) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        try {
+            String sql = "INSERT INTO ChiTietHopDong (maHD, maSP, soLuong) VALUES (?, ?, ?)";
+
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            for (ChiTietHopDong cthd : chiTietHDSP) {
+                pst.setString(1, maHD);
+                pst.setString(2, cthd.getMaSanPham().getMaSP());
+                pst.setInt(3,cthd.getSoLuong());
+                pst.addBatch();
+            }
+            pst.executeBatch();
+            con.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        System.out.println("Da them ds san pham thanh cong vao csdl!!! ");
+        return true;
+    }
+
+   /* SELECT HD.*
+    FROM HopDong AS HD
+    WHERE HD.ngayKKHD BETWEEN '2022-11-27' AND '2022-12-30' OR HD.ngayTLHD BETWEEN '2022-11-27' AND '2022-12-30';*/
+
+    //Loc du lieu san pham
+    public ObservableList<HopDong> locDuLieuDanhSachHopDong(String trangThaiHopDong, String ngayBatDau, String ngayKetThuc) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        String truyVanTruocWhere = "SELECT HD.* " +
+                "FROM HopDong AS HD ";
+        String sql = SqlQueryBuilder.stringQueryLocDanhSachHopDong(truyVanTruocWhere, trangThaiHopDong, ngayBatDau, ngayKetThuc);
+        ObservableList<HopDong> listHD = FXCollections.observableArrayList();
+        try {
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+
+
+            while (rs.next()) {
+                String maHD = rs.getString("maHD");
+                String tenKH = rs.getString("tenKH");
+                Date ngayKKHD = rs.getDate("ngayKKHD");
+                Date ngayTLHD = rs.getDate("ngayTLHD");
+                boolean trangThaiHD = rs.getBoolean("trangThaiHD");
+                String sDT = rs.getString("sDT");
+                String diaChi = rs.getString("diaChi");
+                String email = rs.getString("email");
+
+                HopDong hd = new HopDong(maHD, tenKH, sDT, diaChi, email, ngayKKHD, ngayTLHD, trangThaiHD);
+                listHD.add(hd);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("List LayDuLieuLocHopDong:\n" + listHD + "\n");
+        return listHD;
+    }
 
 
     /*public static void main(String[] args) {
