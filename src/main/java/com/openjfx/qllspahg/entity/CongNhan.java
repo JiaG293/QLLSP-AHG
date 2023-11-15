@@ -32,6 +32,12 @@ public class CongNhan {
         this.maPhuCap = maPhuCap;
     }
 
+    public CongNhan(String maCN, String hoCN, String tenNV) {
+        this.maCN = maCN;
+        this.hoCN = hoCN;
+        this.tenNV = tenNV;
+    }
+
     public String getMaCN() {
         return maCN;
     }

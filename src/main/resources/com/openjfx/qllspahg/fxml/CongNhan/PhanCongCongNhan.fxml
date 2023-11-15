@@ -27,7 +27,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnLuu" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Lưu">
+            <Button fx:id="btnLuu" mnemonicParsing="false" onAction="#LuuDSPhanCong" prefHeight="30.0" prefWidth="94.0" text="Lưu">
                <graphic>
                   <ImageView fx:id="btnLuuPhanCongCongNhan" fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -60,7 +60,7 @@
                       <TableColumn fx:id="colTenCongDoanPhanCongCongNhan" minWidth="0.0" prefWidth="188.7999267578125" text="Tên công đoạn" />
                     </columns>
                   </TableView>
-                  <TableView fx:id="tblViewTTToPhanCongCongNhan" minWidth="-Infinity">
+                  <TableView fx:id="tblViewTTToPhanCongCongNhan" minWidth="-Infinity" onMouseClicked="#chonROWTTSolUongNguoiTrongTo">
                     <columns>
                       <TableColumn fx:id="colMaToPhanCongCongNhan" prefWidth="172.00000305175854" text="Mã tổ" />
                         <TableColumn fx:id="colTenToPhanCongCongNhan" prefWidth="91.99998474121094" text="Tên tổ" />
@@ -107,7 +107,7 @@
                         <DatePicker fx:id="datepickNgayKetThuc" prefHeight="26.0" prefWidth="130.0" />
                      </children>
                   </HBox>
-                  <Button mnemonicParsing="false" text="Phân công">
+                  <Button mnemonicParsing="false" onAction="#phanCongCongNhan" text="Phân công">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -126,18 +126,16 @@
                   <TableView fx:id="tblViewTTPhanCongTungCongNhan" maxWidth="-Infinity" minWidth="-Infinity">
                     <columns>
                       <TableColumn fx:id="colMaChamCongTTPhanCongTungCongNhan" prefWidth="133.599969494343" text="Mã phân công " />
-                      <TableColumn fx:id="colNgayPhamCongChamCongTTPhanCongTungCongNhan" minWidth="0.0" prefWidth="140.00009155273438" text="Ngày phân công" />
-                        <TableColumn fx:id="colTenSanPhamTTPhanCongTungCongNhan" prefWidth="116.79998779296875" text="Tên sản phẩm" />
-                        <TableColumn fx:id="colTenCongDoanTTPhanCongTungCongNhan" prefWidth="117.5999755859375" text="Tên công đoạn" />
-                        <TableColumn fx:id="colToTTPhanCongTungCongNhan" prefWidth="76.800048828125" text="Tổ" />
-                        <TableColumn fx:id="colHovaTenTTPhanCongTungCongNhan" prefWidth="113.5999755859375" text="Họ và tên" />
-                        <TableColumn fx:id="colSoLuongLamTTPhanCongTungCongNhan" prefWidth="140.0" text="Số lượng làm" />
-                        <TableColumn fx:id="colNgayKetThucTTPhanCongTungCongNhan" prefWidth="122.4000244140625" text="Ngày kết thúc" />
+                      <TableColumn fx:id="colNgayPhamCongChamCongTTPhanCongTungCongNhan" minWidth="0.0" prefWidth="123.99995422363281" text="Ngày phân công" />
+                        <TableColumn fx:id="colTenSanPhamTTPhanCongTungCongNhan" prefWidth="115.199951171875" text="Tên sản phẩm" />
+                        <TableColumn fx:id="colTenCongDoanTTPhanCongTungCongNhan" prefWidth="113.5999755859375" text="Tên công đoạn" />
+                        <TableColumn fx:id="colHovaTenTTPhanCongTungCongNhan" prefWidth="96.79998779296875" text="Họ và tên" />
+                        <TableColumn fx:id="colSoLuongLamTTPhanCongTungCongNhan" prefWidth="92.800048828125" text="Số lượng làm" />
+                        <TableColumn fx:id="colNgayKetThucTTPhanCongTungCongNhan" prefWidth="134.4000244140625" text="Ngày kết thúc" />
                     </columns>
                   </TableView>
                   <TableView fx:id="tblViewTTPhanCongToCongNhan">
                     <columns>
-                      <TableColumn fx:id="colNgayPhanCongTTPhanCongToCongNhan" prefWidth="110.39990081787073" text="Mã phân công " />
                       <TableColumn fx:id="colToTTPhanCongToCongNhan" prefWidth="64.80005645751953" text="Tổ" />
                         <TableColumn fx:id="colSanPhamTTPhanCongToCongNhan11" prefWidth="84.800048828125" text="Sản phẩm " />
                         <TableColumn fx:id="colCongDoanTTPhanCongToCongNhan" prefWidth="106.39990234375" text="Công đoạn" />
