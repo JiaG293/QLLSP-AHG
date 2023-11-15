@@ -1,0 +1,953 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<TabPane tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openjfx.qllspahg.gui.NhanVienController">
+    <tabs>
+        <Tab text="Quản lý nhân viên">
+            <content>
+                <BorderPane>
+                    <center>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" BorderPane.alignment="CENTER">
+                            <items>
+                                <ScrollPane fitToHeight="true" fitToWidth="true">
+                                    <content>
+                                        <TableView fx:id="tblViewTTNhanVien" editable="true" onMouseClicked="#chonROWTTNhanVien" prefHeight="300.0">
+                                            <columns>
+                                                <TableColumn fx:id="colMaTTNhanVien" prefWidth="133.60003048181534" text="Mã nhân viên" />
+                                                <TableColumn fx:id="colHoTTNhanVien" minWidth="-1.0" prefWidth="232.80007934570312" text="Họ" />
+                                                <TableColumn fx:id="colTenTTNhanVien" minWidth="-1.0" prefWidth="107.199951171875" text="Tên" />
+                                                <TableColumn fx:id="colGioiTinhTTNhanVien" minWidth="-1.0" prefWidth="75.199951171875" text="Giới tính" />
+                                                <TableColumn fx:id="colChucVuTTNhanVien" minWidth="-1.0" prefWidth="143.20001220703125" text="Chức vụ" />
+                                                <TableColumn fx:id="colPhongBanTTNhanVien" minWidth="-1.0" prefWidth="166.4000244140625" text="Phòng ban" />
+                                            </columns>
+                                        </TableView>
+                                    </content>
+                                </ScrollPane>
+                                <ScrollPane fitToHeight="true" fitToWidth="true">
+                                    <content>
+                                        <TableView fx:id="tblviewChiTietNhanVien" editable="true" onMouseClicked="#chonROWChiTietTTNhanVien" prefHeight="300.0">
+                                            <columns>
+                                                <TableColumn fx:id="colChiTietMaTTNhanVien" prefWidth="96.80001217126846" text="Mã nhân viên" />
+                                                <TableColumn fx:id="colChiTietHovaTenTTNhanVien" minWidth="-1.0" prefWidth="200.0" text="Họ và tên" />
+                                                <TableColumn fx:id="colChiTietGioiTinhTTNhanVien" minWidth="-1.0" prefWidth="64.0" text="Giới tính" />
+                                    <TableColumn fx:id="colChiTietNgaySinhTTNhanVien" minWidth="-1.0" prefWidth="72.800048828125" text="Ngày sinh" />
+                                                <TableColumn fx:id="colChiTietNgayVaoLamTTNhanVien" minWidth="-1.0" prefWidth="90.39996337890625" text="Ngày vào làm" />
+                                                <TableColumn fx:id="colChiTietSoDienThoaiTTNhanVien" minWidth="-1.0" prefWidth="108.00006103515625" text="Số điện thoại" />
+                                                <TableColumn fx:id="colChiTietEmailTTNhanVien" minWidth="-1.0" prefWidth="209.60003662109375" text="Email" />
+                                                <TableColumn fx:id="colChiTietSoTaiKhoanTTNhanVien" minWidth="-1.0" prefWidth="117.60003662109375" text="Só tài khoản" />
+                                                <TableColumn fx:id="colChiTietPhongBanTTNhanVien" minWidth="-1.0" prefWidth="114.39996337890625" text="Phòng ban" />
+                                                <TableColumn fx:id="colChiTietChucVuTTNhanVien" minWidth="-1.0" prefWidth="90.39996337890625" text="Chức vụ" />
+                                                <TableColumn fx:id="colChiTietPhuCapTTNhanVien" minWidth="-1.0" prefWidth="125.5999755859375" text="Phụ cấp" />
+                                    <TableColumn fx:id="colChiTietLuongTTNhanVien" minWidth="-1.0" prefWidth="148.0" text="Lương cơ bản" />
+                                            </columns>
+                                        </TableView>
+                                    </content>
+                                </ScrollPane>
+                            </items>
+                        </SplitPane>
+                    </center>
+                    <top>
+                        <HBox alignment="CENTER_LEFT" spacing="20.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="22.0" prefWidth="147.0" spacing="10.0">
+                                    <children>
+                                        <Label text="Giới tính: " />
+                                        <ComboBox fx:id="cbxLoadGioiTinhTTNhanVien" prefHeight="26.0" prefWidth="70.0" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </HBox>
+                                <HBox alignment="CENTER" spacing="10.0">
+                                    <children>
+                                        <Label text="Chức vụ: " />
+                                        <ComboBox fx:id="cbxLoadChucVuTTNhanVien" prefHeight="26.0" prefWidth="196.0" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="30.0" prefWidth="270.0" spacing="10.0">
+                                    <children>
+                                        <Label text="Phòng ban: " />
+                                        <ComboBox fx:id="cbxLoadPhongBanTTNhanVien" prefHeight="26.0" prefWidth="183.0" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </HBox>
+                                <Button fx:id="btnLayDuLieuTTNhanVien" mnemonicParsing="false" onAction="#layDuLieuTTNhanVien" text="Lấy dữ liệu ">
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                </Button>
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                    </top>
+                    <right>
+                        <VBox alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <ImageView fitHeight="106.66666666667" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/icons/avatar.png" />
+                                    </image>
+                                </ImageView>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Mã số nhân viên" />
+                              <TextField fx:id="tfMaTTNhanVien" disable="true" editable="false" prefHeight="26.0" prefWidth="210.0" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <children>
+                                        <Label text="Tên nhân viên: " />
+                                        <TextField fx:id="tfTenTTNhanVien" prefHeight="26.0" prefWidth="227.0" />
+                                    </children>
+                                    <padding>
+                                        <Insets left="5.0" right="5.0" />
+                                    </padding>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <padding>
+                                        <Insets left="5.0" right="5.0" />
+                                    </padding>
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                            <children>
+                                                <Label text="Giới tính: " />
+                                                <CheckBox fx:id="ckGioiTinhTTNhanVien" mnemonicParsing="false" text="Nữ" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </HBox>
+                                        <HBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <Label text="Ngày sinh: " />
+                                                <DatePicker fx:id="datepickNgaySinhTTNhanVien" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </HBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <children>
+                                        <Label text="Số điện thoại: " />
+                                        <TextField fx:id="tfSoDienThoaiTTNhanVien" prefHeight="26.0" prefWidth="172.0">
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                        </TextField>
+                                    </children>
+                                    <padding>
+                                        <Insets left="5.0" right="5.0" />
+                                    </padding>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <children>
+                                        <Label text="Email: " />
+                                        <TextField fx:id="tfEmailTTNhanVien" prefHeight="26.0" prefWidth="214.0" />
+                                    </children>
+                                    <padding>
+                                        <Insets left="5.0" right="5.0" />
+                                    </padding>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <children>
+                                        <Label text="Số tài khoản: " />
+                                        <TextField fx:id="tfSoTaiKhoanTTNhanVien" alignment="BASELINE_LEFT" prefHeight="26.0" prefWidth="175.0" />
+                                    </children>
+                                    <padding>
+                                        <Insets left="5.0" right="5.0" />
+                                    </padding>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <children>
+                                        <Label text="Phòng ban: " />
+                                        <ComboBox fx:id="cbxPhongBanTTNhanVien" prefHeight="26.0" prefWidth="183.0" />
+                                    </children>
+                                    <padding>
+                                        <Insets left="5.0" right="5.0" />
+                                    </padding>
+                                </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Phụ cấp :" />
+                              <ComboBox fx:id="cbxPhuCapTTNhanVien" prefWidth="150.0" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                    <children>
+                                        <HBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <Label text="Chức vụ: " />
+                                                <ComboBox fx:id="cbxChucVuTTNhanVien" prefHeight="26.0" prefWidth="193.0" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" />
+                                    </children>
+                                    <padding>
+                                        <Insets left="5.0" right="5.0" />
+                                    </padding>
+                                </HBox>
+                                <HBox>
+                                    <children>
+                                        <HBox alignment="CENTER" spacing="5.0">
+                                            <children>
+                                                <Label text="Ngày vào làm: " />
+                                                <DatePicker fx:id="datepickNgayVaoLamTTNhanVien" HBox.hgrow="ALWAYS" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </HBox>
+                                    </children>
+                                </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Lương cơ bản:" />
+                              <TextField fx:id="tfLuongCoBanTTNhanVien" prefHeight="26.0" prefWidth="188.0" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </HBox>
+                                <HBox alignment="CENTER" spacing="120.0">
+                                    <children>
+                                        <Button fx:id="btnThemTTNhanVien" mnemonicParsing="false" onAction="#themTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Thêm">
+                                            <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../images/icons/add-removebg-preview.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="btnLamMoiTTNhanVien" mnemonicParsing="false" onAction="#xoaTrangTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Làm mới">
+                                            <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../images/icons/XoaTrang.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </VBox.margin>
+                                    <padding>
+                                        <Insets left="5.0" right="5.0" />
+                                    </padding>
+                                </HBox>
+                                <HBox alignment="CENTER" spacing="120.0">
+                                    <children>
+                                        <Button fx:id="btnSuaTTNhanVien" mnemonicParsing="false" onAction="#suaTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Sửa">
+                                            <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../images/icons/edit-removebg-preview.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="btnXoaTTNhanVien" mnemonicParsing="false" onAction="#xoaTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Xóa">
+                                            <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../images/icons/trash-removebg-preview.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                    </children>
+                                    <padding>
+                                        <Insets left="5.0" right="5.0" />
+                                    </padding>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets top="10.0" />
+                            </padding>
+                        </VBox>
+                    </right>
+                    <bottom>
+                        <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="20.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <Button fx:id="btnResetTTNhanVien" mnemonicParsing="false" onAction="#resetBangTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Reset">
+                                    <graphic>
+                                        <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/icons/reset-removebg-preview.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="btnLuuTTNhanVien" mnemonicParsing="false" onAction="#luuTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Lưu">
+                                    <graphic>
+                                        <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/icons/save.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="20.0" top="10.0" />
+                            </padding>
+                        </HBox>
+                    </bottom>
+                </BorderPane>
+            </content>
+        </Tab>
+        <Tab text="Quản lý phòng ban">
+            <content>
+                <BorderPane>
+                    <center>
+                        <ScrollPane fitToHeight="true" fitToWidth="true">
+                            <content>
+                                <TableView editable="true">
+                                    <columns>
+                                        <TableColumn prefWidth="45.600007593631744" text="STT" />
+                                        <TableColumn minWidth="-1.0" prefWidth="88.79998016357422" text="Chọn" />
+                                        <TableColumn minWidth="-1.0" prefWidth="149.6000213623047" text="Phòng ban hiện tại" />
+                                        <TableColumn minWidth="-1.0" prefWidth="124.0" text="Mã nhân viên" />
+                                        <TableColumn minWidth="-1.0" prefWidth="122.40005493164062" text="Tên nhân viên" />
+                                        <TableColumn minWidth="-1.0" prefWidth="79.99993896484375" text="Giới tính" />
+                                        <TableColumn minWidth="-1.0" prefWidth="180.00006103515625" text="Chức vụ" />
+                                        <TableColumn minWidth="-1.0" prefWidth="172.79998779296875" text="Phòng ban chuyển đến" />
+                                    </columns>
+                                </TableView>
+                            </content>
+                        </ScrollPane>
+                    </center>
+                    <top>
+                        <VBox BorderPane.alignment="CENTER">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                    <children>
+                                        <HBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <Label text="Phòng ban:" />
+                                                <ComboBox prefHeight="26.0" prefWidth="146.0" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </HBox>
+                                        <Button mnemonicParsing="false" text="Lấy dữ liệu ">
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                        </Button>
+                                        <HBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <Label text="Chuyển đến:" />
+                                                <ComboBox prefHeight="26.0" prefWidth="125.0" />
+                                                <Button mnemonicParsing="false" text="Chuyển" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </HBox>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </top>
+                    <bottom>
+                        <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="20.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Reset">
+                                    <graphic>
+                                        <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/icons/reset-removebg-preview.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Lưu">
+                                    <graphic>
+                                        <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/icons/save.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="20.0" top="10.0" />
+                            </padding>
+                        </HBox>
+                    </bottom>
+                </BorderPane>
+            </content>
+        </Tab>
+        <Tab text="Chấm công nhân viên">
+            <content>
+                <BorderPane>
+                    <center>
+                        <ScrollPane fitToHeight="true" pannable="true" BorderPane.alignment="CENTER">
+                            <content>
+                                <TableView editable="true" tableMenuButtonVisible="true">
+                                    <columns>
+                                        <TableColumn prefWidth="85.59999996423721" text="Mã nhân viên" />
+                                        <TableColumn prefWidth="190.40005493164062" text="Họ tên" />
+                                        <TableColumn prefWidth="135.199951171875" text="Phòng ban" />
+                                        <TableColumn prefWidth="151.20001220703125" text="Ngày 01/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 02/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 03/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 04/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 05/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 06/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 07/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 08/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 09/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 10/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 11/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 12/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 13/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 14/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 15/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 16/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 17/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 18/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 19/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 20/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 21/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 22/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 23/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 24/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 25/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 26 /xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 27/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 28/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 29/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 30/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="114.40005493164062" text="Ngày 31/xx/xxxx">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="Đi làm" />
+                                                <TableColumn prefWidth="75.0" text="Tăng ca" />
+                                                <TableColumn prefWidth="75.0" text="Nghỉ phép" />
+                                            </columns>
+                                        </TableColumn>
+                                    </columns>
+                                </TableView>
+                            </content>
+                        </ScrollPane>
+                    </center>
+                    <top>
+                        <VBox alignment="CENTER" spacing="15.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <children>
+                                        <HBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <Label text="Mã nhân viên" />
+                                                <TextField prefHeight="26.0" prefWidth="152.0" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </HBox>
+                                        <HBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <Label text="Tên nhân viên" />
+                                                <TextField prefHeight="26.0" prefWidth="152.0" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </HBox>
+                                        <HBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <Label text="Ngày chấm công" />
+                                                <DatePicker />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </HBox>
+                                        <HBox alignment="CENTER" prefHeight="30.0" prefWidth="270.0" spacing="10.0">
+                                            <children>
+                                                <Label text="Phòng ban: " />
+                                                <ComboBox prefHeight="26.0" prefWidth="154.0" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </HBox>
+                                        <Button mnemonicParsing="false" text="Lấy dữ liệu " />
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </VBox.margin>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                            <BorderPane.margin>
+                                <Insets />
+                            </BorderPane.margin>
+                        </VBox>
+                    </top>
+                    <bottom>
+                        <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="20.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Reset">
+                                    <graphic>
+                                        <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/icons/reset-removebg-preview.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Lưu">
+                                    <graphic>
+                                        <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/icons/save.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="20.0" top="10.0" />
+                            </padding>
+                        </HBox>
+                    </bottom>
+                </BorderPane>
+            </content>
+        </Tab>
+        <Tab text="Tạm ứng nhân viên">
+            <content>
+                <BorderPane>
+                    <top>
+                        <HBox alignment="CENTER_LEFT" prefWidth="1180.0" spacing="15.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <HBox alignment="CENTER" spacing="10.0">
+                                    <children>
+                                        <Label text="Mã nhân viên" />
+                                        <TextField prefHeight="26.0" prefWidth="152.0" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </HBox>
+                                <HBox alignment="CENTER" spacing="10.0">
+                                    <children>
+                                        <Label text="Tên nhân viên" />
+                                        <TextField prefHeight="26.0" prefWidth="152.0" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="30.0" prefWidth="270.0" spacing="10.0">
+                                    <children>
+                                        <Label text="Phòng ban: " />
+                                        <ComboBox prefHeight="26.0" prefWidth="154.0" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </HBox>
+                                <Button mnemonicParsing="false" text="Lấy dữ liệu " />
+                            </children>
+                            <BorderPane.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </BorderPane.margin>
+                        </HBox>
+                    </top>
+                    <center>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER">
+                            <content>
+                                <TableView editable="true" tableMenuButtonVisible="true">
+                                    <columns>
+                                        <TableColumn prefWidth="135.99999696016312" text="Mã nhân viên" />
+                                        <TableColumn prefWidth="187.99998474121094" text="Tên nhân viên" />
+                                        <TableColumn prefWidth="188.00003051757812" text="Phòng ban" />
+                                        <TableColumn prefWidth="137.5999755859375" text="Số ngày đã đi làm" />
+                                        <TableColumn prefWidth="108.79998779296875" text="Ngày tạm ứng" />
+                                        <TableColumn prefWidth="184.79998779296875" text="Số tiền tạm ứng" />
+                                        <TableColumn prefWidth="247.20001220703125" text="Ghi chú" />
+                                    </columns>
+                                </TableView>
+                            </content>
+                        </ScrollPane>
+                    </center>
+                    <bottom>
+                        <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="100.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Reset">
+                                    <graphic>
+                                        <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/icons/reset-removebg-preview.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Tạm ứng">
+                                    <graphic>
+                                        <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/icons/save.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </children>
+                            <BorderPane.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </BorderPane.margin>
+                            <padding>
+                                <Insets right="10.0" top="10.0" />
+                            </padding>
+                        </HBox>
+                    </bottom>
+                </BorderPane>
+            </content>
+        </Tab>
+        <Tab text="Tính lương nhân viên">
+            <content>
+                <BorderPane>
+                    <center>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER">
+                            <content>
+                                <TableView editable="true" tableMenuButtonVisible="true">
+                                    <columns>
+                                        <TableColumn prefWidth="122.39998775720596" text="Mã nhân viên" />
+                                        <TableColumn prefWidth="157.60006713867188" text="Họ tên" />
+                                        <TableColumn minWidth="8.79998779296875" prefWidth="112.0" text="Phòng ban" />
+                                        <TableColumn minWidth="9.60003662109375" prefWidth="120.79998779296875" text="Số ngày di làm" />
+                                        <TableColumn prefWidth="194.39996337890625" text="Lương chính" />
+                                        <TableColumn prefWidth="296.800048828125" text="Truy lãnh">
+                                            <columns>
+                                                <TableColumn prefWidth="128.00001525878906" text="Bảo hiểm y tế" />
+                                                <TableColumn prefWidth="124.0" text="Bảo hiểm xã hội" />
+                                                <TableColumn prefWidth="128.00001525878906" text="Tạm ứng" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="128.00001525878906" text="Số ngày tăng ca" />
+                                        <TableColumn prefWidth="227.20001220703125" text="Phụ cấp">
+                                            <columns>
+                                                <TableColumn prefWidth="128.00001525878906" text="Tiền chuyên cần" />
+                                                <TableColumn prefWidth="124.0" text="Tiền điện thoại" />
+                                                <TableColumn prefWidth="128.00001525878906" text="Tiền nhà trọ" />
+                                                <TableColumn prefWidth="128.00001525878906" text=" Tiền con nhỏ" />
+                                            </columns>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="227.20001220703125" text="Lương thực tế" />
+                                    </columns>
+                                </TableView>
+                            </content>
+                        </ScrollPane>
+                    </center>
+                    <bottom>
+                        <HBox alignment="CENTER" fillHeight="false" BorderPane.alignment="CENTER">
+                            <children>
+                                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Tính lương" />
+                            </children>
+                            <BorderPane.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </BorderPane.margin>
+                            <padding>
+                                <Insets right="10.0" top="10.0" />
+                            </padding>
+                        </HBox>
+                    </bottom>
+                    <top>
+                        <VBox BorderPane.alignment="CENTER">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" prefWidth="1180.0" spacing="15.0">
+                                    <children>
+                                        <HBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <Label text="Mã nhân viên" />
+                                                <TextField prefHeight="26.0" prefWidth="152.0" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </HBox>
+                                        <HBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <Label text="Tên nhân viên" />
+                                                <TextField prefHeight="26.0" prefWidth="152.0" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </HBox>
+                                        <HBox alignment="CENTER" prefHeight="30.0" prefWidth="270.0" spacing="10.0">
+                                            <children>
+                                                <Label text="Phòng ban: " />
+                                                <ComboBox prefHeight="26.0" prefWidth="154.0" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </HBox>
+                                        <Button mnemonicParsing="false" text="Lấy dữ liệu " />
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER">
+                                    <children>
+                                        <Label text="Lương tháng xx">
+                                            <font>
+                                                <Font name="System Bold" size="20.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </HBox>
+                            </children>
+                            <BorderPane.margin>
+                                <Insets />
+                            </BorderPane.margin>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </VBox>
+                    </top>
+                </BorderPane>
+            </content>
+        </Tab>
+        <Tab text="Thống kê">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+        </Tab>
+        <Tab text="Tìm kiếm nhân viên">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>

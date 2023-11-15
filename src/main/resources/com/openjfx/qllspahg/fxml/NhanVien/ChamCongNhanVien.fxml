@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openjfx.qllspahg.gui.ChamCongNhanVienController">
+    <top>
+        <VBox alignment="CENTER" spacing="15.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <HBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <Label text="Mã nhân viên" />
+                                <TextField fx:id="tfLocMaNV" prefHeight="26.0" prefWidth="152.0" />
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <Label text="Tên nhân viên" />
+                                <TextField fx:id="tfLocTenNV" prefHeight="26.0" prefWidth="152.0" />
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <Label text="Ngày chấm công" />
+                                <DatePicker fx:id="datepickLocNgayChamCong" onAction="#taiDuLieuChamCongNVNgayDuocChon" />
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="30.0" prefWidth="270.0" spacing="10.0">
+                            <children>
+                                <Label text="Phòng ban: " />
+                                <ComboBox fx:id="cbxLocPhongBan" prefHeight="26.0" prefWidth="154.0" />
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                        <Button mnemonicParsing="false" text="Lấy dữ liệu " />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+        </VBox>
+    </top>
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="20.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Reset">
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/icons/reset-removebg-preview.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Lưu">
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/icons/save.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="20.0" top="10.0" />
+            </padding>
+        </HBox>
+    </bottom>
+   <center>
+          <TableView fx:id="tblviewChamCongNV" editable="true" onMouseClicked="#chonMotNhanVien" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
+              <columns>
+                  <TableColumn fx:id="colMaChamCongNV" prefWidth="85.59999996423721" text="Mã nhân viên" />
+                  <TableColumn fx:id="colHoTenChamCongNV" prefWidth="190.40005493164062" text="Họ tên" />
+                  <TableColumn fx:id="colPhongBanChamCongNV" prefWidth="135.199951171875" text="Phòng ban" />
+                  <TableColumn fx:id="colNgayChamCong" prefWidth="151.20001220703125" text="Ngày chấm công" />
+                    <TableColumn fx:id="colCheckDiLam" prefWidth="75.0" text="Đi làm" />
+                    <TableColumn fx:id="colCheckTangCa" prefWidth="75.0" text="Tăng ca" />
+                    <TableColumn fx:id="colCheckNghiPhep" prefWidth="75.0" text="Nghỉ phép" />
+              </columns>
+          </TableView>
+   </center>
+</BorderPane>
