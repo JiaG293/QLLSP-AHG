@@ -15,202 +15,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-    <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
         <center>
             <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" BorderPane.alignment="CENTER">
                 <content>
                     <TableView editable="true" tableMenuButtonVisible="true">
                         <columns>
-                            <TableColumn prefWidth="85.59999996423721" text="Mã nhân viên" />
-                            <TableColumn prefWidth="190.40005493164062" text="Họ tên" />
+                            <TableColumn prefWidth="85.59999996423721" text="Mã công nhân" />
+                            <TableColumn prefWidth="190.40005493164062" text="Họ và tên" />
                             <TableColumn prefWidth="135.199951171875" text="Phòng ban" />
-                            <TableColumn prefWidth="151.20001220703125" text="Ngày 01/xx/xxxx">
-                                <columns>
-                                    <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                                    <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                                </columns>
-                            </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 02/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 03/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 04/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 05/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 06/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 07/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 08/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 09/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 10/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 11/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 12/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 13/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 14/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 15/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 16/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 17/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 18/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 19/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 20/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 21/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 22/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 23/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 24/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 25/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 26/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 27/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 28/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 29/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 30/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="151.20001220703125" text="Ngày 31/xx/xxxx">
-                     <columns>
-                        <TableColumn prefWidth="129.5999755859375" text="Số lượng làm" />
-                        <TableColumn prefWidth="141.5999755859375" text="Số lượng làm ngoài giờ" />
-                     </columns>
-                  </TableColumn>
+                            <TableColumn prefWidth="151.20001220703125" text="Ngày chấm công" />
+                              <TableColumn prefWidth="141.5999755859375" text="Số sản phẩm làm" />
+                  <TableColumn prefWidth="129.5999755859375" text="Nghỉ phép" />
+                              <TableColumn prefWidth="129.5999755859375" text="Số lượng làm tăng ca" />
                         </columns>
                     </TableView>
                 </content>
@@ -224,7 +41,7 @@
                             <HBox alignment="CENTER" spacing="10.0">
                                 <children>
                                     <Label text="Mã công nhân" />
-                                    <TextField prefHeight="26.0" prefWidth="152.0" />
+                                    <TextField fx:id="tfMaCN" prefHeight="26.0" prefWidth="152.0" />
                                 </children>
                                 <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -233,7 +50,7 @@
                             <HBox alignment="CENTER" spacing="10.0">
                                 <children>
                                     <Label text="Tên công nhân" />
-                                    <TextField prefHeight="26.0" prefWidth="152.0" />
+                                    <TextField fx:id="tfHoTenCN" prefHeight="26.0" prefWidth="152.0" />
                                 </children>
                                 <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -242,7 +59,7 @@
                             <HBox alignment="CENTER" spacing="10.0">
                                 <children>
                                     <Label text="Ngày chấm công" />
-                                    <DatePicker />
+                                    <DatePicker fx:id="datepickNgayChamCong" />
                                 </children>
                                 <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -251,7 +68,7 @@
                             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="270.0" spacing="10.0">
                                 <children>
                                     <Label text="Phòng ban: " />
-                                    <ComboBox prefHeight="26.0" prefWidth="154.0" />
+                                    <ComboBox fx:id="cbxPhongBan" prefHeight="26.0" prefWidth="154.0" />
                                 </children>
                                 <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
