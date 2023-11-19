@@ -10,15 +10,40 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
-public class QuanLyTTNhanVienNhanVienDaoimpl implements com.openjfx.qllspahg.dao.interfaces.QuanLyTTNhanVienNhanVienDao {
+public class QuanLyTTNhanVienDao {
 
+    private ObservableList<ChucVu> dsCV = FXCollections.observableArrayList();
     private ObservableList<NhanVien> dsNhanVien = FXCollections.observableArrayList();
-    //Khoi tao
-    public static QuanLyTTNhanVienNhanVienDaoimpl getInstance(){
-        return new QuanLyTTNhanVienNhanVienDaoimpl();
+    private ObservableList<PhongBan> dsPB = FXCollections.observableArrayList();
+    private ObservableList dsPhuCap = FXCollections.observableArrayList();
+    public static QuanLyTTNhanVienDao getInstance(){
+        return new QuanLyTTNhanVienDao();
     }
 
-    @Override
+    public ObservableList<ChucVu> getAllChucVuNhanVien() {
+        try {
+            Connection con = Db.getConnection();
+            Statement st = con.createStatement();
+            String truyVan = "select * \n" +
+                    "from [dbo].[ChucVu] \n" +
+                    "where [maCV] like 'CVNV%'";
+            ResultSet rs = st.executeQuery(truyVan);
+            while (rs.next()){
+                String maCV = rs.getString("maCV");
+                String tenCV = rs.getString("tenCV");
+                double heSoCV = rs.getDouble("heSoCV");
+
+                ChucVu cv = new ChucVu(maCV,tenCV,heSoCV);
+                dsCV.add(cv);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dsCV;
+    }
+
+    //Nhan Vien
     public ObservableList<NhanVien> getAllNhanVien() {
         try {
             Connection con = Db.getConnection();
@@ -61,7 +86,7 @@ public class QuanLyTTNhanVienNhanVienDaoimpl implements com.openjfx.qllspahg.dao
         return dsNhanVien;
     }
 
-    @Override
+
     public ObservableList<NhanVien> getNhanVienTheoGT(String GT) {
 
         try {
@@ -106,7 +131,7 @@ public class QuanLyTTNhanVienNhanVienDaoimpl implements com.openjfx.qllspahg.dao
         return dsNhanVien;
     }
 
-    @Override
+
     public ObservableList<NhanVien> getNhanVienTheoCV(String CV) {
         /**
          * Tai sao phai lam: String CV1 = "'" + CV + "'";
@@ -159,7 +184,7 @@ public class QuanLyTTNhanVienNhanVienDaoimpl implements com.openjfx.qllspahg.dao
         return dsNhanVien;
     }
 
-    @Override
+
     public ObservableList<NhanVien> getNhanVienTheoPB(String PB) {
         String PB1 = "'" + PB + "'";
         try {
@@ -206,7 +231,6 @@ public class QuanLyTTNhanVienNhanVienDaoimpl implements com.openjfx.qllspahg.dao
         return dsNhanVien;
     }
 
-    @Override
     public ObservableList<NhanVien> getNhanVienTheoGTvaCV(String GT, String CV) {
         String CV1 = "'" + CV +"'";
         try {
@@ -252,7 +276,7 @@ public class QuanLyTTNhanVienNhanVienDaoimpl implements com.openjfx.qllspahg.dao
         return dsNhanVien;
     }
 
-    @Override
+
     public ObservableList<NhanVien> getNhanVienTheoGTvaPB(String GT, String PB) {
         String PB1 = "'" + PB + "'";
         try {
@@ -298,7 +322,7 @@ public class QuanLyTTNhanVienNhanVienDaoimpl implements com.openjfx.qllspahg.dao
         return dsNhanVien;
     }
 
-    @Override
+
     public ObservableList<NhanVien> getNhanVienTheoCVvaPB(String CV, String PB) {
         String CV1 = "'" + CV + "'";
         String PB1 = "'" + PB + "'";
@@ -345,7 +369,6 @@ public class QuanLyTTNhanVienNhanVienDaoimpl implements com.openjfx.qllspahg.dao
         return dsNhanVien;
     }
 
-    @Override
     public ObservableList<NhanVien> getNhanVienTheoGTvaCVvaPB(String GT, String CV, String PB) {
         String CV1 = "'" + CV + "'";
         String PB1 = "'" + PB + "'";
@@ -392,7 +415,7 @@ public class QuanLyTTNhanVienNhanVienDaoimpl implements com.openjfx.qllspahg.dao
         return dsNhanVien;
     }
 
-    @Override
+
     public String getMaNhanVienLonNhat() {
         NhanVien nv = null;
         String maNV = null;
@@ -413,7 +436,7 @@ public class QuanLyTTNhanVienNhanVienDaoimpl implements com.openjfx.qllspahg.dao
         return maNV;
     }
 
-    @Override
+
     public boolean saveDSNhanVienThem(ObservableList<NhanVien> dsNhanVienSave) {
         if (dsNhanVienSave.isEmpty()){
             return true;
@@ -465,7 +488,7 @@ public class QuanLyTTNhanVienNhanVienDaoimpl implements com.openjfx.qllspahg.dao
         return false;
     }
 
-    @Override
+
     public boolean saveDSNhanVienXoa(ObservableList<NhanVien> dsNhanVienXoa) {
 
         if (dsNhanVienXoa.isEmpty()){
@@ -491,7 +514,7 @@ public class QuanLyTTNhanVienNhanVienDaoimpl implements com.openjfx.qllspahg.dao
         return false;
     }
 
-    @Override
+
     public boolean svaeDSNhanVienSua(ObservableList<NhanVien> dsNhanVienSua) {
         if (dsNhanVienSua.isEmpty())
             return true;
@@ -544,5 +567,69 @@ public class QuanLyTTNhanVienNhanVienDaoimpl implements com.openjfx.qllspahg.dao
         return false;
     }
 
+    //Phong Ban
+    public ObservableList<PhongBan> getAllPhongBan() {
+        try {
+            Connection con = Db.getConnection();
+            Statement st = con.createStatement();
+            String truyVan = "Select * from PhongBan";
+            ResultSet rs = st.executeQuery(truyVan);
 
+            while (rs.next()){
+                String maPB = rs.getString("maPB");
+                String tenPB = rs.getString("tenPB");
+                PhongBan pb = new PhongBan(maPB,tenPB);
+
+                dsPB.add(pb);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dsPB;
+    }
+    //Phu cap
+    public ObservableList<PhuCap> getAllPhuCapNhanVien() {
+        try {
+            Connection con = Db.getConnection();
+            Statement st = con.createStatement();
+            String truyVan = "select * \n" +
+                    "from  [dbo].[PhuCap]\n" +
+                    "where [maPhuCap] like 'PCNV%'";
+            ResultSet rs = st.executeQuery(truyVan);
+            while (rs.next()){
+                String maPhuCap = rs.getString("maPhuCap");
+                double tienChuyenCan = rs.getDouble("tienChuyenCan");
+                double tienNangSuat = rs.getDouble("tienNangSuat");
+                double tienDienThoai = rs.getDouble("tienDienThoai");
+                double tienDiLai = rs.getDouble("tienDiLai");
+                double tienNhaTro = rs.getDouble("tienNhaTro");
+                double tienConNho = rs.getDouble("tienConNho");
+                PhuCap pc = new PhuCap(maPhuCap,tienChuyenCan,tienNangSuat,tienDienThoai,tienDiLai,tienNhaTro,tienConNho);
+                dsPhuCap.add(pc);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return dsPhuCap;
+    }
+
+    public ObservableList<PhuCap> getAllPhuCapNhanVienTheoMa() {
+        try {
+            Connection con = Db.getConnection();
+            Statement st = con.createStatement();
+            String truyVan = "select [maPhuCap]\n" +
+                    "from [dbo].[PhuCap]\n" +
+                    "where [maPhuCap] like 'PCNV%'";
+            ResultSet rs = st.executeQuery(truyVan);
+            while (rs.next()){
+                String maPhuCap = rs.getString("maPhuCap");
+                PhuCap pc = new PhuCap(maPhuCap);
+                dsPhuCap.add(pc);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return dsPhuCap;
+    }
 }

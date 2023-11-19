@@ -39,4 +39,12 @@ public class ToSanXuat {
     public int hashCode() {
         return Objects.hash(maTSX);
     }
+
+    @Override
+    public String toString() {
+        return "ToSanXuat{" +
+                "maTSX='" + maTSX + '\'' +
+                ", tenTSX='" + tenTSX + '\'' +
+                '}';
+    }
 }

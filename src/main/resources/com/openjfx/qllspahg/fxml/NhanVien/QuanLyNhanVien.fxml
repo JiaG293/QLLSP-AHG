@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-    <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openjfx.qllspahg.gui.NhanVienController">
+    <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openjfx.qllspahg.gui.QuanLyNhanVienController">
         <center>
             <SplitPane dividerPositions="0.5" orientation="VERTICAL" BorderPane.alignment="CENTER">
                 <items>

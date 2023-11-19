@@ -1,6 +1,6 @@
 package com.openjfx.qllspahg.entity;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 public class CongNhan {
@@ -9,7 +9,7 @@ public class CongNhan {
     private String tenNV;
     private boolean gioiTinh;
     private Date ngaySinh;
-    private int sDT;
+    private String sDT;
     private String email;
     private Date ngayVaoLam;
     private String sTK;
@@ -17,7 +17,7 @@ public class CongNhan {
     private ToSanXuat toSanXuat;
     private PhuCap maPhuCap;
 
-    public CongNhan(String maCN, String hoCN, String tenNV, boolean gioiTinh, Date ngaySinh, int sDT, String email, Date ngayVaoLam, String sTK, ChucVu chucVuCN, ToSanXuat toSanXuat, PhuCap maPhuCap) {
+    public CongNhan(String maCN, String hoCN, String tenNV, boolean gioiTinh, Date ngaySinh, String sDT, String email, Date ngayVaoLam, String sTK, ChucVu chucVuCN, ToSanXuat toSanXuat, PhuCap maPhuCap) {
         this.maCN = maCN;
         this.hoCN = hoCN;
         this.tenNV = tenNV;
@@ -78,11 +78,11 @@ public class CongNhan {
         this.ngaySinh = ngaySinh;
     }
 
-    public int getsDT() {
+    public String getsDT() {
         return sDT;
     }
 
-    public void setsDT(int sDT) {
+    public void setsDT(String sDT) {
         this.sDT = sDT;
     }
 

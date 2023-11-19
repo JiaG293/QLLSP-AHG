@@ -1,6 +1,6 @@
 package com.openjfx.qllspahg.dao;
 
-import com.openjfx.qllspahg.dao.interfaces.InterfaceChucVudao;
+
 import com.openjfx.qllspahg.database.Db;
 import com.openjfx.qllspahg.entity.ChucVu;
 import javafx.collections.FXCollections;
@@ -12,14 +12,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ChucVuDao implements InterfaceChucVudao {
+public class ChucVuDao  {
 
     ObservableList<ChucVu> dsCV = FXCollections.observableArrayList();
     public static ChucVuDao getInstance(){
         return new ChucVuDao();
     }
 
-    @Override
+
     public ObservableList<ChucVu> getAllChucVuNhanVien() {
         try {
             Connection con = Db.getConnection();

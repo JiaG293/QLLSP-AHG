@@ -49,5 +49,20 @@ update [dbo].[NhanVien]
 set tonTai = 1 
 where [dbo].[NhanVien].maNV= 'NV0007'
 
-select * from
-PhuCap
+use [QLLSPAHG]
+select * from  [dbo].[SanPham]
+
+SELECT [dbo].[ToSanXuat].*,COUNT([dbo].[CongNhan].maCN ) AS 'Soluong'FROM [dbo].[CongNhan] 
+LEFT JOIN [dbo].[ToSanXuat] ON [dbo].[ToSanXuat].maTSX= [dbo].[CongNhan].maTSX
+where [dbo].[CongNhan].trangThaiNV !=1 
+GROUP BY [dbo].[ToSanXuat].maTSX, [dbo].[ToSanXuat].tenTSX;
+
+select cn.maCN, cn.hoCN,cn.tenCN
+from [dbo].[CongNhan] as cn
+where maTSX='TSX001'
+
+select cd.*, sp.tenSP
+from [dbo].[CongDoan] as cd, [dbo].[SanPham] as sp
+where cd.maSP = 'SP1000' and sp.maSP = cd.maSP
+
+select * from [dbo].[BangPhanCongCongNhan]

@@ -158,7 +158,7 @@ public class PhanCongCongNhanController implements Initializable {
     }
 
     private void loadcbxDSHopDong (){
-        DSMaHopDong.addAll(PhanCongCongNhanHopDongimpl.getInstance().getAllMaHD());
+        DSMaHopDong.addAll(PhanCongCongNhanDao.getInstance().getAllMaHD());
         ObservableList<String> dsMaHopDong = FXCollections.observableArrayList();
         for (HopDong hd :DSMaHopDong){
             dsMaHopDong.add(hd.getMaHD());
@@ -175,7 +175,7 @@ public class PhanCongCongNhanController implements Initializable {
             Alerts.showConfirmation("Thông báo", "Chưa chọn hợp đồng");
         else {
             String maHD = cbxLayTTHopDongPhanCongCongNh.getValue().trim();
-            DSChiTietHopDong.addAll(PhanCongCongNhanChiTietHDDaoimpl.getInstance().getAllChiTietHopDong(maHD));
+            DSChiTietHopDong.addAll(PhanCongCongNhanDao.getInstance().getAllChiTietHopDong(maHD));
 
         }
     }
@@ -211,7 +211,7 @@ public class PhanCongCongNhanController implements Initializable {
             ChiTietHopDong cthd = tblViewTTSanPhamPhanCongCongNhan.getSelectionModel().getSelectedItem();
 
             String maSP = cthd.getMaSanPham().getMaSP().trim();
-            DSCongDoan.addAll(PhanCongCongNhanCongDoanDaoimpl.getInstance().getCongDoanTheoMaSP(maSP));
+            DSCongDoan.addAll(PhanCongCongNhanDao.getInstance().getCongDoanTheoMaSP(maSP));
 
             String tenSP = cthd.getMaSanPham().getTenSP().trim();
             tfSanPhamPhanCong.setText(tenSP);
@@ -231,7 +231,7 @@ public class PhanCongCongNhanController implements Initializable {
 
     private void docDuLieuVaotblViewTTToPhanCongCongNhan(){
 
-        DSSoLuongNguoiTrongTo.addAll(PhanCongCongNhanToDao.getInstance().getSoLuongCoTrongTo());
+        DSSoLuongNguoiTrongTo.addAll(PhanCongCongNhanDao.getInstance().getSoLuongCoTrongTo());
         colMaToPhanCongCongNhan.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SoLuonNguoitTrongTo, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SoLuonNguoitTrongTo, String> soLuonNguoitTrongToStringCellDataFeatures) {
@@ -291,18 +291,17 @@ public class PhanCongCongNhanController implements Initializable {
         } else if (datepickNgayKetThuc.getValue() != null){
             LocalDate lc = datepickNgayKetThuc.getValue();
             int thangkt = lc.getMonth().getValue(); //Hoac la getMonthValue()
-            int ngaykt = lc.getDayOfMonth();
+
 
             LocalDate lcc = datepickNgayPhanCong.getValue();
             int thangPhanCong = lcc.getMonthValue();
-            int ngayPhanCong = lcc.getDayOfMonth();
-            if (thangPhanCong <= thangkt && ngaykt-ngayPhanCong>= 15){
+
+            if (thangPhanCong <= thangkt ){
                 return true;
             } else {
-                Alerts.showConfirmation("Thông báo:","Ngày kết thúc phải cách ngày phân công ít nhất là 15 ngày và phải trước ngày phân công");
+                Alerts.showConfirmation("Thông báo:","ngày tháng kết thúc phải trước ngày tháng phân công");
                 datepickNgayKetThuc.requestFocus();
                 return false;
-
             }
 
         }
@@ -316,9 +315,9 @@ public class PhanCongCongNhanController implements Initializable {
         if (kiemTraTTTruocKhiPhanCong()){
             SoLuonNguoitTrongTo slngtt = tblViewTTToPhanCongCongNhan.getSelectionModel().getSelectedItem();
             ToSanXuat to = slngtt.getTsx();
-            ObservableList<CongNhan> DSNhanVienTheoMaTo = FXCollections.observableArrayList();
+            ObservableList<CongNhan> DSCongNhanTheoMaTo = FXCollections.observableArrayList();
 
-            DSNhanVienTheoMaTo.addAll(PhanCongCongNhanCNDao.getInstance().getDSNhanVienTheoTo(to.getMaTSX().trim()));
+            DSCongNhanTheoMaTo.addAll(PhanCongCongNhanDao.getInstance().getDSNhanVienTheoTo(to.getMaTSX().trim()));
             CongDoan cd =tblViewTTCongDoanPhanCongCongNhan.getSelectionModel().getSelectedItem();
             String ngaypc = Utils.dinhDangNgayHienTai(datepickNgayPhanCong.getValue(),"ddMMYY");
 
@@ -330,10 +329,10 @@ public class PhanCongCongNhanController implements Initializable {
             Instant instant1 = Instant.from(localDate1.atStartOfDay(ZoneId.systemDefault()));
             Date ngayKetThuc = Date.from(instant1);
 
-            for (int i =0; i < DSNhanVienTheoMaTo.size(); i++){
-                CongNhan cn = DSNhanVienTheoMaTo.get(i);
+            for (int i =0; i < DSCongNhanTheoMaTo.size(); i++){
+                CongNhan cn = DSCongNhanTheoMaTo.get(i);
                 String maBangPC = "PC"+Utils.taoMaBangChamCong(cn.getMaCN(),ngaypc);
-                BangPhanCongCongNhan bpccn = new BangPhanCongCongNhan(maBangPC,cn,cd,Integer.parseInt(tfSoLuongPhanCongTungNguoi.getText().trim()), (java.sql.Date) ngayPhanCong, (java.sql.Date) ngayKetThuc);
+                BangPhanCongCongNhan bpccn = new BangPhanCongCongNhan(maBangPC,cn,cd,Integer.parseInt(tfSoLuongPhanCongTungNguoi.getText().trim()),ngayPhanCong,ngayKetThuc);
                 DSPhanCongTungCongNhan.add(bpccn);
 
             }
@@ -385,7 +384,7 @@ public class PhanCongCongNhanController implements Initializable {
     }
 
     public void LuuDSPhanCong(ActionEvent actionEvent) {
-        PhanCongCongNhanCNDao.getInstance().saveDSPhanCong(DSPhanCongTungCongNhan);
+        PhanCongCongNhanDao.getInstance().saveDSPhanCong(DSPhanCongTungCongNhan);
 
     }
 }
