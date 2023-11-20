@@ -10,7 +10,7 @@ public interface DSQLThongTinCongNhan {
     public ObservableList<CongNhan> DSCongNhanXoa = FXCollections.observableArrayList();
     public ObservableList<CongNhan> DSCongNhanSua = FXCollections.observableArrayList();
     public ObservableList<CongNhan> DSCongNhanreset = FXCollections.observableArrayList();
-    public ObservableList<NhanVien> DSCongNhanphu = FXCollections.observableArrayList();
+    public ObservableList<CongNhan> DSCongNhanphu = FXCollections.observableArrayList();
     public ObservableList<ToSanXuat> DSToSanXuat = FXCollections.observableArrayList();
     public ObservableList<ChucVu> DSChucVu = FXCollections.observableArrayList();
     public ObservableList<PhuCap> DSPhuCap = FXCollections.observableArrayList();

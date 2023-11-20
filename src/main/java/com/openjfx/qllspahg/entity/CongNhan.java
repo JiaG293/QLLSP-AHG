@@ -6,7 +6,7 @@ import java.util.Objects;
 public class CongNhan {
     private String maCN;
     private String hoCN;
-    private String tenNV;
+    private String tenCN;
     private boolean gioiTinh;
     private Date ngaySinh;
     private String sDT;
@@ -17,10 +17,10 @@ public class CongNhan {
     private ToSanXuat toSanXuat;
     private PhuCap maPhuCap;
 
-    public CongNhan(String maCN, String hoCN, String tenNV, boolean gioiTinh, Date ngaySinh, String sDT, String email, Date ngayVaoLam, String sTK, ChucVu chucVuCN, ToSanXuat toSanXuat, PhuCap maPhuCap) {
+    public CongNhan(String maCN, String hoCN, String tenCN, boolean gioiTinh, Date ngaySinh, String sDT, String email, Date ngayVaoLam, String sTK, ChucVu chucVuCN, ToSanXuat toSanXuat, PhuCap maPhuCap) {
         this.maCN = maCN;
         this.hoCN = hoCN;
-        this.tenNV = tenNV;
+        this.tenCN = tenCN;
         this.gioiTinh = gioiTinh;
         this.ngaySinh = ngaySinh;
         this.sDT = sDT;
@@ -32,10 +32,13 @@ public class CongNhan {
         this.maPhuCap = maPhuCap;
     }
 
+    public CongNhan() {
+    }
+
     public CongNhan(String maCN, String hoCN, String tenNV) {
         this.maCN = maCN;
         this.hoCN = hoCN;
-        this.tenNV = tenNV;
+        this.tenCN = tenNV;
     }
 
     public String getMaCN() {
@@ -54,12 +57,12 @@ public class CongNhan {
         this.hoCN = hoCN;
     }
 
-    public String getTenNV() {
-        return tenNV;
+    public String getTenCN() {
+        return tenCN;
     }
 
-    public void setTenNV(String tenNV) {
-        this.tenNV = tenNV;
+    public void setTenCN(String tenCN) {
+        this.tenCN = tenCN;
     }
 
     public boolean getGioiTinh() {
@@ -145,5 +148,23 @@ public class CongNhan {
     @Override
     public int hashCode() {
         return Objects.hash(maCN);
+    }
+
+    @Override
+    public String toString() {
+        return "CongNhan{" +
+                "maCN='" + maCN + '\'' +
+                ", hoCN='" + hoCN + '\'' +
+                ", tenCN='" + tenCN + '\'' +
+                ", gioiTinh=" + gioiTinh +
+                ", ngaySinh=" + ngaySinh +
+                ", sDT='" + sDT + '\'' +
+                ", email='" + email + '\'' +
+                ", ngayVaoLam=" + ngayVaoLam +
+                ", sTK='" + sTK + '\'' +
+                ", chucVuCN=" + chucVuCN +
+                ", toSanXuat=" + toSanXuat +
+                ", maPhuCap=" + maPhuCap +
+                '}';
     }
 }

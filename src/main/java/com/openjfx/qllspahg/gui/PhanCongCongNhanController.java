@@ -370,7 +370,7 @@ public class PhanCongCongNhanController implements Initializable {
         colHovaTenTTPhanCongTungCongNhan.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangPhanCongCongNhan, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<BangPhanCongCongNhan, String> bangPhanCongCongNhanStringCellDataFeatures) {
-                return new SimpleStringProperty(bangPhanCongCongNhanStringCellDataFeatures.getValue().getMaCongNhan().getHoCN()+ " " +bangPhanCongCongNhanStringCellDataFeatures.getValue().getMaCongNhan().getTenNV());
+                return new SimpleStringProperty(bangPhanCongCongNhanStringCellDataFeatures.getValue().getMaCongNhan().getHoCN()+ " " +bangPhanCongCongNhanStringCellDataFeatures.getValue().getMaCongNhan().getTenCN());
             }
         });
 

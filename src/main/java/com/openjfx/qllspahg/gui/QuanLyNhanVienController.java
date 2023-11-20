@@ -438,7 +438,7 @@ public class QuanLyNhanVienController implements Initializable{
          */
         return ho.trim();
     }
-    public String tachTenTuHovaTen (String hovaTen){
+    private String tachTenTuHovaTen (String hovaTen){
         String ten ;
         if (!(hovaTen.lastIndexOf(" ") == -1)){
             ten = hovaTen.substring(hovaTen.lastIndexOf(" "));
@@ -720,12 +720,12 @@ public class QuanLyNhanVienController implements Initializable{
         DSNhanVienphu.remove(nv);
         //Trường hợp chọn tablechitietthongtinnhanvien
         NhanVien nv1 =tblviewChiTietNhanVien.getSelectionModel().getSelectedItem();
-        if (!DSNhanVienThem.contains(nv))
+        if (!DSNhanVienThem.contains(nv1))
             DSNhanVienXoa.add(nv1);
         else if (DSNhanVienThem.contains(nv1)) {
             DSNhanVienThem.remove(nv1);
-        } else if (DSNhanVienSua.contains(nv))
-            DSNhanVienSua.remove(nv);
+        } else if (DSNhanVienSua.contains(nv1))
+            DSNhanVienSua.remove(nv1);
 
         DSNhanVien.remove(nv1);
         DSNhanVienphu.remove(nv1);
@@ -740,6 +740,9 @@ public class QuanLyNhanVienController implements Initializable{
         tfSoDienThoaiTTNhanVien.clear();
         datepickNgaySinhTTNhanVien.setValue(LocalDate.now());
         datepickNgayVaoLamTTNhanVien.setValue(LocalDate.now());
+        cbxChucVuTTNhanVien.getSelectionModel().clearSelection();
+        cbxPhongBanTTNhanVien.getSelectionModel().clearSelection();
+        cbxPhuCapTTNhanVien.getSelectionModel().clearSelection();
 
     }
 
@@ -748,7 +751,7 @@ public class QuanLyNhanVienController implements Initializable{
         tblviewChiTietNhanVien.getSelectionModel().clearSelection();
         //DSNhanVienphu chua co neu chon vao se bi loi
         NhanVien nvDuocChon;
-        if (!DSNhanVien.isEmpty() && tblViewTTNhanVien.getSelectionModel() != null) {
+        if (!DSNhanVien.isEmpty() && tblViewTTNhanVien.getSelectionModel().getSelectedItem() != null) {
             nvDuocChon = tblViewTTNhanVien.getSelectionModel().getSelectedItem();
             //Chọn xong thêm vào bảng chi tiết nhân viên bên dưới
             if (!DSNhanVienphu.contains(nvDuocChon))
@@ -785,7 +788,7 @@ public class QuanLyNhanVienController implements Initializable{
         //Chọn table chi tiết nhân viên thì xóa  chọn table tt nhân viên
         tblViewTTNhanVien.getSelectionModel().clearSelection();
         //DSNhanVien chua co neu chon vao se bi loi
-        if (!DSNhanVienphu.isEmpty() && tblviewChiTietNhanVien.getSelectionModel() != null){
+        if (!DSNhanVienphu.isEmpty() && tblviewChiTietNhanVien.getSelectionModel().getSelectedItem() != null){
             NhanVien nvDuocChon = tblviewChiTietNhanVien.getSelectionModel().getSelectedItem();
 
             tfMaTTNhanVien.setText(nvDuocChon.getMaNV());
@@ -817,22 +820,23 @@ public class QuanLyNhanVienController implements Initializable{
     **/
 
     public void luuTTNhanVien(ActionEvent actionEvent) throws InterruptedException {
-        Optional<ButtonType> reslut = Alerts.showConfirmation("Thông báo","Có muốn lưu không");
+        Optional<ButtonType> reslut = Alerts.showConfirmation("Thông báo","Bạn có muốn lưu không?");
         if (reslut.isPresent() && reslut.get() == ButtonType.OK){
             //Có thể sai lưu dưới csdl sai vì cha biet khi nao bug
             // ...nên mấy cái lưu này tôi để true false, 3 cái đúng hết mới thông báo lưu thành công
             TimeUnit.SECONDS.sleep(1); // cho dung lai 1 giay truoc khi hien len va nay phai throws InterrupteddException
             if(QuanLyTTNhanVienDao.getInstance().saveDSNhanVienThem(DSNhanVienThem) && QuanLyTTNhanVienDao.getInstance().saveDSNhanVienXoa(DSNhanVienXoa) && QuanLyTTNhanVienDao.getInstance().svaeDSNhanVienSua(DSNhanVienSua)){
                 Alerts.showConfirmation("Thông báo","Lưu thành công");
+                DSNhanVienreset.clear();
+                DSNhanVienreset.addAll(DSNhanVien);
+                DSNhanVienThem.clear();
+                DSNhanVienXoa.clear();
+                DSNhanVienSua.clear();
             }else
                 Alerts.showConfirmation("Thông báo","Lưu thất bại");
             //Luu DS Xoa
             //LuuDS Sua
-            DSNhanVienreset.clear();
-            DSNhanVienreset.addAll(DSNhanVien);
-            DSNhanVienThem.clear();
-            DSNhanVienXoa.clear();
-            DSNhanVienSua.clear();
+
         }else{
             return;
         }
@@ -851,6 +855,11 @@ public class QuanLyNhanVienController implements Initializable{
         }else {
             return;
         }
+        loadComboboxChucVu();
+        loadComboboxPhongBan();
+        loadComboxChucVuNhapTTNhanVien();
+        loadComboboxPhongBanNhapTTNhanVien();
+        loadComboboxPhuCapNhapTTNhanVien();
     }
 
 
@@ -923,11 +932,8 @@ public class QuanLyNhanVienController implements Initializable{
             else if (!DSNhanVienThem.contains(nvSUa) && DSNhanVienSua.contains(nvSUa))
                 DSNhanVienSua.set(DSNhanVienSua.indexOf(nvSUa),nvSUa);
             //Trường hợp cuối ko nằm trong cả 2 DSNhanVienSua và DSNhanVienThem ta add nó vô DSNhanVienSua
-            else if (!DSNhanVienThem.contains(nvSUa) && !DSNhanVienSua.contains(nvSUa)) {
+            else if (!DSNhanVienThem.contains(nvSUa) && !DSNhanVienSua.contains(nvSUa))
                 DSNhanVienSua.add(nvSUa);
-            }
-
-
 
 
         }

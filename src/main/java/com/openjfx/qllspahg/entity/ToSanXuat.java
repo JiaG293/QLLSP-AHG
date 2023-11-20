@@ -11,6 +11,9 @@ public class ToSanXuat {
         this.tenTSX = tenTSX;
     }
 
+    public ToSanXuat() {
+    }
+
     public String getMaTSX() {
         return maTSX;
     }

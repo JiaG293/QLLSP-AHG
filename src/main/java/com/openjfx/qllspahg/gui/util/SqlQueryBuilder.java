@@ -51,16 +51,22 @@ public class SqlQueryBuilder {
         return sqlBuilder.toString();
     }
 
+
+    /**Của Lộc
+     *
+     *
+     */
+
     public static String stringQueryLocDanhSachTTCongNhan(String truyVanTruocWhere, String gt, String vaiTro, String toSanXuat){
         StringBuilder sql = new StringBuilder().append(truyVanTruocWhere).append(" and ");
 
-        if(!gt.isEmpty())
+        if(gt != null)
             sql.append("cn.gioiTinh = '").append(gt).append("' and ");
 
-        if (!vaiTro.isEmpty())
+        if (vaiTro != null)
             sql.append("cv.tenCV = N'").append(vaiTro).append("' and ");
 
-        if (!toSanXuat.isEmpty())
+        if (toSanXuat != null)
             sql.append("tsx.tenTSX = N'").append(toSanXuat).append("' and ");
 
         if (sql.toString().endsWith(" and "))
@@ -68,7 +74,4 @@ public class SqlQueryBuilder {
 
         return sql.toString();
     }
-
-
-
 }
