@@ -69,7 +69,7 @@ CREATE TABLE CongNhan(
                          email varchar(128),
                          ngayVaoLam date,
                          sTK varchar(20),
-                         trangThaiNV bit DEFAULT 0, -- 0 la hoat dong, 1 la khong hoat dong
+                         trangThaiCN bit DEFAULT 0, -- 0 la hoat dong, 1 la khong hoat dong
 
                          CONSTRAINT PK_CongNhan PRIMARY KEY(maCN)
 )
