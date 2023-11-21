@@ -246,7 +246,7 @@ public class DanhSachHopDongImpl {
             for (ChiTietHopDong cthd : chiTietHDSP) {
                 pst.setString(1, maHD);
                 pst.setString(2, cthd.getMaSanPham().getMaSP());
-                pst.setInt(3,cthd.getSoLuong());
+                pst.setInt(3, 3); //cthd.getSoLuong()
                 pst.addBatch();
             }
             pst.executeBatch();

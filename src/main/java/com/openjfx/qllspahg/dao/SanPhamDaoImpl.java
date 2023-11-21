@@ -1,24 +1,24 @@
 package com.openjfx.qllspahg.dao;
 
-import com.openjfx.qllspahg.dao.interfaces.SanPhamDao;
 import com.openjfx.qllspahg.database.Db;
+import com.openjfx.qllspahg.entity.BangChamCongNhanVien;
+import com.openjfx.qllspahg.entity.NhanVien;
+import com.openjfx.qllspahg.entity.PhongBan;
 import com.openjfx.qllspahg.entity.SanPham;
+import com.openjfx.qllspahg.gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 //Thuc thi va xu li sql o day
-public class SanPhamDaoImpl implements SanPhamDao<SanPham> {
+public class SanPhamDaoImpl {
 
     //Khoi tao doi tuong - goi ham truoc khi muon goi cac ham khac
     public static SanPhamDaoImpl getInstance() {
         return new SanPhamDaoImpl();
     }
 
-    @Override
     public ObservableList<SanPham> layTatCaSP() {
         ObservableList<SanPham> list = FXCollections.observableArrayList();
         try {
@@ -57,7 +57,6 @@ public class SanPhamDaoImpl implements SanPhamDao<SanPham> {
         return list;
     }
 
-    @Override
     public SanPham laySPBangMa(String maSanPham) {
         SanPham sp = null;
         try {
@@ -70,7 +69,7 @@ public class SanPhamDaoImpl implements SanPhamDao<SanPham> {
             * SELECT * FROM SanPham
                         WHERE maSP= 'maSanPham'*/
             String sql = "SELECT * FROM SanPham" +
-                                "WHERE " + "maSP= '" + maSanPham + "' ";
+                    "WHERE " + "maSP= '" + maSanPham + "' ";
             //Thuc thi truy van
             ResultSet rs = st.executeQuery(sql);
 
@@ -97,7 +96,6 @@ public class SanPhamDaoImpl implements SanPhamDao<SanPham> {
         return sp;
     }
 
-    @Override
     public SanPham laySPBangTen(String tenSanPham) {
         SanPham sp = null;
         try {
@@ -107,7 +105,7 @@ public class SanPhamDaoImpl implements SanPhamDao<SanPham> {
             Statement st = con.createStatement();
             //Khai bao cau lenh sql
             String sql = "SELECT * FROM SanPham" +
-                                "WHERE " + "tenSP= '" + tenSanPham + "' ";
+                    "WHERE " + "tenSP= '" + tenSanPham + "' ";
             //Thuc thi truy van
             ResultSet rs = st.executeQuery(sql);
 
@@ -135,7 +133,7 @@ public class SanPhamDaoImpl implements SanPhamDao<SanPham> {
         return sp;
     }
 
-    @Override
+
     public ObservableList<SanPham> timSPBangMa(String maSanPham) {
         ObservableList<SanPham> list = FXCollections.observableArrayList();
         try {
@@ -176,7 +174,7 @@ public class SanPhamDaoImpl implements SanPhamDao<SanPham> {
         return list;
     }
 
-    @Override
+
     public ObservableList<SanPham> timSPBangTen(String tenSanPham) {
         ObservableList<SanPham> list = FXCollections.observableArrayList();
         try {
@@ -217,31 +215,32 @@ public class SanPhamDaoImpl implements SanPhamDao<SanPham> {
         return list;
     }
 
-    @Override
-    public void themSP(SanPham sanPham) {
-        try {
-            //Tao ket noi voi csdl
-            Connection con = Db.getConnection();
-            //khai bao tao cau lenh thuc thi
-            Statement st = con.createStatement();
-            //Khai bao cau lenh sql
-            /*INSERT INTO SanPham(maSP, tenSP, giaSP)
-                    VALUES ('maSP', 'tenSP', 'giaSp')*/
-            String sql = "INSERT INTO SanPham(maSP, tenSP, giaSP) " +
-                    "VALUES ( '" + sanPham.getMaSP() + "', '" + sanPham.getTenSP() + "', " + sanPham.getGiaSP() + ")";
-            //Dong duoc insert thanh cong vao csdl
-            int rs = st.executeUpdate(sql);
-            System.out.println("Da them " + rs + "san pham vao csdl: ");
 
-            //Dong ket noi voi csdl moi khi thuc thi xong cau lenh truy van
-//            Db.closeConnection();
+    public boolean themSanPhamMoi(SanPham sanPham) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        try {
+            String sql = "INSERT INTO SanPham(maSP, tenLoai,  tenSP, giaSP) " +
+                    "VALUES (?, ?, ?, ?)";
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            pst.setString(1, sanPham.getMaSP());
+            pst.setString(2, sanPham.getTenLoaiSP());
+            pst.setString(3, sanPham.getTenSP());
+            pst.setDouble(4, sanPham.getGiaSP());
+            pst.executeUpdate();
+
 
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
+        System.out.println("Da cap nhat bang cham cong vao csdl!!! ");
+        return true;
     }
 
-    @Override
+
     public void xoaSP(SanPham sanPham) {
         try {
             //Tao ket noi voi csdl
@@ -265,7 +264,7 @@ public class SanPhamDaoImpl implements SanPhamDao<SanPham> {
         }
     }
 
-    @Override
+
     public void suaSP(SanPham sanPham) {
         try {
             //Tao ket noi voi csdl

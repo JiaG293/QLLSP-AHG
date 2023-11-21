@@ -229,12 +229,12 @@ public class DanhSachHopDongController implements Initializable {
             }
         });
 
-        colSoLuongSP.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietHopDong, Integer>, ObservableValue<Integer>>() {
+        /*colSoLuongSP.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietHopDong, Integer>, ObservableValue<Integer>>() {
             @Override
             public ObservableValue<Integer> call(TableColumn.CellDataFeatures<ChiTietHopDong, Integer> chiTietHopDongIntegerCellDataFeatures) {
                 return new SimpleIntegerProperty(chiTietHopDongIntegerCellDataFeatures.getValue().getSoLuong()).asObject();
             }
-        });
+        });*/
 
         colDonGiaSP.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietHopDong, String>, ObservableValue<String>>() {
             @Override
@@ -385,7 +385,7 @@ public class DanhSachHopDongController implements Initializable {
         else {
             tfMaSP.setText(cthdDuocChon.getMaSanPham().getMaSP());
             cbxTenSP.setValue(cthdDuocChon.getMaSanPham().getTenSP());
-            tfSoLuongSP.getValueFactory().setValue(cthdDuocChon.getSoLuong());
+            tfSoLuongSP.getValueFactory().setValue(3); //cthdDuocChon.getSoLuong()
         }
     }
 

@@ -1,103 +1,134 @@
 package com.openjfx.qllspahg.dao;
 
-import com.openjfx.qllspahg.dao.interfaces.QuanLySanPhamDao;
 import com.openjfx.qllspahg.database.Db;
 import com.openjfx.qllspahg.entity.SanPham;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //Thuc thi va xu li sql o day
-public class QuanLySanPhamDaoImpl implements QuanLySanPhamDao {
-
-    //Khoi tao doi tuong - goi ham truoc khi muon goi cac ham khac
+public class QuanLySanPhamDaoImpl {
     public static QuanLySanPhamDaoImpl getInstance() {
         return new QuanLySanPhamDaoImpl();
     }
 
-    @Override
     public ObservableList<SanPham> layTatCaSP() {
-        ObservableList<SanPham> list = FXCollections.observableArrayList();
+        ObservableList<SanPham> listSP = FXCollections.observableArrayList();
+        Connection con = null;
         try {
-            //Tao ket noi voi csdl
-            Connection con = Db.getConnection();
-            //khai bao tao cau lenh thuc thi
+            con = Db.getConnection();
             Statement st = con.createStatement();
-            //Khai bao cau lenh sql
             String sql = "SELECT * FROM SanPham";
-            //Thuc thi truy van
             ResultSet rs = st.executeQuery(sql);
-
-            //Them tung doi tuong vao trong danh sach
             while (rs.next()) {
-
-                //Gan du lieu tung table sql
                 String maSP = rs.getString("maSP");
-//                String loaiSP = rs.getString("loaiSP");
+                String tenLoaiSP = rs.getString("tenLoai");
                 String tenSP = rs.getString("tenSP");
                 Double giaSP = rs.getDouble("giaSP");
 
-                //Dua du lieu vao khuon de khoi tao doi tuong
-                SanPham sp = new SanPham(maSP, tenSP, giaSP);
+                SanPham sp = new SanPham(maSP, tenSP, tenLoaiSP, giaSP);
 
-                //Them doi tuong vao danh sach
-                list.add(sp);
+                listSP.add(sp);
             }
-
-            //Dong ket noi voi csdl moi khi thuc thi xong cau lenh truy van
-//            Db.closeConnection();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //Tra ra danh sach doi tuong duoc them vao
-        return list;
+        return listSP;
     }
 
-    @Override
+    public ObservableList<String> taiDanhSachLoaiSanPham() {
+        ObservableList<String> listLoaiSP = FXCollections.observableArrayList();
+        listLoaiSP.add("Trống");
+        try {
+            Connection con = Db.getConnection();
+            Statement st = con.createStatement();
+            String sql = "SELECT DISTINCT tenLoai FROM SanPham";
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                String loaiSp = rs.getString("tenLoai");
+                listLoaiSP.add(loaiSp);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return listLoaiSP;
+    }
+
+    public boolean themSanPhamMoi(SanPham sanPham) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        try {
+            String sql = "INSERT INTO SanPham(maSP, tenLoai,  tenSP, giaSP) " +
+                    "VALUES (?, ?, ?, ?)";
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            pst.setString(1, sanPham.getMaSP());
+            pst.setString(2, sanPham.getTenLoaiSP());
+            pst.setString(3, sanPham.getTenSP());
+            pst.setDouble(4, sanPham.getGiaSP());
+            pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        System.out.println("Da them san pham moi vao csdl!!! ");
+        return true;
+    }
+
+
+    //Tao ma cho danh sach hop dong
+    public ObservableList<String> layDanhSachMaSanPham() {
+        Connection con = null;
+        ObservableList<String> listMaSP = FXCollections.observableArrayList();
+        try {
+            con = Db.getConnection();
+            Statement st = con.createStatement();
+            String sql = "SELECT SP.maSP " +
+                    "FROM SanPham AS SP";
+
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                String maSP = rs.getString("maSP");
+                listMaSP.add(maSP);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        System.out.println("List LayDuLieuDanhSachMaSanPham:\n" + listMaSP + "\n");
+        return listMaSP;
+    }
+
     public SanPham laySPBangMa(String maSanPham) {
         SanPham sp = null;
         try {
-            //Tao ket noi voi csdl
             Connection con = Db.getConnection();
-            //khai bao tao cau lenh thuc thi
             Statement st = con.createStatement();
-            //Khai bao cau lenh sql
-            /*
-            * SELECT * FROM SanPham
-                        WHERE maSP= 'maSanPham'*/
             String sql = "SELECT * FROM SanPham" +
                                 "WHERE " + "maSP= '" + maSanPham + "' ";
-            //Thuc thi truy van
             ResultSet rs = st.executeQuery(sql);
-
-            //Them tung doi tuong vao trong danh sach
             while (rs.next()) {
-
-                //Gan du lieu tung table sql
                 String maSP = rs.getString("maSP");
-//                String loaiSP = rs.getString("loaiSP");
+                String loaiSP = rs.getString("loaiSP");
                 String tenSP = rs.getString("tenSP");
                 Double giaSP = rs.getDouble("giaSP");
-
-                //Dua du lieu vao khuon de khoi tao doi tuong
                 sp = new SanPham(maSP, tenSP, giaSP);
             }
-
-            //Dong ket noi voi csdl moi khi thuc thi xong cau lenh truy van
-//            Db.closeConnection();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //Tra ra danh sach doi tuong duoc them vao
         return sp;
     }
 
-    @Override
     public SanPham laySPBangTen(String tenSanPham) {
         SanPham sp = null;
         try {
@@ -135,7 +166,6 @@ public class QuanLySanPhamDaoImpl implements QuanLySanPhamDao {
         return sp;
     }
 
-    @Override
     public ObservableList<SanPham> timSPBangMa(String maSanPham) {
         ObservableList<SanPham> list = FXCollections.observableArrayList();
         try {
@@ -176,7 +206,6 @@ public class QuanLySanPhamDaoImpl implements QuanLySanPhamDao {
         return list;
     }
 
-    @Override
     public ObservableList<SanPham> timSPBangTen(String tenSanPham) {
         ObservableList<SanPham> list = FXCollections.observableArrayList();
         try {
@@ -217,31 +246,8 @@ public class QuanLySanPhamDaoImpl implements QuanLySanPhamDao {
         return list;
     }
 
-    @Override
-    public void themSP(SanPham sanPham) {
-        try {
-            //Tao ket noi voi csdl
-            Connection con = Db.getConnection();
-            //khai bao tao cau lenh thuc thi
-            Statement st = con.createStatement();
-            //Khai bao cau lenh sql
-            /*INSERT INTO SanPham(maSP, tenSP, giaSP)
-                    VALUES ('maSP', 'tenSP', 'giaSp')*/
-            String sql = "INSERT INTO SanPham(maSP, tenSP, giaSP) " +
-                    "VALUES ( '" + sanPham.getMaSP() + "', '" + sanPham.getTenSP() + "', " + sanPham.getGiaSP() + ")";
-            //Dong duoc insert thanh cong vao csdl
-            int rs = st.executeUpdate(sql);
-            System.out.println("Da them " + rs + "san pham vao csdl: ");
 
-            //Dong ket noi voi csdl moi khi thuc thi xong cau lenh truy van
-//            Db.closeConnection();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public void xoaSP(SanPham sanPham) {
         try {
             //Tao ket noi voi csdl
@@ -265,7 +271,6 @@ public class QuanLySanPhamDaoImpl implements QuanLySanPhamDao {
         }
     }
 
-    @Override
     public void suaSP(SanPham sanPham) {
         try {
             //Tao ket noi voi csdl
