@@ -9,6 +9,7 @@ public class SanPham {
     private double giaSP;
     private boolean trangThaiSP;
 
+
     public SanPham(String maSP, String tenSP, double giaSP, boolean trangThaiSP) {
         this.maSP = maSP;
         this.tenSP = tenSP;
@@ -27,12 +28,11 @@ public class SanPham {
         this.tenSP = tenSP;
     }
 
-    public SanPham(String maSP, String tenLoaiSP, String tenSP, double giaSP, boolean trangThaiSP) {
+    public SanPham(String maSP, String tenSP, String tenLoaiSP, double giaSP) {
         this.maSP = maSP;
-        this.tenLoaiSP = tenLoaiSP;
         this.tenSP = tenSP;
+        this.tenLoaiSP = tenLoaiSP;
         this.giaSP = giaSP;
-        this.trangThaiSP = trangThaiSP;
     }
 
     public String getTenLoaiSP() {
