@@ -3,12 +3,25 @@ package com.openjfx.qllspahg.entity;
 public class ChiTietHopDong {
     private HopDong maHopDong;
     private SanPham maSanPham;
-    private int soLuong;
+    private int soLuongDat;
+    private int soLuongDaLam;
 
-    public ChiTietHopDong(HopDong maHopDong, SanPham maSanPham, int soLuong) {
+    public ChiTietHopDong(HopDong maHopDong, SanPham maSanPham, int soLuongDat) {
         this.maHopDong = maHopDong;
         this.maSanPham = maSanPham;
-        this.soLuong = soLuong;
+        this.soLuongDat = soLuongDat;
+    }
+
+    public ChiTietHopDong(HopDong maHopDong, SanPham maSanPham, int soLuongDat, int soLuongDaLam) {
+        this.maHopDong = maHopDong;
+        this.maSanPham = maSanPham;
+        this.soLuongDat = soLuongDat;
+        this.soLuongDaLam = soLuongDaLam;
+    }
+
+    public ChiTietHopDong(HopDong maHopDong, SanPham maSanPham) {
+        this.maHopDong = maHopDong;
+        this.maSanPham = maSanPham;
     }
 
     public ChiTietHopDong(HopDong maHopDong) {
@@ -31,20 +44,29 @@ public class ChiTietHopDong {
         this.maSanPham = maSanPham;
     }
 
-    public int getSoLuong() {
-        return soLuong;
+    public int getSoLuongDat() {
+        return soLuongDat;
     }
 
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
+    public void setSoLuongDat(int soLuongDat) {
+        this.soLuongDat = soLuongDat;
+    }
+
+    public int getSoLuongDaLam() {
+        return soLuongDaLam;
+    }
+
+    public void setSoLuongDaLam(int soLuongDaLam) {
+        this.soLuongDaLam = soLuongDaLam;
     }
 
     @Override
     public String toString() {
-        return "ChiTietHopDong{" +
+        return "ChiTietHopDong: " +
                 "maHopDong=" + maHopDong +
                 ", maSanPham=" + maSanPham +
-                ", soLuong=" + soLuong +
-                '}';
+                ", soLuongDat=" + soLuongDat +
+                ", soLuongDaLam=" + soLuongDaLam +
+                '\n';
     }
 }
