@@ -4,16 +4,28 @@ import java.util.Objects;
 
 public class CongDoan {
     private String maCD;
+    private SanPham maSanPham;
     private String tenCD;
     private double giaCD;
-    private int soLuong;
-    private SanPham maSanPham;
+    private String giaiDoanCD;
 
-    public CongDoan(String maCD, String tenCD, double giaCD, int soLuong, SanPham maSanPham) {
+    public CongDoan(String maCD, SanPham maSanPham, String tenCD, double giaCD, String giaiDoanCD) {
         this.maCD = maCD;
+        this.maSanPham = maSanPham;
         this.tenCD = tenCD;
         this.giaCD = giaCD;
-        this.soLuong = soLuong;
+        this.giaiDoanCD = giaiDoanCD;
+    }
+
+    public CongDoan(String maCD, SanPham maSanPham, double giaCD, String giaiDoanCD) {
+        this.maCD = maCD;
+        this.maSanPham = maSanPham;
+        this.giaCD = giaCD;
+        this.giaiDoanCD = giaiDoanCD;
+    }
+
+    public CongDoan(String maCD, SanPham maSanPham) {
+        this.maCD = maCD;
         this.maSanPham = maSanPham;
     }
 
@@ -68,5 +80,16 @@ public class CongDoan {
     @Override
     public int hashCode() {
         return Objects.hash(maCD);
+    }
+
+    @Override
+    public String toString() {
+        return "CongDoan: " +
+                "maCD='" + maCD + '\'' +
+                ", maSanPham=" + maSanPham +
+                ", tenCD='" + tenCD + '\'' +
+                ", giaCD=" + giaCD +
+                ", giaiDoanCD='" + giaiDoanCD + '\'' +
+                '\n';
     }
 }
