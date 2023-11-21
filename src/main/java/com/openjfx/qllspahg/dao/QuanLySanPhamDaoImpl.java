@@ -1,6 +1,7 @@
 package com.openjfx.qllspahg.dao;
 
 import com.openjfx.qllspahg.database.Db;
+import com.openjfx.qllspahg.entity.CongDoan;
 import com.openjfx.qllspahg.entity.SanPham;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +16,7 @@ public class QuanLySanPhamDaoImpl {
         return new QuanLySanPhamDaoImpl();
     }
 
-    public ObservableList<SanPham> layTatCaSP() {
+    public ObservableList<SanPham> layDanhSachSanPham() {
         ObservableList<SanPham> listSP = FXCollections.observableArrayList();
         Connection con = null;
         try {
@@ -108,13 +109,144 @@ public class QuanLySanPhamDaoImpl {
         return listMaSP;
     }
 
+    //Lay danh sach cong doan theo ma san pham
+    public ObservableList<CongDoan> layCongDoanSanPhamTheoMa(String maSanPham) {
+        ObservableList<CongDoan> listCD = FXCollections.observableArrayList();
+        Connection con = null;
+        PreparedStatement pst = null;
+        String sql = "SELECT CD.* FROM CongDoan AS CD " +
+                "WHERE CD.maSP=?";
+        try {
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            pst.setString(1, maSanPham);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                String maCD = rs.getString("maCD");
+                String maSP = rs.getString("maSP");
+                String tenCD = rs.getString("tenCD");
+                String giaiDoan = rs.getString("giaiDoan");
+                Double giaCongDoan = rs.getDouble("giaCongDoan");
+
+                SanPham sp = new SanPham(maSP);
+
+                CongDoan cd = new CongDoan(maCD, sp, tenCD, giaCongDoan, giaiDoan);
+
+                listCD.add(cd);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        System.out.println("List LayDuLieuDanhSachCongDoan:\n" + listCD + "\n");
+        return listCD;
+    }
+
+    //Them cong doan san pham
+    public boolean themCongDoanSanPham(CongDoan congDoan) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        try {
+            String sql = "INSERT INTO CongDoan(maCD, maSP, tenCD, giaiDoan, giaCongDoan) " +
+                    "VALUES (?, ?, ?, ?, ?)";
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            pst.setString(1, congDoan.getMaCD());
+            pst.setString(2, congDoan.getMaSanPham().getMaSP());
+            pst.setString(3, congDoan.getTenCD());
+            pst.setString(4, congDoan.getGiaiDoanCD());
+            pst.setDouble(5, congDoan.getGiaCD());
+
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        System.out.println("Da them cong Doan moi vao csdl!!! ");
+        return true;
+    }
+
+    //Lay danh sach ma cong doan cua 1 san pham
+    public ObservableList<String> layDanhSachMaCongDoanTheoSanPham(String maSanPham) {
+        ObservableList<String> listMaCD = FXCollections.observableArrayList();
+        Connection con = null;
+        PreparedStatement pst = null;
+        String sql = "SELECT CD.maCD FROM CongDoan AS CD " +
+                "WHERE CD.maSP=?";
+        try {
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+            pst.setString(1, maSanPham);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                String maCD = rs.getString("maCD");
+                listMaCD.add(maCD);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        System.out.println("List LayDuLieuDanhSachMaCongDoan:\n" + listMaCD + "\n");
+        return listMaCD;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public SanPham laySPBangMa(String maSanPham) {
         SanPham sp = null;
         try {
             Connection con = Db.getConnection();
             Statement st = con.createStatement();
             String sql = "SELECT * FROM SanPham" +
-                                "WHERE " + "maSP= '" + maSanPham + "' ";
+                    "WHERE " + "maSP= '" + maSanPham + "' ";
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 String maSP = rs.getString("maSP");
@@ -138,7 +270,7 @@ public class QuanLySanPhamDaoImpl {
             Statement st = con.createStatement();
             //Khai bao cau lenh sql
             String sql = "SELECT * FROM SanPham" +
-                                "WHERE " + "tenSP= '" + tenSanPham + "' ";
+                    "WHERE " + "tenSP= '" + tenSanPham + "' ";
             //Thuc thi truy van
             ResultSet rs = st.executeQuery(sql);
 
@@ -245,7 +377,6 @@ public class QuanLySanPhamDaoImpl {
         //Tra ra danh sach doi tuong duoc them vao
         return list;
     }
-
 
 
     public void xoaSP(SanPham sanPham) {

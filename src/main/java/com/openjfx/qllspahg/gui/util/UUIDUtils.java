@@ -58,4 +58,21 @@ public class UUIDUtils {
         return maSanPham;
     }
 
+    public static String taoMaCongDoan(String maSanPham) {
+        ObservableList<String> danhSachMaCongDoan = QuanLySanPhamDaoImpl.getInstance().layDanhSachMaCongDoanTheoSanPham(maSanPham);
+
+        int soThuTuKyTuTang = 1;
+        if (!danhSachMaCongDoan.isEmpty()) {
+            String maCongDoanCuoi = danhSachMaCongDoan.get(danhSachMaCongDoan.size() - 1); //lay vi tri cuoi cua danh sach ma cong doan
+
+            String soCuoiCung = maCongDoanCuoi.substring(maCongDoanCuoi.length() - 1); //Lay vi tri cuoi cung cua ma cong doan
+            soThuTuKyTuTang = Integer.parseInt(soCuoiCung) + 1;
+        }
+
+        return "CD" + maSanPham + soThuTuKyTuTang;
+    }
+
+
+
+
 }
