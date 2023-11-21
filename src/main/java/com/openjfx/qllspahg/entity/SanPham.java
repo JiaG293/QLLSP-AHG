@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class SanPham {
     private String maSP;
+    private String tenLoaiSP;
     private String tenSP;
     private double giaSP;
     private boolean trangThaiSP;
@@ -24,6 +25,22 @@ public class SanPham {
     public SanPham(String maSP, String tenSP) {
         this.maSP = maSP;
         this.tenSP = tenSP;
+    }
+
+    public SanPham(String maSP, String tenLoaiSP, String tenSP, double giaSP, boolean trangThaiSP) {
+        this.maSP = maSP;
+        this.tenLoaiSP = tenLoaiSP;
+        this.tenSP = tenSP;
+        this.giaSP = giaSP;
+        this.trangThaiSP = trangThaiSP;
+    }
+
+    public String getTenLoaiSP() {
+        return tenLoaiSP;
+    }
+
+    public void setTenLoaiSP(String tenLoaiSP) {
+        this.tenLoaiSP = tenLoaiSP;
     }
 
     public boolean isTrangThaiSP() {
@@ -80,11 +97,12 @@ public class SanPham {
 
     @Override
     public String toString() {
-        return "SanPham{" +
+        return "SanPham: " +
                 "maSP='" + maSP + '\'' +
+                ", tenLoaiSP='" + tenLoaiSP + '\'' +
                 ", tenSP='" + tenSP + '\'' +
                 ", giaSP=" + giaSP +
                 ", trangThaiSP=" + trangThaiSP +
-                '}';
+                '\n';
     }
 }
