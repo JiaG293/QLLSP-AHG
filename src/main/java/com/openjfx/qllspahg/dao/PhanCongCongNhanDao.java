@@ -141,11 +141,11 @@ public ObservableList<CongDoan> getCongDoanTheoMaSP(String maSP){
             String maCD = rs.getString("maCD");
             String tenCd = rs.getString("tenCD");
             double giaCD = rs.getDouble("giaCongDoan");
-            int soLuong = rs.getInt("soLuong");
+            String giaiDoanCD = rs.getString("giaiDoan");
             String maSanPham = rs.getString("maSP");
             String tenSp = rs.getString("tenSP");
             SanPham sp = new SanPham(maSanPham,tenSp);
-            dsCD.add(new CongDoan(maCD,tenCd,giaCD,soLuong,sp));
+            dsCD.add(new CongDoan(maCD,sp,tenCd,giaCD,giaiDoanCD));
         }
     } catch (SQLException e){
         e.printStackTrace();
