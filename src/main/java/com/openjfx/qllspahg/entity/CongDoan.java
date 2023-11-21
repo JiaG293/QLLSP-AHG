@@ -61,6 +61,14 @@ public class CongDoan {
         this.maSanPham = maSanPham;
     }
 
+    public String getGiaiDoanCD() {
+        return giaiDoanCD;
+    }
+
+    public void setGiaiDoanCD(String giaiDoanCD) {
+        this.giaiDoanCD = giaiDoanCD;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
