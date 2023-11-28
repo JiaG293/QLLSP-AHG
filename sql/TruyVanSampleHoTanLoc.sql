@@ -66,3 +66,8 @@ from [dbo].[CongDoan] as cd, [dbo].[SanPham] as sp
 where cd.maSP = 'SP1000' and sp.maSP = cd.maSP
 
 select * from [dbo].[BangPhanCongCongNhan]
+
+Select [dbo].[ChiTietHopDong].maHD, [dbo].[SanPham].maSP, [dbo].[SanPham].tenSP, [dbo].[ChiTietHopDong].soLuongDat
+                from [dbo].[ChiTietHopDong] 
+                Inner Join [dbo].[SanPham] on [dbo].[ChiTietHopDong].maSP = [dbo].[SanPham].maSP
+                where [dbo].[ChiTietHopDong].maHD = 'HD100000'

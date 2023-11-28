@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,12 +14,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openjfx.qllspahg.gui.PhanCongCongNhanController">
    <bottom>
-      <HBox alignment="CENTER_LEFT" fillHeight="false" spacing="20.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnResetPhanCongCongNhan" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Reset">
+            <Button fx:id="btnResetPCCN" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Reset">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -27,9 +30,9 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnLuu" mnemonicParsing="false" onAction="#LuuDSPhanCong" prefHeight="30.0" prefWidth="94.0" text="Lưu">
+            <Button fx:id="btnLuuPCCN" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Lưu">
                <graphic>
-                  <ImageView fx:id="btnLuuPhanCongCongNhan" fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/icons/save.png" />
                      </image>
@@ -43,104 +46,29 @@
       </HBox>
    </bottom>
    <center>
-      <SplitPane dividerPositions="0.5, 0.5" orientation="VERTICAL" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" BorderPane.alignment="CENTER">
          <items>
-            <SplitPane dividerPositions="0.5, 0.5" maxHeight="200.0">
-               <items>
-                  <TableView fx:id="tblViewTTSanPhamPhanCongCongNhan" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#chonROWTTChiTietSanPham">
-                    <columns>
-                        <TableColumn fx:id="colMaSanPhamPhanCongCongNhan1" prefWidth="125.59996949434299" text="Mã sản phẩm" />
-                      <TableColumn fx:id="colTenSanPhamPhanCongCongNhan" prefWidth="252.80001831054688" text="Tên sản phẩm" />
-                      <TableColumn fx:id="colSLSanPhamPhanCongCongNhan" prefWidth="180.800048828125" text="Số lượng làm" />
-                    </columns>
-                  </TableView>
-                  <TableView fx:id="tblViewTTCongDoanPhanCongCongNhan" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#chonROWTTCongDoanSanPham">
-                    <columns>
-                      <TableColumn fx:id="colMaCongDoanPhanCongCongNhan" prefWidth="211.20007934570458" text="Mã công đoạn" />
-                      <TableColumn fx:id="colTenCongDoanPhanCongCongNhan" minWidth="0.0" prefWidth="188.7999267578125" text="Tên công đoạn" />
-                    </columns>
-                  </TableView>
-                  <TableView fx:id="tblViewTTToPhanCongCongNhan" minWidth="-Infinity" onMouseClicked="#chonROWTTSolUongNguoiTrongTo">
-                    <columns>
-                      <TableColumn fx:id="colMaToPhanCongCongNhan" prefWidth="172.00000305175854" text="Mã tổ" />
-                        <TableColumn fx:id="colTenToPhanCongCongNhan" prefWidth="91.99998474121094" text="Tên tổ" />
-                        <TableColumn fx:id="colSoLuongNguoiTrongToPhanCongCongNhan" prefWidth="194.4000244140625" text="Số lượng người có trong tổ" />
-                    </columns>
-                  </TableView>
-               </items>
-            </SplitPane>
-            <HBox alignment="CENTER_LEFT" maxHeight="35.0" minHeight="35.0" prefHeight="35.0" spacing="20.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT" spacing="10.0">
-                     <children>
-                        <Label text="Sản phẩm:" />
-                        <TextField fx:id="tfSanPhamPhanCong" disable="true" editable="false" prefHeight="26.0" prefWidth="131.0" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" spacing="10.0">
-                     <children>
-                        <Label text="Công đoạn:" />
-                        <TextField fx:id="tfCongDoanPhanCong" disable="true" editable="false" prefHeight="26.0" prefWidth="122.0" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" spacing="10.0">
-                     <children>
-                        <Label text="Tổ :" />
-                        <TextField fx:id="tfToPhanCong" disable="true" editable="false" prefHeight="26.0" prefWidth="54.0" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" spacing="10.0">
-                     <children>
-                        <Label text="Ngày phân công:" />
-                        <DatePicker fx:id="datepickNgayPhanCong" prefHeight="26.0" prefWidth="135.0" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" spacing="10.0">
-                     <children>
-                        <Label text="Số lượng cho mỗi công nhân" />
-                        <TextField fx:id="tfSoLuongPhanCongTungNguoi" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" spacing="10.0">
-                     <children>
-                        <Label text="Ngày kết thúc:" />
-                        <DatePicker fx:id="datepickNgayKetThuc" prefHeight="26.0" prefWidth="130.0" />
-                     </children>
-                  </HBox>
-                  <Button mnemonicParsing="false" onAction="#phanCongCongNhan" text="Phân công">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons/add-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" top="5.0" />
-               </padding>
-            </HBox>
+            <TableView fx:id="tblViewTTCongNhanPC" prefHeight="200.0">
+              <columns>
+                <TableColumn fx:id="colSTTCongNhanPCCN" prefWidth="90.39998780488986" text="STT" />
+                  <TableColumn fx:id="colMaCongNhanPCCN" prefWidth="245.60000610351562" text="Mã công nhân" />
+                  <TableColumn fx:id="colHoVaTenCongNhanPCCN" prefWidth="374.4000244140625" text="Họ và tên" />
+              </columns>
+            </TableView>
             <SplitPane dividerPositions="0.5">
                <items>
-                  <TableView fx:id="tblViewTTPhanCongTungCongNhan" maxWidth="-Infinity" minWidth="-Infinity">
+                  <TableView fx:id="tblViewTTPhanCongMoiCNPCCN" maxWidth="-Infinity" minWidth="-Infinity">
                     <columns>
-                      <TableColumn fx:id="colMaChamCongTTPhanCongTungCongNhan" prefWidth="133.599969494343" text="Mã phân công " />
-                      <TableColumn fx:id="colNgayPhamCongChamCongTTPhanCongTungCongNhan" minWidth="0.0" prefWidth="123.99995422363281" text="Ngày phân công" />
-                        <TableColumn fx:id="colTenSanPhamTTPhanCongTungCongNhan" prefWidth="115.199951171875" text="Tên sản phẩm" />
-                        <TableColumn fx:id="colTenCongDoanTTPhanCongTungCongNhan" prefWidth="113.5999755859375" text="Tên công đoạn" />
-                        <TableColumn fx:id="colHovaTenTTPhanCongTungCongNhan" prefWidth="96.79998779296875" text="Họ và tên" />
-                        <TableColumn fx:id="colSoLuongLamTTPhanCongTungCongNhan" prefWidth="92.800048828125" text="Số lượng làm" />
-                        <TableColumn fx:id="colNgayKetThucTTPhanCongTungCongNhan" prefWidth="134.4000244140625" text="Ngày kết thúc" />
+                      <TableColumn fx:id="colMaPhanCongMoiCNPCCN" prefWidth="133.599969494343" text="Mã phân công " />
+                        <TableColumn fx:id="colHovaTenMoiCNPCCN" prefWidth="175.0" text="Họ và tên" />
+                      <TableColumn fx:id="colNgayPhanCongMoiCNPCCN" minWidth="0.0" prefWidth="123.99995422363281" text="Ngày phân công" />
+                        <TableColumn fx:id="colSoLuongLamMoiCNPCCN" prefWidth="250.0" text="Số lượng làm" />
                     </columns>
                   </TableView>
-                  <TableView fx:id="tblViewTTPhanCongToCongNhan">
+                  <TableView>
                     <columns>
-                      <TableColumn fx:id="colToTTPhanCongToCongNhan" prefWidth="64.80005645751953" text="Tổ" />
-                        <TableColumn fx:id="colSanPhamTTPhanCongToCongNhan11" prefWidth="84.800048828125" text="Sản phẩm " />
-                        <TableColumn fx:id="colCongDoanTTPhanCongToCongNhan" prefWidth="106.39990234375" text="Công đoạn" />
-                        <TableColumn fx:id="colTongSoLuongLamTTPhanCongToCongNhan" prefWidth="175.2000732421875" text="Tổng số lượng đã phân công" />
-                        <TableColumn fx:id="colNgayKetThucTTPhanCongToCongNhan" prefWidth="143.9998779296875" text="Ngày kết thúc" />
+                      <TableColumn prefWidth="75.0" text="Tổ " />
+                      <TableColumn prefWidth="200.0" text="Số lượng người đã phân công" />
                     </columns>
                   </TableView>
                </items>
@@ -148,20 +76,228 @@
          </items>
       </SplitPane>
    </center>
-   <top>
-      <HBox alignment="CENTER_LEFT" spacing="20.0" BorderPane.alignment="CENTER">
+   <left>
+      <VBox spacing="20.0">
          <children>
-            <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <HBox alignment="CENTER">
                <children>
-                  <Label text="Hợp đồng: " />
-                  <ComboBox fx:id="cbxLayTTHopDongPhanCongCongNh" prefWidth="150.0" />
+                  <Label text="Phân công công nhân">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
-            <Button fx:id="btnLayDuLieuPhanCongCongNhan" mnemonicParsing="false" onAction="#LayDuLeiuPhanCongCongNhanmaHD" text="Lấy dữ liệu" />
+            <VBox spacing="10.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label text="Ngày phân công" />
+                        <DatePicker fx:id="datepickNgayPhanCongPCCN" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label text="Hợp đồng:" />
+                        <ComboBox fx:id="cbxHopDongPCCN" prefWidth="150.0" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox spacing="10.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Sản phẩm:" />
+                              <ComboBox fx:id="cbxSanPhanPCCN" prefWidth="150.0" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label text="Số lượng cần làm: " />
+                              <TextField fx:id="tfSoLuongCanLamPCCN" disable="true" editable="false" prefHeight="26.0" prefWidth="92.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox spacing="10.0">
+                     <children>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label text="Công đoạn: " />
+                              <ComboBox fx:id="cbxCongDoanPCCN" prefWidth="150.0" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label text="Số lượng cần phân công: " />
+                              <TextField fx:id="tfSoLuongCanPhanCongPCCN" disable="true" editable="false" prefHeight="26.0" prefWidth="82.0" />
+                           </children>
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox spacing="10.0">
+                     <children>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label text="Tổ:" />
+                              <ComboBox fx:id="cbxToPCCN" prefHeight="26.0" prefWidth="90.0" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label text="Số lượng người chưa phân công:" />
+                              <TextField fx:id="tfSoLuongChuaPhanCongPCCN" disable="true" editable="false" prefHeight="26.0" prefWidth="66.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" spacing="10.0">
+                     <children>
+                        <RadioButton fx:id="radPCTuDongPCCN" mnemonicParsing="false" text="Phân công tự động">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                        </RadioButton>
+                        <RadioButton fx:id="radPCTungCongNhanPCCN" mnemonicParsing="false" text="Phân công từng công nhân" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox spacing="10.0" style="-fx-border-color: black;">
+               <children>
+                  <HBox>
+                     <children>
+                        <Label text="Phân công tự động">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label text="Tổ:" />
+                              <TextField fx:id="tfToPCCN" disable="true" editable="false" prefHeight="26.0" prefWidth="75.0" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox spacing="10.0">
+                           <children>
+                              <Label text="Số người cần phân công" />
+                              <TextField fx:id="tfSoNguoiCanPhanCongPCCN" disable="true" editable="false" prefHeight="26.0" prefWidth="92.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label text="Số lượng phân công cho mỗi người: " />
+                        <TextField fx:id="tfSoLuongMoiNGuoiPCCN" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label text="Tổng số lượng phân công:" />
+                        <TextField fx:id="tfTongSoLuongPhanCongPCCN" disable="true" editable="false" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox spacing="10.0" style="-fx-border-color: black;">
+               <children>
+                  <HBox>
+                     <children>
+                        <Label text="Phân công từng công nhân">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label text="Mã công nhân:" />
+                        <TextField fx:id="tfMaCongNhanPCCN" disable="true" editable="false" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label text="Họ và tên:" />
+                        <TextField fx:id="tfHoVaTenPCCN" disable="true" editable="false" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label text="Số lượng phân công" />
+                        <TextField fx:id="tfSoLuongPhanCongPCCN" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <HBox alignment="CENTER" spacing="50.0">
+               <children>
+                  <Button fx:id="btnPhanCongPCCN" mnemonicParsing="false" text="Phân công" />
+                  <Button fx:id="btnSuaPCCN" mnemonicParsing="false" text="Sửa" />
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </HBox>
          </children>
          <padding>
-            <Insets bottom="5.0" left="10.0" top="5.0" />
+            <Insets left="5.0" right="5.0" />
          </padding>
-      </HBox>
-   </top>
+      </VBox>
+   </left>
 </BorderPane>
