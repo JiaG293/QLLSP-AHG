@@ -159,6 +159,15 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
+                        <Label text="Mã sản phẩm:" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="tfMaSPCD" editable="false" prefHeight="26.0" prefWidth="227.0" HBox.hgrow="ALWAYS" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
                         <Label text="Mã công đoạn:" HBox.hgrow="ALWAYS" />
                         <TextField fx:id="tfMaCD" editable="false" prefHeight="26.0" prefWidth="227.0" HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#layMaCongDoan" text="Lấy mã" />
@@ -278,7 +287,7 @@
             </ScrollPane>
             <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <content>
-                  <TableView fx:id="tblCongDoan" editable="true" tableMenuButtonVisible="true">
+                  <TableView fx:id="tblCongDoan" editable="true" onMouseClicked="#chonMotCongDoan" tableMenuButtonVisible="true">
                      <columns>
                         <TableColumn fx:id="colSTTCongDoan" prefWidth="32.0" text="STT" />
                         <TableColumn fx:id="colMaCongDoan" prefWidth="162.0" text="Mã công đoạn" />

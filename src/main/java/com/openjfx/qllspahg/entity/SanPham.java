@@ -35,6 +35,14 @@ public class SanPham {
         this.giaSP = giaSP;
     }
 
+    public SanPham(String maSP, String tenLoaiSP, String tenSP, double giaSP, boolean trangThaiSP) {
+        this.maSP = maSP;
+        this.tenLoaiSP = tenLoaiSP;
+        this.tenSP = tenSP;
+        this.giaSP = giaSP;
+        this.trangThaiSP = trangThaiSP;
+    }
+
     public String getTenLoaiSP() {
         return tenLoaiSP;
     }

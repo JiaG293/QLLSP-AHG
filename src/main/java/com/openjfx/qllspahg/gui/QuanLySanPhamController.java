@@ -1,5 +1,6 @@
 package com.openjfx.qllspahg.gui;
 
+import com.openjfx.qllspahg.dao.DanhSachHopDongImpl;
 import com.openjfx.qllspahg.dao.QuanLySanPhamDaoImpl;
 
 import static com.openjfx.qllspahg.dao.interfaces.DSDao.DSCONGDOAN;
@@ -9,6 +10,8 @@ import com.openjfx.qllspahg.entity.CongDoan;
 import com.openjfx.qllspahg.entity.SanPham;
 import com.openjfx.qllspahg.gui.util.Alerts;
 import com.openjfx.qllspahg.gui.util.UUIDUtils;
+import com.openjfx.qllspahg.gui.util.Utils;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,13 +21,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.util.StringConverter;
 import javafx.util.converter.DoubleStringConverter;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class QuanLySanPhamController implements Initializable {
+
     @FXML
     private ComboBox<String> cbxGiaiDoanCD;
 
@@ -53,10 +59,10 @@ public class QuanLySanPhamController implements Initializable {
     private TableColumn<SanPham, String> colMaSanPham;
 
     @FXML
-    private TableColumn<?, ?> colSTTCongDoan;
+    private TableColumn<CongDoan, Integer> colSTTCongDoan;
 
     @FXML
-    private TableColumn<?, ?> colSTTSanPham;
+    private TableColumn<SanPham, Integer> colSTTSanPham;
 
     @FXML
     private TableColumn<CongDoan, String> colTenCongDoan;
@@ -89,6 +95,9 @@ public class QuanLySanPhamController implements Initializable {
     private TextField tfMaCD;
 
     @FXML
+    private TextField tfMaSPCD;
+
+    @FXML
     private TextField tfMaSP;
 
     @FXML
@@ -97,18 +106,41 @@ public class QuanLySanPhamController implements Initializable {
     @FXML
     private TextField tfTenSP;
 
+    private static SanPham sanPhamDuocChonTableView;
+
     @FXML
     void CapNhatDuLieuTableView(ActionEvent event) {
 
     }
 
     @FXML
+    void chonMotCongDoan(MouseEvent event) {
+        CongDoan cd = chonMotCongDoanTableView();
+
+        if (cd != null) {
+            String[] giaiDoanCBX = {"Cắt", "May", "Hoàn thành", "Đóng gói"};
+
+            tfMaCD.setText(cd.getMaCD());
+            tfTenCD.setText(cd.getTenCD());
+            tfGiaCD.setText(String.valueOf(cd.getGiaCD()));
+            if (!Arrays.asList(giaiDoanCBX).contains(cd.getGiaiDoanCD())) {
+                cbxGiaiDoanCD.setValue("Khác");
+                tfGiaiDoanKhacCD.setText(cd.getGiaiDoanCD());
+            } else {
+                cbxGiaiDoanCD.setValue(String.valueOf(cd.getGiaiDoanCD()));
+            }
+
+        }
+    }
+
+    @FXML
     void chonMotSanPham(MouseEvent event) {
-        if (chonMotSanPhamTableView() != null) {
-            tfMaSP.setText(chonMotSanPhamTableView().getMaSP());
-            tfTenSP.setText(chonMotSanPhamTableView().getTenSP());
-            tfGiaSP.setText(String.valueOf(chonMotSanPhamTableView().getGiaSP()));
-            cbxLoaiSP.setValue(chonMotSanPhamTableView().getTenLoaiSP());
+        SanPham sp = chonMotSanPhamTableView();
+        if (sp != null) {
+            tfMaSP.setText(sp.getMaSP());
+            tfTenSP.setText(sp.getTenSP());
+            tfGiaSP.setText(String.valueOf(sp.getGiaSP()));
+            cbxLoaiSP.setValue(sp.getTenLoaiSP());
         }
 
 
@@ -121,8 +153,7 @@ public class QuanLySanPhamController implements Initializable {
 
     @FXML
     void kiemTraComboBoxGiaiDoan(ActionEvent event) {
-        if(cbxGiaiDoanCD.getValue().equals("Khác") || cbxGiaiDoanCD.getValue().equals("khác"))
-        {
+        if (cbxGiaiDoanCD.getValue().equals("Khác") || cbxGiaiDoanCD.getValue().equals("khác")) {
             tfGiaiDoanKhacCD.setEditable(true);
             tfGiaiDoanKhacCD.setPromptText("Nhập tên giai đoạn");
         } else {
@@ -152,15 +183,136 @@ public class QuanLySanPhamController implements Initializable {
     @FXML
     void layDuLieuLoc(ActionEvent event) {
 
+        String maSP = tfLocMaSP.getText();
+        String tenSP = tfLocTenSP.getText();
+        String loaiSP = String.valueOf(cbxLocLoaiSanPham.getValue());
+
+        System.out.println(maSP + " " + tenSP+ " " + loaiSP);
+
+        if (!DSSANPHAM.isEmpty()) {
+            DSSANPHAM.clear();
+        }
+        ObservableList<SanPham> listsp = QuanLySanPhamDaoImpl.getInstance().locDuLieuDanhSachSanPham(maSP, tenSP, loaiSP);
+        if(listsp.isEmpty()){
+            Alerts.showAlert("Thông báo", "Lọc thành công", "Không tìm thấy sản phẩm phù hợp.", Alert.AlertType.INFORMATION);;
+        }else {
+            DSSANPHAM.addAll(listsp);
+            tblSanPham.setItems(DSSANPHAM);
+            Alerts.showAlert("Thông báo", "Lọc thành công", "Tìm thấy " + listsp.size() + " sản phẩm.", Alert.AlertType.INFORMATION);;
+        }
+        System.out.println("DS san pham sau khi loc:" + DSSANPHAM.toString() + "\n");
+
+
+
     }
 
     @FXML
     void suaCongDoanDuocChon(ActionEvent event) {
 
+        String macd = tblCongDoan.getSelectionModel().getSelectedItem().getMaCD();
+        String masanpham = tblCongDoan.getSelectionModel().getSelectedItem().getMaSanPham().getMaSP();
+        String tencd = tfTenCD.getText();
+        String giaString = tfGiaCD.getText();
+        String cbxgiaidoan = cbxGiaiDoanCD.getValue();
+        String tfgiaidoan = tfGiaiDoanKhacCD.getText();
+        String giaidoan = null;
+
+        if (masanpham == null || masanpham.isEmpty()) {
+            Alerts.showAlert("Cảnh báo", "Mã sản phẩm phải tồn tại", "Vui lòng chọn lại sản phẩm", Alert.AlertType.WARNING);
+            return;
+        }
+        if (macd == null || macd.isEmpty()) {
+            Alerts.showAlert("Cảnh báo", "Mã công đoạn bị trùng", "Vui lòng chọn lại sản phẩm và lấy mã công đoạn mới", Alert.AlertType.WARNING);
+            return;
+        }
+        if (tencd == null || tencd.isEmpty()) {
+            Alerts.showAlert("Cảnh báo", "Tên công đoạn không hợp lệ", "Vui lòng nhập lại tên công đoạn", Alert.AlertType.WARNING);
+            return;
+        }
+        if (giaString == null || giaString.isEmpty()) {
+            Alerts.showAlert("Cảnh báo", "Giá sản phẩm không hợp lệ", "Vui lòng kiểm tra lại giá sản phẩm đã nhập", Alert.AlertType.WARNING);
+            return;
+        }
+        try {
+            double giacd = Double.parseDouble(giaString);
+            if (giacd <= 0) {
+                Alerts.showAlert("Cảnh báo", "Giá công đoạn không hợp lệ", "Vui lòng nhập giá công đoạn lớn hơn 0", Alert.AlertType.WARNING);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            Alerts.showAlert("Cảnh báo", "Giá sản công đoạn hợp lệ", "Vui lòng nhập giá công đoạn là số", Alert.AlertType.WARNING);
+            return;
+        }
+
+        if (cbxgiaidoan != null && (cbxgiaidoan.equalsIgnoreCase("Khác") || cbxgiaidoan.equalsIgnoreCase("khác") || cbxgiaidoan.equalsIgnoreCase("Trống"))) {
+            if (tfgiaidoan == null || tfgiaidoan.isEmpty() || tfgiaidoan.equals("Trống")) {
+                Alerts.showAlert("Cảnh báo", "Giai đoạn công đoạn phải được nhập và không được để trống", "Vui lòng nhập lại giai đoạn công đoạn", Alert.AlertType.WARNING);
+                return;
+            } else {
+                giaidoan = tfgiaidoan;
+            }
+        } else {
+            giaidoan = cbxgiaidoan;
+        }
+
+        CongDoan cd = new CongDoan(macd, new SanPham(masanpham), tencd, Double.parseDouble(giaString), giaidoan);
+        boolean themcd = QuanLySanPhamDaoImpl.getInstance().suaCongDoanSanPham(cd);
+
+        if (themcd) {
+            Alerts.showAlert("Thông báo", "Thành công", "Đã sửa công đoạn có mã " + cd.getMaCD() + " cho mã sản phẩm " + cd.getMaSanPham().getMaSP(), Alert.AlertType.INFORMATION);
+            taiDuLieuCongDoan(cd.getMaSanPham().getMaSP());
+            taiDuLieuSanPham();
+        } else {
+            Alerts.showAlert("Thông báo", "Thất bại", "Lỗi khi sửa " + cd.getMaCD() + " cho mã sản phẩm: " + cd.getMaSanPham().getMaSP(), Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
     void suaSanPhamDuocChon(ActionEvent event) {
+
+        String masp = tfMaSP.getText();
+        String tensp = tfTenSP.getText();
+        String loaisp = cbxLoaiSP.getValue();
+        String giaString = tfGiaSP.getText();
+
+        if (masp == null || masp.isEmpty()) {
+            Alerts.showAlert("Cảnh báo", "Mã sản phẩm bị trùng", "Vui lòng làm mới mã sản phẩm", Alert.AlertType.WARNING);
+            return;
+        }
+        if (tensp == null || tensp.isEmpty()) {
+            Alerts.showAlert("Cảnh báo", "Tên sản phẩm không hợp lệ", "Vui lòng nhập lại tên sản phẩm", Alert.AlertType.WARNING);
+            return;
+        }
+        if (loaisp == null || loaisp.isEmpty() || loaisp.equals("Trống")) {
+            Alerts.showAlert("Cảnh báo", "Loại sản phẩm phải đượcc chọn và không phải là trống", "Vui lòng chọn lại loại sản phẩm", Alert.AlertType.WARNING);
+            return;
+        }
+        if (giaString == null || giaString.isEmpty()) {
+            Alerts.showAlert("Cảnh báo", "Giá sản phẩm không hợp lệ", "Vui lòng kiểm tra lại giá sản phẩm đã nhập", Alert.AlertType.WARNING);
+            return;
+        }
+
+        try {
+            double giasp = Double.parseDouble(giaString);
+            if (giasp <= 0) {
+                Alerts.showAlert("Cảnh báo", "Giá sản phẩm không hợp lệ", "Vui lòng nhập giá sản phẩm lớn hơn 0", Alert.AlertType.WARNING);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            Alerts.showAlert("Cảnh báo", "Giá sản phẩm không hợp lệ", "Vui lòng nhập giá sản phẩm là số", Alert.AlertType.WARNING);
+            return;
+        }
+        SanPham spDuocSua = new SanPham(masp, tensp, loaisp, Double.parseDouble(giaString));
+        boolean suasp = QuanLySanPhamDaoImpl.getInstance().suaSanPham(spDuocSua);
+
+        if (suasp) {
+            Alerts.showAlert("Thông báo", "Thành công", "Đã sửa sản phẩm có mã: " + spDuocSua.getMaSP(), Alert.AlertType.INFORMATION);
+            xoaTrang();
+            taiDuLieuSanPham();
+        } else {
+            Alerts.showAlert("Thông báo", "Thất bại", "Lỗi khi sửa sản phẩm có mã: " + spDuocSua.getMaSP(), Alert.AlertType.ERROR);
+        }
+
 
     }
 
@@ -220,10 +372,11 @@ public class QuanLySanPhamController implements Initializable {
         CongDoan cd = new CongDoan(macd, new SanPham(masanpham), tencd, Double.parseDouble(giaString), giaidoan);
         boolean themcd = QuanLySanPhamDaoImpl.getInstance().themCongDoanSanPham(cd);
 
-        if(themcd){
-            Alerts.showAlert("Thông báo", "Thành công", "Đã thêm công đoạn " + cd.getMaCD() + " cho mã sản phẩm " + cd.getMaSanPham().getMaSP() , Alert.AlertType.INFORMATION);
+        if (themcd) {
+            Alerts.showAlert("Thông báo", "Thành công", "Đã thêm công đoạn " + cd.getMaCD() + " cho mã sản phẩm " + cd.getMaSanPham().getMaSP(), Alert.AlertType.INFORMATION);
             taiDuLieuCongDoan(cd.getMaSanPham().getMaSP());
             taoMaCongDoanChoSanPham();
+            taiDuLieuSanPham();
         } else {
             Alerts.showAlert("Thông báo", "Thất bại", "Lỗi khi thêm " + cd.getMaCD() + " cho mã sản phẩm: " + cd.getMaSanPham().getMaSP(), Alert.AlertType.ERROR);
         }
@@ -279,6 +432,7 @@ public class QuanLySanPhamController implements Initializable {
     @FXML
     void xemCongDoan(ActionEvent event) {
         if (chonMotSanPhamTableView() != null) {
+            tfMaSPCD.setText(chonMotSanPhamTableView().getMaSP());
             taiDuLieuCongDoan(chonMotSanPhamTableView().getMaSP());
             taoMaCongDoanChoSanPham();
         } else {
@@ -288,7 +442,25 @@ public class QuanLySanPhamController implements Initializable {
 
     @FXML
     void xoaCongDoanDuocChon(ActionEvent event) {
+        CongDoan cdDuocChon = tblCongDoan.getSelectionModel().getSelectedItem();
 
+        System.out.println(cdDuocChon);
+
+        if (cdDuocChon == null) {
+            Alerts.showAlert("Cảnh báo", "Chưa chọn công đoạn sản phẩm", "Vui lòng chọn công đoạn sản phẩm để xóa", Alert.AlertType.WARNING);
+            return;
+        }
+
+
+        boolean xoacd = QuanLySanPhamDaoImpl.getInstance().xoaCongDoanSanPham(cdDuocChon.getMaCD());
+
+        if (xoacd) {
+            Alerts.showAlert("Thông báo", "Thành công", "Đã xóa sản phẩm có mã: " + cdDuocChon.getMaCD(), Alert.AlertType.INFORMATION);
+            taiDuLieuCongDoan(cdDuocChon.getMaSanPham().getMaSP());
+            taiDuLieuSanPham();
+        } else {
+            Alerts.showAlert("Thông báo", "Thất bại", "Lỗi khi xóa sản phẩm có mã: " + cdDuocChon.getMaCD(), Alert.AlertType.ERROR);
+        }
     }
 
 
@@ -296,12 +468,26 @@ public class QuanLySanPhamController implements Initializable {
     @FXML
     void xoaSanPhamDuocChon(ActionEvent event) {
         SanPham spDuocChon = tblSanPham.getSelectionModel().getSelectedItem();
-        QuanLySanPhamDaoImpl.getInstance().xoaSP(spDuocChon);
-        taiDuLieuSanPham();
+//        QuanLySanPhamDaoImpl.getInstance().xoaSP(spDuocChon); //xoa san pham khoi database
+        if (spDuocChon == null) {
+            Alerts.showAlert("Cảnh báo", "Chưa chọn sản phẩm", "Vui lòng chọn sản phẩm để xóa", Alert.AlertType.WARNING);
+            return;
+        }
+
+
+        boolean xoasp = QuanLySanPhamDaoImpl.getInstance().capNhatTrangThaiSanPham(spDuocChon.getMaSP());
+
+        if (xoasp) {
+            Alerts.showAlert("Thông báo", "Thành công", "Đã xóa sản phẩm có mã: " + spDuocChon.getMaSP(), Alert.AlertType.INFORMATION);
+            xoaTrang();
+            taiDuLieuSanPham();
+        } else {
+            Alerts.showAlert("Thông báo", "Thất bại", "Lỗi khi xóa sản phẩm có mã: " + spDuocChon.getMaSP(), Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
-    void xoaTrangTFCongDoan(ActionEvent event) {
+    public void xoaTrangTFCongDoan(ActionEvent event) {
         tfMaCD.clear();
         tfTenCD.clear();
         tfGiaCD.clear();
@@ -315,6 +501,7 @@ public class QuanLySanPhamController implements Initializable {
         tfGiaSP.clear();
         tfTenSP.clear();
         cbxLoaiSP.setPromptText("Chọn loại sản phẩm");
+        lamMoiMaSP();
     }
 
 
@@ -324,10 +511,31 @@ public class QuanLySanPhamController implements Initializable {
         khoiTaoKieuDuLieuChoTableView();
         taiDuLieuSanPham();
         chinhSuaDuLieuTrenTableView();
+
     }
+
 
     //Dinh nghia kieu du lieu cho cot tren tableview de co the truyen vao SanPham
     private void khoiTaoKieuDuLieuChoTableView() {
+        //cell ao stt
+        colSTTSanPham.setCellValueFactory(cellData -> {
+            int rowIndex = cellData.getTableView().getItems().indexOf(cellData.getValue());
+            if (rowIndex >= 0) {
+                return new SimpleIntegerProperty(rowIndex + 1).asObject();
+            } else {
+                return new SimpleIntegerProperty(0).asObject();
+            }
+        });
+
+        colSTTCongDoan.setCellValueFactory(cellData -> {
+            int rowIndex = cellData.getTableView().getItems().indexOf(cellData.getValue());
+            if (rowIndex >= 0) {
+                return new SimpleIntegerProperty(rowIndex + 1).asObject();
+            } else {
+                return new SimpleIntegerProperty(0).asObject();
+            }
+        });
+
         //table SanPham
         colMaSanPham.setCellValueFactory(new PropertyValueFactory<SanPham, String>("maSP"));
         colTenSanPham.setCellValueFactory(new PropertyValueFactory<SanPham, String>("tenSP"));
@@ -346,14 +554,20 @@ public class QuanLySanPhamController implements Initializable {
         tfGiaiDoanKhacCD.setEditable(false);
 
         //combo box
+        ObservableList<String> listLoai = QuanLySanPhamDaoImpl.getInstance().taiDanhSachLoaiSanPham();
+        cbxLoaiSP.setItems(listLoai);
         cbxLoaiSP.setPromptText("Chọn loại sản phẩm");
+        cbxLocLoaiSanPham.setItems(listLoai);
         cbxLocLoaiSanPham.setPromptText("Chọn loại sản phẩm");
-        cbxLoaiSP.setItems(QuanLySanPhamDaoImpl.getInstance().taiDanhSachLoaiSanPham());
-        cbxLocLoaiSanPham.setItems(QuanLySanPhamDaoImpl.getInstance().taiDanhSachLoaiSanPham());
 
         ObservableList<String> dsgd = FXCollections.observableArrayList("Trống", "Cắt", "May", "Hoàn thành", "Đóng gói", "Khác");
         cbxGiaiDoanCD.setItems(dsgd);
         cbxGiaiDoanCD.setPromptText("Chọn giai đoạn");
+
+
+        //textfielf
+        tfLocTenSP.setText(null);
+        tfLocMaSP.setText(null);
 
     }
 
@@ -366,7 +580,7 @@ public class QuanLySanPhamController implements Initializable {
         }
 
         //Goi toi phuong thuoc DaoImplement de thuc hien ket noi lay du lieu tu jdbc
-        DSSANPHAM.addAll(QuanLySanPhamDaoImpl.getInstance().layDanhSachSanPham());
+        DSSANPHAM.addAll(QuanLySanPhamDaoImpl.getInstance().layDanhSachSanPhamTheoTrangThai(0)); //0 la san pham chua xoa - 1 la san pham da xoa
 
         //dua du lieu san pham tu observablelist len tableview
         tblSanPham.setItems(DSSANPHAM);
@@ -508,12 +722,13 @@ public class QuanLySanPhamController implements Initializable {
 
     }
 
-    private void taoMaCongDoanChoSanPham(){
+    private void taoMaCongDoanChoSanPham() {
         if (chonMotSanPhamTableView() != null) {
             tfMaCD.setText(UUIDUtils.taoMaCongDoan(chonMotSanPhamTableView().getMaSP()));
         } else
             Alerts.showAlert("Cảnh báo", "Chưa chọn sản phẩm", "Vui lòng chọn một sản phẩm trước khi tạo mã", Alert.AlertType.WARNING);
     }
+
     private SanPham chonMotSanPhamTableView() {
         SanPham spDuocChon = tblSanPham.getSelectionModel().getSelectedItem();
         if (spDuocChon != null) {
@@ -524,6 +739,19 @@ public class QuanLySanPhamController implements Initializable {
             return null;
         }
     }
+
+    private CongDoan chonMotCongDoanTableView() {
+        CongDoan cdDuocChon = tblCongDoan.getSelectionModel().getSelectedItem();
+        if (cdDuocChon != null) {
+            System.out.println("Cong doan duoc chon: \n" + cdDuocChon.toString());
+            return cdDuocChon;
+        } else {
+            System.out.println("Khong co cong doan nao duoc chon \n");
+            return null;
+        }
+    }
+
+
 
     /*System.out.println("event" + event);
     SanPham spDuocChon = tblSanPham.getSelectionModel().getSelectedItem();
@@ -557,27 +785,15 @@ public class QuanLySanPhamController implements Initializable {
 //        SanPham spSua = new SanPham(masp, tensp, giasp);
 
 
-        try {
-            SanPham spSua = layDuLieuTF();
-
-            if (spSua != null) {
-                QuanLySanPhamDaoImpl.getInstance().suaSP(spSua);
-                //Lam moi tableview
-                xoaTrang();
-                taiDuLieuSanPham();
-
-            }
-        } catch (Exception e) {
-            Alerts.showConfirmation("Dữ liệu không hợp lệ!!!", "Vui lòng nhập dữ liệu vào");
-        }
     }
 
-    private SanPham layDuLieuTF() {
-        if (!tfMaSP.getText().isEmpty() || !tfTenSP.getText().isEmpty() || !tfGiaSP.getText().isEmpty()) {
+    private SanPham layDuLieuTFSanPham() {
+        if (!tfMaSP.getText().isEmpty() && !tfTenSP.getText().isEmpty() && !tfGiaSP.getText().isEmpty() && cbxLoaiSP.getValue().isEmpty()) {
             String masp = tfMaSP.getText(); //dung tam chua them ham tu dong tao ma sp
             String tensp = tfTenSP.getText();
             double giasp = Double.parseDouble(tfGiaSP.getText().trim());
-            SanPham sp = new SanPham(masp, tensp, giasp);
+            String loaisp = cbxLoaiSP.getValue();
+            SanPham sp = new SanPham(masp, tensp, loaisp, giasp);
             System.out.println(sp.toString());
             return sp;
         } else {

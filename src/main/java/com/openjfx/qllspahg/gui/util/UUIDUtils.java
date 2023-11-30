@@ -72,6 +72,23 @@ public class UUIDUtils {
         return "CD" + maSanPham + soThuTuKyTuTang;
     }
 
+    public static String taoMaSanPhamTuMaCongDoan(String maCongDoan) {
+        if (maCongDoan.startsWith("CD")) {
+            try {
+                //lay tu vi tri bat dau va ket thuc -- maSp co 6 ki tu nen la loai bo di cd va ki tu cuoi cung
+                String maSP = maCongDoan.substring( 2, 8);
+
+                // Tra ve ma san pham tu ma cong doan
+                return maSP;
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+        return null; // tra ve null neu co van de
+    }
+
+
+
 
 
 

@@ -28,6 +28,11 @@ public class DateUtils {
         return formatter.format(date);
     }
 
+    public static String formatStringVietnamDateCustom(Date date, String stringFormat) {
+        SimpleDateFormat formatter = new SimpleDateFormat(stringFormat);
+        return formatter.format(date);
+    }
+
     public static String chuyenDoiSangNgaySQL(String vietnameseDate, String inputPattern, String outputPattern) {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

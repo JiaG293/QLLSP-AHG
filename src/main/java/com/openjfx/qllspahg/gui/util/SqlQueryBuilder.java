@@ -51,6 +51,34 @@ public class SqlQueryBuilder {
         return sqlBuilder.toString();
     }
 
+    public static String stringQueryLocDanhSachSanPham(String cauTruyVanTruocWhere, String maSanPham, String tenSanPham, String loaiSanPham) {
+        StringBuilder sqlBuilder = new StringBuilder().append(cauTruyVanTruocWhere).append(" WHERE trangThaiSP = 0 AND ");
+
+        if ( maSanPham != null && !maSanPham.isEmpty() && !maSanPham.equals(" ")) {
+            sqlBuilder.append("SP.maSP = '").append(maSanPham).append("' AND ");
+        }
+
+        if (tenSanPham != null && !tenSanPham.isEmpty() && !tenSanPham.equals(" ")) {
+            sqlBuilder.append("SP.tenSP LIKE '%").append(tenSanPham).append("%' AND ");
+        }
+        if(loaiSanPham != null && !loaiSanPham.equals("Trống") && !loaiSanPham.isEmpty()) {
+            sqlBuilder.append("SP.tenLoai = N'").append(loaiSanPham).append("' AND ");
+        }
+
+        // Xoa where cuoi neu co
+        if (sqlBuilder.toString().endsWith("WHERE ")) {
+            sqlBuilder.setLength(sqlBuilder.length() - 6);
+        }
+
+        // Xoa and cuoi neu co
+        if (sqlBuilder.toString().endsWith("AND ")) {
+            sqlBuilder.setLength(sqlBuilder.length() - 4);
+        }
+
+        return sqlBuilder.toString();
+    }
+
+
 
     /**Của Lộc
      *

@@ -2,7 +2,10 @@ package com.openjfx.qllspahg.dao;
 
 import com.openjfx.qllspahg.database.Db;
 import com.openjfx.qllspahg.entity.CongDoan;
+import com.openjfx.qllspahg.entity.HopDong;
 import com.openjfx.qllspahg.entity.SanPham;
+import com.openjfx.qllspahg.gui.util.SqlQueryBuilder;
+import com.openjfx.qllspahg.gui.util.UUIDUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -41,13 +44,40 @@ public class QuanLySanPhamDaoImpl {
         return listSP;
     }
 
+    public ObservableList<SanPham> layDanhSachSanPhamTheoTrangThai(int trangThai) {
+        ObservableList<SanPham> listSP = FXCollections.observableArrayList();
+        Connection con = null;
+        try {
+            con = Db.getConnection();
+            Statement st = con.createStatement();
+            String sql = "SELECT * FROM SanPham WHERE trangThaiSP= " + trangThai;
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                String maSP = rs.getString("maSP");
+                String tenLoaiSP = rs.getString("tenLoai");
+                String tenSP = rs.getString("tenSP");
+                Double giaSP = rs.getDouble("giaSP");
+
+                SanPham sp = new SanPham(maSP, tenSP, tenLoaiSP, giaSP);
+
+                listSP.add(sp);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listSP;
+    }
+
     public ObservableList<String> taiDanhSachLoaiSanPham() {
         ObservableList<String> listLoaiSP = FXCollections.observableArrayList();
         listLoaiSP.add("Trống");
         try {
             Connection con = Db.getConnection();
             Statement st = con.createStatement();
-            String sql = "SELECT DISTINCT tenLoai FROM SanPham";
+            String sql = "SELECT DISTINCT tenLoai " +
+                    "FROM SanPham " +
+                    "WHERE tenLoai IS NOT NULL";
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 String loaiSp = rs.getString("tenLoai");
@@ -80,6 +110,53 @@ public class QuanLySanPhamDaoImpl {
             return false;
         }
         System.out.println("Da them san pham moi vao csdl!!! ");
+        return true;
+    }
+
+    public boolean suaSanPham(SanPham sanPhamSua) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        try {
+            String sql = "UPDATE SanPham " +
+                    "SET tenLoai = ?, tenSP = ? , giaSP = ? " +
+                    "WHERE maSP = ?";
+
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            pst.setString(1, sanPhamSua.getTenLoaiSP());
+            pst.setString(2, sanPhamSua.getTenSP());
+            pst.setDouble(3, sanPhamSua.getGiaSP());
+            pst.setString(4, sanPhamSua.getMaSP());
+
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        System.out.println("Da cap nhat san pham co ma: " + sanPhamSua.getMaSP() + "  o csdl!!! ");
+        return true;
+    }
+
+    //Xoa san pham tren ung dung, thay doi trang thai o csdl
+    public boolean capNhatTrangThaiSanPham(String maSanPham) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        try {
+            String sql = "UPDATE SanPham " +
+                    "SET trangThaiSP = 1 " +
+                    "WHERE maSP = ?";
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            pst.setString(1, maSanPham);
+            pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        System.out.println("Da doi trang thai san pham csdl!!! ");
         return true;
     }
 
@@ -166,6 +243,7 @@ public class QuanLySanPhamDaoImpl {
             e.printStackTrace();
             return false;
         }
+        getInstance().capNhatGiaSanPhamKhiCoThayDoiCongDoan(congDoan.getMaSanPham().getMaSP());
         System.out.println("Da them cong Doan moi vao csdl!!! ");
         return true;
     }
@@ -196,48 +274,199 @@ public class QuanLySanPhamDaoImpl {
         return listMaCD;
     }
 
+    //xoa cong doan san pham khoi csdl
+    public boolean xoaCongDoanSanPham(String congDoanSanPham) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        try {
+            String sql = "DELETE FROM CongDoan WHERE maCD = ?";
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            pst.setString(1, congDoanSanPham);
+
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        getInstance().capNhatGiaSanPhamKhiCoThayDoiCongDoan(UUIDUtils.taoMaSanPhamTuMaCongDoan(congDoanSanPham));
+        System.out.println("Da xoa cong doan san pham o csdl!!! ");
+        return true;
+    }
 
 
+    public double layGiaSanPhamMoi(String maSanPham) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        double giaspMoi = -1;
+        try {
+            String sql = "SELECT SUM(CD.giaCongDoan) AS giaSPMoi " +
+                    "FROM CongDoan AS CD " +
+                    "WHERE CD.maSP = ?";
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            pst.setString(1, maSanPham);
+
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                giaspMoi = rs.getDouble("giaSPMoi");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Gia san pham moi sau khi them cong doan: " + giaspMoi + "\n");
+        return giaspMoi;
+    }
+
+    public double layGiaSanPhamCu(String maSanPham) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        double giaspCu = -1;
+        try {
+            String sql = "SELECT SP.* " +
+                    "FROM SanPham AS CD " +
+                    "WHERE CD.maSP = ?";
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            pst.setString(1, maSanPham);
+
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                giaspCu = rs.getDouble("giaSP");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Gia san pham moi sau khi them cong doan: " + giaspCu + "\n");
+        return giaspCu;
+    }
+
+    public boolean capNhatGiaSanPhamKhiCoThayDoiCongDoan(String maSanPham) { // gia cong doan thay doi thi se cap nhat gia san pham
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            String sql = "UPDATE SanPham " +
+                    "SET giaSP = (SELECT SUM(CD.giaCongDoan) FROM CongDoan AS CD WHERE CD.maSP = ?) " +
+                    "WHERE maSP = ? " +
+                    "AND ( " +
+                    "SELECT giaSP FROM SanPham WHERE maSP = ? " +
+                    ") <> ( " +
+                    "SELECT SUM(CD.giaCongDoan) FROM CongDoan AS CD WHERE CD.maSP = ? " +
+                    ")";
+
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            pst.setString(1, maSanPham);
+            pst.setString(2, maSanPham);
+            pst.setString(3, maSanPham);
+            pst.setString(4, maSanPham);
+
+            rs = pst.executeQuery();
 
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        System.out.println("Da cap nhat gia san pham moi: " + rs + "\n");
+        return true;
+    }
+
+    public boolean capNhatGiaSanPhamKhiThemCongDoanMoi(String maSanPham) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        try {
+            String sql = "UPDATE SanPham " +
+                    "SET giaSP = ( " +
+                    "SELECT SUM(CD.giaCongDoan) AS giaSPMoi " +
+                    "FROM CongDoan AS CD " +
+                    "WHERE CD.maSP = ? " +
+                    ") " +
+                    "WHERE maSP = ?";
+
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            pst.setString(1, maSanPham);
+            pst.setString(2, maSanPham);
+
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        System.out.println("Da cap nhat gia san pham khi them cong doan moi san pham o csdl!!! ");
+        return true;
+    }
 
 
+    //sua gia cong doan va ten cong doan
+
+    public boolean suaCongDoanSanPham(CongDoan congDoanSua) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        try {
+            String sql = "UPDATE CongDoan " +
+                    "SET tenCD = ?, giaCongDoan = ? , giaiDoan = ? " +
+                    "WHERE maCD = ?";
+
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            pst.setString(1, congDoanSua.getTenCD());
+            pst.setDouble(2, congDoanSua.getGiaCD());
+            pst.setString(3, congDoanSua.getGiaiDoanCD());
+            pst.setString(4, congDoanSua.getMaCD());
+
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        System.out.println("Da cap nhat cong doan " + congDoanSua.getMaCD() + " cho san pham co ma: " + congDoanSua.getMaSanPham().getMaSP() + "  o csdl!!! ");
+        return true;
+    }
+
+    public ObservableList<SanPham> locDuLieuDanhSachSanPham(String maSanPham, String tenSanPham, String loaiSanPham) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        String truyVanTruocWhere = "SELECT SP.* FROM SanPham AS SP";
+        String sql = SqlQueryBuilder.stringQueryLocDanhSachSanPham(truyVanTruocWhere, maSanPham, tenSanPham, loaiSanPham);
+        ObservableList<SanPham> listSP = FXCollections.observableArrayList();
+        try {
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
 
 
+            while (rs.next()) {
+                String maSP = rs.getString("maSP");
+                String tenSP = rs.getString("tenSP");
+                String loaiSP = rs.getString("tenLoai");
+                Double giaSP = rs.getDouble("giaSP");
+                boolean trangThaiSP = rs.getBoolean("trangThaiSP");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                SanPham sp = new SanPham(maSP, loaiSP, tenSP, giaSP, trangThaiSP);
+                listSP.add(sp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Dan sach du lieu loc san pham:\n" + listSP + "\n");
+        return listSP;
+    }
 
 
     public SanPham laySPBangMa(String maSanPham) {

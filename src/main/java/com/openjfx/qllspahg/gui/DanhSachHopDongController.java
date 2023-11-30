@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
@@ -67,13 +68,17 @@ public class DanhSachHopDongController implements Initializable {
     private TableColumn<HopDong, String> colSDTHD;
 
     @FXML
-    private TableColumn<?, ?> colSTT;
+    private TableColumn<HopDong, Integer> colSTTHopDong;
 
     @FXML
-    private TableColumn<?, ?> colSTTSanPham;
+    private TableColumn<SanPham, Integer> colSTTChiTietHopDong;
 
     @FXML
-    private TableColumn<ChiTietHopDong, Integer> colSoLuongSP;
+    private TableColumn<ChiTietHopDong, Integer> colSoLuongDatSP;
+
+    @FXML
+    private TableColumn<ChiTietHopDong, Integer> colSoLuongHoanThanhSP;
+
 
     @FXML
     private TableColumn<ChiTietHopDong, String> colTenSP;
@@ -106,17 +111,17 @@ public class DanhSachHopDongController implements Initializable {
     private Spinner<Integer> tfSoLuongSP;
 
     @FXML
-    private TableView<ChiTietHopDong> tblviewChiTietHopDong;
+    private TableView<ChiTietHopDong> tblChiTietHopDong;
 
     @FXML
-    private TableView<HopDong> tblviewHopDong;
+    private TableView<HopDong> tblHopDong;
 
     @FXML
     private TableColumn<HopDong, String> colTrangThaiHD;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        khoiTaoTableDanhSachHopDong();
+        khoiTaoKieuDuLieuChoTableView();
         taiDuLieuHopDong(DanhSachHopDongImpl.getInstance().layDuLieuHopDongTrangThaiTuyChon("False"));
 
 
@@ -128,7 +133,7 @@ public class DanhSachHopDongController implements Initializable {
             DSHOPDONG.clear();
         }
         DSHOPDONG.addAll(method);
-        tblviewHopDong.setItems(DSHOPDONG);
+        tblHopDong.setItems(DSHOPDONG);
     }
 
     private void taiDuLieuChiTietHopDong(ObservableList<ChiTietHopDong> method) {
@@ -136,10 +141,29 @@ public class DanhSachHopDongController implements Initializable {
             DSCTHOPDONG.clear();
         }
         DSCTHOPDONG.addAll(method);
-        tblviewChiTietHopDong.setItems(DSCTHOPDONG);
+        tblChiTietHopDong.setItems(DSCTHOPDONG);
     }
 
-    public void khoiTaoTableDanhSachHopDong() {
+    public void khoiTaoKieuDuLieuChoTableView() {
+        //Tao cot ao tableview
+
+        colSTTChiTietHopDong.setCellValueFactory(cellData -> {
+            int rowIndex = cellData.getTableView().getItems().indexOf(cellData.getValue());
+            if (rowIndex >= 0) {
+                return new SimpleIntegerProperty(rowIndex + 1).asObject();
+            } else {
+                return new SimpleIntegerProperty(0).asObject();
+            }
+        });
+
+        colSTTHopDong.setCellValueFactory(cellData -> {
+            int rowIndex = cellData.getTableView().getItems().indexOf(cellData.getValue());
+            if (rowIndex >= 0) {
+                return new SimpleIntegerProperty(rowIndex + 1).asObject();
+            } else {
+                return new SimpleIntegerProperty(0).asObject();
+            }
+        });
 
         //KhoiTaoMaHopDong
         tfMaHD.setText(UUIDUtils.taoMaHopDong(DanhSachHopDongImpl.getInstance().layDanhSachMaHopDong()));
@@ -158,18 +182,8 @@ public class DanhSachHopDongController implements Initializable {
         taiDuLieuComboBoxTrangThaiHopDong();
 
         //Bang HopDong
-        colMaHD.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<HopDong, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<HopDong, String> hopDongStringCellDataFeatures) {
-                return new SimpleStringProperty(hopDongStringCellDataFeatures.getValue().getMaHD());
-            }
-        });
-        colHoTenKHHD.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<HopDong, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<HopDong, String> hopDongStringCellDataFeatures) {
-                return new SimpleStringProperty(hopDongStringCellDataFeatures.getValue().getTenKH());
-            }
-        });
+        colMaHD.setCellValueFactory(new PropertyValueFactory<HopDong, String>("maHD"));
+        colHoTenKHHD.setCellValueFactory(new PropertyValueFactory<HopDong, String>("tenKH"));
 
         colSDTHD.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<HopDong, String>, ObservableValue<String>>() {
             @Override
@@ -178,35 +192,23 @@ public class DanhSachHopDongController implements Initializable {
             }
         });
 
-        colDiaChiHD.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<HopDong, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<HopDong, String> hopDongStringCellDataFeatures) {
-                return new SimpleStringProperty(hopDongStringCellDataFeatures.getValue().getDiaChi());
-            }
-        });
+        colDiaChiHD.setCellValueFactory(new PropertyValueFactory<HopDong, String>("diaChi"));
 
-        colEmailHD.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<HopDong, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<HopDong, String> hopDongStringCellDataFeatures) {
-                return new SimpleStringProperty(hopDongStringCellDataFeatures.getValue().getEmail());
-            }
-        });
+        colEmailHD.setCellValueFactory(new PropertyValueFactory<HopDong, String>("email"));
 
         colNgayBatDauHD.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<HopDong, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<HopDong, String> hopDongStringCellDataFeatures) {
-                return new SimpleStringProperty(DateUtils.formatStringVietnamDate(hopDongStringCellDataFeatures.getValue().getNgayKKHD()));
+                return new SimpleStringProperty(DateUtils.formatStringVietnamDateCustom(hopDongStringCellDataFeatures.getValue().getNgayKKHD(), "dd-MM-yyyy"));
             }
         });
 
         colNgayKetThucHD.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<HopDong, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<HopDong, String> hopDongStringCellDataFeatures) {
-                return new SimpleStringProperty(DateUtils.formatStringVietnamDate(hopDongStringCellDataFeatures.getValue().getNgayTLHD()));
+                return new SimpleStringProperty(DateUtils.formatStringVietnamDateCustom(hopDongStringCellDataFeatures.getValue().getNgayTLHD(), "dd-MM-yyyy"));
             }
         });
-
-//        cbxLoadGioiTinhTTNhanVien.getValue().trim().equals("Nu") ? "1" : "0",cbxLoadChucVuTTNhanVien.getValue().trim())
 
         colTrangThaiHD.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<HopDong, String>, ObservableValue<String>>() {
             @Override
@@ -215,6 +217,7 @@ public class DanhSachHopDongController implements Initializable {
             }
         });
 
+
         //Bang Chi Tiet Hop Dong
         colMaSP.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietHopDong, String>, ObservableValue<String>>() {
             @Override
@@ -222,6 +225,7 @@ public class DanhSachHopDongController implements Initializable {
                 return new SimpleStringProperty(chiTietHopDongmStringCellDataFeatures.getValue().getMaSanPham().getMaSP());
             }
         });
+
         colTenSP.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietHopDong, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<ChiTietHopDong, String> chiTietHopDongmStringCellDataFeatures) {
@@ -229,12 +233,21 @@ public class DanhSachHopDongController implements Initializable {
             }
         });
 
-        /*colSoLuongSP.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietHopDong, Integer>, ObservableValue<Integer>>() {
+
+        colSoLuongDatSP.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietHopDong, Integer>, ObservableValue<Integer>>() {
             @Override
             public ObservableValue<Integer> call(TableColumn.CellDataFeatures<ChiTietHopDong, Integer> chiTietHopDongIntegerCellDataFeatures) {
-                return new SimpleIntegerProperty(chiTietHopDongIntegerCellDataFeatures.getValue().getSoLuong()).asObject();
+                return new SimpleIntegerProperty(chiTietHopDongIntegerCellDataFeatures.getValue().getSoLuongDat()).asObject();
             }
-        });*/
+        });
+
+        colSoLuongHoanThanhSP.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietHopDong, Integer>, ObservableValue<Integer>>() {
+            @Override
+            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<ChiTietHopDong, Integer> chiTietHopDongIntegerCellDataFeatures) {
+                return new SimpleIntegerProperty(chiTietHopDongIntegerCellDataFeatures.getValue().getSoLuongDaLam()).asObject();
+            }
+        });
+
 
         colDonGiaSP.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietHopDong, String>, ObservableValue<String>>() {
             @Override
@@ -294,7 +307,7 @@ public class DanhSachHopDongController implements Initializable {
 
     @FXML
     private void thanhLyHopDong(ActionEvent event) {
-        HopDong hdDuocChon = tblviewHopDong.getSelectionModel().getSelectedItem();
+        HopDong hdDuocChon = tblHopDong.getSelectionModel().getSelectedItem();
         Optional<ButtonType> otp = Alerts.showConfirmation("Xác nhận", "Bạn có chắc muốn thanh lý hợp đồng này?");
         otp.ifPresent(btnType -> {
             if (btnType == btnType.OK) {
@@ -349,7 +362,7 @@ public class DanhSachHopDongController implements Initializable {
 
     @FXML
     private void xemChiTietHopDong(ActionEvent event) {
-        HopDong hdDuocChon = tblviewHopDong.getSelectionModel().getSelectedItem();
+        HopDong hdDuocChon = tblHopDong.getSelectionModel().getSelectedItem();
 
         if (hdDuocChon.getMaHD() == null)
             Alerts.showAlert("Thông báo", "Không có dữ liệu", "Chưa chọn một hợp đồng cụ thể", Alert.AlertType.WARNING);
@@ -365,7 +378,7 @@ public class DanhSachHopDongController implements Initializable {
 
     @FXML
     void chonMotHopDong(MouseEvent event) {
-        HopDong hdDuocChon = tblviewHopDong.getSelectionModel().getSelectedItem();
+        HopDong hdDuocChon = tblHopDong.getSelectionModel().getSelectedItem();
         tfMaHD.setText(hdDuocChon.getMaHD());
         tfHoTenKH.setText(hdDuocChon.getTenKH());
         tfSDTHD.setText(hdDuocChon.getsDT());
@@ -379,7 +392,7 @@ public class DanhSachHopDongController implements Initializable {
 
     @FXML
     private void chonMotChiTietHopDong(MouseEvent event) {
-        ChiTietHopDong cthdDuocChon = tblviewChiTietHopDong.getSelectionModel().getSelectedItem();
+        ChiTietHopDong cthdDuocChon = tblChiTietHopDong.getSelectionModel().getSelectedItem();
         if (cthdDuocChon.getMaSanPham().getMaSP() == null)
             Alerts.showAlert("Thông báo", "Không có dữ liệu", "Chưa chọn một hợp đồng cụ thể", Alert.AlertType.WARNING);
         else {
