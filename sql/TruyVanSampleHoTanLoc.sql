@@ -183,3 +183,19 @@ VALUES
 
 SELECT * FROM [dbo].[BangPhanCongCongNhan]
 
+SELECT PC.*
+FROM [dbo].[CongNhan] AS CN
+INNER JOIN [dbo].[BangPhanCongCongNhan] AS PC ON PC.maCN = CN.maCN
+JOIN [dbo].[ToSanXuat] AS TSX on CN.maTSX = TSX.maTSX
+where  CN.trangThaiNV !=1 AND TSX.maTSX = 'TSX001' AND PC.maBPCCN LIKE '%301123'
+
+Select * from [dbo].[ToSanXuat]
+
+SELECT COUNT(CN.maCN) AS soLuongDaPhanCong
+FROM [dbo].[CongNhan] AS CN
+INNER JOIN [dbo].[BangPhanCongCongNhan] AS PC ON PC.maCN = CN.maCN
+JOIN [dbo].[ToSanXuat] AS TSX on CN.maTSX = TSX.maTSX
+where  CN.trangThaiNV !=1 AND TSX.maTSX = 'TSX001' AND PC.maBPCCN LIKE '%301123'
+
+Select * from 
+

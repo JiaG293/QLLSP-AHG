@@ -244,6 +244,8 @@ public class PhanCongCongNhanController implements Initializable {
 
         tblViewTTSoNguoiDaPC.setItems(DSLoadSoLuongDaPhanCong);
     }
+
+
     /**
      * Sự kiện
      *
@@ -577,6 +579,7 @@ public class PhanCongCongNhanController implements Initializable {
 
         if (radPCTuDongPCCN.isSelected() && !DSThongTinCongNhan.isEmpty()){
             if (kiemTraPCTuDong()){
+                int j = -1;
                 for(int i = 0 ; i< DSThongTinCongNhan.size(); i++){
                     CongNhan maCN = DSThongTinCongNhan.get(i).getCongNhan();
                     String maBPCCN = Utils.taoMaBangChamCong(maCN.getMaCN(),Utils.dinhDangNgayHienTai(LocalDate.now(),"ddMMYY"));
@@ -620,10 +623,14 @@ public class PhanCongCongNhanController implements Initializable {
 
                     tfSoLuongChuaPhanCongPCCN.setText(String.valueOf(Integer.parseInt(tfSoLuongChuaPhanCongPCCN.getText())-1));
 
+                    if (DSThongTinCongNhan.contains(new BangThongTinCongNhan(pc.getMaCongNhan()))){
+                        DSThongTinCongNhan.remove((new BangThongTinCongNhan(pc.getMaCongNhan())));
+                    }
+                    i--;
+
                 }
-                tfSoLuongChuaPhanCongPCCN.setText(String.valueOf(0));
-                DSThongTinCongNhan.clear();
-                tfSoNguoiCanPhanCongPCCN.setText("0");
+
+                tfSoNguoiCanPhanCongPCCN.setText(tfSoLuongChuaPhanCongPCCN.getText());
                 tfSoLuongMoiNGuoiPCCN.setText("");
 
             }
