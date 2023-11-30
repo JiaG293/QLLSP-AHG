@@ -4,6 +4,7 @@ import com.openjfx.qllspahg.database.Db;
 import com.openjfx.qllspahg.entity.*;
 import com.openjfx.qllspahg.entity.model.PhanCongCongNhan.BangThongTinCongNhan;
 import com.openjfx.qllspahg.entity.model.PhanCongCongNhan.BangThongTinCongNhanCoTo;
+import com.openjfx.qllspahg.entity.model.PhanCongCongNhan.BangThongTinSoLuongLamDuocTheoTo;
 import com.openjfx.qllspahg.gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -119,7 +120,7 @@ public class PhanCongCongNhanDao {
         return dsCongDoan;
     }
 
-    public int getSoLuongCanPhanCong( String maSP, String maCD, String maHD){
+    public int getSoLuongDaPhanCong( String maSP, String maCD, String maHD){
         int soLuongCanLam = 0;
         try {
             Connection con = Db.getConnection();
@@ -274,5 +275,38 @@ public class PhanCongCongNhanDao {
 
         return false;
     }
+
+    public ObservableList<BangThongTinSoLuongLamDuocTheoTo> getAllSoLuongDaPhanCongTheoTo(){
+        ObservableList<BangThongTinSoLuongLamDuocTheoTo> dsSoLuongTheoTo = FXCollections.observableArrayList();
+        try {
+            Connection con = Db.getConnection();
+            Statement st1 =con.createStatement();
+            Statement st2 = con.createStatement();
+
+            String truyVan1 = "Select * from [dbo].[ToSanXuat]";
+            ResultSet rs1 = st1.executeQuery(truyVan1);
+            while (rs1.next()){
+                String maTo = rs1.getString("maTSX");
+                String tenTo = rs1.getNString("tenTSX");
+                ToSanXuat tsx = new ToSanXuat(maTo,tenTo);
+
+                String truyVan2 = "SELECT COUNT(CN.maCN) AS soLuongDaPhanCong\n" +
+                        "FROM [dbo].[CongNhan] AS CN\n" +
+                        "INNER JOIN [dbo].[BangPhanCongCongNhan] AS PC ON PC.maCN = CN.maCN\n" +
+                        "JOIN [dbo].[ToSanXuat] AS TSX on CN.maTSX = TSX.maTSX\n" +
+                        "where  CN.trangThaiNV !=1 AND TSX.maTSX = '"+maTo+"' AND PC.maBPCCN LIKE '%"+Utils.dinhDangNgayHienTai(LocalDate.now(),"ddMMYY")+"'";
+                ResultSet rs2 = st2.executeQuery(truyVan2);
+                rs2.next();
+                int soLuongDaPhanCong = rs2.getInt(1);
+
+                dsSoLuongTheoTo.add(new BangThongTinSoLuongLamDuocTheoTo(tsx,soLuongDaPhanCong));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return dsSoLuongTheoTo;
+    }
+
+//    public ObservableList<BangPhanCongCongNhan> getAllCongNhan
 
 }

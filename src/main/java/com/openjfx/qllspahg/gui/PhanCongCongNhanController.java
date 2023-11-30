@@ -9,8 +9,10 @@ import com.openjfx.qllspahg.dao.interfaces.DSQLThongTinCongNhan;
 import com.openjfx.qllspahg.entity.*;
 import com.openjfx.qllspahg.entity.model.PhanCongCongNhan.BangThongTinCongNhan;
 import com.openjfx.qllspahg.entity.model.PhanCongCongNhan.BangThongTinCongNhanCoTo;
+import com.openjfx.qllspahg.entity.model.PhanCongCongNhan.BangThongTinSoLuongLamDuocTheoTo;
 import com.openjfx.qllspahg.gui.util.Alerts;
 import com.openjfx.qllspahg.gui.util.Utils;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -81,6 +83,12 @@ public class PhanCongCongNhanController implements Initializable {
     private TableColumn<BangPhanCongCongNhan, Integer> colSoLuongLamMoiCNPCCN;
 
     @FXML
+    private TableColumn<BangThongTinSoLuongLamDuocTheoTo,String> colTotblViewTTSoNguoiDaPC;
+
+    @FXML
+    private  TableColumn<BangThongTinSoLuongLamDuocTheoTo,String> colSoNguoitblviewSoNguoiDaPC;
+
+    @FXML
     private DatePicker datepickNgayPhanCongPCCN;
 
     @FXML
@@ -94,6 +102,9 @@ public class PhanCongCongNhanController implements Initializable {
 
     @FXML
     private TableView<BangPhanCongCongNhan> tblViewTTPhanCongMoiCNPCCN;
+
+    @FXML
+    private TableView<BangThongTinSoLuongLamDuocTheoTo> tblViewTTSoNguoiDaPC;
 
     @FXML
     private TextField tfHoVaTenPCCN;
@@ -133,6 +144,7 @@ public class PhanCongCongNhanController implements Initializable {
 
         docDuLieuVaoBangThongTinCongNhan();
         docDuLieuVaoBangTTPhanCongMoiCNPCCN();
+        docDuLieuVaoBangTTSoNguoiDaPhanCong();
     }
 
     /**
@@ -173,7 +185,7 @@ public class PhanCongCongNhanController implements Initializable {
      * Dinh dang bang
      */
 
-    //Bảng thông tin công nhan
+    //Bảng thông tin Phân công
     public void docDuLieuVaoBangThongTinCongNhan(){
         colSTTCongNhanPCCN.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangThongTinCongNhan, String>, ObservableValue<String>>() {
             @Override
@@ -193,7 +205,7 @@ public class PhanCongCongNhanController implements Initializable {
                 return new SimpleStringProperty(bangThongTinCongNhanStringCellDataFeatures.getValue().getCongNhan().getHoCN()+ " " + bangThongTinCongNhanStringCellDataFeatures.getValue().getCongNhan().getTenCN());
             }
         });
-
+        DSThongTinCongNhan.clear();
         tblViewTTCongNhanPC.setItems(DSThongTinCongNhan);
     }
 
@@ -209,9 +221,29 @@ public class PhanCongCongNhanController implements Initializable {
         Utils.formatTableColumnDate(colNgayPhanCongMoiCNPCCN,"dd//MM/YYYY");
         colSoLuongLamMoiCNPCCN.setCellValueFactory(new PropertyValueFactory<>("chiTieu"));
 
+        DSTTPhanCongCongNhan.clear();
         tblViewTTPhanCongMoiCNPCCN.setItems(DSTTPhanCongCongNhan);
     }
 
+    public void docDuLieuVaoBangTTSoNguoiDaPhanCong(){
+        DSLoadSoLuongDaPhanCong.clear();
+        DSLoadSoLuongDaPhanCong.addAll(PhanCongCongNhanDao.getInstance().getAllSoLuongDaPhanCongTheoTo());
+
+        colTotblViewTTSoNguoiDaPC.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangThongTinSoLuongLamDuocTheoTo, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<BangThongTinSoLuongLamDuocTheoTo, String> bangThongTinSoLuongLamDuocTheoToStringCellDataFeatures) {
+                return new SimpleStringProperty(bangThongTinSoLuongLamDuocTheoToStringCellDataFeatures.getValue().getTSX().getTenTSX());
+            }
+        });
+        colSoNguoitblviewSoNguoiDaPC.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangThongTinSoLuongLamDuocTheoTo, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<BangThongTinSoLuongLamDuocTheoTo, String> bangThongTinSoLuongLamDuocTheoToStringCellDataFeatures) {
+                return new SimpleStringProperty(String.valueOf(bangThongTinSoLuongLamDuocTheoToStringCellDataFeatures.getValue().getSoLuongDaPhanCong()));
+            }
+        });
+
+        tblViewTTSoNguoiDaPC.setItems(DSLoadSoLuongDaPhanCong);
+    }
     /**
      * Sự kiện
      *
@@ -233,12 +265,9 @@ public class PhanCongCongNhanController implements Initializable {
         tfSoLuongPhanCongPCCN.setText("");
 
         if (!cbxToPCCN.getSelectionModel().isEmpty() && radPCTuDongPCCN.isSelected()){
-            int soNguoiCanPhanCong = PhanCongCongNhanDao.getInstance().getSoLuongNguoiCoTrongTo(cbxToPCCN.getSelectionModel().getSelectedItem().getMaTSX())
-                    - PhanCongCongNhanDao.getInstance().getSoLuongNguoiDaPhanCongTrongTo(cbxToPCCN.getSelectionModel().getSelectedItem().getMaTSX(), Utils.dinhDangNgayHienTai(LocalDate.now().plusDays(1),"ddMMYY"));
 
-            tfSoLuongChuaPhanCongPCCN.setText(String.valueOf(soNguoiCanPhanCong));
             tfToPCCN.setText(cbxToPCCN.getSelectionModel().getSelectedItem().getTenTSX());
-            tfSoNguoiCanPhanCongPCCN.setText(String.valueOf(soNguoiCanPhanCong));
+            tfSoNguoiCanPhanCongPCCN.setText(tfSoLuongChuaPhanCongPCCN.getText().trim());
 
         } else if(!cbxToPCCN.getSelectionModel().isEmpty() && !radPCTuDongPCCN.isSelected()){
             tfToPCCN.setText("");
@@ -255,6 +284,7 @@ public class PhanCongCongNhanController implements Initializable {
         }
 
     }
+
     public void skRadPCTungCongNhan(ActionEvent actionEvent) {
         radPCTuDongPCCN.setSelected(false);
         tfSoLuongPhanCongPCCN.setEditable(true);
@@ -292,10 +322,11 @@ public class PhanCongCongNhanController implements Initializable {
 
     // Sự kiện cbx
     public void skcbxMaHopDong(ActionEvent actionEvent) {
-        cbxSanPhanPCCN.setItems(null);
-        ObservableList<SanPham> dsSP = FXCollections.observableArrayList();
-        dsSP.addAll(PhanCongCongNhanDao.getInstance().getSPCanLamTheoMaHD(cbxHopDongPCCN.getSelectionModel().getSelectedItem().toString()));
-        cbxSanPhanPCCN.setItems(dsSP);
+        if (!cbxHopDongPCCN.getSelectionModel().isEmpty()){
+            cbxSanPhanPCCN.setItems(null);
+            ObservableList<SanPham> dsSP = FXCollections.observableArrayList();
+            dsSP.addAll(PhanCongCongNhanDao.getInstance().getSPCanLamTheoMaHD(cbxHopDongPCCN.getSelectionModel().getSelectedItem().toString()));
+            cbxSanPhanPCCN.setItems(dsSP);
             cbxSanPhanPCCN.setConverter(new StringConverter<SanPham>() { //Thay doi hien thi tren combobox
                 @Override
                 public String toString(SanPham sp) { //Phuong thuc
@@ -316,6 +347,7 @@ public class PhanCongCongNhanController implements Initializable {
                 }
             });
         }
+    }
 
     public void skcbxSanPham(ActionEvent actionEvent) {
         if (!cbxHopDongPCCN.getSelectionModel().isEmpty() && !cbxSanPhanPCCN.getSelectionModel().isEmpty()){
@@ -368,12 +400,12 @@ public class PhanCongCongNhanController implements Initializable {
             int soLuongDaPhanCongChuaLuu = 0;
             if (!DSTTPhanCongCongNhan.isEmpty()){
                 for( BangPhanCongCongNhan bpc : DSTTPhanCongCongNhan){
-                    if (cbxHopDongPCCN.getSelectionModel().getSelectedItem() == bpc.getMaHopDong().getMaHD() && cbxCongDoanPCCN.getSelectionModel().getSelectedItem().getMaCD() == bpc.getMaCongDoan().getMaCD())
+                    if (cbxHopDongPCCN.getSelectionModel().getSelectedItem().equals(bpc.getMaHopDong().getMaHD()) && cbxCongDoanPCCN.getSelectionModel().getSelectedItem().getMaCD().equals(bpc.getMaCongDoan().getMaCD()))
                         soLuongDaPhanCongChuaLuu += bpc.getChiTieu();
                 }
             }
 
-            int soLuongCanPhanCong = soLuongCanLam - PhanCongCongNhanDao.getInstance().getSoLuongCanPhanCong(
+            int soLuongCanPhanCong = soLuongCanLam - PhanCongCongNhanDao.getInstance().getSoLuongDaPhanCong(
                     cbxSanPhanPCCN.getSelectionModel().getSelectedItem().getMaSP(),
                     cbxCongDoanPCCN.getSelectionModel().getSelectedItem().getMaCD(),
                     cbxHopDongPCCN.getSelectionModel().getSelectedItem().toString()
@@ -387,54 +419,57 @@ public class PhanCongCongNhanController implements Initializable {
             tfSoLuongCanPhanCongPCCN.setText("0");
         }
     }
+
     public void skcbxTo(ActionEvent actionEvent) {
-        int soNguoiPhanCuaToNhungChuaLuu = 0;
-        ObservableList<BangThongTinCongNhan> dsCongNhanTheoToChuaLuu = FXCollections.observableArrayList();
-
-        if (!DSTTPhanCongCongNhan.isEmpty()){
-            for (BangThongTinCongNhanCoTo btnpc : DSTTPhanCongChuaLuuCoTo){
-                if (btnpc.getTSX().equals(cbxToPCCN.getSelectionModel().getSelectedItem())){
-                    soNguoiPhanCuaToNhungChuaLuu ++;
-                }
-            }
-            dsCongNhanTheoToChuaLuu.addAll(DSTTPhanCongChuaLuu);
-
-        }
-        int soNguoiCanPhanCong = PhanCongCongNhanDao.getInstance().getSoLuongNguoiCoTrongTo(cbxToPCCN.getSelectionModel().getSelectedItem().getMaTSX())
-                - PhanCongCongNhanDao.getInstance().getSoLuongNguoiDaPhanCongTrongTo(cbxToPCCN.getSelectionModel().getSelectedItem().getMaTSX(), Utils.dinhDangNgayHienTai(LocalDate.now(),"ddMMYY"))
-                -soNguoiPhanCuaToNhungChuaLuu;
-
         if (!cbxToPCCN.getSelectionModel().isEmpty()){
-            tfSoLuongChuaPhanCongPCCN.setText(String.valueOf(soNguoiCanPhanCong));
+            int soNguoiPhanCuaToNhungChuaLuu = 0;
+            ObservableList<BangThongTinCongNhan> dsCongNhanTheoToChuaLuu = FXCollections.observableArrayList();
 
-        } else if (cbxToPCCN.getSelectionModel().isEmpty() ) {
-            tfSoLuongChuaPhanCongPCCN.setText("0");
-        }
-
-
-        if (radPCTuDongPCCN.isSelected()){
-            tfToPCCN.setText(cbxToPCCN.getSelectionModel().getSelectedItem().getTenTSX());
-            tfSoNguoiCanPhanCongPCCN.setText(String.valueOf(soNguoiCanPhanCong));
-        }
-        if (Integer.parseInt(tfSoLuongChuaPhanCongPCCN.getText().trim()) >0){
-            DSThongTinCongNhan.clear();
-            ObservableList<BangThongTinCongNhan> dsTTCongNhanTheoToChuaPhanCong = FXCollections.observableArrayList();
-            dsTTCongNhanTheoToChuaPhanCong.addAll(PhanCongCongNhanDao.getInstance().getallCongNhanChuaPhanCongTheomaTo(cbxToPCCN.getSelectionModel().getSelectedItem().getMaTSX()));
-            if (!dsCongNhanTheoToChuaLuu.isEmpty()){
-                for (BangThongTinCongNhan bangThongTinCongNhan : dsCongNhanTheoToChuaLuu) {
-                    dsTTCongNhanTheoToChuaPhanCong.remove(bangThongTinCongNhan);
+            if (!DSPhanCongCanSave.isEmpty()){
+                for (BangThongTinCongNhanCoTo btnpc : DSTTPhanCongChuaLuuCoTo){
+                    if (btnpc.getTSX().equals(cbxToPCCN.getSelectionModel().getSelectedItem())){
+                        soNguoiPhanCuaToNhungChuaLuu ++;
+                    }
                 }
+                dsCongNhanTheoToChuaLuu.addAll(DSTTPhanCongChuaLuu);
+
             }
-            DSThongTinCongNhan.addAll(dsTTCongNhanTheoToChuaPhanCong);
-        } else {
-            DSThongTinCongNhan.clear();
+            int soNguoiCanPhanCong = PhanCongCongNhanDao.getInstance().getSoLuongNguoiCoTrongTo(cbxToPCCN.getSelectionModel().getSelectedItem().getMaTSX())
+                    - PhanCongCongNhanDao.getInstance().getSoLuongNguoiDaPhanCongTrongTo(cbxToPCCN.getSelectionModel().getSelectedItem().getMaTSX(), Utils.dinhDangNgayHienTai(LocalDate.now(),"ddMMYY"))
+                    -soNguoiPhanCuaToNhungChuaLuu;
+
+            if (!cbxToPCCN.getSelectionModel().isEmpty()){
+                tfSoLuongChuaPhanCongPCCN.setText(String.valueOf(soNguoiCanPhanCong));
+
+            } else if (cbxToPCCN.getSelectionModel().isEmpty() ) {
+                tfSoLuongChuaPhanCongPCCN.setText("0");
+            }
+
+
+            if (radPCTuDongPCCN.isSelected()){
+                tfToPCCN.setText(cbxToPCCN.getSelectionModel().getSelectedItem().getTenTSX());
+                tfSoNguoiCanPhanCongPCCN.setText(String.valueOf(soNguoiCanPhanCong));
+            }
+            if (Integer.parseInt(tfSoLuongChuaPhanCongPCCN.getText().trim()) >0){
+                DSThongTinCongNhan.clear();
+                ObservableList<BangThongTinCongNhan> dsTTCongNhanTheoToChuaPhanCong = FXCollections.observableArrayList();
+                dsTTCongNhanTheoToChuaPhanCong.addAll(PhanCongCongNhanDao.getInstance().getallCongNhanChuaPhanCongTheomaTo(cbxToPCCN.getSelectionModel().getSelectedItem().getMaTSX()));
+                if (!dsCongNhanTheoToChuaLuu.isEmpty()){
+                    for (BangThongTinCongNhan bangThongTinCongNhan : dsCongNhanTheoToChuaLuu) {
+                        dsTTCongNhanTheoToChuaPhanCong.remove(bangThongTinCongNhan);
+                    }
+                }
+                DSThongTinCongNhan.addAll(dsTTCongNhanTheoToChuaPhanCong);
+            } else {
+                DSThongTinCongNhan.clear();
+            }
         }
     }
 
 
     //Sự kiện trên table
     public void skChonROWtblViewTTCongNhan(MouseEvent mouseEvent) {
-        if(!DSThongTinCongNhan.isEmpty()){
+        if(!DSThongTinCongNhan.isEmpty() && ! tblViewTTCongNhanPC.getSelectionModel().getSelectedIndices().isEmpty()){
             //rad su kiện
             radPCTungCongNhanPCCN.setSelected(true);
             radPCTuDongPCCN.setSelected(false);
@@ -464,6 +499,26 @@ public class PhanCongCongNhanController implements Initializable {
         }
     }
 
+    //chưalam2
+    public void skChonRowtblViewTTSoLuongNguoi(MouseEvent mouseEvent) {
+
+    }
+    //chưa làm
+
+
+    //Sự kiện trên textfield
+    public void skNhaptfSoLuongMoiNGuoiPCCN(ActionEvent actionEvent) {
+        int soNguoiCanPhanCong = Integer.parseInt(tfSoNguoiCanPhanCongPCCN.getText().trim());
+        if (!StringUtils.isNumeric(tfSoNguoiCanPhanCongPCCN.getText().trim())){
+            Alerts.showConfirmation("Thông báo","Phải nhập số lượng là số");
+            tfSoNguoiCanPhanCongPCCN.setText("");
+            tfSoNguoiCanPhanCongPCCN.requestFocus();
+            return;
+        }
+        int soLuongPhanCongChoMoiNguoi = Integer.parseInt(tfSoLuongMoiNGuoiPCCN.getText().trim());
+        tfTongSoLuongPhanCongPCCN.setText(String.valueOf(soLuongPhanCongChoMoiNguoi*soNguoiCanPhanCong));
+
+    }
 
 
     //Sự kiện button
@@ -496,7 +551,6 @@ public class PhanCongCongNhanController implements Initializable {
                     Alerts.showConfirmation("Thông báo", "Số lương phân công đã dư");
                     return;
                 }
-
                 LocalDate localDate = LocalDate.now();
                 Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
                 Date ngayPhanCong = Date.from(instant);
@@ -507,6 +561,7 @@ public class PhanCongCongNhanController implements Initializable {
                 BangPhanCongCongNhan pc = new BangPhanCongCongNhan(maBPCCN,maCN,maCD,maHD,chiTieu,ngayPhanCong,ngayKetThuc);
 
                 DSTTPhanCongCongNhan.add(pc);
+                DSPhanCongCanSave.add(pc);
                 DSTTPhanCongChuaLuu.add(tblViewTTCongNhanPC.getSelectionModel().getSelectedItem());
                 DSTTPhanCongChuaLuuCoTo.add(new BangThongTinCongNhanCoTo(tblViewTTCongNhanPC.getSelectionModel().getSelectedItem(),cbxToPCCN.getSelectionModel().getSelectedItem()));
                 DSThongTinCongNhan.remove(tblViewTTCongNhanPC.getSelectionModel().getSelectedItem());
@@ -519,20 +574,139 @@ public class PhanCongCongNhanController implements Initializable {
 
             }
         }
+
+        if (radPCTuDongPCCN.isSelected() && !DSThongTinCongNhan.isEmpty()){
+            if (kiemTraPCTuDong()){
+                for(int i = 0 ; i< DSThongTinCongNhan.size(); i++){
+                    CongNhan maCN = DSThongTinCongNhan.get(i).getCongNhan();
+                    String maBPCCN = Utils.taoMaBangChamCong(maCN.getMaCN(),Utils.dinhDangNgayHienTai(LocalDate.now(),"ddMMYY"));
+                    CongDoan maCD = new CongDoan(cbxCongDoanPCCN.getSelectionModel().getSelectedItem().getMaCD());
+                    HopDong maHD = new HopDong(cbxHopDongPCCN.getSelectionModel().getSelectedItem().trim());
+
+                    int chiTieu = 0;
+                    if (!tfSoLuongMoiNGuoiPCCN.getText().equals("")){
+                        chiTieu = Integer.parseInt(tfSoLuongMoiNGuoiPCCN.getText().trim());
+                    }
+                    if (chiTieu == 0) {
+                        Alerts.showConfirmation("Thông báo", "Chỉ tiêu phải lớn hơn 0 và không được bỏ trống");
+                        return;
+                    }
+
+                    try {
+                        int soLuongCanPhanCongSauKhiPC = Integer.parseInt(tfSoLuongCanPhanCongPCCN.getText().trim()) - chiTieu;
+                        if (soLuongCanPhanCongSauKhiPC >= 0){
+                            tfSoLuongCanPhanCongPCCN.setText(String.valueOf(soLuongCanPhanCongSauKhiPC));
+                        } else{
+                            tfSoLuongCanPhanCongPCCN.setText("Đã dư " + String.valueOf(-1*soLuongCanPhanCongSauKhiPC));
+                        }
+                    } catch (NumberFormatException e){
+                        Alerts.showConfirmation("Thông báo", "Số lương phân công đã dư");
+                        return;
+                    }
+
+                    LocalDate localDate = LocalDate.now();
+                    Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+                    Date ngayPhanCong = Date.from(instant);
+                    LocalDate lc = LocalDate.now().plusDays(1);
+                    Instant in = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+                    Date ngayKetThuc = Date.from(in);
+
+                    BangPhanCongCongNhan pc = new BangPhanCongCongNhan(maBPCCN,maCN,maCD,maHD,chiTieu,ngayPhanCong,ngayKetThuc);
+
+                    DSTTPhanCongCongNhan.add(pc);
+                    DSPhanCongCanSave.add(pc);
+                    DSTTPhanCongChuaLuu.add(DSThongTinCongNhan.get(i));
+                    DSTTPhanCongChuaLuuCoTo.add(new BangThongTinCongNhanCoTo(DSThongTinCongNhan.get(i),cbxToPCCN.getSelectionModel().getSelectedItem()));
+
+                    tfSoLuongChuaPhanCongPCCN.setText(String.valueOf(Integer.parseInt(tfSoLuongChuaPhanCongPCCN.getText())-1));
+
+                }
+                tfSoLuongChuaPhanCongPCCN.setText(String.valueOf(0));
+                DSThongTinCongNhan.clear();
+                tfSoNguoiCanPhanCongPCCN.setText("0");
+                tfSoLuongMoiNGuoiPCCN.setText("");
+
+            }
+        }
     }
+
     public void skbtnLuu(ActionEvent actionEvent) throws InterruptedException {
         Optional<ButtonType> result = Alerts.showConfirmation("Thông báo:","Bạn có muốn lưu không?");
         if (result.isPresent() && result.get() == ButtonType.OK){
             TimeUnit.MICROSECONDS.sleep(500);
-            if (PhanCongCongNhanDao.getInstance().saveDSPhanCong(DSTTPhanCongCongNhan)){
+            if (PhanCongCongNhanDao.getInstance().saveDSPhanCong(DSPhanCongCanSave)){
                 Alerts.showConfirmation("Thông báo:","Lưu thành công!!@!");
                 DSTTPhanCongCongNhan.clear();
+                DSPhanCongCanSave.clear();
+
+                DSLoadSoLuongDaPhanCong.clear();
+                DSLoadSoLuongDaPhanCong.addAll(PhanCongCongNhanDao.getInstance().getAllSoLuongDaPhanCongTheoTo());
+
             }else
                 Alerts.showConfirmation("Thông báo:","Lưu thành công!!@!");
         }
 
     }
 
+    public void skbtnReset(ActionEvent actionEvent) {
+        Optional<ButtonType> result = Alerts.showConfirmation("Thông báo", "Sau khi reset sẽ mất hết dữ liệu chưa lưu");
+        if (result.isPresent() && result.get() == ButtonType.OK){
+            //reset ComboBox
+            cbxHopDongPCCN.getSelectionModel().clearSelection();
+            cbxHopDongPCCN.setItems(null);
+            cbxHopDongPCCN.setItems(PhanCongCongNhanDao.getInstance().getAllMaHopDong());
+
+            cbxSanPhanPCCN.getSelectionModel().clearSelection();
+            cbxSanPhanPCCN.setItems(null);
+
+            cbxCongDoanPCCN.getSelectionModel().clearSelection();
+            cbxCongDoanPCCN.setItems(null);
+
+            ObservableList<ToSanXuat> dsTSX = FXCollections.observableArrayList();
+            dsTSX.addAll(PhanCongCongNhanDao.getInstance().getAllTo());
+            cbxToPCCN.getSelectionModel().clearSelection();
+            cbxToPCCN.setItems(null);
+            cbxToPCCN.setItems(dsTSX);
+            cbxToPCCN.setConverter(new StringConverter<ToSanXuat>() {
+                @Override
+                public String toString(ToSanXuat toSanXuat) {
+                    return toSanXuat != null ? toSanXuat.getTenTSX() : "";
+                }
+
+                @Override
+                public ToSanXuat fromString(String s) {
+                    int selectIndex = cbxToPCCN.getSelectionModel().getSelectedIndex();
+                    if (selectIndex >= 0 && selectIndex < dsTSX.size())
+                        return dsTSX.get(selectIndex);
+                    return null;
+                }
+            });
+
+            //reset textfield
+            tfHoVaTenPCCN.setText("");
+            tfMaCongNhanPCCN.setText("");
+            tfSoLuongCanLamPCCN.setText("");
+            tfSoLuongCanPhanCongPCCN.setText("");
+            tfSoLuongChuaPhanCongPCCN.setText("");
+            tfSoLuongMoiNGuoiPCCN.setText("");
+            tfSoLuongPhanCongPCCN.setText("");
+            tfSoNguoiCanPhanCongPCCN.setText("");
+            tfToPCCN.setText("");
+            tfTongSoLuongPhanCongPCCN.setText("");
+
+            //reset DanhSach
+            DSLoadSoLuongDaPhanCong.clear();
+            DSLoadSoLuongDaPhanCong.addAll(PhanCongCongNhanDao.getInstance().getAllSoLuongDaPhanCongTheoTo());
+
+            DSPhanCongCanSave.clear();
+            DSTTPhanCongCongNhan.clear();
+
+            DSThongTinCongNhan.clear();
+        }
+
+
+
+    }
     /**
      * Phương thức
      */
@@ -555,6 +729,21 @@ public class PhanCongCongNhanController implements Initializable {
          }
         return true;
     }
+
+    private  boolean kiemTraPCTuDong(){
+        if(cbxHopDongPCCN.getSelectionModel().isEmpty()){
+            Alerts.showConfirmation("Thông báo", "Chưa chọn hợp đồng");
+            return false;
+        } else if (cbxCongDoanPCCN.getSelectionModel().isEmpty() || cbxCongDoanPCCN.getSelectionModel().isEmpty() && cbxSanPhanPCCN.getSelectionModel().isEmpty()){
+            Alerts.showConfirmation("Thông báo", "Chưa chọn công đoạn");
+            return false;
+        } else if (!StringUtils.isNumeric(tfSoLuongMoiNGuoiPCCN.getText().trim())) {
+            Alerts.showConfirmation("Thông báo", "Số lượng phân công phải là số");
+            return false;
+        }
+        return true;
+    }
+
 
 
 }

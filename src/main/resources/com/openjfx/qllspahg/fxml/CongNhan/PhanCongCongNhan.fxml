@@ -21,7 +21,7 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnResetPCCN" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Reset">
+            <Button fx:id="btnResetPCCN" mnemonicParsing="false" onAction="#skbtnReset" prefHeight="30.0" prefWidth="94.0" text="Reset">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -65,10 +65,10 @@
                         <TableColumn fx:id="colSoLuongLamMoiCNPCCN" prefWidth="250.0" text="Số lượng làm" />
                     </columns>
                   </TableView>
-                  <TableView>
+                  <TableView fx:id="tblViewTTSoNguoiDaPC" onMouseClicked="#skChonRowtblViewTTSoLuongNguoi">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Tổ " />
-                      <TableColumn prefWidth="200.0" text="Số lượng người đã phân công" />
+                      <TableColumn fx:id="colTotblViewTTSoNguoiDaPC" prefWidth="75.0" text="Tổ " />
+                      <TableColumn fx:id="colSoNguoitblviewSoNguoiDaPC" prefWidth="200.0" text="Số lượng người đã phân công" />
                     </columns>
                   </TableView>
                </items>
@@ -219,7 +219,7 @@
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
                         <Label text="Số lượng phân công cho mỗi người: " />
-                        <TextField fx:id="tfSoLuongMoiNGuoiPCCN" />
+                        <TextField fx:id="tfSoLuongMoiNGuoiPCCN" onAction="#skNhaptfSoLuongMoiNGuoiPCCN" />
                      </children>
                      <padding>
                         <Insets left="5.0" />
