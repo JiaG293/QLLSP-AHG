@@ -135,6 +135,7 @@ CREATE TABLE BangPhanCongCongNhan(
                                      maBPCCN varchar(14) NOT NULL, --khoa chinh
                                      maCN varchar(8), --khoa ngoai
                                      maCD varchar(9), --khoa ngoai
+									 maHD varchar(8), --khoa ngoai
                                      chiTieu int,
                                      ngayPhanCong date,
                                      ngayKetThuc date,
@@ -259,6 +260,7 @@ ALTER TABLE CongNhan ADD CONSTRAINT FK03_CongNhan FOREIGN KEY (maPhucap) REFEREN
 
 ALTER TABLE BangPhanCongCongNhan ADD CONSTRAINT FK01_BangPhanCongCongNhan FOREIGN KEY (maCN) REFERENCES CongNhan(maCN)
 ALTER TABLE BangPhanCongCongNhan ADD CONSTRAINT FK02_BangPhanCongCongNhan FOREIGN KEY (maCD) REFERENCES CongDoan(maCD)
+ALTER TABLE BangPhanCongCongNhan ADD CONSTRAINT FK03_BangPhanCongCongNhan FOREIGN KEY (maHD) REFERENCES HopDong(maHD)
 
 ALTER TABLE BangChamCongCongNhan ADD CONSTRAINT FK01_BangChamCongCongNhan FOREIGN KEY (maBPCCN) REFERENCES BangPhanCongCongNhan(maBPCCN)
 
