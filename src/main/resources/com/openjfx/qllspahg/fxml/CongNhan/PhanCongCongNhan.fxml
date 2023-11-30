@@ -30,7 +30,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnLuuPCCN" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Lưu">
+            <Button fx:id="btnLuuPCCN" mnemonicParsing="false" onAction="#skbtnLuu" prefHeight="30.0" prefWidth="94.0" text="Lưu">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -48,7 +48,7 @@
    <center>
       <SplitPane dividerPositions="0.5" orientation="VERTICAL" BorderPane.alignment="CENTER">
          <items>
-            <TableView fx:id="tblViewTTCongNhanPC" prefHeight="200.0">
+            <TableView fx:id="tblViewTTCongNhanPC" onMouseClicked="#skChonROWtblViewTTCongNhan" prefHeight="200.0">
               <columns>
                 <TableColumn fx:id="colSTTCongNhanPCCN" prefWidth="90.39998780488986" text="STT" />
                   <TableColumn fx:id="colMaCongNhanPCCN" prefWidth="245.60000610351562" text="Mã công nhân" />
@@ -102,7 +102,7 @@
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
                         <Label text="Hợp đồng:" />
-                        <ComboBox fx:id="cbxHopDongPCCN" prefWidth="150.0" />
+                        <ComboBox fx:id="cbxHopDongPCCN" onAction="#skcbxMaHopDong" prefWidth="150.0" />
                      </children>
                      <padding>
                         <Insets left="5.0" />
@@ -113,7 +113,7 @@
                         <HBox alignment="CENTER_LEFT" spacing="10.0">
                            <children>
                               <Label text="Sản phẩm:" />
-                              <ComboBox fx:id="cbxSanPhanPCCN" prefWidth="150.0" />
+                              <ComboBox fx:id="cbxSanPhanPCCN" onAction="#skcbxSanPham" prefWidth="150.0" />
                            </children>
                            <padding>
                               <Insets left="5.0" />
@@ -132,7 +132,7 @@
                         <HBox alignment="CENTER" spacing="10.0">
                            <children>
                               <Label text="Công đoạn: " />
-                              <ComboBox fx:id="cbxCongDoanPCCN" prefWidth="150.0" />
+                              <ComboBox fx:id="cbxCongDoanPCCN" onAction="#skcbxCongDoan" prefWidth="150.0" />
                            </children>
                            <padding>
                               <Insets left="5.0" />
@@ -154,7 +154,7 @@
                         <HBox alignment="CENTER" spacing="10.0">
                            <children>
                               <Label text="Tổ:" />
-                              <ComboBox fx:id="cbxToPCCN" prefHeight="26.0" prefWidth="90.0" />
+                              <ComboBox fx:id="cbxToPCCN" onAction="#skcbxTo" prefHeight="26.0" prefWidth="90.0" />
                            </children>
                            <padding>
                               <Insets left="5.0" />
@@ -170,12 +170,12 @@
                   </HBox>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <RadioButton fx:id="radPCTuDongPCCN" mnemonicParsing="false" text="Phân công tự động">
+                        <RadioButton fx:id="radPCTuDongPCCN" mnemonicParsing="false" onAction="#skRadPCTuDong" text="Phân công tự động">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </RadioButton>
-                        <RadioButton fx:id="radPCTungCongNhanPCCN" mnemonicParsing="false" text="Phân công từng công nhân" />
+                        <RadioButton fx:id="radPCTungCongNhanPCCN" mnemonicParsing="false" onAction="#skRadPCTungCongNhan" text="Phân công từng công nhân" />
                      </children>
                      <padding>
                         <Insets left="5.0" right="5.0" />
@@ -287,7 +287,7 @@
             </VBox>
             <HBox alignment="CENTER" spacing="50.0">
                <children>
-                  <Button fx:id="btnPhanCongPCCN" mnemonicParsing="false" text="Phân công" />
+                  <Button fx:id="btnPhanCongPCCN" mnemonicParsing="false" onAction="#skbtnPhanCongCN" text="Phân công" />
                   <Button fx:id="btnSuaPCCN" mnemonicParsing="false" text="Sửa" />
                </children>
                <padding>

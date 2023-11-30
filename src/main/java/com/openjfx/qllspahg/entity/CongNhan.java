@@ -32,6 +32,10 @@ public class CongNhan {
         this.maPhuCap = maPhuCap;
     }
 
+    public CongNhan(String maCN) {
+        this.maCN = maCN;
+    }
+
     public CongNhan() {
     }
 
