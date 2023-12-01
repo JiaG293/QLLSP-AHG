@@ -501,11 +501,20 @@ public class PhanCongCongNhanController implements Initializable {
         }
     }
 
-    //chưalam2
-    public void skChonRowtblViewTTSoLuongNguoi(MouseEvent mouseEvent) {
-
+    //Chưa làm
+    public void skChonRowtbtViewTTPhanCong(MouseEvent mouseEvent) {
+//        if (!DSTTPhanCongCongNhan.isEmpty() && !tblViewTTPhanCongMoiCNPCCN.getSelectionModel().isEmpty()){
+//            BangPhanCongCongNhan bangPCCN = new BangPhanCongCongNhan();
+//            bangPCCN = tblViewTTPhanCongMoiCNPCCN.getSelectionModel().getSelectedItem();
+//
+//
+//            cbxHopDongPCCN.getSelectionModel().select(bangPCCN.getMaHopDong().getMaHD());
+//            cbxSanPhanPCCN.getSelectionModel().select(bangPCCN.getMaCongDoan().getMaSanPham());
+//            cbxCongDoanPCCN.getSelectionModel().select(bangPCCN.getMaCongDoan());
+//
+//        }
     }
-    //chưa làm
+    // Chưa làm
 
 
     //Sự kiện trên textfield
@@ -530,7 +539,7 @@ public class PhanCongCongNhanController implements Initializable {
                 CongNhan maCN = new CongNhan( tfMaCongNhanPCCN.getText().trim(),
                         tblViewTTCongNhanPC.getSelectionModel().getSelectedItem().getCongNhan().getHoCN(),
                         tblViewTTCongNhanPC.getSelectionModel().getSelectedItem().getCongNhan().getTenCN());
-                String maBPCCN = Utils.taoMaBangChamCong(maCN.getMaCN(),Utils.dinhDangNgayHienTai(LocalDate.now(),"ddMMYY"));
+                String maBPCCN ="PC"+ Utils.taoMaBangChamCong(maCN.getMaCN(),Utils.dinhDangNgayHienTai(LocalDate.now(),"ddMMYY"));
                 CongDoan maCD = new CongDoan(cbxCongDoanPCCN.getSelectionModel().getSelectedItem().getMaCD());
                 HopDong maHD = new HopDong(cbxHopDongPCCN.getSelectionModel().getSelectedItem().trim());
                 int chiTieu = 0;
@@ -582,7 +591,7 @@ public class PhanCongCongNhanController implements Initializable {
                 int j = -1;
                 for(int i = 0 ; i< DSThongTinCongNhan.size(); i++){
                     CongNhan maCN = DSThongTinCongNhan.get(i).getCongNhan();
-                    String maBPCCN = Utils.taoMaBangChamCong(maCN.getMaCN(),Utils.dinhDangNgayHienTai(LocalDate.now(),"ddMMYY"));
+                    String maBPCCN = "PC"+ Utils.taoMaBangChamCong(maCN.getMaCN(),Utils.dinhDangNgayHienTai(LocalDate.now(),"ddMMYY"));
                     CongDoan maCD = new CongDoan(cbxCongDoanPCCN.getSelectionModel().getSelectedItem().getMaCD());
                     HopDong maHD = new HopDong(cbxHopDongPCCN.getSelectionModel().getSelectedItem().trim());
 
@@ -714,6 +723,12 @@ public class PhanCongCongNhanController implements Initializable {
 
 
     }
+
+    //Chưa làm
+    public void skbtnSuaPCCN(ActionEvent actionEvent) {
+    }
+    //Chưa làm
+
     /**
      * Phương thức
      */
@@ -750,6 +765,8 @@ public class PhanCongCongNhanController implements Initializable {
         }
         return true;
     }
+
+
 
 
 

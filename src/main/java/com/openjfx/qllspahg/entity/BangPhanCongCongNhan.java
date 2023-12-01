@@ -22,6 +22,9 @@ public class BangPhanCongCongNhan {
         this.ngayKT = ngayKT;
     }
 
+    public BangPhanCongCongNhan() {
+    }
+
     public String getMaBPCCN() {
         return maBPCCN;
     }

@@ -94,7 +94,7 @@ public class QuanLyTTCongNhanDao {
                 "join [dbo].[ChucVu] as cv on cn.maCV = cv.maCV\n" +
                 "join [dbo].[ToSanXuat] as tsx on tsx.maTSX = cn.maTSX \n" +
                 "join [dbo].[PhuCap] as pc on pc.maPhuCap = pc.maPhuCap\n" +
-                "where cn.trangThaiNV !=1";
+                "where cn.trangThaiCN !=1";
         String truyVan = SqlQueryBuilder.stringQueryLocDanhSachTTCongNhan(truyVankhongwhere,gt,vaiTro,ToSanXuat);
 
         try {
