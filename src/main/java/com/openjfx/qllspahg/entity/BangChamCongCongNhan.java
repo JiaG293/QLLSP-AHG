@@ -7,19 +7,26 @@ public class BangChamCongCongNhan {
     private String maBCCCN;
     private BangPhanCongCongNhan maBangPhanCongCongNhan;
     private int soLuongLamDuoc;
-    private int soLuongLamCa3;
-    private Date ngayCC;
-    private Date ngayKT;
+    private int soLuongLamCaBa;
+    private Date ngayChamCong;
     private boolean nghiPhep;
 
-    public BangChamCongCongNhan(String maBCCCN, BangPhanCongCongNhan maBangPhanCongCongNhan, int soLuongLamDuoc, int soLuongLamCa3, Date ngayCC, Date ngayKT, boolean nghiPhep) {
+    public BangChamCongCongNhan(String maBCCCN, BangPhanCongCongNhan maBangPhanCongCongNhan, int soLuongLamDuoc, int soLuongLamCaBa, Date ngayChamCong, boolean nghiPhep) {
         this.maBCCCN = maBCCCN;
         this.maBangPhanCongCongNhan = maBangPhanCongCongNhan;
         this.soLuongLamDuoc = soLuongLamDuoc;
-        this.soLuongLamCa3 = soLuongLamCa3;
-        this.ngayCC = ngayCC;
-        this.ngayKT = ngayKT;
+        this.soLuongLamCaBa = soLuongLamCaBa;
+        this.ngayChamCong = ngayChamCong;
         this.nghiPhep = nghiPhep;
+    }
+
+    public BangChamCongCongNhan(String maBCCCN, BangPhanCongCongNhan maBangPhanCongCongNhan) {
+        this.maBCCCN = maBCCCN;
+        this.maBangPhanCongCongNhan = maBangPhanCongCongNhan;
+    }
+
+    public BangChamCongCongNhan(String maBCCCN) {
+        this.maBCCCN = maBCCCN;
     }
 
     public String getMaBCCCN() {
@@ -46,31 +53,23 @@ public class BangChamCongCongNhan {
         this.soLuongLamDuoc = soLuongLamDuoc;
     }
 
-    public int getSoLuongLamCa3() {
-        return soLuongLamCa3;
+    public int getSoLuongLamCaBa() {
+        return soLuongLamCaBa;
     }
 
-    public void setSoLuongLamCa3(int soLuongLamCa3) {
-        this.soLuongLamCa3 = soLuongLamCa3;
+    public void setSoLuongLamCaBa(int soLuongLamCaBa) {
+        this.soLuongLamCaBa = soLuongLamCaBa;
     }
 
-    public Date getNgayCC() {
-        return ngayCC;
+    public Date getNgayChamCong() {
+        return ngayChamCong;
     }
 
-    public void setNgayCC(Date ngayCC) {
-        this.ngayCC = ngayCC;
+    public void setNgayChamCong(Date ngayChamCong) {
+        this.ngayChamCong = ngayChamCong;
     }
 
-    public Date getNgayKT() {
-        return ngayKT;
-    }
-
-    public void setNgayKT(Date ngayKT) {
-        this.ngayKT = ngayKT;
-    }
-
-    public boolean getNghiPhep() {
+    public boolean isNghiPhep() {
         return nghiPhep;
     }
 
@@ -89,5 +88,17 @@ public class BangChamCongCongNhan {
     @Override
     public int hashCode() {
         return Objects.hash(maBCCCN);
+    }
+
+    @Override
+    public String toString() {
+        return "BangChamCongCongNhan{" +
+                "maBCCCN='" + maBCCCN + '\'' +
+                ", maBangPhanCongCongNhan=" + maBangPhanCongCongNhan +
+                ", soLuongLamDuoc=" + soLuongLamDuoc +
+                ", soLuongLamCaBa=" + soLuongLamCaBa +
+                ", ngayChamCong=" + ngayChamCong +
+                ", nghiPhep=" + nghiPhep +
+                "}\n";
     }
 }
