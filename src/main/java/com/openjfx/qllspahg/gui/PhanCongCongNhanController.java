@@ -539,7 +539,7 @@ public class PhanCongCongNhanController implements Initializable {
                 CongNhan maCN = new CongNhan( tfMaCongNhanPCCN.getText().trim(),
                         tblViewTTCongNhanPC.getSelectionModel().getSelectedItem().getCongNhan().getHoCN(),
                         tblViewTTCongNhanPC.getSelectionModel().getSelectedItem().getCongNhan().getTenCN());
-                String maBPCCN ="PC"+ Utils.taoMaBangChamCong(maCN.getMaCN(),Utils.dinhDangNgayHienTai(LocalDate.now(),"ddMMYY"));
+                String maBPCCN ="PC"+ Utils.taoMaBangChamCong(maCN.getMaCN(),Utils.dinhDangNgayHienTai(LocalDate.now().plusDays(-1),"ddMMYY"));
                 CongDoan maCD = new CongDoan(cbxCongDoanPCCN.getSelectionModel().getSelectedItem().getMaCD());
                 HopDong maHD = new HopDong(cbxHopDongPCCN.getSelectionModel().getSelectedItem().trim());
                 int chiTieu = 0;
@@ -591,7 +591,7 @@ public class PhanCongCongNhanController implements Initializable {
                 int j = -1;
                 for(int i = 0 ; i< DSThongTinCongNhan.size(); i++){
                     CongNhan maCN = DSThongTinCongNhan.get(i).getCongNhan();
-                    String maBPCCN = "PC"+ Utils.taoMaBangChamCong(maCN.getMaCN(),Utils.dinhDangNgayHienTai(LocalDate.now(),"ddMMYY"));
+                    String maBPCCN = "PC"+ Utils.taoMaBangChamCong(maCN.getMaCN(),Utils.dinhDangNgayHienTai(LocalDate.now().plusDays(-1),"ddMMYY"));
                     CongDoan maCD = new CongDoan(cbxCongDoanPCCN.getSelectionModel().getSelectedItem().getMaCD());
                     HopDong maHD = new HopDong(cbxHopDongPCCN.getSelectionModel().getSelectedItem().trim());
 
