@@ -145,8 +145,8 @@ CREATE TABLE BangPhanCongCongNhan(
 
 --Table BangChamCongCongNhan
 CREATE TABLE BangChamCongCongNhan(
-                                     maBCCCN varchar(14) NOT NULL, --khoa chinh
-                                     maBPCCN varchar(14), --khoa ngoai
+                                     maBCCCN varchar(16) NOT NULL, --khoa chinh --khoa chinh --CC + maCN(8) + ddMMyy
+                                     maBPCCN varchar(16), --khoa ngoai
                                      ngayChamCong date,
                                      soLuongLamDuoc int,
                                      soLuongLamCa3 int,
@@ -228,7 +228,7 @@ CREATE TABLE TamUngCongNhan(
 
 --Table BangLuongCongNhan
 CREATE TABLE BangLuongCongNhan(
-                                  maBCCCN varchar(14), --khoa ngoai --khoa chinh
+                                  maBCCCN varchar(16), --khoa ngoai --khoa chinh
                                   maTUCN varchar(6), --khoa ngoai --khoa chinh
                                   luongCN decimal(19, 4),
                                   bhxhCN decimal(19, 4),
