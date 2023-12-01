@@ -145,12 +145,12 @@ CREATE TABLE BangPhanCongCongNhan(
 
 --Table BangChamCongCongNhan
 CREATE TABLE BangChamCongCongNhan(
-                                     maBCCCN varchar(16) NOT NULL, --khoa chinh
+                                     maBCCCN varchar(16) NOT NULL, --khoa chinh --khoa chinh --CC + maCN(8) + ddMMyy
                                      maBPCCN varchar(16), --khoa ngoai
                                      ngayChamCong date,
-                                     soLuongLamDuoc int,
-                                     soLuongLamCa3 int,
-                                     nghiPhep bit DEFAULT 1, --0 la khong phep, 1 la co phep
+                                     soLuongLamDuoc int DEFAULT 0, --0 san pham co nghia la nghi lam
+                                     soLuongLamCa3 int DEFAULT 0, -- 0 san pham co nghia la khong tang ca
+                                     nghiPhep bit DEFAULT 0, --0 la khong phep neu khong co san pham lam ra con || 0 la khong nghi, 1 la co phep
 
                                      CONSTRAINT PK_BangChamCongCongNhan PRIMARY KEY(maBCCCN)
 )
@@ -169,7 +169,7 @@ CREATE TABLE BangChamCongCongNhan(
 
 --Table BangChamCongNhanVien
 CREATE TABLE BangChamCongNhanVien(
-                                     maBCCNV varchar(16) NOT NULL, --khoa chinh
+                                     maBCCNV varchar(14) NOT NULL, --khoa chinh
                                      maNV varchar(8), --khoa ngoai khoa chinh
                                      ngayChamCong date,
                                      diLam bit DEFAULT 1, --0 la khong di lam, 1 la co di lam
@@ -192,7 +192,7 @@ CREATE TABLE TamUngNhanVien(
 
 --Table BangLuongNhanVien
 CREATE TABLE BangLuongNhanVien(
-                                  maBCCNV varchar(16), --khoa ngoai --
+                                  maBCCNV varchar(14), --khoa ngoai --
                                   maTUNV varchar(6), --khoa ngoai --khoa chinh
                                   luongNV decimal(19, 4),
                                   bhxhNV decimal(19, 4),
