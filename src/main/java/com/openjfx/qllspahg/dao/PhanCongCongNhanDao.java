@@ -159,7 +159,7 @@ public class PhanCongCongNhanDao {
                     "FROM [dbo].[CongNhan] AS CN\n" +
                     "INNER JOIN [dbo].[BangPhanCongCongNhan] AS PC ON PC.maCN = CN.maCN\n" +
                     "JOIN [dbo].[ToSanXuat] AS TSX on CN.maTSX = TSX.maTSX\n" +
-                    "where  CN.trangThaiNV !=1 AND TSX.maTSX = '"+maTo+"' AND PC.maBPCCN LIKE '%"+ngayHienTai+"'";
+                    "where  CN.trangThaiCN !=1 AND TSX.maTSX = '"+maTo+"' AND PC.maBPCCN LIKE '%"+ngayHienTai+"'";
             ResultSet rs = st.executeQuery(truyVan);
             rs.next();
             soLuongNguoiDaPhanCongTrongTo = rs.getInt(1);
@@ -177,7 +177,7 @@ public class PhanCongCongNhanDao {
             String truyVan = "SELECT COUNT(CN.maCN) AS soLuongNguoiTrongTo\n" +
                     "FROM [dbo].[CongNhan] AS CN\n" +
                     "JOIN [dbo].[ToSanXuat] AS TSX on CN.maTSX = TSX.maTSX\n" +
-                    "where  CN.trangThaiNV !=1 AND TSX.maTSX = '"+maTo+"'";
+                    "where  CN.trangThaiCN !=1 AND TSX.maTSX = '"+maTo+"'";
             ResultSet rs =st.executeQuery(truyVan);
             rs.next();
             soLuongNguoiCoTrongTo = rs.getInt(1);
@@ -200,7 +200,7 @@ public class PhanCongCongNhanDao {
                     "FROM [dbo].[CongNhan] AS CN\n" +
                     "INNER JOIN [dbo].[BangPhanCongCongNhan] AS PC ON PC.maCN = CN.maCN\n" +
                     "JOIN [dbo].[ToSanXuat] AS TSX on CN.maTSX = TSX.maTSX\n" +
-                    "where  CN.trangThaiNV !=1 AND TSX.maTSX = '" + maTo + "' AND PC.maBPCCN LIKE '%" + Utils.dinhDangNgayHienTai(LocalDate.now(), "ddMMYY") + "'";
+                    "where  CN.trangThaiCN !=1 AND TSX.maTSX = '" + maTo + "' AND PC.maBPCCN LIKE '%" + Utils.dinhDangNgayHienTai(LocalDate.now(), "ddMMYY") + "'";
             ResultSet rs1 = st.executeQuery(truyVan1);
             while (rs1.next()) {
                 dsCNDaPhanCong.add(rs1.getString("maCN"));
@@ -215,7 +215,7 @@ public class PhanCongCongNhanDao {
 
             String truyVan2 = "SELECT DISTINCT CN.maCN, CN.hoCN, CN.tenCN\n" +
                     "FROM [dbo].[CongNhan] AS CN\n" +
-                    "where  CN.trangThaiNV !=1 AND CN.maTSX = '"+maTo+"'" + cauGhepTruyVan.toString();
+                    "where  CN.trangThaiCN !=1 AND CN.maTSX = '"+maTo+"'" + cauGhepTruyVan.toString();
             ResultSet rs2 = st.executeQuery(truyVan2);
             int stt = 0;
             while (rs2.next()){
@@ -294,7 +294,7 @@ public class PhanCongCongNhanDao {
                         "FROM [dbo].[CongNhan] AS CN\n" +
                         "INNER JOIN [dbo].[BangPhanCongCongNhan] AS PC ON PC.maCN = CN.maCN\n" +
                         "JOIN [dbo].[ToSanXuat] AS TSX on CN.maTSX = TSX.maTSX\n" +
-                        "where  CN.trangThaiNV !=1 AND TSX.maTSX = '"+maTo+"' AND PC.maBPCCN LIKE '%"+Utils.dinhDangNgayHienTai(LocalDate.now(),"ddMMYY")+"'";
+                        "WHERE  CN.trangThaiCN !=1 AND TSX.maTSX = '"+maTo+"' AND PC.maBPCCN LIKE '%"+Utils.dinhDangNgayHienTai(LocalDate.now(),"ddMMYY")+"'";
                 ResultSet rs2 = st2.executeQuery(truyVan2);
                 rs2.next();
                 int soLuongDaPhanCong = rs2.getInt(1);
