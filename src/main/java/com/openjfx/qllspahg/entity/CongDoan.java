@@ -17,6 +17,10 @@ public class CongDoan {
         this.giaiDoanCD = giaiDoanCD;
     }
 
+    public CongDoan(String maCD) {
+        this.maCD = maCD;
+    }
+
     public CongDoan(String maCD, SanPham maSanPham, double giaCD, String giaiDoanCD) {
         this.maCD = maCD;
         this.maSanPham = maSanPham;
@@ -27,6 +31,11 @@ public class CongDoan {
     public CongDoan(String maCD, SanPham maSanPham) {
         this.maCD = maCD;
         this.maSanPham = maSanPham;
+    }
+
+    public CongDoan(String maCD, String tenCD) {
+        this.maCD = maCD;
+        this.tenCD = tenCD;
     }
 
     public String getMaCD() {

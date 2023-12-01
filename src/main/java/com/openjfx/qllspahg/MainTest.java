@@ -12,8 +12,8 @@ public class MainTest extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/SanPham/QuanLySanPham.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1500, 800);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/CongNhan/PhanCongCongNhan.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1500, 700);
         stage.centerOnScreen(); // Trung tam man hinh
         stage.setTitle("Đăng nhập");
         stage.setScene(scene);

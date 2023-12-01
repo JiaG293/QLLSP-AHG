@@ -7,14 +7,16 @@ public class BangPhanCongCongNhan {
     private String maBPCCN;
     private CongNhan maCongNhan;
     private CongDoan maCongDoan;
+    private HopDong maHopDong;
     private int chiTieu;
     private Date ngayPC;
     private Date ngayKT;
 
-    public BangPhanCongCongNhan(String maBPCCN, CongNhan maCongNhan, CongDoan maCongDoan, int chiTieu, Date ngayPC, Date ngayKT) {
+    public BangPhanCongCongNhan(String maBPCCN, CongNhan maCongNhan, CongDoan maCongDoan, HopDong maHopDong, int chiTieu, Date ngayPC, Date ngayKT) {
         this.maBPCCN = maBPCCN;
         this.maCongNhan = maCongNhan;
         this.maCongDoan = maCongDoan;
+        this.maHopDong = maHopDong;
         this.chiTieu = chiTieu;
         this.ngayPC = ngayPC;
         this.ngayKT = ngayKT;
@@ -42,6 +44,14 @@ public class BangPhanCongCongNhan {
 
     public void setMaCongDoan(CongDoan maCongDoan) {
         this.maCongDoan = maCongDoan;
+    }
+
+    public HopDong getMaHopDong() {
+        return maHopDong;
+    }
+
+    public void setMaHopDong(HopDong maHopDong) {
+        this.maHopDong = maHopDong;
     }
 
     public int getChiTieu() {
@@ -79,5 +89,18 @@ public class BangPhanCongCongNhan {
     @Override
     public int hashCode() {
         return Objects.hash(maBPCCN);
+    }
+
+    @Override
+    public String toString() {
+        return "BangPhanCongCongNhan{" +
+                "maBPCCN='" + maBPCCN + '\'' +
+                ", maCongNhan=" + maCongNhan +
+                ", maCongDoan=" + maCongDoan +
+                ", maHopDong=" + maHopDong +
+                ", chiTieu=" + chiTieu +
+                ", ngayPC=" + ngayPC +
+                ", ngayKT=" + ngayKT +
+                '}';
     }
 }
