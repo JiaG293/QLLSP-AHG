@@ -228,7 +228,7 @@ CREATE TABLE TamUngCongNhan(
 
 --Table BangLuongCongNhan
 CREATE TABLE BangLuongCongNhan(
-                                  maBCCCN varchar(14), --khoa ngoai --khoa chinh
+                                  maBCCCN varchar(16), --khoa ngoai --khoa chinh
                                   maTUCN varchar(6), --khoa ngoai --khoa chinh
                                   luongCN decimal(19, 4),
                                   bhxhCN decimal(19, 4),
