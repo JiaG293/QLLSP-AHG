@@ -101,7 +101,7 @@ CREATE TABLE ChiTietHopDong(
                                maHD varchar(8), --khoa ngoai --khoa chinh
                                maSP varchar(6), --khoa ngoai --khoa chinh
                                soLuongDat int,
-							   soLuongDaLam int,
+                               soLuongDaLam int,
 
                                CONSTRAINT PK_ChiTietHopDong PRIMARY KEY(maHD, maSP)
 )
@@ -124,18 +124,18 @@ CREATE TABLE CongDoan(
                          maCD varchar(9) NOT NULL, --khoa chinh CD+ Ma San Pham + *(1 so )
                          maSP varchar(6), --khoa ngoai
                          tenCD nvarchar(32),
-						 giaiDoan nvarchar(32),
+                         giaiDoan nvarchar(32),
                          giaCongDoan decimal(19, 4)
 
-                         CONSTRAINT PK_CongDoan PRIMARY KEY(maCD)
+                             CONSTRAINT PK_CongDoan PRIMARY KEY(maCD)
 )
 
 --Table BangPhanCongCongNhan
 CREATE TABLE BangPhanCongCongNhan(
-                                     maBPCCN varchar(14) NOT NULL, --khoa chinh
+                                     maBPCCN varchar(16) NOT NULL, --khoa chinh --PC + maCN(8) + ddMMyy
                                      maCN varchar(8), --khoa ngoai
                                      maCD varchar(9), --khoa ngoai
-									 maHD varchar(8), --khoa ngoai
+                                     maHD varchar(8), --khoa ngoai
                                      chiTieu int,
                                      ngayPhanCong date,
                                      ngayKetThuc date,
