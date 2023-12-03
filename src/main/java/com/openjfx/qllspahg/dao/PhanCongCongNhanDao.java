@@ -1,23 +1,17 @@
 package com.openjfx.qllspahg.dao;
 
+import com.openjfx.qllspahg.dao.interfaces.DSPhanCongCongNhan;
 import com.openjfx.qllspahg.database.Db;
 import com.openjfx.qllspahg.entity.*;
 import com.openjfx.qllspahg.entity.model.PhanCongCongNhan.BangThongTinCongNhan;
-import com.openjfx.qllspahg.entity.model.PhanCongCongNhan.BangThongTinCongNhanCoTo;
 import com.openjfx.qllspahg.entity.model.PhanCongCongNhan.BangThongTinSoLuongLamDuocTheoTo;
-import com.openjfx.qllspahg.gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 
 public class PhanCongCongNhanDao {
-    private ObservableList<CongNhan> dsCN = FXCollections.observableArrayList();
-    private ObservableList<ChiTietHopDong> dsChiTietHD = FXCollections.observableArrayList();
-    private ObservableList<CongDoan> dsCD = FXCollections.observableArrayList();
-    private ObservableList<HopDong> dsHopDong = FXCollections.observableArrayList();
 
     public static PhanCongCongNhanDao getInstance (){
         return new PhanCongCongNhanDao();
@@ -187,7 +181,7 @@ public class PhanCongCongNhanDao {
         return soLuongNguoiCoTrongTo;
     }
 
-    public ObservableList<BangThongTinCongNhan>   getallCongNhanChuaPhanCongTheomaTo(String maTo) {
+    public ObservableList<BangThongTinCongNhan>   getallCongNhanChuaPhanCongTheomaTo(String maTo, String ngayPhanCong) {
         ObservableList<BangThongTinCongNhan> dsCN = FXCollections.observableArrayList();
         ObservableList<String> dsCNDaPhanCong = FXCollections.observableArrayList();
 
@@ -200,7 +194,7 @@ public class PhanCongCongNhanDao {
                     "FROM [dbo].[CongNhan] AS CN\n" +
                     "INNER JOIN [dbo].[BangPhanCongCongNhan] AS PC ON PC.maCN = CN.maCN\n" +
                     "JOIN [dbo].[ToSanXuat] AS TSX on CN.maTSX = TSX.maTSX\n" +
-                    "where  CN.trangThaiCN !=1 AND TSX.maTSX = '" + maTo + "' AND PC.maBPCCN LIKE '%" + Utils.dinhDangNgayHienTai(LocalDate.now(), "ddMMYY") + "'";
+                    "where  CN.trangThaiCN !=1 AND TSX.maTSX = '" + maTo + "' AND PC.maBPCCN LIKE '%" + ngayPhanCong + "'";
             ResultSet rs1 = st.executeQuery(truyVan1);
             while (rs1.next()) {
                 dsCNDaPhanCong.add(rs1.getString("maCN"));
@@ -276,12 +270,60 @@ public class PhanCongCongNhanDao {
         return false;
     }
 
-    public ObservableList<BangThongTinSoLuongLamDuocTheoTo> getAllSoLuongDaPhanCongTheoTo(){
+    public boolean saveDSUpdatePC(ObservableList<BangPhanCongCongNhan> dsUpdate){
+        int a =0;
+        if (dsUpdate.isEmpty())
+            return true;
+
+        else{
+            for (BangPhanCongCongNhan bpc: dsUpdate){
+                String mabpc = bpc.getMaBPCCN();;
+
+                String maCD =bpc.getMaCongDoan().getMaCD();
+                String maHD = bpc.getMaHopDong().getMaHD();
+
+                int chiTieu = bpc.getChiTieu();
+                java.util.Date ngayPC = bpc.getNgayPC();
+                Date ngayPCSQL =new Date(ngayPC.getTime());
+                java.util.Date ngayKT = bpc.getNgayKT();
+                Date ngayKTSQL = new Date(ngayKT.getTime());
+
+                try {
+                    Connection con =Db.getConnection();
+                    String truyVan = "UPDATE [dbo].[BangPhanCongCongNhan] \n" +
+                            "SET\n" +
+                            "[maCD] = '"+maCD+"',\n" +
+                            "[maHD] = '"+maHD+"',\n" +
+                            "[chiTieu] = "+chiTieu +",\n" +
+                            "[ngayPhanCong] = '"+ngayPCSQL+"',\n" +
+                            "[ngayKetThuc] ='"+ngayKTSQL+"'\n" +
+                            "WHERE [maBPCCN] LIKE '%"+mabpc+"'";
+
+
+                    PreparedStatement st = con.prepareStatement(truyVan);
+
+                    a+= st.executeUpdate();
+                }catch (SQLException e ){
+                    e.printStackTrace();
+                    return false;
+                }
+
+            }
+            if(a>0)
+                return true;
+        }
+
+
+        return false;
+    }
+
+    public ObservableList<BangThongTinSoLuongLamDuocTheoTo> getAllSoLuongDaPhanCongTheoTo(String ngay){
         ObservableList<BangThongTinSoLuongLamDuocTheoTo> dsSoLuongTheoTo = FXCollections.observableArrayList();
         try {
             Connection con = Db.getConnection();
             Statement st1 =con.createStatement();
             Statement st2 = con.createStatement();
+            Statement st3 = con.createStatement();
 
             String truyVan1 = "Select * from [dbo].[ToSanXuat]";
             ResultSet rs1 = st1.executeQuery(truyVan1);
@@ -294,12 +336,22 @@ public class PhanCongCongNhanDao {
                         "FROM [dbo].[CongNhan] AS CN\n" +
                         "INNER JOIN [dbo].[BangPhanCongCongNhan] AS PC ON PC.maCN = CN.maCN\n" +
                         "JOIN [dbo].[ToSanXuat] AS TSX on CN.maTSX = TSX.maTSX\n" +
-                        "WHERE  CN.trangThaiCN !=1 AND TSX.maTSX = '"+maTo+"' AND PC.maBPCCN LIKE '%"+Utils.dinhDangNgayHienTai(LocalDate.now(),"ddMMYY")+"'";
+                        "WHERE  CN.trangThaiCN !=1 AND TSX.maTSX = '"+maTo+"' AND PC.maBPCCN LIKE '%"+ngay+"'";
                 ResultSet rs2 = st2.executeQuery(truyVan2);
                 rs2.next();
                 int soLuongDaPhanCong = rs2.getInt(1);
 
-                dsSoLuongTheoTo.add(new BangThongTinSoLuongLamDuocTheoTo(tsx,soLuongDaPhanCong));
+                String truyVan3= "Select COUNT(CN.maCN) \n" +
+                        "from [dbo].[CongNhan] AS CN\n" +
+                        "JOIN [dbo].[ToSanXuat] AS TSX on CN.maTSX = TSX.maTSX\n" +
+                        "where CN.trangThaiCN !=1 AND TSX.maTSX = '"+maTo+"'";
+                ResultSet rs3 = st3.executeQuery(truyVan3);
+                rs3.next();
+                int soLuongNguoiCoTrongTo = rs3.getInt(1);
+
+
+
+                dsSoLuongTheoTo.add(new BangThongTinSoLuongLamDuocTheoTo(tsx,soLuongDaPhanCong,soLuongNguoiCoTrongTo));
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -307,6 +359,77 @@ public class PhanCongCongNhanDao {
         return dsSoLuongTheoTo;
     }
 
-//    public ObservableList<BangPhanCongCongNhan> getAllCongNhan
+    public SanPham getSanPham(String maHopDong, String maCongDoan) {
+        SanPham sp = null;
+        try {
+            Connection con = Db.getConnection();
+            Statement st = con.createStatement();
+            String truyVan = "SELECT CT.maSP, SP.tenSP\n" +
+                    "FROM [dbo].[ChiTietHopDong] AS CT\n" +
+                    "JOIN [dbo].[CongDoan] AS CD ON CD.maSP =CT.maSP\n" +
+                    "JOIN [dbo].[SanPham] AS SP ON SP.maSP= CT.maSP\n" +
+                    "WHERE CT.maHD='" + maHopDong + "' AND CD.maCD='" + maCongDoan + "'";
+            ResultSet rs = st.executeQuery(truyVan);
+            rs.next();
+            sp = new SanPham(rs.getString(1), rs.getString(2));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return sp;
+    }
+
+    public ObservableList<BangPhanCongCongNhan> getDSPhanCongDaLuuTheoTo(String maTo, String ngayPC){
+        ObservableList<BangPhanCongCongNhan> dsBPCCN = FXCollections.observableArrayList();
+        try {
+            Connection con = Db.getConnection();
+            Statement st =con.createStatement();
+            String truyVan = "Select PC.*, CN.hoCN, CN.tenCn\n" +
+                    "from [dbo].[BangPhanCongCongNhan] AS PC\n" +
+                    "JOIN [dbo].[CongNhan] AS CN ON CN.maCN=PC.maCN\n" +
+                    "JOIN [dbo].[ToSanXuat] AS TSX ON TSX.maTSX = CN.maTSX\n" +
+                    "WHERE TSX.maTSX = '"+maTo+"' AND PC.maBPCCN LIKE '%"+ngayPC+"'";
+            ResultSet rs = st.executeQuery(truyVan);
+            while (rs.next()){
+                String maBPCCN =rs.getString("maBPCCN");
+                String maCN = rs.getString("maCN");
+                String hoCN = rs.getString("hoCn");
+                String tenCN = rs.getString("tenCN");
+                String maCD = rs.getString("maCD");
+                String maHD = rs.getString("maHD");
+                int chiTieu = rs.getInt("chiTieu");
+                java.util.Date ngayPhanCong = rs.getDate("ngayPhanCong");
+                java.util.Date ngayKetThuc = rs.getDate("ngayKetThuc");
+
+                dsBPCCN.add(new BangPhanCongCongNhan(maBPCCN,new CongNhan(maCN,hoCN,tenCN), new CongDoan(maCD), new HopDong(maHD), chiTieu,ngayPhanCong,ngayKetThuc ));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return dsBPCCN;
+    }
+
+    public CongNhan  getCongNhanTheoMa(String maCN){
+        CongNhan cn = null;
+        try {
+            Connection con = Db.getConnection();
+            Statement st = con.createStatement();
+            String truyVan = "SELECT CN.maCN, CN.hoCN, CN.tenCN\n" +
+                    "FROM [dbo].[CongNhan] AS CN\n" +
+                    "WHERE CN.maCN ='"+maCN+"'";
+
+            ResultSet rs = st.executeQuery(truyVan);
+            rs.next();
+            cn = new CongNhan(rs.getString(1), rs.getString(2), rs.getString(3));
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return cn;
+    }
 
 }

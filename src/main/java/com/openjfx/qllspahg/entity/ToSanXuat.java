@@ -11,6 +11,10 @@ public class ToSanXuat {
         this.tenTSX = tenTSX;
     }
 
+    public ToSanXuat(String maTSX) {
+        this.maTSX = maTSX;
+    }
+
     public ToSanXuat() {
     }
 

@@ -62,13 +62,14 @@
                       <TableColumn fx:id="colMaPhanCongMoiCNPCCN" prefWidth="133.599969494343" text="Mã phân công " />
                         <TableColumn fx:id="colHovaTenMoiCNPCCN" prefWidth="175.0" text="Họ và tên" />
                       <TableColumn fx:id="colNgayPhanCongMoiCNPCCN" minWidth="0.0" prefWidth="123.99995422363281" text="Ngày phân công" />
-                        <TableColumn fx:id="colSoLuongLamMoiCNPCCN" prefWidth="250.0" text="Số lượng làm" />
+                        <TableColumn fx:id="colSoLuongLamMoiCNPCCN" prefWidth="143.99993896484375" text="Số lượng làm" />
                     </columns>
                   </TableView>
-                  <TableView fx:id="tblViewTTSoNguoiDaPC">
+                  <TableView fx:id="tblViewTTSoNguoiDaPC" onMouseClicked="#skChonRowtblViewTTSoNGuoiDaPC">
                     <columns>
                       <TableColumn fx:id="colTotblViewTTSoNguoiDaPC" prefWidth="75.0" text="Tổ " />
-                      <TableColumn fx:id="colSoNguoitblviewSoNguoiDaPC" prefWidth="200.0" text="Số lượng người đã phân công" />
+                        <TableColumn fx:id="colSoNguoiTrongTo" prefWidth="119.199951171875" text="Số người trong tổ" />
+                      <TableColumn fx:id="colSoNguoitblviewSoNguoiDaPC" prefWidth="185.0" text="Số người phân công đã lưu" />
                     </columns>
                   </TableView>
                </items>
@@ -93,7 +94,7 @@
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
                         <Label text="Ngày phân công" />
-                        <DatePicker fx:id="datepickNgayPhanCongPCCN" disable="true" editable="false" />
+                        <DatePicker fx:id="datepickNgayPhanCongPCCN" onAction="#skChondatePick" />
                      </children>
                      <padding>
                         <Insets left="5.0" />
@@ -229,6 +230,15 @@
                      <children>
                         <Label text="Tổng số lượng phân công:" />
                         <TextField fx:id="tfTongSoLuongPhanCongPCCN" disable="true" editable="false" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label text="Số lượng cần phân công còn lại: " />
+                        <TextField fx:id="tfSoLuongPhanCongConLai" disable="true" editable="false" />
                      </children>
                      <padding>
                         <Insets left="5.0" />

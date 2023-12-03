@@ -23,6 +23,7 @@ CREATE TABLE NhanVien(
                          maPB varchar(6), --khoa ngoai
                          maCV varchar(6), --khoa ngoai
                          maPhuCap varchar(6), --khoa ngoai
+						 maTUNV varchar(16), --khoa ngoai
                          hoNV nvarchar(64),
                          tenNV nvarchar(32),
                          gioiTinh bit DEFAULT 0,  --0 la nam, 1 la nu
@@ -61,6 +62,7 @@ CREATE TABLE CongNhan(
                          maCV varchar(6), --khoa ngoai
                          maTSX varchar(6), --khoa ngoai
                          maPhuCap varchar(6), --khoa ngoai
+						 maTUCN varchar(16), --khoa ngoai
                          hoCN nvarchar(32),
                          tenCN nvarchar(32),
                          gioiTinh bit DEFAULT 1,
@@ -101,7 +103,7 @@ CREATE TABLE ChiTietHopDong(
                                maHD varchar(8), --khoa ngoai --khoa chinh
                                maSP varchar(6), --khoa ngoai --khoa chinh
                                soLuongDat int,
-							   soLuongDaLam int,
+                               soLuongDaLam int,
 
                                CONSTRAINT PK_ChiTietHopDong PRIMARY KEY(maHD, maSP)
 )
@@ -124,18 +126,18 @@ CREATE TABLE CongDoan(
                          maCD varchar(9) NOT NULL, --khoa chinh CD+ Ma San Pham + *(1 so )
                          maSP varchar(6), --khoa ngoai
                          tenCD nvarchar(32),
-						 giaiDoan nvarchar(32),
+                         giaiDoan nvarchar(32),
                          giaCongDoan decimal(19, 4)
 
-                         CONSTRAINT PK_CongDoan PRIMARY KEY(maCD)
+                             CONSTRAINT PK_CongDoan PRIMARY KEY(maCD)
 )
 
 --Table BangPhanCongCongNhan
 CREATE TABLE BangPhanCongCongNhan(
-                                     maBPCCN varchar(14) NOT NULL, --khoa chinh
+                                     maBPCCN varchar(16) NOT NULL, --khoa chinh --PC + maCN(8) + ddMMyy
                                      maCN varchar(8), --khoa ngoai
                                      maCD varchar(9), --khoa ngoai
-									 maHD varchar(8), --khoa ngoai
+                                     maHD varchar(8), --khoa ngoai
                                      chiTieu int,
                                      ngayPhanCong date,
                                      ngayKetThuc date,
@@ -145,12 +147,12 @@ CREATE TABLE BangPhanCongCongNhan(
 
 --Table BangChamCongCongNhan
 CREATE TABLE BangChamCongCongNhan(
-                                     maBCCCN varchar(14) NOT NULL, --khoa chinh
-                                     maBPCCN varchar(14), --khoa ngoai
+                                     maBCCCN varchar(16) NOT NULL, --khoa chinh --khoa chinh --CC + maCN(8) + ddMMyy
+                                     maBPCCN varchar(16), --khoa ngoai
                                      ngayChamCong date,
-                                     soLuongLamDuoc int,
-                                     soLuongLamCa3 int,
-                                     nghiPhep bit DEFAULT 1, --0 la khong phep, 1 la co phep
+                                     soLuongLamDuoc int DEFAULT 0, --0 san pham co nghia la nghi lam
+                                     soLuongLamCa3 int DEFAULT 0, -- 0 san pham co nghia la khong tang ca
+                                     nghiPhep bit DEFAULT 0, --0 la khong phep neu khong co san pham lam ra con || 0 la khong nghi, 1 la co phep
 
                                      CONSTRAINT PK_BangChamCongCongNhan PRIMARY KEY(maBCCCN)
 )
@@ -181,7 +183,8 @@ CREATE TABLE BangChamCongNhanVien(
 
 --Table TamUngNhanVien
 CREATE TABLE TamUngNhanVien(
-                               maTUNV varchar(6) NOT NULL, --khoa chinh
+                               maTUNV varchar(16) NOT NULL, --khoa chinh
+							   maNV varchar(8), --khoa ngoai
                                ngayTamUng date,
                                lyDo nvarchar(max),
                                soTienTamUng decimal(19, 4),
@@ -193,7 +196,7 @@ CREATE TABLE TamUngNhanVien(
 --Table BangLuongNhanVien
 CREATE TABLE BangLuongNhanVien(
                                   maBCCNV varchar(14), --khoa ngoai --
-                                  maTUNV varchar(6), --khoa ngoai --khoa chinh
+                                  maTUNV varchar(16), --khoa ngoai --khoa chinh
                                   luongNV decimal(19, 4),
                                   bhxhNV decimal(19, 4),
                                   bhytNV decimal(19, 4),
@@ -218,7 +221,8 @@ CREATE TABLE PhuCap(
 
 --Table TamUngCongNhan
 CREATE TABLE TamUngCongNhan(
-                               maTUCN varchar(6) NOT NULL, --khoa chinh
+                               maTUCN varchar(16) NOT NULL, --khoa chinh
+							   maCN varchar(8), --khoa ngoai
                                ngayTamUng date,
                                lyDo nvarchar(max),
                                soTienTamUng decimal(19, 4),
@@ -228,8 +232,8 @@ CREATE TABLE TamUngCongNhan(
 
 --Table BangLuongCongNhan
 CREATE TABLE BangLuongCongNhan(
-                                  maBCCCN varchar(14), --khoa ngoai --khoa chinh
-                                  maTUCN varchar(6), --khoa ngoai --khoa chinh
+                                  maBCCCN varchar(16), --khoa ngoai --khoa chinh
+                                  maTUCN varchar(16), --khoa ngoai --khoa chinh
                                   luongCN decimal(19, 4),
                                   bhxhCN decimal(19, 4),
                                   bhytCN decimal(19, 4),
@@ -257,6 +261,9 @@ ALTER TABLE CongDoan ADD CONSTRAINT FK01_CongDoan FOREIGN KEY (maSP) REFERENCES 
 
 ALTER TABLE NhanVien ADD CONSTRAINT FK03_NhanVien FOREIGN KEY (maPhucap) REFERENCES PhuCap(maPhuCap)
 ALTER TABLE CongNhan ADD CONSTRAINT FK03_CongNhan FOREIGN KEY (maPhucap) REFERENCES PhuCap(maPhuCap)
+
+ALTER TABLE NhanVien ADD CONSTRAINT FK04_NhanVien FOREIGN KEY (maTUNV) REFERENCES TamUngNhanVien(maTUNV)
+ALTER TABLE CongNhan ADD CONSTRAINT FK04_CongNhan FOREIGN KEY (maTUCN) REFERENCES TamUngCongNhan(maTUCN)
 
 ALTER TABLE BangPhanCongCongNhan ADD CONSTRAINT FK01_BangPhanCongCongNhan FOREIGN KEY (maCN) REFERENCES CongNhan(maCN)
 ALTER TABLE BangPhanCongCongNhan ADD CONSTRAINT FK02_BangPhanCongCongNhan FOREIGN KEY (maCD) REFERENCES CongDoan(maCD)

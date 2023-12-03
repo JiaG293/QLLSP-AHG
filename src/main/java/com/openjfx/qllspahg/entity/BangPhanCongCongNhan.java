@@ -25,6 +25,10 @@ public class BangPhanCongCongNhan {
     public BangPhanCongCongNhan() {
     }
 
+    public BangPhanCongCongNhan(String maBPCCN) {
+        this.maBPCCN = maBPCCN;
+    }
+
     public String getMaBPCCN() {
         return maBPCCN;
     }

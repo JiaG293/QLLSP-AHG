@@ -197,5 +197,10 @@ INNER JOIN [dbo].[BangPhanCongCongNhan] AS PC ON PC.maCN = CN.maCN
 JOIN [dbo].[ToSanXuat] AS TSX on CN.maTSX = TSX.maTSX
 where  CN.trangThaiNV !=1 AND TSX.maTSX = 'TSX001' AND PC.maBPCCN LIKE '%301123'
 
-Select * from 
+
+
+--TamUngNhanVien
+SELECT *
+FROM [dbo].[TamUngNhanVien]
+where
 
