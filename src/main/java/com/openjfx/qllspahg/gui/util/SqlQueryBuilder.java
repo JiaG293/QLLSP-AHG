@@ -79,6 +79,53 @@ public class SqlQueryBuilder {
     }
 
 
+    public static void main(String[] args) {
+        String sql = "SELECT BCCCN.*, BPCCN.*, TSX.*, CN.*\n" +
+                "                FROM BangChamCongCongNhan AS BCCCN\n" +
+                "        INNER JOIN BangPhanCongCongNhan AS BPCCN ON BCCCN.maBPCCN = BPCCN.maBPCCN\n" +
+                "        INNER JOIN CongNhan AS CN ON CN.maCN = BPCCN.maCN\n" +
+                "        INNER JOIN ToSanXuat AS TSX ON TSX.maTSX = CN.maTSX\n";
+        /*SELECT BCCCN.*, BPCCN.*, TSX.*, CN.*
+                FROM BangChamCongCongNhan AS BCCCN
+        INNER JOIN BangPhanCongCongNhan AS BPCCN ON BCCCN.maBPCCN = BPCCN.maBPCCN
+        INNER JOIN CongNhan AS CN ON CN.maCN = BPCCN.maCN
+        INNER JOIN ToSanXuat AS TSX ON TSX.maTSX = CN.maTSX
+        WHERE BPCCN.maCN = 'CN100004' AND  CN.tenCN LIKE '%Ra%' AND TSX.tenTSX = N'Tổ 2' AND BCCCN.ngayChamCong = '2023-12-01'*/
+        System.out.println(stringQueryLocBangChamCongCongNhan(sql, null, null, null, null));
+    }
+
+    public static String stringQueryLocBangChamCongCongNhan(String cauTruyVanTruocWhere, String maCongNhan, String tenCongNhan, String tenToSanXuat, String ngayChamCong) {
+        StringBuilder sqlBuilder = new StringBuilder().append(cauTruyVanTruocWhere).append(" WHERE CN.trangThaiCN = 0 AND ");
+
+        if ( maCongNhan != null && !maCongNhan.isEmpty() && !maCongNhan.equals(" ")) {
+            sqlBuilder.append("BPCCN.maCN = '").append(maCongNhan).append("' AND ");
+        }
+
+        if (tenCongNhan != null && !tenCongNhan.isEmpty() && !tenCongNhan.equals(" ")) {
+            sqlBuilder.append("CN.tenCN LIKE '%").append(tenCongNhan).append("%' AND ");
+        }
+        if(tenToSanXuat != null && !tenToSanXuat.equals("Trống") && !tenToSanXuat.isEmpty()) {
+            sqlBuilder.append("TSX.tenTSX = N'").append(tenToSanXuat).append("' AND ");
+        }
+        if (ngayChamCong != null && !ngayChamCong.isEmpty() && !ngayChamCong.equals(" ")) {
+            sqlBuilder.append("BCCCN.ngayChamCong = '").append(ngayChamCong).append("' AND ");
+        }
+
+        // Xoa where cuoi neu co
+        if (sqlBuilder.toString().endsWith("WHERE ")) {
+            sqlBuilder.setLength(sqlBuilder.length() - 6);
+        }
+
+        // Xoa and cuoi neu co
+        if (sqlBuilder.toString().endsWith("AND ")) {
+            sqlBuilder.setLength(sqlBuilder.length() - 4);
+        }
+
+        return sqlBuilder.toString();
+    }
+
+
+
 
     /**Của Lộc
      *

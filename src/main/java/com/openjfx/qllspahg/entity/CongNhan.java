@@ -16,6 +16,7 @@ public class CongNhan {
     private ChucVu chucVuCN;
     private ToSanXuat toSanXuat;
     private PhuCap maPhuCap;
+    private boolean trangThaiCN;
 
     public CongNhan(String maCN, String hoCN, String tenCN, boolean gioiTinh, Date ngaySinh, String sDT, String email, Date ngayVaoLam, String sTK, ChucVu chucVuCN, ToSanXuat toSanXuat, PhuCap maPhuCap) {
         this.maCN = maCN;
@@ -43,6 +44,30 @@ public class CongNhan {
         this.maCN = maCN;
         this.hoCN = hoCN;
         this.tenCN = tenNV;
+    }
+
+    public CongNhan(String maCN, String hoCN, String tenCN, ToSanXuat toSanXuat) {
+        this.maCN = maCN;
+        this.hoCN = hoCN;
+        this.tenCN = tenCN;
+        this.toSanXuat = toSanXuat;
+    }
+
+    public CongNhan(String maCN, String hoCN, String tenCN, ToSanXuat toSanXuat, boolean trangThaiCN) {
+        this.maCN = maCN;
+        this.hoCN = hoCN;
+        this.tenCN = tenCN;
+        this.toSanXuat = toSanXuat;
+        this.trangThaiCN = trangThaiCN;
+    }
+
+
+    public boolean getTrangThaiCN() {
+        return trangThaiCN;
+    }
+
+    public void setTrangThaiCN(boolean trangThaiCN) {
+        this.trangThaiCN = trangThaiCN;
     }
 
     public String getMaCN() {

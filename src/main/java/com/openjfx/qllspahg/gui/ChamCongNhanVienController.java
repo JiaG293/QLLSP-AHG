@@ -1,5 +1,6 @@
 package com.openjfx.qllspahg.gui;
 
+import com.openjfx.qllspahg.dao.ChamCongCongNhanDaoImpl;
 import com.openjfx.qllspahg.dao.ChamCongNhanVienDaoImpl;
 
 import com.openjfx.qllspahg.entity.BangChamCongNhanVien;
@@ -129,7 +130,12 @@ public class ChamCongNhanVienController implements Initializable {
         cbxLocPhongBan.setPromptText("Chọn phòng ban");
         ObservableList<String> listPB = FXCollections.observableArrayList();
         listPB.add("Trống");
-        listPB.addAll(ChamCongNhanVienDaoImpl.getInstance().layDuLieuPhongBanNhanVien());
+        ObservableList<String> listPb = ChamCongNhanVienDaoImpl.getInstance().layDuLieuPhongBanNhanVien();
+        if (!listPb.isEmpty() || listPb != null){
+            listPb.addAll(listPb);
+        } else {
+            cbxLocPhongBan.setPromptText("Không có dữ liệu");
+        }
         cbxLocPhongBan.setItems(listPB);
     }
 

@@ -1,6 +1,7 @@
 package com.openjfx.qllspahg.gui.util;
 
 import java.sql.Date;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -18,6 +19,7 @@ public class DateUtils {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(VIETNAM_DATE_FORMAT);
         return LocalDate.parse(dateString, formatter);
     }
+
     public static Date parseVietnamDate(String dateString) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat(VIETNAM_DATE_FORMAT);
         return (Date) formatter.parse(dateString);
@@ -34,10 +36,21 @@ public class DateUtils {
     }
 
     public static String chuyenDoiSangNgaySQL(String vietnameseDate, String inputPattern, String outputPattern) {
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputPattern);
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputPattern);
 
         LocalDate localDate = LocalDate.parse(vietnameseDate, inputFormatter);
         return localDate.format(outputFormatter);
+    }
+
+    public static boolean isFormatDateString(String inputDate, String inputPattern) { //true la dung dinh dang inputPartten nguoc lai la false
+        DateFormat dateFormat = new SimpleDateFormat(inputPattern);
+        dateFormat.setLenient(false); // kiem tra neu ngay thang khong hop le
+        try {
+            dateFormat.parse(inputDate);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
     }
 }

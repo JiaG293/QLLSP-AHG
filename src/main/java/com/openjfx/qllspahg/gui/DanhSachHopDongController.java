@@ -119,6 +119,27 @@ public class DanhSachHopDongController implements Initializable {
     @FXML
     private TableColumn<HopDong, String> colTrangThaiHD;
 
+    @FXML
+    void capNhatHopDongDuocChon(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void xoaSanPhamHopDongDuocChon(ActionEvent event) {
+
+    }
+
+    @FXML
+    void xoaTrangTFChiTietHopDong(ActionEvent event) {
+
+    }
+
+    @FXML
+    void xoaTrangTFHopDong(ActionEvent event) {
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         khoiTaoKieuDuLieuChoTableView();
@@ -126,6 +147,8 @@ public class DanhSachHopDongController implements Initializable {
 
 
     }
+
+
 
 
     private void taiDuLieuHopDong(ObservableList<HopDong> method) {
@@ -265,7 +288,7 @@ public class DanhSachHopDongController implements Initializable {
     }
 
     @FXML
-    private void lamMoiDanhSachHD(ActionEvent event) {
+    private void lamMoiTableView(ActionEvent event) {
         Optional<ButtonType> otp = Alerts.showConfirmation("Xác nhận", "Bạn có chắc làm mới dữ liệu hợp đồng");
         otp.ifPresent(btnType -> {
             if (btnType == btnType.OK) {

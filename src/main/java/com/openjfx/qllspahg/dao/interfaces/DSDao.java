@@ -14,4 +14,6 @@ public interface DSDao {
     public ObservableList<ChamCongNhanVienDTO> DSCHAMCONGDTO = FXCollections.observableArrayList();
     public ObservableList<PhongBan> DSPHONGBAN = FXCollections.observableArrayList();
     public ObservableList<CongDoan> DSCONGDOAN = FXCollections.observableArrayList();
+    public ObservableList<BangChamCongCongNhan> DSCHAMCONGCONGNHAN = FXCollections.observableArrayList();
+    public ObservableList<BangChamCongCongNhan> DSCHAMCONGCONGNHANUPDATE = FXCollections.observableArrayList(); //khi bangchamcong duoc sua doi se them vao day
 }

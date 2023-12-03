@@ -15,14 +15,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openjfx.qllspahg.gui.ChamCongCongNhanController">
         <center>
             <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" BorderPane.alignment="CENTER">
                 <content>
-                    <TableView editable="true" tableMenuButtonVisible="true">
+                    <TableView fx:id="tblBangChamCongCongNhan" editable="true" tableMenuButtonVisible="true">
                         <columns>
-                  <TableColumn fx:id="colSTTChamCongCN" prefWidth="115.0" text="Số thứ tự" />
-                            <TableColumn fx:id="colMaCN" prefWidth="115.0" text="Mã công nhân" />
+                  <TableColumn fx:id="colSTTChamCongCN" prefWidth="36.0" text="STT" />
+                            <TableColumn fx:id="colMaCN" prefWidth="194.0" text="Mã công nhân" />
                             <TableColumn fx:id="colHoVaTen" prefWidth="162.0" text="Họ và tên" />
                             <TableColumn fx:id="colToSanXuat" prefWidth="153.0" text="Tổ sản xuất" />
                             <TableColumn fx:id="colNgayChamCong" prefWidth="135.0" text="Ngày chấm công" />
@@ -60,7 +60,8 @@
                             <HBox alignment="CENTER" spacing="10.0">
                                 <children>
                                     <Label text="Ngày chấm công" />
-                                    <DatePicker fx:id="datepickNgayChamCong" />
+                                    <DatePicker fx:id="datepickNgayChamCong" onAction="#taiDuLieuToSanXuatKhiChonNgayChamCong" />
+                        <Button mnemonicParsing="false" onAction="#datLaiNgayChamCong" text="Đặt lại" />
                                 </children>
                                 <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -93,20 +94,20 @@
         <bottom>
             <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="20.0" BorderPane.alignment="CENTER">
                 <children>
-                    <Button mnemonicParsing="false" onAction="#lamMoiDuLieuTableView" prefHeight="30.0" prefWidth="94.0" text="Reset">
+                    <Button mnemonicParsing="false" onAction="#lamMoiDuLieuTableView" prefHeight="30.0" prefWidth="94.0" text="Làm mới">
                         <graphic>
                             <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                 <image>
-                                    <Image url="@../images/icons/reset-removebg-preview.png" />
+                                    <Image url="@../../images/icons/reset-removebg-preview.png" />
                                 </image>
                             </ImageView>
                         </graphic>
                     </Button>
-                    <Button mnemonicParsing="false" onAction="#luuBangChamCongCongNhan" prefHeight="30.0" prefWidth="94.0" text="Lưu">
+                    <Button mnemonicParsing="false" onAction="#luuBangChamCongCongNhan" prefHeight="30.0" prefWidth="94.0" text="Cập nhật">
                         <graphic>
                             <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                 <image>
-                                    <Image url="@../images/icons/save.png" />
+                                    <Image url="@../../images/icons/save.png" />
                                 </image>
                             </ImageView>
                         </graphic>
@@ -115,7 +116,16 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons/reset-removebg-preview.png" />
+                        <Image url="@../../images/icons/XoaTrang.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#taoBangChamCongKhiCoPhanCong" prefHeight="30.0" prefWidth="94.0" text="Tạo chấm công">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/icons/add-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>

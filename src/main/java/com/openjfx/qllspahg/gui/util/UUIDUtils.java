@@ -87,6 +87,21 @@ public class UUIDUtils {
         return null; // tra ve null neu co van de
     }
 
+    public static String taoMaBangChamCongCongNhanTuMaPhanCong(String maPhanCongCongNhan){
+        if (maPhanCongCongNhan.startsWith("PC")) {
+            try {
+                //lay tu vi tri bat dau va ket thuc -- maPhanCong co 14 ki tu nen la loai bo di PC thay bang CC
+                String maChamCong = maPhanCongCongNhan.substring( 2, 16);
+
+                // Tra ve ma san pham tu ma cong doan
+                return "CC" + maChamCong;
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+        return null; // tra ve null neu co van de
+    }
+
 
 
 
