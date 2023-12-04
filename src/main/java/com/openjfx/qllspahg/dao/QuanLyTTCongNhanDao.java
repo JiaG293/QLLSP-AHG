@@ -194,7 +194,7 @@ public class QuanLyTTCongNhanDao {
                 try {
                     Connection con = Db.getConnection();
                     String truyVan = "update [dbo].[CongNhan] \n" +
-                            "set trangThaiNV = 1 \n" +
+                            "set trangThaiCN = 1 \n" +
                             "where [dbo].[CongNhan].maCN= " + maCNSQL;
                     PreparedStatement st = con.prepareStatement(truyVan);
 
@@ -257,4 +257,5 @@ public class QuanLyTTCongNhanDao {
 
         return false;
     }
+
 }

@@ -197,5 +197,42 @@ INNER JOIN [dbo].[BangPhanCongCongNhan] AS PC ON PC.maCN = CN.maCN
 JOIN [dbo].[ToSanXuat] AS TSX on CN.maTSX = TSX.maTSX
 where  CN.trangThaiNV !=1 AND TSX.maTSX = 'TSX001' AND PC.maBPCCN LIKE '%301123'
 
-Select * from 
+Select COUNT(CN.maCN) 
+from [dbo].[CongNhan] AS CN
+JOIN [dbo].[ToSanXuat] AS TSX on CN.maTSX = TSX.maTSX
+where TSX.maTSX = 'TSX001'
+
+SELECT CT.maSP, SP.tenSP
+FROM [dbo].[ChiTietHopDong] AS CT
+JOIN [dbo].[CongDoan] AS CD ON CD.maSP =CT.maSP
+JOIN [dbo].[SanPham] AS SP ON SP.maSP= CT.maSP
+WHERE CT.maHD='HD100000' AND CD.maCD='CDSP10001'
+
+Select PC.*
+from [dbo].[BangPhanCongCongNhan] AS PC
+JOIN [dbo].[CongNhan] AS CN ON CN.maCN=PC.maCN
+JOIN [dbo].[ToSanXuat] AS TSX ON TSX.maTSX = CN.maTSX
+WHERE TSX.maTSX = 'TSX001' AND PC.maBPCCN LIKE '%031223'
+
+SELECT CN.maCN, CN.hoCN, CN.tenCN
+FROM [dbo].[CongNhan] AS CN
+WHERE CN.maCN ='CN100000'
+
+UPDATE [dbo].[BangPhanCongCongNhan] 
+SET
+[maBPCCN] ='PCCN100007031223',
+[maCD] = 'CDSP10002',
+[maHD] = 'HD10003',
+[chiTieu] = 2500,
+[ngayPhanCong] = '',
+[ngayKetThuc] =''
+WHERE [maBPCCN] LIKE '%'
+
+
+
+
+--TamUngNhanVien
+SELECT *
+FROM [dbo].[ToSanXuat]
+
 

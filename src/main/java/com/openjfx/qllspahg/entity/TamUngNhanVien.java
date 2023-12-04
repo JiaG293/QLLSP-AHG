@@ -5,17 +5,26 @@ import java.util.Objects;
 
 public class TamUngNhanVien {
     private String maTUNV;
+    private NhanVien maNV;
     private Date ngayTamUng;
     private String lyDo;
     private double
             soTienTamUng;
 
-    public TamUngNhanVien(String maTUNV, Date ngayTamUng, String lyDo, double
-            soTienTamUng) {
+    public TamUngNhanVien(String maTUNV, NhanVien maNV, Date ngayTamUng, String lyDo, double soTienTamUng) {
         this.maTUNV = maTUNV;
+        this.maNV = maNV;
         this.ngayTamUng = ngayTamUng;
         this.lyDo = lyDo;
         this.soTienTamUng = soTienTamUng;
+    }
+
+    public NhanVien getMaNV() {
+        return maNV;
+    }
+
+    public void setMaNV(NhanVien maNV) {
+        this.maNV = maNV;
     }
 
     public String getMaTUNV() {

@@ -132,6 +132,8 @@ public class SqlQueryBuilder {
      *
      */
 
+
+    //Lọc của quản lý công nhân
     public static String stringQueryLocDanhSachTTCongNhan(String truyVanTruocWhere, String gt, String vaiTro, String toSanXuat){
         StringBuilder sql = new StringBuilder().append(truyVanTruocWhere).append(" and ");
 
@@ -149,4 +151,6 @@ public class SqlQueryBuilder {
 
         return sql.toString();
     }
+
+    //lọc của quản lý
 }
