@@ -432,4 +432,27 @@ public class PhanCongCongNhanDao {
         return cn;
     }
 
+    public CongDoan getSPvaCDVaoTablePhanCong( String maCD){
+        CongDoan cd = null;
+        try {
+            Connection con =Db.getConnection();
+            Statement st = con.createStatement();
+            String truyVan ="SELECT  CD.maCD, CD.tenCD,SP.maSP, SP.[tenSP]\n" +
+                    "FROM [dbo].[CongDoan] AS CD\n" +
+                    "INNER JOIN [dbo].[SanPham] AS SP ON SP.maSP = CD.maSP\n" +
+                    "WHERE CD.maCD ='"+maCD+"'";
+            ResultSet rs = st.executeQuery(truyVan);
+            while (rs.next()){
+                SanPham sp = new SanPham(rs.getString(3),rs.getString(2));
+                cd = new CongDoan(rs.getString(1),sp,rs.getString(4));
+            }
+
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return cd;
+    }
+
 }

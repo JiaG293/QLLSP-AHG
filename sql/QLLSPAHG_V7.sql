@@ -23,7 +23,6 @@ CREATE TABLE NhanVien(
                          maPB varchar(6), --khoa ngoai
                          maCV varchar(6), --khoa ngoai
                          maPhuCap varchar(6), --khoa ngoai
-						 maTUNV varchar(16), --khoa ngoai
                          hoNV nvarchar(64),
                          tenNV nvarchar(32),
                          gioiTinh bit DEFAULT 0,  --0 la nam, 1 la nu
@@ -62,7 +61,6 @@ CREATE TABLE CongNhan(
                          maCV varchar(6), --khoa ngoai
                          maTSX varchar(6), --khoa ngoai
                          maPhuCap varchar(6), --khoa ngoai
-						 maTUCN varchar(16), --khoa ngoai
                          hoCN nvarchar(32),
                          tenCN nvarchar(32),
                          gioiTinh bit DEFAULT 1,
@@ -262,8 +260,8 @@ ALTER TABLE CongDoan ADD CONSTRAINT FK01_CongDoan FOREIGN KEY (maSP) REFERENCES 
 ALTER TABLE NhanVien ADD CONSTRAINT FK03_NhanVien FOREIGN KEY (maPhucap) REFERENCES PhuCap(maPhuCap)
 ALTER TABLE CongNhan ADD CONSTRAINT FK03_CongNhan FOREIGN KEY (maPhucap) REFERENCES PhuCap(maPhuCap)
 
-ALTER TABLE NhanVien ADD CONSTRAINT FK04_NhanVien FOREIGN KEY (maTUNV) REFERENCES TamUngNhanVien(maTUNV)
-ALTER TABLE CongNhan ADD CONSTRAINT FK04_CongNhan FOREIGN KEY (maTUCN) REFERENCES TamUngCongNhan(maTUCN)
+ALTER TABLE TamUngNhanVien ADD CONSTRAINT FK01_TamUngNhanVien FOREIGN KEY (maNV) REFERENCES NhanVien(maNV)
+ALTER TABLE TamUngCongNhan ADD CONSTRAINT FK01_TamUngCongNhan FOREIGN KEY (maCN) REFERENCES CongNhan(maCN)
 
 ALTER TABLE BangPhanCongCongNhan ADD CONSTRAINT FK01_BangPhanCongCongNhan FOREIGN KEY (maCN) REFERENCES CongNhan(maCN)
 ALTER TABLE BangPhanCongCongNhan ADD CONSTRAINT FK02_BangPhanCongCongNhan FOREIGN KEY (maCD) REFERENCES CongDoan(maCD)

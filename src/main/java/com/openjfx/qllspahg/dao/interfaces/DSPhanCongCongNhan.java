@@ -11,7 +11,6 @@ public interface DSPhanCongCongNhan {
     ObservableList<BangThongTinCongNhan> DSThongTinCongNhan = FXCollections.observableArrayList();
     ObservableList<BangPhanCongCongNhan> DSTTPhanCongCongNhan = FXCollections.observableArrayList();
     ObservableList<BangPhanCongCongNhan> DSPhanCongCanSave = FXCollections.observableArrayList();
-    ObservableList<BangThongTinCongNhan> DSTTPhanCongChuaLuu = FXCollections.observableArrayList();
     ObservableList<BangThongTinCongNhanCoTo> DSTTPhanCongChuaLuuCoTo = FXCollections.observableArrayList();
     ObservableList<BangThongTinSoLuongLamDuocTheoTo> DSLoadSoLuongDaPhanCong = FXCollections.observableArrayList();
     ObservableList<BangPhanCongCongNhan> DSPhanCongCongNhanDaLuu = FXCollections.observableArrayList();

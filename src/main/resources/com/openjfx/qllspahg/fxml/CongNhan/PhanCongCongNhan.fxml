@@ -48,7 +48,7 @@
    <center>
       <SplitPane dividerPositions="0.5" orientation="VERTICAL" BorderPane.alignment="CENTER">
          <items>
-            <TableView fx:id="tblViewTTCongNhanPC" onMouseClicked="#skChonROWtblViewTTCongNhan" prefHeight="200.0">
+            <TableView fx:id="tblViewTTCongNhanPC" onMouseClicked="#skChonROWtblViewTTCongNhan">
               <columns>
                 <TableColumn fx:id="colSTTCongNhanPCCN" prefWidth="90.39998780488986" text="STT" />
                   <TableColumn fx:id="colMaCongNhanPCCN" prefWidth="245.60000610351562" text="Mã công nhân" />
@@ -57,15 +57,16 @@
             </TableView>
             <SplitPane dividerPositions="0.5">
                <items>
-                  <TableView fx:id="tblViewTTPhanCongMoiCNPCCN" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#skChonRowtbtViewTTPhanCong">
+                  <TableView fx:id="tblViewTTPhanCongMoiCNPCCN" onMouseClicked="#skChonRowtbtViewTTPhanCong">
                     <columns>
                       <TableColumn fx:id="colMaPhanCongMoiCNPCCN" prefWidth="133.599969494343" text="Mã phân công " />
-                        <TableColumn fx:id="colHovaTenMoiCNPCCN" prefWidth="175.0" text="Họ và tên" />
-                      <TableColumn fx:id="colNgayPhanCongMoiCNPCCN" minWidth="0.0" prefWidth="123.99995422363281" text="Ngày phân công" />
-                        <TableColumn fx:id="colSoLuongLamMoiCNPCCN" prefWidth="143.99993896484375" text="Số lượng làm" />
+                        <TableColumn fx:id="colHovaTenMoiCNPCCN" prefWidth="142.4000244140625" text="Họ và tên" />
+                      <TableColumn fx:id="colNgayPhanCongMoiCNPCCN" minWidth="0.0" prefWidth="112.79998779296875" text="Ngày phân công" />
+                        <TableColumn fx:id="colThongTinPhanCong" prefWidth="160.0001220703125" text="Thông tin phân công" />
+                        <TableColumn fx:id="colSoLuongLamMoiCNPCCN" prefWidth="118.39990234375" text="Số lượng làm" />
                     </columns>
                   </TableView>
-                  <TableView fx:id="tblViewTTSoNguoiDaPC" onMouseClicked="#skChonRowtblViewTTSoNGuoiDaPC">
+                  <TableView fx:id="tblViewTTSoNguoiDaPC" maxWidth="-Infinity" minHeight="-Infinity" onMouseClicked="#skChonRowtblViewTTSoNGuoiDaPC">
                     <columns>
                       <TableColumn fx:id="colTotblViewTTSoNguoiDaPC" prefWidth="75.0" text="Tổ " />
                         <TableColumn fx:id="colSoNguoiTrongTo" prefWidth="119.199951171875" text="Số người trong tổ" />
