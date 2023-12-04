@@ -24,6 +24,11 @@ public class HopDong {
         this.trangThaiHD = trangThaiHD;
     }
 
+    public HopDong(String maHD, Date ngayTLHD) {
+        this.maHD = maHD;
+        this.ngayTLHD = ngayTLHD;
+    }
+
     public HopDong(String maHD) {
         this.maHD = maHD;
     }

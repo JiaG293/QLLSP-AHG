@@ -17,17 +17,18 @@ public class PhanCongCongNhanDao {
         return new PhanCongCongNhanDao();
     }
     //Phần nhập
-    public ObservableList<String> getAllMaHopDong (){
-        ObservableList<String> dsMaHopDong = FXCollections.observableArrayList();
+    public ObservableList<HopDong> getAllMaHopDong (){
+        ObservableList<HopDong> dsMaHopDong = FXCollections.observableArrayList();
         try {
             Connection con = Db.getConnection();
             Statement st = con.createStatement();
-            String truyVan = "SELECT [dbo].[HopDong].maHD\n" +
-                    "FROM [dbo].[HopDong]\n" +
-                    "WHERE [dbo].[HopDong].trangThaiHD !=1";
+            String truyVan = "SELECT HD.maHD, HD.ngayTLHD\n" +
+                    "FROM [dbo].[HopDong] AS HD\n" +
+                    "WHERE HD.trangThaiHD !=1 \n" +
+                    "ORDER BY HD.ngayTLHD ASC";
             ResultSet rs = st.executeQuery(truyVan);
             while (rs.next()){
-                dsMaHopDong.add(rs.getString("maHD"));
+                dsMaHopDong.add(new HopDong(rs.getString("maHD"),rs.getDate(2)));
             }
         }catch (SQLException e){
             e.printStackTrace();
