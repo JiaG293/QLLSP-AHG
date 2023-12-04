@@ -94,9 +94,10 @@ public class ChamCongCongNhanController implements Initializable {
         //chinh sua du lieu cho 2 cot
         chinhSuaDuLieuTableView();
 
+        //textField Loc Ma va ten
+        tfLocMaCN.setPromptText("Nhập mã công nhân");
+        tfLocHoTenCN.setPromptText("Nhập tên công nhân");
 
-        tfLocMaCN.clear();
-        tfLocHoTenCN.clear();
 
         //Khoi tao ngay duoc chon
         datepickNgayChamCong.setValue(LocalDate.parse(Utils.taoNgayHomTruoc()));
@@ -150,13 +151,6 @@ public class ChamCongCongNhanController implements Initializable {
 
         colSoLuongLamTangCa.setCellValueFactory(new PropertyValueFactory<BangChamCongCongNhan, Integer>("soLuongLamCaBa"));
 
-       /* colSoLuongLam.setCellValueFactory(cellData -> {
-            return new SimpleIntegerProperty(cellData.getValue().getSoLuongLamDuoc()).asObject();
-        });*/
-
-        /*colSoLuongLamTangCa.setCellValueFactory(cellData -> {
-            return new SimpleIntegerProperty(cellData.getValue().getSoLuongLamCaBa()).asObject();
-        });*/
 
 
         //tao gia tri cho cot nghi phep

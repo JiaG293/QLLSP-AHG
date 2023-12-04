@@ -14,11 +14,18 @@ module com.openjfx.qllspahg {
 //    opens com.openjfx.qllspahg.dao to javafx.fxml;
     exports com.openjfx.qllspahg.database;
     opens com.openjfx.qllspahg.database to javafx.fxml;
+
     exports com.openjfx.qllspahg.entity;
     opens com.openjfx.qllspahg.entity to javafx.fxml;
+
     exports com.openjfx.qllspahg.gui;
     opens com.openjfx.qllspahg.gui to javafx.fxml;
+
     exports com.openjfx.qllspahg;
     opens com.openjfx.qllspahg to javafx.fxml;
+
+    exports com.openjfx.qllspahg.entity.model;
+    opens com.openjfx.qllspahg.entity.model to javafx.fxml;
+
 
 }
