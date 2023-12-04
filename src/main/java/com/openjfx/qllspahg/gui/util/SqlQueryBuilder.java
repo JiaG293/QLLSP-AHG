@@ -78,22 +78,6 @@ public class SqlQueryBuilder {
         return sqlBuilder.toString();
     }
 
-
-    public static void main(String[] args) {
-        String sql = "SELECT BCCCN.*, BPCCN.*, TSX.*, CN.*\n" +
-                "                FROM BangChamCongCongNhan AS BCCCN\n" +
-                "        INNER JOIN BangPhanCongCongNhan AS BPCCN ON BCCCN.maBPCCN = BPCCN.maBPCCN\n" +
-                "        INNER JOIN CongNhan AS CN ON CN.maCN = BPCCN.maCN\n" +
-                "        INNER JOIN ToSanXuat AS TSX ON TSX.maTSX = CN.maTSX\n";
-        /*SELECT BCCCN.*, BPCCN.*, TSX.*, CN.*
-                FROM BangChamCongCongNhan AS BCCCN
-        INNER JOIN BangPhanCongCongNhan AS BPCCN ON BCCCN.maBPCCN = BPCCN.maBPCCN
-        INNER JOIN CongNhan AS CN ON CN.maCN = BPCCN.maCN
-        INNER JOIN ToSanXuat AS TSX ON TSX.maTSX = CN.maTSX
-        WHERE BPCCN.maCN = 'CN100004' AND  CN.tenCN LIKE '%Ra%' AND TSX.tenTSX = N'Tổ 2' AND BCCCN.ngayChamCong = '2023-12-01'*/
-        System.out.println(stringQueryLocBangChamCongCongNhan(sql, null, null, null, null));
-    }
-
     public static String stringQueryLocBangChamCongCongNhan(String cauTruyVanTruocWhere, String maCongNhan, String tenCongNhan, String tenToSanXuat, String ngayChamCong) {
         StringBuilder sqlBuilder = new StringBuilder().append(cauTruyVanTruocWhere).append(" WHERE CN.trangThaiCN = 0 AND ");
 
@@ -123,6 +107,15 @@ public class SqlQueryBuilder {
 
         return sqlBuilder.toString();
     }
+
+
+
+
+
+
+
+
+
 
 
 

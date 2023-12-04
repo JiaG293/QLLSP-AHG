@@ -22,6 +22,19 @@ public class PhuCap {
         this.tienConNho = tienConNho;
     }
 
+    public PhuCap(String maPhuCap, double tienChuyenCan, double tienNhaTro, double tienConNho) {
+        this.maPhuCap = maPhuCap;
+        this.tienChuyenCan = tienChuyenCan;
+        this.tienNhaTro = tienNhaTro;
+        this.tienConNho = tienConNho;
+    }
+
+    public PhuCap(double tienChuyenCan, double tienNhaTro, double tienConNho) {
+        this.tienChuyenCan = tienChuyenCan;
+        this.tienNhaTro = tienNhaTro;
+        this.tienConNho = tienConNho;
+    }
+
     public PhuCap() {
     }
 

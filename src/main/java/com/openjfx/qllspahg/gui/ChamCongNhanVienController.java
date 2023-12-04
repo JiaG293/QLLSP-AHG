@@ -132,7 +132,7 @@ public class ChamCongNhanVienController implements Initializable {
         listPB.add("Trống");
         ObservableList<String> listPb = ChamCongNhanVienDaoImpl.getInstance().layDuLieuPhongBanNhanVien();
         if (!listPb.isEmpty() || listPb != null){
-            listPb.addAll(listPb);
+            listPB.addAll(listPb);
         } else {
             cbxLocPhongBan.setPromptText("Không có dữ liệu");
         }

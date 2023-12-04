@@ -27,6 +27,15 @@ public class TamUngNhanVien {
         this.maNV = maNV;
     }
 
+    public TamUngNhanVien(String maTUNV, double soTienTamUng) {
+        this.maTUNV = maTUNV;
+        this.soTienTamUng = soTienTamUng;
+    }
+
+    public TamUngNhanVien(double soTienTamUng) {
+        this.soTienTamUng = soTienTamUng;
+    }
+
     public String getMaTUNV() {
         return maTUNV;
     }

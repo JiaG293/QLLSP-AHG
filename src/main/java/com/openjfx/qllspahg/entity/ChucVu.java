@@ -13,6 +13,10 @@ public class ChucVu {
         this.heSoCV = heSoCV;
     }
 
+    public ChucVu(double heSoCV) {
+        this.heSoCV = heSoCV;
+    }
+
     public ChucVu(String maCV, String tenCV) {
         this.maCV = maCV;
         this.tenCV = tenCV;

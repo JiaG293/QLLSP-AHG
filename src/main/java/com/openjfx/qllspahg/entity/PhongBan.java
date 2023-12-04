@@ -11,6 +11,10 @@ public class PhongBan {
         this.tenPB = tenPB;
     }
 
+    public PhongBan(String tenPB) {
+        this.tenPB = tenPB;
+    }
+
     public PhongBan() {
     }
 

@@ -69,6 +69,7 @@ public class ChamCongNhanVienDaoImpl {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
         System.out.println("List LayDuLieuPhongBanNhanVien:\n" + listTenPB + "\n");
         return listTenPB;
