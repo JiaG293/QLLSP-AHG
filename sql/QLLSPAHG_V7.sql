@@ -91,7 +91,7 @@ CREATE TABLE HopDong(
                         email varchar(128),
                         ngayKKHD date,
                         ngayTLHD date,
-                        trangThaiHD bit DEFAULT 0, --0 chua thanh ly, 1 la thanh 
+                        trangThaiHD bit DEFAULT 0, --0 chua thanh ly, 1 la thanh
 
                         CONSTRAINT PK_HopDong PRIMARY KEY(maHD)
 )
@@ -181,11 +181,12 @@ CREATE TABLE BangChamCongNhanVien(
 
 --Table TamUngNhanVien
 CREATE TABLE TamUngNhanVien(
-                               maTUNV varchar(16) NOT NULL, --khoa chinh
+                               maTUNV varchar(16) NOT NULL, --khoa chinh --TU+maNV+ddMMyy
 							   maNV varchar(8), --khoa ngoai
                                ngayTamUng date,
                                lyDo nvarchar(max),
                                soTienTamUng decimal(19, 4),
+                               trangThaiTUCN bit DEFAULT 0, -- 0 la da thanh toan -- 1 la chua thanh toan
 
                                CONSTRAINT PK_TamUngNhanVien PRIMARY KEY(maTUNV)
 )
@@ -200,6 +201,7 @@ CREATE TABLE BangLuongNhanVien(
                                   bhytNV decimal(19, 4),
                                   tongLuongNV decimal(19, 4),
                                   ngayTinhLuong date,
+                                  trangThaiLuong bit DEFAULT 0, -- 0 la chua thanh toan --1 la thanh toan
 
                                   CONSTRAINT PK_BangLuongNhanVien PRIMARY KEY CLUSTERED(maBCCNV, maTUNV)
 )
@@ -219,11 +221,12 @@ CREATE TABLE PhuCap(
 
 --Table TamUngCongNhan
 CREATE TABLE TamUngCongNhan(
-                               maTUCN varchar(16) NOT NULL, --khoa chinh
+                               maTUCN varchar(16) NOT NULL, --khoa chinh --TU+maCn+ddMMyy
 							   maCN varchar(8), --khoa ngoai
                                ngayTamUng date,
                                lyDo nvarchar(max),
                                soTienTamUng decimal(19, 4),
+                               trangThaiTUCN bit DEFAULT 0, -- 0 la da thanh toan -- 1 la chua thanh toan
 
                                CONSTRAINT PK_TamUngCongNhan PRIMARY KEY(maTUCN)
 )
@@ -237,6 +240,7 @@ CREATE TABLE BangLuongCongNhan(
                                   bhytCN decimal(19, 4),
                                   tongLuongCN decimal(19, 4),
                                   ngayTinhLuong date,
+                                  trangThaiLuong bit DEFAULT 0, -- 0 la chua thanh toan --1 la thanh toan
 
                                   CONSTRAINT PK_BangLuongCongNhan PRIMARY KEY CLUSTERED(maBCCCN, maTUCN)
 )
