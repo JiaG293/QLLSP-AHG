@@ -194,8 +194,8 @@ CREATE TABLE TamUngNhanVien(
 
 --Table BangLuongNhanVien
 CREATE TABLE BangLuongNhanVien(
-                                  maBCCNV varchar(14), --khoa ngoai --
-                                  maTUNV varchar(16), --khoa ngoai --khoa chinh
+                                  maBCCNV varchar(14), --khoa ngoai
+                                  maTUNV varchar(16), --khoa ngoai
                                   luongNV decimal(19, 4),
                                   bhxhNV decimal(19, 4),
                                   bhytNV decimal(19, 4),
@@ -214,7 +214,6 @@ CREATE TABLE PhuCap(
                        tienConNho decimal(19, 4),
                        tienDiLai decimal(19, 4),
                        tienNhaTro decimal(19, 4),
-                       tienDienThoai decimal(19, 4),
 
                        CONSTRAINT PK_PhuCap PRIMARY KEY(maPhuCap)
 )
@@ -233,8 +232,9 @@ CREATE TABLE TamUngCongNhan(
 
 --Table BangLuongCongNhan
 CREATE TABLE BangLuongCongNhan(
-                                  maBCCCN varchar(16), --khoa ngoai --khoa chinh
-                                  maTUCN varchar(16), --khoa ngoai --khoa chinh
+
+                                  maBCCCN varchar(16), --khoa ngoai
+                                  maTUCN varchar(16), --khoa ngoai
                                   luongCN decimal(19, 4),
                                   bhxhCN decimal(19, 4),
                                   bhytCN decimal(19, 4),
