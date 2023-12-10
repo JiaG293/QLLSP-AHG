@@ -9,8 +9,20 @@ public class BangPhanCongCongNhan {
     private CongDoan maCongDoan;
     private HopDong maHopDong;
     private int chiTieu;
+    private boolean tangCa;
     private Date ngayPC;
     private Date ngayKT;
+
+    public BangPhanCongCongNhan(String maBPCCN, CongNhan maCongNhan, CongDoan maCongDoan, HopDong maHopDong, int chiTieu, boolean tangCa, Date ngayPC, Date ngayKT) {
+        this.maBPCCN = maBPCCN;
+        this.maCongNhan = maCongNhan;
+        this.maCongDoan = maCongDoan;
+        this.maHopDong = maHopDong;
+        this.chiTieu = chiTieu;
+        this.tangCa = tangCa;
+        this.ngayPC = ngayPC;
+        this.ngayKT = ngayKT;
+    }
 
     public BangPhanCongCongNhan(String maBPCCN, CongNhan maCongNhan, CongDoan maCongDoan, HopDong maHopDong, int chiTieu, Date ngayPC, Date ngayKT) {
         this.maBPCCN = maBPCCN;
@@ -22,11 +34,11 @@ public class BangPhanCongCongNhan {
         this.ngayKT = ngayKT;
     }
 
-    public BangPhanCongCongNhan() {
-    }
-
     public BangPhanCongCongNhan(String maBPCCN) {
         this.maBPCCN = maBPCCN;
+    }
+
+    public BangPhanCongCongNhan() {
     }
 
     public String getMaBPCCN() {
@@ -69,6 +81,14 @@ public class BangPhanCongCongNhan {
         this.chiTieu = chiTieu;
     }
 
+    public boolean isTangCa() {
+        return tangCa;
+    }
+
+    public void setTangCa(boolean tangCa) {
+        this.tangCa = tangCa;
+    }
+
     public Date getNgayPC() {
         return ngayPC;
     }
@@ -106,6 +126,7 @@ public class BangPhanCongCongNhan {
                 ", maCongDoan=" + maCongDoan +
                 ", maHopDong=" + maHopDong +
                 ", chiTieu=" + chiTieu +
+                ", tangCa=" + tangCa +
                 ", ngayPC=" + ngayPC +
                 ", ngayKT=" + ngayKT +
                 '}';

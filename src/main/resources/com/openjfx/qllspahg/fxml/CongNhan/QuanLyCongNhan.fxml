@@ -109,7 +109,7 @@
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
                   <Label text="Mã số công nhân" />
-                  <TextField fx:id="tfMaSoTTCongNhan" disable="true" editable="false" prefHeight="26.0" prefWidth="210.0" />
+                  <TextField fx:id="tfMaSoTTCongNhan" disable="true" editable="false" prefHeight="26.0" prefWidth="218.0" />
                </children>
                <padding>
                   <Insets left="5.0" />
@@ -118,7 +118,7 @@
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
                   <Label text="Tên công nhân" />
-                  <TextField fx:id="tfTenTTCongNhan" prefHeight="26.0" prefWidth="227.0" />
+                  <TextField fx:id="tfTenTTCongNhan" prefHeight="26.0" prefWidth="232.0" />
                </children>
                <padding>
                   <Insets left="5.0" right="5.0" />
@@ -141,7 +141,7 @@
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
                         <Label text="Ngày sinh: " />
-                        <DatePicker fx:id="datepickNgaySinhTTCongNhan" />
+                        <DatePicker fx:id="datepickNgaySinhTTCongNhan" prefHeight="26.0" prefWidth="134.0" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -152,7 +152,7 @@
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
                   <Label text="Số điện thoại: " />
-                  <TextField fx:id="tfSoDienThoaiTTCongNhan" prefHeight="26.0" prefWidth="172.0">
+                  <TextField fx:id="tfSoDienThoaiTTCongNhan" prefHeight="26.0" prefWidth="235.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -165,7 +165,7 @@
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
                   <Label text="Email: " />
-                  <TextField fx:id="tfEmailTTCongNhan" prefHeight="26.0" prefWidth="214.0" />
+                  <TextField fx:id="tfEmailTTCongNhan" prefHeight="26.0" prefWidth="277.0" />
                </children>
                <padding>
                   <Insets left="5.0" right="5.0" />
@@ -174,7 +174,7 @@
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
                   <Label text="Số tài khoản: " />
-                  <TextField fx:id="tfSoTaiKhoanTTCongNhan" alignment="BASELINE_LEFT" prefHeight="26.0" prefWidth="175.0" />
+                  <TextField fx:id="tfSoTaiKhoanTTCongNhan" alignment="BASELINE_LEFT" prefHeight="26.0" prefWidth="241.0" />
                </children>
                <padding>
                   <Insets left="5.0" right="5.0" />
@@ -183,7 +183,7 @@
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
                   <Label text="Tổ" />
-                  <ComboBox fx:id="cbxToSanXuatTTCongNhan" prefHeight="26.0" prefWidth="183.0" />
+                  <ComboBox fx:id="cbxToSanXuatTTCongNhan" prefHeight="26.0" prefWidth="298.0" />
                </children>
                <padding>
                   <Insets left="5.0" right="5.0" />
@@ -192,7 +192,7 @@
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
                   <Label text="Phụ cấp" />
-                  <ComboBox fx:id="cbxPhuCapTTCongNhan" prefWidth="150.0" />
+                  <ComboBox fx:id="cbxPhuCapTTCongNhan" prefHeight="26.0" prefWidth="268.0" />
                </children>
                <padding>
                   <Insets left="5.0" />
@@ -203,7 +203,7 @@
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
                         <Label text="Vai tró" />
-                        <ComboBox fx:id="cbxVaiTroTTCongNhan" prefHeight="26.0" prefWidth="193.0" />
+                        <ComboBox fx:id="cbxVaiTroTTCongNhan" prefHeight="26.0" prefWidth="269.0" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -220,7 +220,7 @@
                   <HBox alignment="CENTER" spacing="5.0">
                      <children>
                         <Label text="Ngày vào làm: " />
-                        <DatePicker fx:id="datepickNgayVaoLamTTCongNhan" HBox.hgrow="ALWAYS" />
+                        <DatePicker fx:id="datepickNgayVaoLamTTCongNhan" prefHeight="26.0" prefWidth="134.0" HBox.hgrow="ALWAYS" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
