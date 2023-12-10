@@ -3,6 +3,7 @@ package com.openjfx.qllspahg.gui;
 import static com.openjfx.qllspahg.dao.interfaces.DSPhanCongCongNhan.*;
 
 import com.microsoft.sqlserver.jdbc.StringUtils;
+import com.openjfx.qllspahg.dao.ChamCongCongNhanDaoImpl;
 import com.openjfx.qllspahg.dao.PhanCongCongNhanDao;
 
 import com.openjfx.qllspahg.entity.*;
@@ -977,6 +978,10 @@ public class PhanCongCongNhanController implements Initializable {
         if (result.isPresent() && result.get() == ButtonType.OK){
             TimeUnit.MICROSECONDS.sleep(500);
             if (PhanCongCongNhanDao.getInstance().saveDSPhanCong(DSPhanCongCanSave) && PhanCongCongNhanDao.getInstance().saveDSUpdatePC(DSPhanCongCongNhanUpdate)){
+                //Tao bang cham cong theo ngay
+                ChamCongCongNhanDaoImpl.getInstance().taoBangChamCongCongNhanTheoNgay(DSPhanCongCanSave, String.valueOf(datepickNgayPhanCongPCCN.getValue()));
+
+                //Thong bao
                 Alerts.showConfirmation("Thông báo:","Lưu thành công!!@!");
                 DSTTPhanCongCongNhan.clear();
                 DSPhanCongCanSave.clear();

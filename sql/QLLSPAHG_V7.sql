@@ -171,7 +171,7 @@ CREATE TABLE BangChamCongCongNhan(
 
 --Table BangChamCongNhanVien
 CREATE TABLE BangChamCongNhanVien(
-                                     maBCCNV varchar(14) NOT NULL, --khoa chinh
+                                     maBCCNV varchar(16) NOT NULL, --khoa chinh
                                      maNV varchar(8), --khoa ngoai khoa chinh
                                      ngayChamCong date,
                                      diLam bit DEFAULT 1, --0 la khong di lam, 1 la co di lam
@@ -184,7 +184,7 @@ CREATE TABLE BangChamCongNhanVien(
 --Table TamUngNhanVien
 CREATE TABLE TamUngNhanVien(
                                maTUNV varchar(16) NOT NULL, --khoa chinh --TU+maNV+ddMMyy
-							   maNV varchar(8), --khoa ngoai
+                               maNV varchar(8), --khoa ngoai
                                ngayTamUng date,
                                lyDo nvarchar(max),
                                soTienTamUng decimal(19, 4),
@@ -196,8 +196,8 @@ CREATE TABLE TamUngNhanVien(
 
 --Table BangLuongNhanVien
 CREATE TABLE BangLuongNhanVien(
-                                    maBLNV varchar(16), --khoa chinh BL(2) + maNV(8) + ddMMyy(6) ngayTinhLuong
-                                    maBCCNV varchar(16), --khoa ngoai
+                                  maBLNV varchar(16), --khoa chinh BL(2) + maNV(8) + ddMMyy(6) ngayTinhLuong
+                                  maBCCNV varchar(16), -- khoa ngoai
                                   maTUNV varchar(16), --khoa ngoai
                                   luongNV decimal(19, 4), -- luong chua tru cac khoan phi
                                   bhxhNV decimal(19, 4),
@@ -207,7 +207,7 @@ CREATE TABLE BangLuongNhanVien(
                                   ngayNhanLuong date,
                                   trangThaiLuong bit DEFAULT 0, -- 0 la chua thanh toan --1 la thanh toan
 
-                                  CONSTRAINT PK_BangLuongNhanVien PRIMARY KEY CLUSTERED(maBCCNV, maTUNV)
+                                  CONSTRAINT PK_BangLuongNhanVien PRIMARY KEY CLUSTERED(maBLNV)
 )
 
 --Table PhuCap
@@ -224,7 +224,7 @@ CREATE TABLE PhuCap(
 --Table TamUngCongNhan
 CREATE TABLE TamUngCongNhan(
                                maTUCN varchar(16) NOT NULL, --khoa chinh --TU+maCn+ddMMyy
-							   maCN varchar(8), --khoa ngoai
+                               maCN varchar(8), --khoa ngoai
                                ngayTamUng date,
                                lyDo nvarchar(max),
                                soTienTamUng decimal(19, 4),
@@ -235,7 +235,7 @@ CREATE TABLE TamUngCongNhan(
 
 --Table BangLuongCongNhan
 CREATE TABLE BangLuongCongNhan(
-                                  maBLNV varchar(16), --khoa chinh BL(2) + maCN(8) + ddMMyy(6) ngayTinhLuong
+                                  maBLCN varchar(16), --khoa chinh BL(2) + maCN(8) + ddMMyy(6) ngayTinhLuong
                                   maBCCCN varchar(16), --khoa ngoai
                                   maTUCN varchar(16), --khoa ngoai
                                   luongCN decimal(19, 4),-- luong chua tru cac khoan phi
@@ -246,7 +246,7 @@ CREATE TABLE BangLuongCongNhan(
                                   ngayNhanLuong date,
                                   trangThaiLuong bit DEFAULT 0, -- 0 la chua thanh toan --1 la thanh toan
 
-                                  CONSTRAINT PK_BangLuongCongNhan PRIMARY KEY CLUSTERED(maBCCCN, maTUCN)
+                                  CONSTRAINT PK_BangLuongCongNhan PRIMARY KEY CLUSTERED(maBLCN)
 )
 
 
