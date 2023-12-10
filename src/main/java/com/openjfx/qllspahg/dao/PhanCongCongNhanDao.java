@@ -235,6 +235,7 @@ public class PhanCongCongNhanDao {
                 String maCD = bpc.getMaCongDoan().getMaCD();
                 String maHD = bpc.getMaHopDong().getMaHD();
                 int chiTieu = bpc.getChiTieu();
+                boolean tangCa = bpc.isTangCa();
 
                 java.util.Date ngayPhanCong = bpc.getNgayPC();
                 java.sql.Date ngayPhanCongSQL = new java.sql.Date(ngayPhanCong.getTime());
@@ -244,17 +245,18 @@ public class PhanCongCongNhanDao {
 
                 try {
                     Connection con = Db.getConnection();
-                    String truyVan = "INSERT [dbo].[BangPhanCongCongNhan] ([maBPCCN], [maCN], [maCD], [maHD], [chiTieu], [ngayPhanCong], [ngayKetThuc] )\n" +
+                    String truyVan = "INSERT [dbo].[BangPhanCongCongNhan] ([maBPCCN], [maCN], [maCD], [maHD], [chiTieu], [tangCa], [ngayPhanCong], [ngayKetThuc] )\n" +
                             "VALUES \n" +
-                            "(?,?,?,?,?,?,?)";
+                            "(?,?,?,?,?,?,?,?)";
                     PreparedStatement st = con.prepareStatement(truyVan);
                     st.setString(1,maBPC);
                     st.setString(2,maCN);
                     st.setString(3,maCD);
                     st.setString(4,maHD);
                     st.setInt(5,chiTieu);
-                    st.setDate(6,ngayPhanCongSQL);
-                    st.setDate(7,ngayKetThucSQL);
+                    st.setBoolean(6,tangCa);
+                    st.setDate(7,ngayPhanCongSQL);
+                    st.setDate(8,ngayKetThucSQL);
 
                     a+=st.executeUpdate();
                 }catch (SQLException e){
@@ -284,6 +286,8 @@ public class PhanCongCongNhanDao {
                 String maHD = bpc.getMaHopDong().getMaHD();
 
                 int chiTieu = bpc.getChiTieu();
+                boolean tangCa = bpc.isTangCa();
+
                 java.util.Date ngayPC = bpc.getNgayPC();
                 Date ngayPCSQL =new Date(ngayPC.getTime());
                 java.util.Date ngayKT = bpc.getNgayKT();
@@ -296,6 +300,7 @@ public class PhanCongCongNhanDao {
                             "[maCD] = '"+maCD+"',\n" +
                             "[maHD] = '"+maHD+"',\n" +
                             "[chiTieu] = "+chiTieu +",\n" +
+                            "[tangCa] ="+tangCa+",\n"+
                             "[ngayPhanCong] = '"+ngayPCSQL+"',\n" +
                             "[ngayKetThuc] ='"+ngayKTSQL+"'\n" +
                             "WHERE [maBPCCN] LIKE '%"+mabpc+"'";
@@ -400,10 +405,11 @@ public class PhanCongCongNhanDao {
                 String maCD = rs.getString("maCD");
                 String maHD = rs.getString("maHD");
                 int chiTieu = rs.getInt("chiTieu");
+                boolean tangCa = rs.getBoolean("tangCa");
                 java.util.Date ngayPhanCong = rs.getDate("ngayPhanCong");
                 java.util.Date ngayKetThuc = rs.getDate("ngayKetThuc");
 
-                dsBPCCN.add(new BangPhanCongCongNhan(maBPCCN,new CongNhan(maCN,hoCN,tenCN), new CongDoan(maCD), new HopDong(maHD), chiTieu,ngayPhanCong,ngayKetThuc ));
+                dsBPCCN.add(new BangPhanCongCongNhan(maBPCCN,new CongNhan(maCN,hoCN,tenCN), new CongDoan(maCD), new HopDong(maHD), chiTieu,tangCa,ngayPhanCong,ngayKetThuc ));
             }
         }catch (SQLException e){
             e.printStackTrace();

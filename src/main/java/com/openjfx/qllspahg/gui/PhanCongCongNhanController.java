@@ -61,6 +61,9 @@ public class PhanCongCongNhanController implements Initializable {
     private ComboBox<ToSanXuat> cbxToPCCN;
 
     @FXML
+    private CheckBox ckcTangCa;
+
+    @FXML
     private TableColumn<BangThongTinCongNhan, String> colHoVaTenCongNhanPCCN;
 
     @FXML
@@ -578,6 +581,8 @@ public class PhanCongCongNhanController implements Initializable {
 
         if (!DSTTPhanCongCongNhan.isEmpty() && !tblViewTTPhanCongMoiCNPCCN.getSelectionModel().isEmpty()){
 
+            tblViewTTCongNhanPC.getSelectionModel().clearSelection();
+
             if (!datepickNgayPhanCongPCCN.getValue().isBefore(LocalDate.now())) {
 
                 radPCTungCongNhanPCCN.setSelected(true);
@@ -613,6 +618,8 @@ public class PhanCongCongNhanController implements Initializable {
             if (datepickNgayPhanCongPCCN.getValue().isBefore(LocalDate.now())){
                 tfSoLuongCanPhanCongPCCN.setText("");
             }
+
+            ckcTangCa.setSelected(bangPCCN.isTangCa());
 
             tfMaCongNhanPCCN.setText(bangPCCN.getMaCongNhan().getMaCN());
             tfHoVaTenPCCN.setText(bangPCCN.getMaCongNhan().getHoCN()+" "+bangPCCN.getMaCongNhan().getTenCN());
@@ -870,6 +877,9 @@ public class PhanCongCongNhanController implements Initializable {
                     Alerts.showConfirmation("Thông báo", "Số lương phân công đã dư");
                     return;
                 }
+
+                boolean tangCa = ckcTangCa.isSelected();
+
                 LocalDate localDate = datepickNgayPhanCongPCCN.getValue();
                 Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
                 Date ngayPhanCong = Date.from(instant);
@@ -878,7 +888,7 @@ public class PhanCongCongNhanController implements Initializable {
                 Instant in = Instant.from(lc.atStartOfDay(ZoneId.systemDefault()));
                 Date ngayKetThuc = Date.from(in);
 
-                BangPhanCongCongNhan pc = new BangPhanCongCongNhan(maBPCCN,maCN,maCD,maHD,chiTieu,ngayPhanCong,ngayKetThuc);
+                BangPhanCongCongNhan pc = new BangPhanCongCongNhan(maBPCCN,maCN,maCD,maHD,chiTieu,tangCa,ngayPhanCong,ngayKetThuc);
 
                 DSTTPhanCongCongNhan.add(pc);
                 DSPhanCongCanSave.add(pc);
@@ -890,6 +900,7 @@ public class PhanCongCongNhanController implements Initializable {
                 tfMaCongNhanPCCN.setText("");
                 tfHoVaTenPCCN.setText("");
                 tfSoLuongPhanCongPCCN.setText("");
+                ckcTangCa.setSelected(false);
                 tfSoLuongChuaPhanCongPCCN.setText(String.valueOf(Integer.parseInt(tfSoLuongChuaPhanCongPCCN.getText())-1));
 
             }
@@ -925,6 +936,8 @@ public class PhanCongCongNhanController implements Initializable {
                         return;
                     }
 
+                    boolean tangCa = ckcTangCa.isSelected();
+
                     LocalDate localDate = datepickNgayPhanCongPCCN.getValue();
                     Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
                     Date ngayPhanCong = Date.from(instant);
@@ -933,7 +946,7 @@ public class PhanCongCongNhanController implements Initializable {
                     Instant in = Instant.from(lc.atStartOfDay(ZoneId.systemDefault()));
                     Date ngayKetThuc = Date.from(in);
 
-                    BangPhanCongCongNhan pc = new BangPhanCongCongNhan(maBPCCN,maCN,maCD,maHD,chiTieu,ngayPhanCong,ngayKetThuc);
+                    BangPhanCongCongNhan pc = new BangPhanCongCongNhan(maBPCCN,maCN,maCD,maHD,chiTieu,tangCa,ngayPhanCong,ngayKetThuc);
 
                     DSTTPhanCongCongNhan.add(pc);
                     DSPhanCongCanSave.add(pc);
@@ -950,6 +963,7 @@ public class PhanCongCongNhanController implements Initializable {
                 }
 
                 tfSoNguoiCanPhanCongPCCN.setText(tfSoLuongChuaPhanCongPCCN.getText());
+                ckcTangCa.setSelected(false);
                 tfSoLuongMoiNGuoiPCCN.setText("");
                 tfTongSoLuongPhanCongPCCN.setText("");
                 tfSoLuongPhanCongConLai.setText("");
@@ -1030,6 +1044,10 @@ public class PhanCongCongNhanController implements Initializable {
             DSLoadSoLuongDaPhanCong.clear();
             DSLoadSoLuongDaPhanCong.addAll(PhanCongCongNhanDao.getInstance().getAllSoLuongDaPhanCongTheoTo(Utils.dinhDangNgayHienTai(datepickNgayPhanCongPCCN.getValue(),"ddMMYY")));
 
+            for (BangPhanCongCongNhan bpc :DSPhanCongCanSave){
+                DSTTPhanCongChuaLuuCoTo.removeIf(bpct -> bpc.getMaCongNhan().getMaCN().equals(bpct.getBangPCCN().getCongNhan().getMaCN()));
+            }
+
             DSPhanCongCanSave.clear();
             DSPhanCongCongNhanUpdate.clear();
             DSTTPhanCongCongNhan.clear();
@@ -1101,6 +1119,7 @@ public class PhanCongCongNhanController implements Initializable {
 
                             }
 
+                        boolean tangCa = ckcTangCa.isSelected();
 
                         LocalDate localDate = datepickNgayPhanCongPCCN.getValue();
                         Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
@@ -1110,7 +1129,7 @@ public class PhanCongCongNhanController implements Initializable {
                         Instant in = Instant.from(lc.atStartOfDay(ZoneId.systemDefault()));
                         Date ngayKetThuc = Date.from(in);
 
-                        BangPhanCongCongNhan pc = new BangPhanCongCongNhan(maBPCCN,maCN,maCD,maHD,chiTieu,ngayPhanCong,ngayKetThuc);
+                        BangPhanCongCongNhan pc = new BangPhanCongCongNhan(maBPCCN,maCN,maCD,maHD,chiTieu,tangCa,ngayPhanCong,ngayKetThuc);
 
                         DSTTPhanCongCongNhan.set(DSTTPhanCongCongNhan.indexOf(pc),pc );
                         DSPhanCongCanSave.set(DSPhanCongCanSave.indexOf(pc),pc );
@@ -1171,6 +1190,7 @@ public class PhanCongCongNhanController implements Initializable {
 
                         }
 
+                        boolean tangCa = ckcTangCa.isSelected();
 
                         LocalDate localDate = datepickNgayPhanCongPCCN.getValue();
                         Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
@@ -1180,7 +1200,7 @@ public class PhanCongCongNhanController implements Initializable {
                         Instant in = Instant.from(lc.atStartOfDay(ZoneId.systemDefault()));
                         Date ngayKetThuc = Date.from(in);
 
-                        BangPhanCongCongNhan pc = new BangPhanCongCongNhan(maBPCCN,maCN,maCD,maHD,chiTieu,ngayPhanCong,ngayKetThuc);
+                        BangPhanCongCongNhan pc = new BangPhanCongCongNhan(maBPCCN,maCN,maCD,maHD,chiTieu,tangCa,ngayPhanCong,ngayKetThuc);
 
                         DSTTPhanCongCongNhan.set(DSTTPhanCongCongNhan.indexOf(pc),pc );
                         DSPhanCongCongNhanUpdate.add(pc);
