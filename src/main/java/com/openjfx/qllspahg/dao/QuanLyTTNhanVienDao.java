@@ -605,7 +605,7 @@ public class QuanLyTTNhanVienDao {
                 double tienDiLai = rs.getDouble("tienDiLai");
                 double tienNhaTro = rs.getDouble("tienNhaTro");
                 double tienConNho = rs.getDouble("tienConNho");
-                PhuCap pc = new PhuCap(maPhuCap,tienChuyenCan,tienNangSuat,tienDienThoai,tienDiLai,tienNhaTro,tienConNho);
+                PhuCap pc = new PhuCap(maPhuCap,tienChuyenCan,tienNhaTro,tienConNho);
                 dsPhuCap.add(pc);
             }
         }catch (SQLException e){
