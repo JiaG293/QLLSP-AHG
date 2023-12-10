@@ -17,14 +17,14 @@ VALUES
     ('CVNVQL', N'Nhân viên quản lý', 1.5);
 
 --PhuCap
-INSERT INTO [PhuCap] (maPhuCap, tienChuyenCan, tienNangSuat, tienConNho, tienDiLai, tienNhaTro, tienDienThoai)
+INSERT INTO [PhuCap] (maPhuCap, tienChuyenCan, tienNangSuat, tienConNho, tienNhaTro)
 VALUES
-    ('PCNV01', 155000, 0, 105020, 0, 0, 0),
-    ('PCNV02', 24135, 13582, 13582, 24582, 23582, 21582),
-    ('PCNV03', 24135, 30000, 13582, 30000, 23582, 30000),
-    ('PCCN01', 155000, 0, 105020, 0, 0, 0),
-    ('PCCN02', 21413, 45645, 45645, 300000, 45645, 35645),
-    ('PCCN03', 30000, 300000, 30000, 30000, 30000, 30000);
+    ('PCNV01', 155000, 0, 105020, 0),
+    ('PCNV02', 24135, 13582, 13582, 24582),
+    ('PCNV03', 24135, 30000, 13582, 30000),
+    ('PCCN01', 155000, 0, 105020, 0),
+    ('PCCN02', 21413, 45645, 45645, 300000),
+    ('PCCN03', 30000, 300000, 30000, 30000);
 
 
 --NhanVien
