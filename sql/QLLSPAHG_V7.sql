@@ -196,7 +196,8 @@ CREATE TABLE TamUngNhanVien(
 
 --Table BangLuongNhanVien
 CREATE TABLE BangLuongNhanVien(
-                                maBLNV varchar(16), --khoa chinh BL(2) + maNV(8) + ddMMyy(6) ngayTinhLuong
+                                    maBLNV varchar(16), --khoa chinh BL(2) + maNV(8) + ddMMyy(6) ngayTinhLuong
+                                    maBCCNV varchar(16), --khoa ngoai
                                   maTUNV varchar(16), --khoa ngoai
                                   luongNV decimal(19, 4), -- luong chua tru cac khoan phi
                                   bhxhNV decimal(19, 4),
