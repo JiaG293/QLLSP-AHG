@@ -16,7 +16,7 @@
         <center>
             <ScrollPane fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER">
                 <content>
-                    <TableView fx:id="tblviewTamUngNhanVien" editable="true" tableMenuButtonVisible="true">
+                    <TableView fx:id="tblviewTamUngNhanVien" editable="true" onMouseClicked="#skChonRowtblviewTamUngNhanVien" tableMenuButtonVisible="true">
                         <columns>
                             <TableColumn fx:id="colMaNhanVien" prefWidth="135.99999696016312" text="Mã nhân viên" />
                             <TableColumn fx:id="colTenNhanVien" prefWidth="187.99998474121094" text="Tên nhân viên" />
@@ -126,7 +126,7 @@
             </HBox>
             <HBox>
                <children>
-                  <Label fx:id="lblThongBaoThanHCong" textFill="#0c6ecc">
+                  <Label fx:id="lblThongBaoThanHCong" textFill="#cc150c">
                      <font>
                         <Font name="System Italic" size="10.0" />
                      </font>

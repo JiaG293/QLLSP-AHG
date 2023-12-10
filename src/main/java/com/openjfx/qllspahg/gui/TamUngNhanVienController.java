@@ -5,6 +5,7 @@ import static com.openjfx.qllspahg.dao.interfaces.DSTamUngNhanVien.*;
 import com.microsoft.sqlserver.jdbc.StringUtils;
 import com.openjfx.qllspahg.dao.TamUngNhanVienDao;
 import com.openjfx.qllspahg.entity.NhanVien;
+import com.openjfx.qllspahg.entity.PhongBan;
 import com.openjfx.qllspahg.entity.TamUngNhanVien;
 import com.openjfx.qllspahg.entity.model.TamUngNhanVien.BangTamUngNhanVienKemSoNgayDiLam;
 import com.openjfx.qllspahg.gui.util.Alerts;
@@ -19,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
@@ -106,6 +108,8 @@ public class TamUngNhanVienController implements Initializable {
     private String maNhanVienTam = "";
     private double soTienTamUngCuaNV = 0;
 
+    private PhongBan phongBan = null;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lblTieuDeNgayTamUng.setText(new SimpleDateFormat("dd/MM/yyyy").
@@ -114,8 +118,6 @@ public class TamUngNhanVienController implements Initializable {
                 format(Date.from(Instant.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault())))));
 
         docDuLieuVaotblviewTamUngNhanVien();
-
-
 
     }
 
@@ -191,6 +193,9 @@ public class TamUngNhanVienController implements Initializable {
     // Sự kiện trên button
 
     public void skbtnLayThongTin(ActionEvent actionEvent) {
+        soTienTamUngCuaNV = 0;
+        maNhanVienTam = "";
+        phongBan = new PhongBan();
         if (tfMaNhanVien.getText().trim().isEmpty()){
             Alerts.showConfirmation("Thông báo", "Chưa nhập mã nhân viên");
             return;
@@ -340,7 +345,6 @@ public class TamUngNhanVienController implements Initializable {
         int soNgayDiLam = Integer.parseInt(tfSoNgayDiLam.getText());
         BangTamUngNhanVienKemSoNgayDiLam bTUKemsoNgayNV = new BangTamUngNhanVienKemSoNgayDiLam(tUNV,soNgayDiLam);
 
-//        DSTamUng.add(bTUKemsoNgayNV);
         DSTamUng.add(bTUKemsoNgayNV);
 
         if (TamUngNhanVienDao.getInstance().luuThongTinTamUng(tUNV)){
@@ -351,8 +355,47 @@ public class TamUngNhanVienController implements Initializable {
             Alerts.showConfirmation("Thông báo","Ứng lương không thành công");
         }
 
+        maNhanVienTam= "";
+        soTienTamUngCuaNV = 0;
+        phongBan = new PhongBan();
+
+        tfTenNhanVien.setText("");
+        tfMaNhanVien.setText("");
+        tfMaTamUng.setText("");
+        tfNgayTamUng.setText("");
+        tfPhongBan.setText("");
+        tfSoNgayDiLam.setText("");
+        tfSoTienTamUng.setText("");
+        tfLuongCoBan.setText("");
+        tfGhiChu.setText("");
+
+    }
 
 
+    //Sự kiện trên table
+
+    public void skChonRowtblviewTamUngNhanVien(MouseEvent mouseEvent) {
+        if (!DSTamUng.isEmpty() && !tblviewTamUngNhanVien.getSelectionModel().isEmpty()){
+            btnUngLuong.setDisable(true);
+            btnHuyXem.setDisable(false);
+            tfMaNhanVien.setDisable(true);
+            tfSoTienTamUng.setDisable(true);
+            tfGhiChu.setDisable(true);
+
+            BangTamUngNhanVienKemSoNgayDiLam btu = tblviewTamUngNhanVien.getSelectionModel().getSelectedItem();
+
+            tfMaTamUng.setText(btu.getTamUng().getMaTUNV());
+            tfMaNhanVien.setText(btu.getTamUng().getMaNV().getMaNV());
+            tfTenNhanVien.setText(btu.getTamUng().getMaNV().getHoNV()+" "+
+                    btu.getTamUng().getMaNV().getTenNV());
+
+            tfPhongBan.setText(btu.getTamUng().getMaNV().getPhongBan().getTenPB());
+            tfNgayTamUng.setText(new SimpleDateFormat("dd/MM/yyyy").format(btu.getTamUng().getNgayTamUng()));
+            tfSoNgayDiLam.setText(String.valueOf(btu.getSoNgayDiLam()));
+
+            tfLuongCoBan.setText(String.valueOf(btu.getTamUng().getMaNV().getLuongCoBan()+" VND"));
+            tfSoTienTamUng.setText(String.valueOf(btu.getTamUng().getSoTienTamUng()));
+        }
     }
 
 

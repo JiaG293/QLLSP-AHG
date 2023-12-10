@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 
 public interface DSTamUngNhanVien {
     ObservableList<BangTamUngNhanVienKemSoNgayDiLam> DSTamUng = FXCollections.observableArrayList();
-    PhongBan phongBan = new PhongBan();
 
 
 
