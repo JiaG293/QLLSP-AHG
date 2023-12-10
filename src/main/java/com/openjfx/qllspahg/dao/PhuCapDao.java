@@ -28,11 +28,9 @@ public class PhuCapDao {
                 String maPhuCap = rs.getString("maPhuCap");
                 double tienChuyenCan = rs.getDouble("tienChuyenCan");
                 double tienNangSuat = rs.getDouble("tienNangSuat");
-                double tienDienThoai = rs.getDouble("tienDienThoai");
-                double tienDiLai = rs.getDouble("tienDiLai");
                 double tienNhaTro = rs.getDouble("tienNhaTro");
                 double tienConNho = rs.getDouble("tienConNho");
-                PhuCap pc = new PhuCap(maPhuCap,tienChuyenCan,tienNangSuat,tienDienThoai,tienDiLai,tienNhaTro,tienConNho);
+                PhuCap pc = new PhuCap(maPhuCap,tienChuyenCan,tienNangSuat,tienNhaTro,tienConNho);
                 dsPhuCap.add(pc);
             }
         }catch (SQLException e){

@@ -37,6 +37,11 @@ public class NhanVien {
         this.luongCoBan = luongCoBan;
     }
 
+    public NhanVien(String hoNV, String tenNV) {
+        this.hoNV = hoNV;
+        this.tenNV = tenNV;
+    }
+
     public NhanVien(String maNV, String hoNV, String tenNV, PhongBan phongBan) {
         this.maNV = maNV;
         this.hoNV = hoNV;

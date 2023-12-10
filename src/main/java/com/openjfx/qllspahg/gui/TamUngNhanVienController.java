@@ -1,37 +1,36 @@
 package com.openjfx.qllspahg.gui;
 
-import com.openjfx.qllspahg.dao.TamUngNhanVienDao;
-import com.openjfx.qllspahg.entity.PhongBan;
-import com.openjfx.qllspahg.entity.TamUngNhanVien;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.css.PseudoClass;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.util.StringConverter;
 
-import javax.security.auth.callback.Callback;
 import java.net.URL;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Formatter;
 import java.util.ResourceBundle;
 
 public class TamUngNhanVienController implements Initializable {
 
     @FXML
-    private Button btnLayDuLieu;
+    private Button btnHuyXem;
 
     @FXML
-    private Button btnTamUng;
+    private Button btnLayThongTin;
 
     @FXML
-    private ComboBox<PhongBan> cbxPhongBan;
+    private Button btnUngLuong;
 
     @FXML
-    private TableColumn<TamUngNhanVien, ?> colGhiChu;
+    private TableColumn<?, ?> colGhiChu;
 
     @FXML
     private TableColumn<?, ?> colMaNhanVien;
@@ -52,40 +51,55 @@ public class TamUngNhanVienController implements Initializable {
     private TableColumn<?, ?> colTenNhanVien;
 
     @FXML
+    private Label lblTieuDeNgayTamUng;
+
+    @FXML
     private TableView<?> tblviewTamUngNhanVien;
 
     @FXML
     private TextField tfMaNhanVien;
 
     @FXML
+    private TextField tfMaTamUng;
+
+    @FXML
+    private TextField tfNgayTamUng;
+
+    @FXML
+    private TextField tfPhongBan;
+
+    @FXML
+    private TextField tfSoNgayDiLam;
+
+    @FXML
+    private TextField tfSoNgayTamUng;
+
+    @FXML
     private TextField tfTenNhanVien;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadDuLieuBanDau();
-    }
+        lblTieuDeNgayTamUng.setText(new SimpleDateFormat("dd/MM/yyyy").
+                format(Date.from(Instant.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault())))));
 
-    //Load Du LieuBanDau
-    private void loadDuLieuBanDau() {
-        ObservableList<PhongBan> dsPhongBan = FXCollections.observableArrayList();
-        dsPhongBan.addAll(TamUngNhanVienDao.getInstance().getAllPB());
-        cbxPhongBan.setItems(dsPhongBan);
-        cbxPhongBan.setConverter(new StringConverter<PhongBan>() {
-            @Override
-            public String toString(PhongBan phongBan) {
-                return phongBan !=null ? phongBan.getTenPB() : "";
-            }
+        System.out.println(LocalDate.now().getMonth().getValue());
+        System.out.println(LocalDate.now().getYear());
 
-            @Override
-            public PhongBan fromString(String s) {
-                int select = cbxPhongBan.getSelectionModel().getSelectedIndex();
-                if (select >0 && select <dsPhongBan.size() )
-                    return dsPhongBan.get(select);
-                return null;
-            }
-        });
+
     }
 
 
 
+    /**
+     *
+     * Sự kiện
+     */
+
+
+    // Sự kiện trne6 button
+    public void skbtnLayThongTin(ActionEvent actionEvent) {
+    }
 }
+
+
+

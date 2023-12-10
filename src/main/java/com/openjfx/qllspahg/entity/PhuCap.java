@@ -6,16 +6,14 @@ public class PhuCap {
     private String maPhuCap;
     private double tienChuyenCan;
     private double tienNangSuat;
-    private double tienDienThoai;
     private double tienNhaTro;
     private double tienConNho;
 
 
-    public PhuCap(String maPhuCap, double tienChuyenCan, double tienNangSuat, double tienDienThoai, double tienNhaTro, double tienConNho) {
+    public PhuCap(String maPhuCap, double tienChuyenCan, double tienNangSuat, double tienNhaTro, double tienConNho) {
         this.maPhuCap = maPhuCap;
         this.tienChuyenCan = tienChuyenCan;
         this.tienNangSuat = tienNangSuat;
-        this.tienDienThoai = tienDienThoai;
         this.tienNhaTro = tienNhaTro;
         this.tienConNho = tienConNho;
     }
@@ -68,13 +66,6 @@ public class PhuCap {
         this.tienNangSuat = tienNangSuat;
     }
 
-    public double getTienDienThoai() {
-        return tienDienThoai;
-    }
-
-    public void setTienDienThoai(double tienDienThoai) {
-        this.tienDienThoai = tienDienThoai;
-    }
 
     public double getTienNhaTro() {
         return tienNhaTro;
@@ -109,13 +100,12 @@ public class PhuCap {
 
     @Override
     public String toString() {
-        return "PhuCap{\n" +
+        return "PhuCap{" +
                 "maPhuCap='" + maPhuCap + '\'' +
                 ", tienChuyenCan=" + tienChuyenCan +
                 ", tienNangSuat=" + tienNangSuat +
-                ", tienDienThoai=" + tienDienThoai +
                 ", tienNhaTro=" + tienNhaTro +
                 ", tienConNho=" + tienConNho +
-                "}\n";
+                '}';
     }
 }

@@ -245,7 +245,7 @@ public class PhanCongCongNhanDao {
 
                 try {
                     Connection con = Db.getConnection();
-                    String truyVan = "INSERT [dbo].[BangPhanCongCongNhan] ([maBPCCN], [maCN], [maCD], [maHD], [chiTieu], [tangCa], [ngayPhanCong], [ngayKetThuc] )\n" +
+                    String truyVan = "INSERT [dbo].[BangPhanCongCongNhan] ([maBPCCN], [maCN], [maCD], [maHD], [chiTieu], [trangThaiTangCa], [ngayPhanCong], [ngayKetThuc] )\n" +
                             "VALUES \n" +
                             "(?,?,?,?,?,?,?,?)";
                     PreparedStatement st = con.prepareStatement(truyVan);
@@ -300,7 +300,7 @@ public class PhanCongCongNhanDao {
                             "[maCD] = '"+maCD+"',\n" +
                             "[maHD] = '"+maHD+"',\n" +
                             "[chiTieu] = "+chiTieu +",\n" +
-                            "[tangCa] ="+tangCa+",\n"+
+                            "[trangThaiTangCa] ="+tangCa+",\n"+
                             "[ngayPhanCong] = '"+ngayPCSQL+"',\n" +
                             "[ngayKetThuc] ='"+ngayKTSQL+"'\n" +
                             "WHERE [maBPCCN] LIKE '%"+mabpc+"'";
@@ -405,7 +405,7 @@ public class PhanCongCongNhanDao {
                 String maCD = rs.getString("maCD");
                 String maHD = rs.getString("maHD");
                 int chiTieu = rs.getInt("chiTieu");
-                boolean tangCa = rs.getBoolean("tangCa");
+                boolean tangCa = rs.getBoolean("trangThaiTangCa");
                 java.util.Date ngayPhanCong = rs.getDate("ngayPhanCong");
                 java.util.Date ngayKetThuc = rs.getDate("ngayKetThuc");
 

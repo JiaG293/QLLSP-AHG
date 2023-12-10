@@ -171,7 +171,7 @@ CREATE TABLE BangChamCongCongNhan(
 
 --Table BangChamCongNhanVien
 CREATE TABLE BangChamCongNhanVien(
-                                     maBCCNV varchar(14) NOT NULL, --khoa chinh
+                                     maBCCNV varchar(16) NOT NULL, --khoa chinh
                                      maNV varchar(8), --khoa ngoai khoa chinh
                                      ngayChamCong date,
                                      diLam bit DEFAULT 1, --0 la khong di lam, 1 la co di lam
