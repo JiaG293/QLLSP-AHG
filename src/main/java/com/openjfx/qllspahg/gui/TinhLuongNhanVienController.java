@@ -259,7 +259,7 @@ public class TinhLuongNhanVienController implements Initializable {
             thangLbl = String.valueOf(dateHienTai.getMonthValue() - 1);
         }
         if (namLbl == null || namLbl.equals("Trống") || namLbl.isEmpty()) {
-            namLbl = String.valueOf(dateHienTai.getYear() - 1);
+            namLbl = String.valueOf(dateHienTai.getYear());
         }
         lblThangNamLuongNV.setText("Bảng lương tháng " + thangLbl + "-" + namLbl);
     }
@@ -310,6 +310,11 @@ public class TinhLuongNhanVienController implements Initializable {
         String nam = cbxLocNamTinhLuongNV.getValue();
         System.out.println(thang + nam);
         taiDuLieuTinhLuongNhanVienTuyChon(TinhLuongNhanVienDaoImpl.getInstance().tinhLuongNhanVienTuDong(thang, nam));
+
+        //Set label bang luong
+        String thangLbl = cbxLocThangTinhLuongNV.getValue();
+        String namLbl = cbxLocNamTinhLuongNV.getValue();
+        lblThangNamLuongNV.setText("Bảng lương tháng " + thangLbl + "-" + namLbl);
     }
 
     @FXML
