@@ -19,6 +19,11 @@ public class TamUngNhanVien {
         this.soTienTamUng = soTienTamUng;
     }
 
+    public TamUngNhanVien(String maTUNV, NhanVien maNV) {
+        this.maTUNV = maTUNV;
+        this.maNV = maNV;
+    }
+
     public TamUngNhanVien(String maTUNV, NhanVien maNV, Date ngayTamUng, String lyDo, double soTienTamUng, boolean trangThaiTUCN) {
         this.maTUNV = maTUNV;
         this.maNV = maNV;
