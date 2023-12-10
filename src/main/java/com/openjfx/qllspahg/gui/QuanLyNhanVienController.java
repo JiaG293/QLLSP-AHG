@@ -705,30 +705,35 @@ public class QuanLyNhanVienController implements Initializable{
 
     }
     public void xoaTTNhanVien(ActionEvent actionEvent) {
-        //Trường hợp chọn ở tbale thông tin nhân viên
-        NhanVien nv = tblViewTTNhanVien.getSelectionModel().getSelectedItem();
-        //Nếu nv ko tồn tại trong DSNhanVienThem thì lưu vào DSXoa
-        if (!DSNhanVienThem.contains(nv))
-            DSNhanVienXoa.add(nv);
-        //Nếu tồn tại thì xóa khỏi DSnhanvien thêm
-        else if (DSNhanVienThem.contains(nv))
-            DSNhanVienThem.remove(nv);
-        else if (DSNhanVienSua.contains(nv)) {
-            DSNhanVienSua.remove(nv);
+        if (!tblViewTTNhanVien.getSelectionModel().isEmpty()){
+            //Trường hợp chọn ở tbale thông tin nhân viên
+            NhanVien nv = tblViewTTNhanVien.getSelectionModel().getSelectedItem();
+            //Nếu nv ko tồn tại trong DSNhanVienThem thì lưu vào DSXoa
+            if (!DSNhanVienThem.contains(nv))
+                DSNhanVienXoa.add(nv);
+                //Nếu tồn tại thì xóa khỏi DSnhanvien thêm
+            else if (DSNhanVienThem.contains(nv))
+                DSNhanVienThem.remove(nv);
+            else if (DSNhanVienSua.contains(nv)) {
+                DSNhanVienSua.remove(nv);
+            }
+            DSNhanVien.remove(nv);
+            DSNhanVienphu.remove(nv);
         }
-        DSNhanVien.remove(nv);
-        DSNhanVienphu.remove(nv);
-        //Trường hợp chọn tablechitietthongtinnhanvien
-        NhanVien nv1 =tblviewChiTietNhanVien.getSelectionModel().getSelectedItem();
-        if (!DSNhanVienThem.contains(nv1))
-            DSNhanVienXoa.add(nv1);
-        else if (DSNhanVienThem.contains(nv1)) {
-            DSNhanVienThem.remove(nv1);
-        } else if (DSNhanVienSua.contains(nv1))
-            DSNhanVienSua.remove(nv1);
+        if (!tblviewChiTietNhanVien.getSelectionModel().isEmpty()){
+            //Trường hợp chọn tablechitietthongtinnhanvien
+            NhanVien nv1 =tblviewChiTietNhanVien.getSelectionModel().getSelectedItem();
+            if (!DSNhanVienThem.contains(nv1))
+                DSNhanVienXoa.add(nv1);
+            else if (DSNhanVienThem.contains(nv1)) {
+                DSNhanVienThem.remove(nv1);
+            } else if (DSNhanVienSua.contains(nv1))
+                DSNhanVienSua.remove(nv1);
 
-        DSNhanVien.remove(nv1);
-        DSNhanVienphu.remove(nv1);
+            DSNhanVien.remove(nv1);
+            DSNhanVienphu.remove(nv1);
+        }
+
     }
 
     public void xoaTrangTTNhanVien(ActionEvent actionEvent) {

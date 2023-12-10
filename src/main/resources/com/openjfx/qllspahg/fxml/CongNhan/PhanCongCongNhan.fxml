@@ -104,7 +104,7 @@
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
                         <Label text="Hợp đồng:" />
-                        <ComboBox fx:id="cbxHopDongPCCN" onAction="#skcbxMaHopDong" prefHeight="26.0" prefWidth="322.0" />
+                        <ComboBox fx:id="cbxHopDongPCCN" onAction="#skcbxMaHopDong" prefHeight="26.0" prefWidth="395.0" />
                      </children>
                      <padding>
                         <Insets left="5.0" />
@@ -124,7 +124,7 @@
                         <HBox alignment="CENTER" spacing="10.0">
                            <children>
                               <Label text="Số lượng cần làm: " />
-                              <TextField fx:id="tfSoLuongCanLamPCCN" disable="true" editable="false" prefHeight="26.0" prefWidth="92.0" />
+                              <TextField fx:id="tfSoLuongCanLamPCCN" disable="true" editable="false" prefHeight="26.0" prefWidth="125.0" />
                            </children>
                         </HBox>
                      </children>
@@ -156,7 +156,7 @@
                         <HBox alignment="CENTER" spacing="10.0">
                            <children>
                               <Label text="Tổ:" />
-                              <ComboBox fx:id="cbxToPCCN" onAction="#skcbxTo" prefHeight="26.0" prefWidth="90.0" />
+                              <ComboBox fx:id="cbxToPCCN" onAction="#skcbxTo" prefHeight="26.0" prefWidth="136.0" />
                            </children>
                            <padding>
                               <Insets left="5.0" />
@@ -165,7 +165,7 @@
                         <HBox alignment="CENTER" spacing="10.0">
                            <children>
                               <Label text="Số lượng người chưa phân công:" />
-                              <TextField fx:id="tfSoLuongChuaPhanCongPCCN" disable="true" editable="false" prefHeight="26.0" prefWidth="66.0" />
+                              <TextField fx:id="tfSoLuongChuaPhanCongPCCN" disable="true" editable="false" prefHeight="26.0" prefWidth="106.0" />
                            </children>
                         </HBox>
                      </children>
@@ -204,7 +204,7 @@
                         <HBox alignment="CENTER" spacing="10.0">
                            <children>
                               <Label text="Tổ:" />
-                              <TextField fx:id="tfToPCCN" disable="true" editable="false" prefHeight="26.0" prefWidth="75.0" />
+                              <TextField fx:id="tfToPCCN" disable="true" editable="false" prefHeight="26.0" prefWidth="112.0" />
                            </children>
                            <padding>
                               <Insets left="5.0" />
@@ -213,7 +213,7 @@
                         <HBox spacing="10.0">
                            <children>
                               <Label text="Số người cần phân công" />
-                              <TextField fx:id="tfSoNguoiCanPhanCongPCCN" disable="true" editable="false" prefHeight="26.0" prefWidth="92.0" />
+                              <TextField fx:id="tfSoNguoiCanPhanCongPCCN" disable="true" editable="false" prefHeight="26.0" prefWidth="102.0" />
                            </children>
                         </HBox>
                      </children>
@@ -221,7 +221,7 @@
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
                         <Label text="Số lượng phân công cho mỗi người: " />
-                        <TextField fx:id="tfSoLuongMoiNGuoiPCCN" onAction="#skNhaptfSoLuongMoiNGuoiPCCN" />
+                        <TextField fx:id="tfSoLuongMoiNGuoiPCCN" onAction="#skNhaptfSoLuongMoiNGuoiPCCN" prefHeight="26.0" prefWidth="186.0" />
                      </children>
                      <padding>
                         <Insets left="5.0" />
@@ -230,7 +230,7 @@
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
                         <Label text="Tổng số lượng phân công:" />
-                        <TextField fx:id="tfTongSoLuongPhanCongPCCN" disable="true" editable="false" />
+                        <TextField fx:id="tfTongSoLuongPhanCongPCCN" disable="true" editable="false" prefHeight="26.0" prefWidth="241.0" />
                      </children>
                      <padding>
                         <Insets left="5.0" />
@@ -239,7 +239,7 @@
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
                         <Label text="Số lượng cần phân công còn lại: " />
-                        <TextField fx:id="tfSoLuongPhanCongConLai" disable="true" editable="false" />
+                        <TextField fx:id="tfSoLuongPhanCongConLai" disable="true" editable="false" prefHeight="26.0" prefWidth="208.0" />
                      </children>
                      <padding>
                         <Insets left="5.0" />
@@ -267,7 +267,7 @@
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
                         <Label text="Mã công nhân:" />
-                        <TextField fx:id="tfMaCongNhanPCCN" disable="true" editable="false" />
+                        <TextField fx:id="tfMaCongNhanPCCN" disable="true" editable="false" prefHeight="26.0" prefWidth="305.0" />
                      </children>
                      <padding>
                         <Insets left="5.0" />
@@ -276,7 +276,7 @@
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
                         <Label text="Họ và tên:" />
-                        <TextField fx:id="tfHoVaTenPCCN" disable="true" editable="false" />
+                        <TextField fx:id="tfHoVaTenPCCN" disable="true" editable="false" prefHeight="26.0" prefWidth="330.0" />
                      </children>
                      <padding>
                         <Insets left="5.0" />
@@ -285,7 +285,7 @@
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
                         <Label text="Số lượng phân công" />
-                        <TextField fx:id="tfSoLuongPhanCongPCCN" />
+                        <TextField fx:id="tfSoLuongPhanCongPCCN" prefHeight="26.0" prefWidth="278.0" />
                      </children>
                      <padding>
                         <Insets left="5.0" />

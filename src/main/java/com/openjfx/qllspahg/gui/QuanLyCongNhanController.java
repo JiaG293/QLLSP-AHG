@@ -583,31 +583,36 @@ public class QuanLyCongNhanController implements Initializable {
     }
 
     public void xoaTTCongNhan(ActionEvent actionEvent) {
-        CongNhan cn = tblViewTTCongNhan.getSelectionModel().getSelectedItem();
-        //Nếu nv ko tồn tại trong DSNhanVienThem thì lưu vào DSXoa
-        if (DSCongNhanXoa.contains(cn)){
-            return;
-        }else if (!DSCongNhanThem.contains(cn))
-            DSCongNhanXoa.add(cn);
-            //Nếu tồn tại thì xóa khỏi DSnhanvien thêm
-        else if (DSCongNhanThem.contains(cn))
-            DSCongNhanThem.remove(cn);
-        else if (DSCongNhanSua.contains(cn)) {
-            DSCongNhanSua.remove(cn);
+        if (!tblViewTTCongNhan.getSelectionModel().isEmpty()){
+            CongNhan cn = tblViewTTCongNhan.getSelectionModel().getSelectedItem();
+            //Nếu nv ko tồn tại trong DSNhanVienThem thì lưu vào DSXoa
+            if (DSCongNhanXoa.contains(cn)){
+                return;
+            }else if (!DSCongNhanThem.contains(cn))
+                DSCongNhanXoa.add(cn);
+                //Nếu tồn tại thì xóa khỏi DSnhanvien thêm
+            else if (DSCongNhanThem.contains(cn))
+                DSCongNhanThem.remove(cn);
+            else if (DSCongNhanSua.contains(cn)) {
+                DSCongNhanSua.remove(cn);
+            }
+            DSCongNhan.remove(cn);
+            DSCongNhanphu.remove(cn);
         }
-        DSCongNhan.remove(cn);
-        DSCongNhanphu.remove(cn);
-        //Trường hợp chọn tablechitietthongtinnhanvien
-        CongNhan cn1 = tblViewChiTietTTCongNhan.getSelectionModel().getSelectedItem();
-        if (!DSCongNhanThem.contains(cn1))
-            DSCongNhanXoa.add(cn1);
-        else if (DSCongNhanThem.contains(cn1)) {
-            DSCongNhanThem.remove(cn1);
-        } else if (DSCongNhanSua.contains(cn1))
-            DSCongNhanSua.remove(cn1);
+        if (!tblViewChiTietTTCongNhan.getSelectionModel().isEmpty()){
+            //Trường hợp chọn tablechitietthongtinnhanvien
+            CongNhan cn1 = tblViewChiTietTTCongNhan.getSelectionModel().getSelectedItem();
+            if (!DSCongNhanThem.contains(cn1))
+                DSCongNhanXoa.add(cn1);
+            else if (DSCongNhanThem.contains(cn1)) {
+                DSCongNhanThem.remove(cn1);
+            } else if (DSCongNhanSua.contains(cn1))
+                DSCongNhanSua.remove(cn1);
 
-        DSCongNhan.remove(cn1);
-        DSCongNhanphu.remove(cn1);
+            DSCongNhan.remove(cn1);
+            DSCongNhanphu.remove(cn1);
+        }
+
     }
 
     public void xoaTrangTTCongNhan(ActionEvent actionEvent) {
