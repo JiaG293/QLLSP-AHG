@@ -8,8 +8,8 @@ public class TamUngNhanVien {
     private NhanVien maNV;
     private Date ngayTamUng;
     private String lyDo;
-    private double
-            soTienTamUng;
+    private double soTienTamUng;
+    private boolean trangThaiTUCN;
 
     public TamUngNhanVien(String maTUNV, NhanVien maNV, Date ngayTamUng, String lyDo, double soTienTamUng) {
         this.maTUNV = maTUNV;
@@ -17,6 +17,23 @@ public class TamUngNhanVien {
         this.ngayTamUng = ngayTamUng;
         this.lyDo = lyDo;
         this.soTienTamUng = soTienTamUng;
+    }
+
+    public TamUngNhanVien(String maTUNV, NhanVien maNV, Date ngayTamUng, String lyDo, double soTienTamUng, boolean trangThaiTUCN) {
+        this.maTUNV = maTUNV;
+        this.maNV = maNV;
+        this.ngayTamUng = ngayTamUng;
+        this.lyDo = lyDo;
+        this.soTienTamUng = soTienTamUng;
+        this.trangThaiTUCN = trangThaiTUCN;
+    }
+
+    public boolean getTrangThaiTUCN() {
+        return trangThaiTUCN;
+    }
+
+    public void setTrangThaiTUCN(boolean trangThaiTUCN) {
+        this.trangThaiTUCN = trangThaiTUCN;
     }
 
     public NhanVien getMaNV() {
@@ -81,5 +98,17 @@ public class TamUngNhanVien {
     @Override
     public int hashCode() {
         return Objects.hash(maTUNV);
+    }
+
+    @Override
+    public String toString() {
+        return "TamUngNhanVien\n{" +
+                "maTUNV='" + maTUNV + '\'' +
+                ", maNV=" + maNV +
+                ", ngayTamUng=" + ngayTamUng +
+                ", lyDo='" + lyDo + '\'' +
+                ", soTienTamUng=" + soTienTamUng +
+                ", trangThaiTUCN=" + trangThaiTUCN +
+                "}\n";
     }
 }

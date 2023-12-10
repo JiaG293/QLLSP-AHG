@@ -5,15 +5,49 @@ import java.util.Objects;
 
 public class TamUngCongNhan {
     private String maTUCN;
+    private CongNhan maCN;
     private Date ngayTamUng;
     private String lyDo;
     private double soTienTamUng;
+    private boolean trangThaiTUNV;
 
-    public TamUngCongNhan(String maTUCN, Date ngayTamUng, String lyDo, double soTienTamUng) {
+
+    public TamUngCongNhan(String maTUCN, CongNhan maCN, Date ngayTamUng, String lyDo, double soTienTamUng, boolean trangThaiTUNV) {
         this.maTUCN = maTUCN;
+        this.maCN = maCN;
         this.ngayTamUng = ngayTamUng;
         this.lyDo = lyDo;
         this.soTienTamUng = soTienTamUng;
+        this.trangThaiTUNV = trangThaiTUNV;
+    }
+
+    public TamUngCongNhan(String maTUCN, CongNhan maCN, Date ngayTamUng, double soTienTamUng, boolean trangThaiTUNV) {
+        this.maTUCN = maTUCN;
+        this.maCN = maCN;
+        this.ngayTamUng = ngayTamUng;
+        this.soTienTamUng = soTienTamUng;
+        this.trangThaiTUNV = trangThaiTUNV;
+    }
+
+    public TamUngCongNhan(String maTUCN, CongNhan maCN) {
+        this.maTUCN = maTUCN;
+        this.maCN = maCN;
+    }
+
+    public CongNhan getMaCN() {
+        return maCN;
+    }
+
+    public void setMaCN(CongNhan maCN) {
+        this.maCN = maCN;
+    }
+
+    public boolean getTrangThaiTUNV() {
+        return trangThaiTUNV;
+    }
+
+    public void setTrangThaiTUNV(boolean trangThaiTUNV) {
+        this.trangThaiTUNV = trangThaiTUNV;
     }
 
     public String getMaTUCN() {
@@ -59,5 +93,17 @@ public class TamUngCongNhan {
     @Override
     public int hashCode() {
         return Objects.hash(maTUCN);
+    }
+
+    @Override
+    public String toString() {
+        return "TamUngCongNhan{\n" +
+                "maTUCN='" + maTUCN + '\'' +
+                ", maCN=" + maCN +
+                ", ngayTamUng=" + ngayTamUng +
+                ", lyDo='" + lyDo + '\'' +
+                ", soTienTamUng=" + soTienTamUng +
+                ", trangThaiTUNV=" + trangThaiTUNV +
+                "}\n";
     }
 }

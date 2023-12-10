@@ -41,7 +41,8 @@ CREATE TABLE NhanVien(
 CREATE TABLE TaiKhoan(
                          maTK varchar(8), --khoa ngoai --khoa chinh
                          matKhau varchar(max),
-trangThaiTK bit DEFAULT 0, -- 0 la hoat dong, 1 la khong hoat dong
+                         vaiTro nvarchar(128),
+                         trangThaiTK bit DEFAULT 1, -- 1 la hoat dong, 0 la khong hoat dong
 
 CONSTRAINT PK_TaiKhoan PRIMARY KEY CLUSTERED(maTK)
 )
@@ -139,6 +140,7 @@ CREATE TABLE BangPhanCongCongNhan(
                                      chiTieu int,
                                      ngayPhanCong date,
                                      ngayKetThuc date,
+                                     trangThaiTangCa bit DEFAULT 0, --0 la khong tang ca, -- 1 la tang ca
 
                                      CONSTRAINT PK_BangPhanCongCongNhan PRIMARY KEY(maBPCCN)
 )
@@ -194,13 +196,14 @@ CREATE TABLE TamUngNhanVien(
 
 --Table BangLuongNhanVien
 CREATE TABLE BangLuongNhanVien(
-                                  maBCCNV varchar(14), --khoa ngoai
+                                maBLNV varchar(16), --khoa chinh BL(2) + maNV(8) + ddMMyy(6) ngayTinhLuong
                                   maTUNV varchar(16), --khoa ngoai
-                                  luongNV decimal(19, 4),
+                                  luongNV decimal(19, 4), -- luong chua tru cac khoan phi
                                   bhxhNV decimal(19, 4),
                                   bhytNV decimal(19, 4),
-                                  tongLuongNV decimal(19, 4),
+                                  tongLuongNV decimal(19, 4), --luong thuc te nhan duoc
                                   ngayTinhLuong date,
+                                  ngayNhanLuong date,
                                   trangThaiLuong bit DEFAULT 0, -- 0 la chua thanh toan --1 la thanh toan
 
                                   CONSTRAINT PK_BangLuongNhanVien PRIMARY KEY CLUSTERED(maBCCNV, maTUNV)
@@ -212,7 +215,6 @@ CREATE TABLE PhuCap(
                        tienChuyenCan decimal(19, 4),
                        tienNangSuat decimal(19, 4),
                        tienConNho decimal(19, 4),
-                       tienDiLai decimal(19, 4),
                        tienNhaTro decimal(19, 4),
 
                        CONSTRAINT PK_PhuCap PRIMARY KEY(maPhuCap)
@@ -232,14 +234,15 @@ CREATE TABLE TamUngCongNhan(
 
 --Table BangLuongCongNhan
 CREATE TABLE BangLuongCongNhan(
-
+                                  maBLNV varchar(16), --khoa chinh BL(2) + maCN(8) + ddMMyy(6) ngayTinhLuong
                                   maBCCCN varchar(16), --khoa ngoai
                                   maTUCN varchar(16), --khoa ngoai
-                                  luongCN decimal(19, 4),
+                                  luongCN decimal(19, 4),-- luong chua tru cac khoan phi
                                   bhxhCN decimal(19, 4),
                                   bhytCN decimal(19, 4),
-                                  tongLuongCN decimal(19, 4),
+                                  tongLuongCN decimal(19, 4), -- luong thuc te nhan duoc
                                   ngayTinhLuong date,
+                                  ngayNhanLuong date,
                                   trangThaiLuong bit DEFAULT 0, -- 0 la chua thanh toan --1 la thanh toan
 
                                   CONSTRAINT PK_BangLuongCongNhan PRIMARY KEY CLUSTERED(maBCCCN, maTUCN)

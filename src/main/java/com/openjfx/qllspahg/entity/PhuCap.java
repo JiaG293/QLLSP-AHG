@@ -7,21 +7,20 @@ public class PhuCap {
     private double tienChuyenCan;
     private double tienNangSuat;
     private double tienDienThoai;
-    private double tienDiLai;
     private double tienNhaTro;
     private double tienConNho;
 
 
-    public PhuCap(String maPhuCap, double tienChuyenCan, double tienNangSuat, double tienDienThoai, double tienDiLai, double tienNhaTro, double tienConNho) {
+    public PhuCap(String maPhuCap, double tienChuyenCan, double tienNangSuat, double tienDienThoai, double tienNhaTro, double tienConNho) {
         this.maPhuCap = maPhuCap;
         this.tienChuyenCan = tienChuyenCan;
         this.tienNangSuat = tienNangSuat;
         this.tienDienThoai = tienDienThoai;
-        this.tienDiLai = tienDiLai;
         this.tienNhaTro = tienNhaTro;
         this.tienConNho = tienConNho;
     }
 
+    //phu Cap Cong Nhan
     public PhuCap(String maPhuCap, double tienChuyenCan, double tienNhaTro, double tienConNho) {
         this.maPhuCap = maPhuCap;
         this.tienChuyenCan = tienChuyenCan;
@@ -29,6 +28,8 @@ public class PhuCap {
         this.tienConNho = tienConNho;
     }
 
+
+    //phu Cap nhan vien
     public PhuCap(double tienChuyenCan, double tienNhaTro, double tienConNho) {
         this.tienChuyenCan = tienChuyenCan;
         this.tienNhaTro = tienNhaTro;
@@ -38,14 +39,6 @@ public class PhuCap {
     public PhuCap() {
     }
 
-
-    public double getTienDiLai() {
-        return tienDiLai;
-    }
-
-    public void setTienDiLai(double tienDiLai) {
-        this.tienDiLai = tienDiLai;
-    }
 
     public PhuCap(String maPhuCap) {
         this.maPhuCap = maPhuCap;
@@ -99,12 +92,7 @@ public class PhuCap {
         this.tienConNho = tienConNho;
     }
 
-    @Override
-    public String toString() {
-        return "PhuCap{" +
-                "maPhuCap='" + maPhuCap + '\'' +
-                '}';
-    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -117,5 +105,17 @@ public class PhuCap {
     @Override
     public int hashCode() {
         return Objects.hash(maPhuCap);
+    }
+
+    @Override
+    public String toString() {
+        return "PhuCap{\n" +
+                "maPhuCap='" + maPhuCap + '\'' +
+                ", tienChuyenCan=" + tienChuyenCan +
+                ", tienNangSuat=" + tienNangSuat +
+                ", tienDienThoai=" + tienDienThoai +
+                ", tienNhaTro=" + tienNhaTro +
+                ", tienConNho=" + tienConNho +
+                "}\n";
     }
 }
