@@ -20,6 +20,8 @@ public class ChiTietLuongCongNhan {
     private double luongThucTe;
     private double phiBHYT;
     private double phiBHXH;
+    private String thangBangLuong;
+    private String namBangLuong;
 
     public ChiTietLuongCongNhan(BangLuongNhanVien maBangLuongCongNhan, CongNhan maCongNhan, BangPhanCongCongNhan maBangPhanCongCongNhan, BangChamCongCongNhan maBangChamCongCongNhan, TamUngCongNhan maTamUngCongNhan, PhuCap maPhuCapCongNhan, int soNgayDiLam, int soNgayTangCa, int soNgayNghi, int soNgayCoPhep, double luongNhanDuoc, double luongThucTe, double phiBHYT, double phiBHXH) {
         this.maBangLuongCongNhan = maBangLuongCongNhan;
@@ -67,6 +69,33 @@ public class ChiTietLuongCongNhan {
         this.luongThucTe = luongThucTe;
         this.phiBHYT = phiBHYT;
         this.phiBHXH = phiBHXH;
+    }
+
+    public ChiTietLuongCongNhan(CongNhan maCongNhan, TamUngCongNhan maTamUngCongNhan, PhuCap maPhuCapCongNhan, int soNgayDiLam, int soNgayTangCa, int soNgayNghi, int soNgayCoPhep, int chiTieuPhanCong, int soLuongLamDuoc, int soLuongLamDuocCaBa, double luongNhanDuoc, double luongThucTe, double phiBHYT, double phiBHXH, String thangBangLuong, String namBangLuong) {
+        this.maCongNhan = maCongNhan;
+        this.maTamUngCongNhan = maTamUngCongNhan;
+        this.maPhuCapCongNhan = maPhuCapCongNhan;
+        this.soNgayDiLam = soNgayDiLam;
+        this.soNgayTangCa = soNgayTangCa;
+        this.soNgayNghi = soNgayNghi;
+        this.soNgayCoPhep = soNgayCoPhep;
+        this.chiTieuPhanCong = chiTieuPhanCong;
+        this.soLuongLamDuoc = soLuongLamDuoc;
+        this.soLuongLamDuocCaBa = soLuongLamDuocCaBa;
+        this.luongNhanDuoc = luongNhanDuoc;
+        this.luongThucTe = luongThucTe;
+        this.phiBHYT = phiBHYT;
+        this.phiBHXH = phiBHXH;
+        this.thangBangLuong = thangBangLuong;
+        this.namBangLuong = namBangLuong;
+    }
+
+    public String getThangBangLuong() {
+        return thangBangLuong;
+    }
+
+    public void setThangBangLuong(String thangBangLuong) {
+        this.thangBangLuong = thangBangLuong;
     }
 
     public int getSoLuongLamDuocCaBa() {

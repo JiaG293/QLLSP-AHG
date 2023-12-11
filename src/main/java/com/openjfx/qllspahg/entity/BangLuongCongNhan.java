@@ -4,8 +4,7 @@ import java.sql.Date;
 
 public class BangLuongCongNhan {
     private String maBLCN;
-    private BangChamCongCongNhan maBangChamCongCongNhan;
-    private TamUngCongNhan maTamUngCongNhan;
+    private CongNhan maCongNhan;
     private Date ngayTinhLuong;
     private double luongCN;
     private double bhxhCN;
@@ -14,10 +13,9 @@ public class BangLuongCongNhan {
     private Date ngayNhanLuong;
     private boolean trangThaiLuong;
 
-    public BangLuongCongNhan(String maBLCN, BangChamCongCongNhan maBangChamCongCongNhan, TamUngCongNhan maTamUngCongNhan, Date ngayTinhLuong, double luongCN, double bhxhCN, double bhytCN, double tongLuongCN, Date ngayNhanLuong, boolean trangThaiLuong) {
+    public BangLuongCongNhan(String maBLCN, CongNhan maCongNhan, Date ngayTinhLuong, double luongCN, double bhxhCN, double bhytCN, double tongLuongCN, Date ngayNhanLuong, boolean trangThaiLuong) {
         this.maBLCN = maBLCN;
-        this.maBangChamCongCongNhan = maBangChamCongCongNhan;
-        this.maTamUngCongNhan = maTamUngCongNhan;
+        this.maCongNhan = maCongNhan;
         this.ngayTinhLuong = ngayTinhLuong;
         this.luongCN = luongCN;
         this.bhxhCN = bhxhCN;
@@ -27,14 +25,12 @@ public class BangLuongCongNhan {
         this.trangThaiLuong = trangThaiLuong;
     }
 
-    public BangLuongCongNhan(String maBLCN, BangChamCongCongNhan maBangChamCongCongNhan, TamUngCongNhan maTamUngCongNhan, Date ngayTinhLuong, double tongLuongCN, Date ngayNhanLuong, boolean trangThaiLuong) {
-        this.maBLCN = maBLCN;
-        this.maBangChamCongCongNhan = maBangChamCongCongNhan;
-        this.maTamUngCongNhan = maTamUngCongNhan;
-        this.ngayTinhLuong = ngayTinhLuong;
-        this.tongLuongCN = tongLuongCN;
-        this.ngayNhanLuong = ngayNhanLuong;
-        this.trangThaiLuong = trangThaiLuong;
+    public CongNhan getMaCongNhan() {
+        return maCongNhan;
+    }
+
+    public void setMaCongNhan(CongNhan maCongNhan) {
+        this.maCongNhan = maCongNhan;
     }
 
     public String getMaBLCN() {
@@ -43,22 +39,6 @@ public class BangLuongCongNhan {
 
     public void setMaBLCN(String maBLCN) {
         this.maBLCN = maBLCN;
-    }
-
-    public BangChamCongCongNhan getMaBangChamCongCongNhan() {
-        return maBangChamCongCongNhan;
-    }
-
-    public void setMaBangChamCongCongNhan(BangChamCongCongNhan maBangChamCongCongNhan) {
-        this.maBangChamCongCongNhan = maBangChamCongCongNhan;
-    }
-
-    public TamUngCongNhan getMaTamUngCongNhan() {
-        return maTamUngCongNhan;
-    }
-
-    public void setMaTamUngCongNhan(TamUngCongNhan maTamUngCongNhan) {
-        this.maTamUngCongNhan = maTamUngCongNhan;
     }
 
     public Date getNgayTinhLuong() {
@@ -121,8 +101,7 @@ public class BangLuongCongNhan {
     public String toString() {
         return "BangLuongCongNhan{\n" +
                 "maBLCN='" + maBLCN + '\'' +
-                ", maBangChamCongCongNhan=" + maBangChamCongCongNhan +
-                ", maTamUngCongNhan=" + maTamUngCongNhan +
+                "maCongNhan='" + maCongNhan + '\'' +
                 ", ngayTinhLuong=" + ngayTinhLuong +
                 ", luongCN=" + luongCN +
                 ", bhxhCN=" + bhxhCN +

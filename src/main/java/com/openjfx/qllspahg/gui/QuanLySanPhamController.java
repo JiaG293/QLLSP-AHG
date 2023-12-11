@@ -185,7 +185,7 @@ public class QuanLySanPhamController implements Initializable {
 
         String maSP = tfLocMaSP.getText();
         String tenSP = tfLocTenSP.getText();
-        String loaiSP = String.valueOf(cbxLocLoaiSanPham.getValue());
+        String loaiSP = cbxLocLoaiSanPham.getValue();
 
         System.out.println(maSP + " " + tenSP+ " " + loaiSP);
 

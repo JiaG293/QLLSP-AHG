@@ -5,6 +5,7 @@ import com.openjfx.qllspahg.dao.QuanLySanPhamDaoImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.Date;
 import java.util.Random;
 
 public class UUIDUtils {
@@ -102,7 +103,14 @@ public class UUIDUtils {
         return null; // tra ve null neu co van de
     }
 
+    public static String taoMaBangLuongCongNhan(String maCongNhan){
+        return "BL" + maCongNhan + DateUtils.formatStringVietnamDateCustom(Date.valueOf(Utils.taoNgayHienTai()), "MMyyyy");
+    }
 
+
+    public static void main(String[] args) {
+        System.out.println(taoMaBangLuongCongNhan("CN100007"));
+    }
 
 
 
