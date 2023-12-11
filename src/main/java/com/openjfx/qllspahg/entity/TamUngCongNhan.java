@@ -35,6 +35,14 @@ public class TamUngCongNhan {
         this.soTienTamUng = soTienTamUng;
     }
 
+    public TamUngCongNhan(String maTUCN, CongNhan maCN, Date ngayTamUng, String lyDo, double soTienTamUng) {
+        this.maTUCN = maTUCN;
+        this.maCN = maCN;
+        this.ngayTamUng = ngayTamUng;
+        this.lyDo = lyDo;
+        this.soTienTamUng = soTienTamUng;
+    }
+
     public TamUngCongNhan(String maTUCN, CongNhan maCN) {
         this.maTUCN = maTUCN;
         this.maCN = maCN;

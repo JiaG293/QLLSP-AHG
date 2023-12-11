@@ -259,6 +259,18 @@ VALUES
 ('CCNV100000081223','NV100000','2023-12-08', 0,1),
 ('CCNV100000081222','NV100000','2022-12-08', 0,1)
 
+SELECT TU.maTUNV, TU.maNV, TU.ngayTamUng, TU.lyDo, TU.soTienTamUng, NV.hoNV, NV.tenNV, NV.luongCoBan,
+SUM(CASE WHEN BCC.nghiPhep = 1 THEN 1 ELSE 0 END ) +
+SUM(CASE WHEN BCC.diLam = 1 THEN 1 ELSE 0 END)  AS soNgayDiLam, PB.*
+FROM [dbo].[TamUngNhanVien] AS TU
+JOIN [dbo].[NhanVien] AS NV ON NV.maNV = TU.maNV 
+JOIN [dbo].[BangChamCongNhanVien] AS BCC ON BCC.maNV = TU.maNV
+JOIN [dbo].[PhongBan] AS PB ON PB.maPB = NV.maPB
+WHERE MONTH (BCC.ngayChamCong) = 12 
+AND YEAR (BCC.ngayChamCong) =2023 AND NV.trangThaiNV != 1
+GROUP BY TU.maNV, TU.maTUNV, TU.ngayTamUng, TU.soTienTamUng
+, TU.lyDo, NV.tenNV, NV.hoNV, NV.luongCoBan,PB.maPB, PB.tenPB
+
 
 SELECT NV.hoNV, NV.tenNV, NV.luongCoBan,
 SUM(CASE WHEN BCC.nghiPhep = 1 THEN 1 ELSE 0 END ) +  
@@ -279,7 +291,36 @@ WHERE MONTH (BCC.ngayChamCong) = 12
 AND YEAR (BCC.ngayChamCong) = 2023 AND NV.trangThaiNV != 1
 AND NV.maNV = 'NV100001'
 
+--Tam Ung CongNhan
+SELECT * FROM [dbo].[CongNhan]
+SELECT * FROM [dbo].[TamUngCongNhan]
+SELECT * FROM [dbo].[BangChamCongCongNhan]
+SELECT * FROM [dbo].[BangPhanCongCongNhan]
 
+SELECT TU.maTUCN, TU.maCN, TU.ngayTamUng, TU.lyDo, TU.soTienTamUng, CN.hoCN, CN.tenCN,
+SUM(CASE WHEN BCC.nghiPhep = 1 THEN 1 ELSE 0 END ) +
+SUM(CASE WHEN BCC.soLuongLamDuoc > 0 THEN 1 ELSE 0 END)  AS soNgayDiLam,
+TSX.*
+FROM [dbo].[TamUngCongNhan] AS TU
+JOIN [dbo].[CongNhan] AS CN ON CN.maCN = TU.maCN 
+JOIN [dbo].[BangPhanCongCongNhan] AS BPC ON BPC.maCN = CN.maCN
+JOIN [dbo].[BangChamCongCongNhan] AS BCC ON BCC.maBPCCN = BPC.maBPCCN
+JOIN [dbo].[ToSanXuat] AS TSX ON TSX.maTSX = CN.maTSX
+WHERE MONTH (BCC.ngayChamCong) = 12 
+AND YEAR (BCC.ngayChamCong) =2023 
+AND CN.trangThaiCN != 1
+GROUP BY TU.maTUCN, TU.maCN, TU.maCN, TU.ngayTamUng, TU.soTienTamUng
+, TU.lyDo, CN.tenCN, CN.hoCN,TSX.maTSX, TSX.tenTSX
 
+SELECT CN.hoCN, CN.tenCN,
+SUM(CASE WHEN BCCCN.nghiPhep = 1 THEN 1 ELSE 0 END ) +  
+SUM(CASE WHEN BCCCN.soLuongLamDuoc > 0 THEN 1 ELSE 0 END)  AS SoNgayDiLam, TSX.*	
+FROM  [dbo].[CongNhan] AS CN
+JOIN [dbo].[BangChamCongCongNhan] AS BCCCN ON BCCCN.maCN = CN.maCN
+JOIN [dbo].[ToSanXuat] AS TSX ON TSX.maTSX = CN.maTSX
+WHERE MONTH (BCCCN.ngayChamCong) = 12 
+AND YEAR (BCCCN.ngayChamCong) = 2023 AND CN.trangThaiCN != 1
+AND CN.maCN = 'CN100007'
+GROUP BY  CN.tenCN, CN.hoCN,TSX.maTSX, TSX.tenTSX
 
 

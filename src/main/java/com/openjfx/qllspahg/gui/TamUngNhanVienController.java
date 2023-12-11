@@ -210,7 +210,7 @@ public class TamUngNhanVienController implements Initializable {
                 if (btuksn.getTamUng().getMaNV().getMaNV().equals(tfMaNhanVien.getText().trim())){
 
                     lblThongBan.setText("Nhân viên "+ btuksn.getTamUng().getMaNV().getHoNV()+ " "+btuksn.getTamUng().getMaNV().getTenNV() +
-                            " với mã số: "+ btuksn.getTamUng().getMaNV().getMaNV()+ " đã ứng lương.");
+                            " với mã số: "+ btuksn.getTamUng().getMaNV().getMaNV()+ " \nđã ứng lương.");
 
                     tblviewTamUngNhanVien.getSelectionModel().select(btuksn);
                     btnUngLuong.setDisable(true);
@@ -255,6 +255,15 @@ public class TamUngNhanVienController implements Initializable {
             phongBan.setMaPB(bangTamUngNhanVienKemSoNgayDiLam.getTamUng().getMaNV().getPhongBan().getMaPB());
             phongBan.setTenPB(bangTamUngNhanVienKemSoNgayDiLam.getTamUng().getMaNV().getPhongBan().getTenPB());
 
+            btnUngLuong.setDisable(false);
+            btnHuyXem.setDisable(true);
+            tfSoTienTamUng.setEditable(true);
+            tfSoTienTamUng.setDisable(false);
+            tfGhiChu.setEditable(true);
+            tfSoTienTamUng.setDisable(false);
+            tfGhiChu.setEditable(true);
+            tfGhiChu.setDisable(false);
+
             tfMaTamUng.setText(Utils.taoMaBangChamCong(bangTamUngNhanVienKemSoNgayDiLam.getTamUng().getMaNV().getMaNV(),
                     Utils.dinhDangNgayHienTai(LocalDate.now(),"ddMMYY")));
 
@@ -285,6 +294,7 @@ public class TamUngNhanVienController implements Initializable {
         tfSoTienTamUng.setText("");
         tfGhiChu.setText("");
 
+        tfMaNhanVien.setDisable(false);
         tfSoTienTamUng.setEditable(true);
         tfSoTienTamUng.setDisable(false);
         tfGhiChu.setEditable(true);
@@ -303,7 +313,7 @@ public class TamUngNhanVienController implements Initializable {
         }
 
         if(!tfMaNhanVien.getText().trim().equals(maNhanVienTam)){
-            Alerts.showConfirmation("Thông báo","Không thể thay đổi giá trị mã nhân viên trong lúc phân công\n"+
+            Alerts.showConfirmation("Thông báo","Không thể thay đổi giá trị mã nhân viên trong lúc ứng lương\n"+
                     "Nếu bạn muốn hãy nhập mã nhân viên và bấm lấy thông tin lại!!");
             tfMaNhanVien.setText(maNhanVienTam);
             return;
@@ -404,7 +414,7 @@ public class TamUngNhanVienController implements Initializable {
      */
     private boolean kiemTra(String ma){
         if (!ma.matches("(NV)[0-9]{6}")){
-            Alerts.showConfirmation("Thông báo","Mã công nhân không đúng định dạng: NV + 6 chữ số");
+            Alerts.showConfirmation("Thông báo","Mã nhân viên không đúng định dạng: NV + 6 chữ số");
             tfMaNhanVien.requestFocus();
             return false;
         }

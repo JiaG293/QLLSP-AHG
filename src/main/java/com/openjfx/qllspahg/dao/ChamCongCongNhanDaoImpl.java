@@ -239,6 +239,7 @@ public class ChamCongCongNhanDaoImpl {
                         DateUtils.chuyenDoiSangNgaySQL(ngayChamCong, "dd-MM-yyyy", "yyyy-MM-dd") :
                         ngayChamCong
                 );
+
                 pst.addBatch();
                 System.out.println("Da tao bang cham cong cong nhan vao csdl!!! ");
             }

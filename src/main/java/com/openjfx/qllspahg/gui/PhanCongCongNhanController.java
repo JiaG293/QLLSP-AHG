@@ -755,8 +755,10 @@ public class PhanCongCongNhanController implements Initializable {
 
             radPCTungCongNhanPCCN.setDisable(false);
             radPCTuDongPCCN.setDisable(false);
+            radPCTuDongPCCN.setSelected(false);
             radPCTungCongNhanPCCN.setSelected(true);
             tfSoLuongPhanCongPCCN.setDisable(false);
+            tfSoLuongMoiNGuoiPCCN.setDisable(true);
 
             btnPhanCongPCCN.setDisable(false);
             btnSuaPCCN.setDisable(false);

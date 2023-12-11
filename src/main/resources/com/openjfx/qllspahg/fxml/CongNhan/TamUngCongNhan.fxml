@@ -2,101 +2,162 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-    <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openjfx.qllspahg.gui.PhanCongCongNhanController">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openjfx.qllspahg.gui.TamUngCongNhanController">
         <top>
-            <HBox alignment="CENTER_LEFT" prefWidth="1180.0" spacing="15.0" BorderPane.alignment="CENTER">
-                <children>
-                    <HBox alignment="CENTER" spacing="10.0">
-                        <children>
-                            <Label text="Mã công nhân:" />
-                            <TextField prefHeight="26.0" prefWidth="152.0" />
-                        </children>
-                        <padding>
-                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                        </padding>
-                    </HBox>
-                    <HBox alignment="CENTER" spacing="10.0">
-                        <children>
-                            <Label text="Tên công nhân:" />
-                            <TextField prefHeight="26.0" prefWidth="152.0" />
-                        </children>
-                        <padding>
-                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                        </padding>
-                    </HBox>
-                    <HBox alignment="CENTER" prefHeight="30.0" prefWidth="270.0" spacing="10.0">
-                        <children>
-                            <Label text="Tổ sản xuất:" />
-                            <ComboBox prefHeight="26.0" prefWidth="154.0" />
-                        </children>
-                        <padding>
-                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                        </padding>
-                    </HBox>
-                    <Button mnemonicParsing="false" text="Lấy thông tin" />
-                </children>
-                <BorderPane.margin>
-                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                </BorderPane.margin>
-            </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="Ngày: ">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTieuDeNgayTamUng" text="01/01/2000">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
         </top>
         <center>
             <ScrollPane fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER">
-                <content>
-                    <TableView editable="true" tableMenuButtonVisible="true">
-                        <columns>
-                            <TableColumn prefWidth="135.99999696016312" text="Mã công nhân" />
-                            <TableColumn prefWidth="187.99998474121094" text="Tên công nhân" />
-                            <TableColumn prefWidth="188.00003051757812" text="Tổ sản xuất" />
-                            <TableColumn prefWidth="137.5999755859375" text="Số ngày đã đi làm" />
-                            <TableColumn prefWidth="108.79998779296875" text="Ngày tạm ứng" />
-                            <TableColumn prefWidth="184.79998779296875" text="Số tiền tạm ứng" />
-                            <TableColumn prefWidth="247.20001220703125" text="Ghi chú" />
-                        </columns>
-                    </TableView>
-                </content>
+         <content>
+            <TableView fx:id="tblviewTamUngNhanVien" editable="true" onMouseClicked="#skChonRowtblviewTamUngNhanVien" tableMenuButtonVisible="true">
+               <columns>
+                  <TableColumn fx:id="colMaNhanVien" prefWidth="135.99999696016312" text="Mã công nhân" />
+                  <TableColumn fx:id="colTenNhanVien" prefWidth="187.99998474121094" text="Tên công nhân" />
+                  <TableColumn fx:id="colPhpngBan" prefWidth="188.00003051757812" text="Tổ sản xuất" />
+                  <TableColumn fx:id="colSoNgayDaDiLam" prefWidth="137.5999755859375" text="Số ngày đã đi làm" />
+                  <TableColumn fx:id="colNgayTamUng" prefWidth="108.79998779296875" text="Ngày tạm ứng" />
+                  <TableColumn fx:id="colSoTienTazmUng" prefWidth="184.79998779296875" text="Số tiền tạm ứng" />
+                  <TableColumn fx:id="colGhiChu" prefWidth="247.20001220703125" text="Ghi chú" />
+               </columns>
+            </TableView>
+         </content>
             </ScrollPane>
         </center>
-        <bottom>
-            <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="100.0" BorderPane.alignment="CENTER">
-                <children>
-                    <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Reset">
-                        <graphic>
-                            <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../images/icons/reset-removebg-preview.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                    <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Tạm ứng">
-                        <graphic>
-                            <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../images/icons/save.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                </children>
-                <BorderPane.margin>
-                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                </BorderPane.margin>
-                <padding>
-                    <Insets right="10.0" top="10.0" />
-                </padding>
+   <left>
+      <VBox spacing="10.0" style="-fx-border-color: black;">
+         <children>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label text="Thông tin tạm ứng">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
             </HBox>
-        </bottom>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label text="Mã tạm ứng: " />
+                  <TextField fx:id="tfMaTamUng" disable="true" editable="false" prefWidth="200.0" />
+               </children>
+            </HBox>
+            <VBox spacing="10.0" style="-fx-border-color: black;">
+               <children>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Tìm kiếm thông tin công nhân">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Mã công nhân: " />
+                        <TextField fx:id="tfMaNhanVien" prefHeight="26.0" prefWidth="188.0" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label fx:id="lblThongBan" textFill="#cc0b0b">
+                           <font>
+                              <Font name="System Italic" size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Button fx:id="btnLayThongTin" mnemonicParsing="false" onAction="#skbtnLayThongTin" text="Lấy thông tin" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" />
+               </padding>
+            </VBox>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label text="Tên công nhân " />
+                  <TextField fx:id="tfTenNhanVien" disable="true" editable="false" prefHeight="26.0" prefWidth="190.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label text="Tổ sản xuất: " />
+                  <TextField fx:id="tfPhongBan" disable="true" editable="false" prefHeight="26.0" prefWidth="205.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label text="Số ngày đi làm: " />
+                  <TextField fx:id="tfSoNgayDiLam" disable="true" editable="false" prefHeight="26.0" prefWidth="187.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label text="Ngày tạm ứng:" />
+                  <TextField fx:id="tfNgayTamUng" disable="true" editable="false" prefHeight="26.0" prefWidth="192.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label text="Số tiền tạm ứng: " />
+                  <TextField fx:id="tfSoTienTamUng" prefHeight="26.0" prefWidth="178.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label text="Ghi chú: " />
+                  <TextField fx:id="tfGhiChu" prefHeight="111.0" prefWidth="222.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label fx:id="lblThongBaoThanHCong" textFill="#cc150c">
+                     <font>
+                        <Font name="System Italic" size="10.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Button fx:id="btnHuyXem" disable="true" mnemonicParsing="false" onAction="#skbtnHuyXem" text="Hủy xem" />
+                  <Button fx:id="btnUngLuong" mnemonicParsing="false" onAction="#skbtnUngLuong" text="Ứng Lương" />
+               </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="3.0" right="3.0" />
+         </padding>
+      </VBox>
+   </left>
     </BorderPane>
