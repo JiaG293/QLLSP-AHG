@@ -36,8 +36,8 @@
                                 <TableColumn fx:id="colSoNgayNghiCN" prefWidth="85.0" text="Số ngày nghỉ" />
                                 <TableColumn fx:id="colSoNgayCoPhepCN" prefWidth="112.0" text="Số ngày nghỉ phép" />
                         <TableColumn fx:id="colChiTieuPhanCongCN" minWidth="9.60003662109375" prefWidth="115.0" text="Chỉ tiêu phân công" />
-                        <TableColumn fx:id="colSoLuongLamCN" minWidth="9.60003662109375" prefWidth="99.0" text="Số lượng làm" />
-                        <TableColumn fx:id="colSoLuongLamCaBaCN" minWidth="9.60003662109375" prefWidth="99.0" text="Số lượng tăng ca" />
+                        <TableColumn fx:id="colSoLuongLamCN" minWidth="9.60003662109375" prefWidth="90.0" text="Số lượng làm" />
+                        <TableColumn fx:id="colSoLuongLamCaBaCN" minWidth="9.60003662109375" prefWidth="108.0" text="Số lượng tăng ca" />
                             </columns>
                         </TableColumn>
                         <TableColumn fx:id="colLuongCN" prefWidth="522.0" text="Lương">
@@ -46,14 +46,14 @@
                                 <TableColumn fx:id="colLuongThucTeCN" prefWidth="180.0" text="Lương thực tế" />
                             </columns>
                         </TableColumn>
-                        <TableColumn fx:id="colTruyLanhCN" prefWidth="347.0" text="Truy lãnh">
+                        <TableColumn fx:id="colTruyLanhCN" prefWidth="351.0" text="Truy lãnh">
                             <columns>
-                                <TableColumn fx:id="colBHYTCN" prefWidth="120.0" text="Bảo hiểm y tế" />
-                                <TableColumn fx:id="colBHXHCN" prefWidth="120.0" text="Bảo hiểm xã hội" />
-                                <TableColumn fx:id="colTamUngCN" prefWidth="120.0" text="Tạm ứng" />
+                                <TableColumn fx:id="colBHYTCN" prefWidth="95.0" text="Bảo hiểm y tế" />
+                                <TableColumn fx:id="colBHXHCN" prefWidth="103.0" text="Bảo hiểm xã hội" />
+                                <TableColumn fx:id="colTamUngCN" prefWidth="162.0" text="Tạm ứng" />
                             </columns>
                         </TableColumn>
-                        <TableColumn fx:id="colPhuCapCN" prefWidth="333.0" text="Phụ cấp">
+                        <TableColumn fx:id="colPhuCapCN" prefWidth="369.0" text="Phụ cấp">
                             <columns>
                                 <TableColumn fx:id="colTienNangSuatCN" prefWidth="120.0" text="Tiền năng suất" />
                                 <TableColumn fx:id="colTienConNhoCN" prefWidth="120.0" text="Tiền con nhỏ" />

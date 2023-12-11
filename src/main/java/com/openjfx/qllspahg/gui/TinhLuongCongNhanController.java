@@ -3,6 +3,7 @@ package com.openjfx.qllspahg.gui;
 import com.openjfx.qllspahg.dao.ChamCongCongNhanDaoImpl;
 import com.openjfx.qllspahg.dao.TinhLuongCongNhanDaoImpl;
 import com.openjfx.qllspahg.entity.model.ChiTietLuongCongNhan;
+import com.openjfx.qllspahg.gui.util.DateUtils;
 import com.openjfx.qllspahg.gui.util.Utils;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -230,14 +231,20 @@ public class TinhLuongCongNhanController implements Initializable {
         colTamUngCN.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietLuongCongNhan, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<ChiTietLuongCongNhan, String> CongNhanStringCellDataFeatures) {
-                return new SimpleStringProperty(Utils.formatCurrency(CongNhanStringCellDataFeatures.getValue().getMaTamUngCongNhan().getSoTienTamUng()));
+                return new SimpleStringProperty(Utils.formatCurrency(CongNhanStringCellDataFeatures.getValue().getMaTamUngCongNhan().getSoTienTamUng()) +
+                        "\nNgày tạm ứng: " +
+                        (
+                                CongNhanStringCellDataFeatures.getValue().getMaTamUngCongNhan().getNgayTamUng() == null ?
+                                        "" :
+                                        DateUtils.formatStringVietnamDateCustom(CongNhanStringCellDataFeatures.getValue().getMaTamUngCongNhan().getNgayTamUng(), "dd-MM-yy"))
+                );
             }
         });
 
         colTienNangSuatCN.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietLuongCongNhan, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<ChiTietLuongCongNhan, String> CongNhanStringCellDataFeatures) {
-                return new SimpleStringProperty(Utils.formatCurrency(CongNhanStringCellDataFeatures.getValue().getMaPhuCapCongNhan().getTienNangSuat()));
+                return new SimpleStringProperty(Utils.formatCurrency(CongNhanStringCellDataFeatures.getValue().getMaPhuCapCongNhan().getTienChuyenCan()));
             }
         });
 

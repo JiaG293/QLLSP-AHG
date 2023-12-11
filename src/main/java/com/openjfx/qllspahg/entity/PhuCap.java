@@ -18,16 +18,16 @@ public class PhuCap {
         this.tienConNho = tienConNho;
     }
 
-    //phu Cap Cong Nhan
-    public PhuCap(String maPhuCap, double tienChuyenCan, double tienNhaTro, double tienConNho) {
+    //phu Cap Cong Nhan double tienNangSuat, double tienNhaTro, double tienConNho
+
+    public PhuCap(String maPhuCap, double tienNangSuat, double tienNhaTro, double tienConNho) {
         this.maPhuCap = maPhuCap;
-        this.tienChuyenCan = tienChuyenCan;
+        this.tienNangSuat = tienNangSuat;
         this.tienNhaTro = tienNhaTro;
         this.tienConNho = tienConNho;
     }
 
-
-    //phu Cap nhan vien
+    //phu Cap nhan vien double tienChuyenCan, double tienNhaTro, double tienConNho
     public PhuCap(double tienChuyenCan, double tienNhaTro, double tienConNho) {
         this.tienChuyenCan = tienChuyenCan;
         this.tienNhaTro = tienNhaTro;

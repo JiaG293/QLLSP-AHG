@@ -63,12 +63,12 @@ public class TinhLuongCongNhanDaoImpl {
                     "                SUM( CASE WHEN BCCCN.nghiPhep = 'True' OR BCCCN.nghiPhep = 1 THEN 1 ELSE 0 END )) * 50000) ELSE 0 END\n" +
                     "\t\t) +\n" +
                     "\t\t(COALESCE(PC.tienConNho, 0) + COALESCE(PC.tienNhaTro, 0)) +\n" +
-                    "\t\t(CASE WHEN SUM(BCCCN.soLuongLamDuoc) >= SUM(BPCCN.chiTieu) THEN PC.tienNangSuat ELSE 0 END) -\n" +
+                    "\t\t(CASE WHEN (SUM(BCCCN.soLuongLamDuoc) + SUM(BCCCN.soLuongLamCa3)) >= SUM(BPCCN.chiTieu) THEN PC.tienNangSuat ELSE 0 END) -\n" +
                     "\t\t(COALESCE(TUCN.soTienTamUng, 0))\n" +
                     "\t) AS luongNhanThucTe,\n" +
                     "\n" +
-                    "\n" +
-                    "\tPC.tienNangSuat, PC.tienConNho, PC.tienNhaTro\n" +
+                    "\tCASE WHEN SUM( BPCCN.chiTieu) <= (SUM(BCCCN.soLuongLamCa3) + SUM(BCCCN.soLuongLamDuoc)) THEN PC.tienNangSuat ELSE 0 END AS tienNangSuat,\n" +
+                    "\tPC.tienConNho, PC.tienNhaTro\n" +
                     "FROM CongNhan AS CN\n" +
                     "\tLEFT JOIN BangPhanCongCongNhan AS BPCCN ON CN.maCN = BPCCN.maCN AND MONTH(BPCCN.ngayKetThuc) = ? AND YEAR(BPCCN.ngayKetThuc) = ? \n" +
                     "\tLEFT JOIN BangChamCongCongNhan AS BCCCN ON BPCCN.maBPCCN = BCCCN.maBPCCN AND MONTH(BCCCN.ngayChamCong) = ? AND YEAR(BCCCN.ngayChamCong) = ? \n" +
