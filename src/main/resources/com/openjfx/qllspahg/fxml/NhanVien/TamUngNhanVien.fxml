@@ -16,7 +16,7 @@
         <center>
             <ScrollPane fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER">
                 <content>
-                    <TableView fx:id="tblviewTamUngNhanVien" editable="true" tableMenuButtonVisible="true">
+                    <TableView fx:id="tblviewTamUngNhanVien" editable="true" onMouseClicked="#skChonRowtblviewTamUngNhanVien" tableMenuButtonVisible="true">
                         <columns>
                             <TableColumn fx:id="colMaNhanVien" prefWidth="135.99999696016312" text="Mã nhân viên" />
                             <TableColumn fx:id="colTenNhanVien" prefWidth="187.99998474121094" text="Tên nhân viên" />
@@ -31,7 +31,7 @@
             </ScrollPane>
         </center>
    <left>
-      <VBox spacing="5.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
+      <VBox spacing="10.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER_LEFT">
                <children>
@@ -63,6 +63,15 @@
                         <TextField fx:id="tfMaNhanVien" prefHeight="26.0" prefWidth="188.0" />
                      </children>
                   </HBox>
+                  <HBox>
+                     <children>
+                        <Label fx:id="lblThongBan" textFill="#cc0b0b">
+                           <font>
+                              <Font name="System Italic" size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER">
                      <children>
                         <Button fx:id="btnLayThongTin" mnemonicParsing="false" onAction="#skbtnLayThongTin" text="Lấy thông tin" />
@@ -70,7 +79,7 @@
                   </HBox>
                </children>
                <padding>
-                  <Insets left="5.0" right="5.0" />
+                  <Insets bottom="5.0" left="5.0" right="5.0" />
                </padding>
             </VBox>
             <HBox alignment="CENTER_LEFT">
@@ -99,14 +108,35 @@
             </HBox>
             <HBox alignment="CENTER_LEFT">
                <children>
+                  <Label text="Lương Cơ Bản: " />
+                  <TextField fx:id="tfLuongCoBan" disable="true" editable="false" prefHeight="26.0" prefWidth="191.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT">
+               <children>
                   <Label text="Số tiền tạm ứng: " />
-                  <TextField fx:id="tfSoNgayTamUng" prefHeight="26.0" prefWidth="178.0" />
+                  <TextField fx:id="tfSoTienTamUng" prefHeight="26.0" prefWidth="178.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label text="Ghi chú: " />
+                  <TextField fx:id="tfGhiChu" prefHeight="111.0" prefWidth="222.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label fx:id="lblThongBaoThanHCong" textFill="#cc150c">
+                     <font>
+                        <Font name="System Italic" size="10.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Button fx:id="btnHuyXem" disable="true" mnemonicParsing="false" text="Hủy xem" />
-                  <Button fx:id="btnUngLuong" mnemonicParsing="false" text="Ứng Lương" />
+                  <Button fx:id="btnHuyXem" disable="true" mnemonicParsing="false" onAction="#skbtnHuyXem" text="Hủy xem" />
+                  <Button fx:id="btnUngLuong" mnemonicParsing="false" onAction="#skbtnUngLuong" text="Ứng Lương" />
                </children>
                <padding>
                   <Insets top="5.0" />

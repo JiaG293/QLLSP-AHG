@@ -232,7 +232,54 @@ WHERE [maBPCCN] LIKE '%'
 
 
 --TamUngNhanVien
-SELECT *
-FROM [dbo].[ToSanXuat]
+
+SELECT * FROM [dbo].[NhanVien]
+
+SELECT * FROM [dbo].[TamUngNhanVien]
+SELECT * FROM [dbo].[BangChamCongNhanVien]
+
+INSERT [dbo].[TamUngNhanVien] ([maTUNV], [maNV], [ngayTamUng] )
+VALUES
+('TUNV100000121023', 'NV100000', '2023-12-10')
+
+INSERT [dbo].[BangChamCongNhanVien] ([maBCCNV],[maNV],[ngayChamCong], [diLam] )
+VALUES
+('CCNV100000101223','NV100000','2023-12-10', 1)
+
+INSERT [dbo].[BangChamCongNhanVien] ([maBCCNV],[maNV],[ngayChamCong], [diLam], [nghiPhep] )
+VALUES
+('CCNV100000071223','NV100000','2023-12-07', 1,0),
+('CCNV100000061223','NV100000','2023-12-06', 1,0),
+('CCNV100000051223','NV100000','2023-12-05', 1,0),
+('CCNV100000041223','NV100000','2023-12-04', 1,0),
+('CCNV100000031223','NV100000','2023-12-03', 1,0),
+('CCNV100000021223','NV100000','2023-12-02', 1,0),
+('CCNV100000011223','NV100000','2023-12-01', 1,0),
+('CCNV100000091223','NV100000','2023-12-09', 0,1),
+('CCNV100000081223','NV100000','2023-12-08', 0,1),
+('CCNV100000081222','NV100000','2022-12-08', 0,1)
+
+
+SELECT NV.hoNV, NV.tenNV, NV.luongCoBan,
+SUM(CASE WHEN BCC.nghiPhep = 1 THEN 1 ELSE 0 END ) +  
+SUM(CASE WHEN BCC.diLam = 1 THEN 1 ELSE 0 END)  AS SoNgayDiLam, PB.*	
+FROM [dbo].[NhanVien] AS NV 
+JOIN [dbo].[BangChamCongNhanVien] AS BCC ON BCC.maNV = NV.maNV
+JOIN [dbo].[PhongBan] AS PB ON PB.maPB = NV.maPB
+WHERE MONTH (BCC.ngayChamCong) = 12 
+AND YEAR (BCC.ngayChamCong) = 2023 AND NV.trangThaiNV != 1
+AND NV.maNV = 'NV100001'
+GROUP BY  NV.tenNV, NV.hoNV, NV.luongCoBan,PB.maPB, PB.tenPB
+
+SELECT SUM(CASE WHEN BCC.nghiPhep = 1 THEN 1 ELSE 0 END ) +  
+SUM(CASE WHEN BCC.diLam = 1 THEN 1 ELSE 0 END)  AS SoNgayDiLam
+FROM [dbo].[BangChamCongNhanVien] AS BCC
+JOIN [dbo].[NhanVien] AS NV ON NV.maNV = BCC.maNV
+WHERE MONTH (BCC.ngayChamCong) = 12 
+AND YEAR (BCC.ngayChamCong) = 2023 AND NV.trangThaiNV != 1
+AND NV.maNV = 'NV100001'
+
+
+
 
 
