@@ -281,11 +281,11 @@ VALUES
 --Update 1/12/2023
 
 --New ChucVu CongNhan
-INSERT INTO [ChucVu] (maCV, tenCV)
+INSERT INTO [ChucVu] (maCV, tenCV, heSoCV)
 VALUES
-    ('CVCNQL', N'Công nhân quản lý'),
-    ('CVCNSX', N'Công nhân sản xuất'),
-    ('CVCNTT', N'Công nhân tổ trưởng');
+    ('CVCNQL', N'Công nhân quản lý', 1.4),
+    ('CVCNSX', N'Công nhân sản xuất', 1.1),
+    ('CVCNTT', N'Công nhân tổ trưởng', 1.2);
 
 
 --New ToSanXuat
@@ -353,6 +353,24 @@ VALUES
     ('CN100109','CVCNSX','TSX007','PCCN01','Garcia','Bree','1','1994-04-16','0715548358','vitae@gmail.com','Sep 13, 2006','4024007128370','1');
 
 
+
+--Update 11-12-2023
+
+-- COng doan
+
+INSERT INTO CongDoan (maCD, maSP, tenCD, giaiDoan, giaCongDoan)
+VALUES
+    ('CDSP10171', 'SP1017', N'Cắt', N'Cắt', 10000),
+    ('CDSP10172', 'SP1017', N'May', N'Cắt', 10000),
+    ('CDSP10174', 'SP1017', N'Hoàn thành', N'Cắt', 10000),
+    ('CDSP10175', 'SP1017', N'Đóng gói', N'Cắt', 10000);
+
+INSERT INTO CongDoan (maCD, maSP, tenCD, giaiDoan, giaCongDoan)
+VALUES
+    ('CDSP10061', 'SP1006', N'Cắt', N'Cắt', 10000),
+    ('CDSP10062', 'SP1006', N'May', N'Cắt', 10000),
+    ('CDSP10064', 'SP1006', N'Hoàn thành', N'Cắt', 10000),
+    ('CDSP10065', 'SP1006', N'Đóng gói', N'Cắt', 10000);
 
 
 
