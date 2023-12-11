@@ -196,12 +196,9 @@ CREATE TABLE TamUngNhanVien(
 
 --Table BangLuongNhanVien
 CREATE TABLE BangLuongNhanVien(
-                                  maBLNV varchar(16), --khoa chinh BL(2) + maNV(8) + ddMMyy(6) ngayTinhLuong
-                                  maBCCNV varchar(16), -- khoa ngoai
-                                  maTUNV varchar(16), --khoa ngoai
+                                  maBLNV varchar(16), --khoa chinh BL(2) + maNV(8) + MMyyyy(6) thangNamTinhLuong
+                                  maNV varchar(8), --khoa ngoai
                                   luongNV decimal(19, 4), -- luong chua tru cac khoan phi
-                                  bhxhNV decimal(19, 4),
-                                  bhytNV decimal(19, 4),
                                   tongLuongNV decimal(19, 4), --luong thuc te nhan duoc
                                   ngayTinhLuong date,
                                   ngayNhanLuong date,
@@ -235,12 +232,9 @@ CREATE TABLE TamUngCongNhan(
 
 --Table BangLuongCongNhan
 CREATE TABLE BangLuongCongNhan(
-                                  maBLCN varchar(16), --khoa chinh BL(2) + maCN(8) + ddMMyy(6) ngayTinhLuong
-                                  maBCCCN varchar(16), --khoa ngoai
-                                  maTUCN varchar(16), --khoa ngoai
+                                  maBLCN varchar(16), --khoa chinh BL(2) + maCN(8) + MMyyyy(6) thangNamTinhLuong
+                                  maCN varchar(8), --khoa ngoai
                                   luongCN decimal(19, 4),-- luong chua tru cac khoan phi
-                                  bhxhCN decimal(19, 4),
-                                  bhytCN decimal(19, 4),
                                   tongLuongCN decimal(19, 4), -- luong thuc te nhan duoc
                                   ngayTinhLuong date,
                                   ngayNhanLuong date,
@@ -280,11 +274,10 @@ ALTER TABLE BangChamCongCongNhan ADD CONSTRAINT FK01_BangChamCongCongNhan FOREIG
 ALTER TABLE BangChamCongNhanVien ADD CONSTRAINT FK01_BangChamCongNhanVien FOREIGN KEY (maNV) REFERENCES NhanVien(maNV)
 
 
-ALTER TABLE BangLuongNhanVien ADD CONSTRAINT FK01_BangLuongNhanVien FOREIGN KEY (maBCCNV) REFERENCES BangChamCongNhanVien(maBCCNV)
-ALTER TABLE BangLuongNhanVien ADD CONSTRAINT FK02_BangLuongNhanVien FOREIGN KEY (maTUNV) REFERENCES TamUngNhanVien(maTUNV)
+ALTER TABLE BangLuongNhanVien ADD CONSTRAINT FK01_BangLuongNhanVien FOREIGN KEY (maNV) REFERENCES NhanVien(maNV)
 
-ALTER TABLE BangLuongCongNhan ADD CONSTRAINT FK01_BangLuongCongNhan FOREIGN KEY (maBCCCN) REFERENCES BangChamCongCongNhan(maBCCCN)
-ALTER TABLE BangLuongCongNhan ADD CONSTRAINT FK02_BangLuongCongNhan FOREIGN KEY (maTUCN) REFERENCES TamUngCongNhan(maTUCN)
+ALTER TABLE BangLuongCongNhan ADD CONSTRAINT FK01_BangLuongCongNhan FOREIGN KEY (maCN) REFERENCES CongNhan(maCN)
+
     GO
 
 USE master
