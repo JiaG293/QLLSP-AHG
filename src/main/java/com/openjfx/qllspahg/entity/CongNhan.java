@@ -61,6 +61,13 @@ public class CongNhan {
         this.trangThaiCN = trangThaiCN;
     }
 
+    public CongNhan(String maCN, String hoCN, String tenCN, ChucVu chucVuCN, ToSanXuat toSanXuat) {
+        this.maCN = maCN;
+        this.hoCN = hoCN;
+        this.tenCN = tenCN;
+        this.chucVuCN = chucVuCN;
+        this.toSanXuat = toSanXuat;
+    }
 
     public boolean getTrangThaiCN() {
         return trangThaiCN;

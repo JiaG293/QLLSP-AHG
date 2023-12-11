@@ -29,6 +29,12 @@ public class TamUngCongNhan {
         this.trangThaiTUNV = trangThaiTUNV;
     }
 
+    public TamUngCongNhan(CongNhan maCN, double soTienTamUng, Date ngayTamUng) {
+        this.maCN = maCN;
+        this.ngayTamUng = ngayTamUng;
+        this.soTienTamUng = soTienTamUng;
+    }
+
     public TamUngCongNhan(String maTUCN, CongNhan maCN) {
         this.maTUCN = maTUCN;
         this.maCN = maCN;
