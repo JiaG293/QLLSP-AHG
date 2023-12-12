@@ -7,22 +7,38 @@ public class BangLuongCongNhan {
     private CongNhan maCongNhan;
     private Date ngayTinhLuong;
     private double luongCN;
-    private double bhxhCN;
-    private double bhytCN;
     private double tongLuongCN;
     private Date ngayNhanLuong;
     private boolean trangThaiLuong;
+    private boolean luaChon;
 
-    public BangLuongCongNhan(String maBLCN, CongNhan maCongNhan, Date ngayTinhLuong, double luongCN, double bhxhCN, double bhytCN, double tongLuongCN, Date ngayNhanLuong, boolean trangThaiLuong) {
+    public BangLuongCongNhan(String maBLCN, CongNhan maCongNhan, Date ngayTinhLuong, double luongCN, double tongLuongCN, Date ngayNhanLuong, boolean trangThaiLuong) {
         this.maBLCN = maBLCN;
         this.maCongNhan = maCongNhan;
         this.ngayTinhLuong = ngayTinhLuong;
         this.luongCN = luongCN;
-        this.bhxhCN = bhxhCN;
-        this.bhytCN = bhytCN;
         this.tongLuongCN = tongLuongCN;
         this.ngayNhanLuong = ngayNhanLuong;
         this.trangThaiLuong = trangThaiLuong;
+    }
+
+    public BangLuongCongNhan(String maBLCN, CongNhan maCongNhan, Date ngayTinhLuong, double luongCN, double tongLuongCN, Date ngayNhanLuong, boolean trangThaiLuong, boolean luaChon) {
+        this.maBLCN = maBLCN;
+        this.maCongNhan = maCongNhan;
+        this.ngayTinhLuong = ngayTinhLuong;
+        this.luongCN = luongCN;
+        this.tongLuongCN = tongLuongCN;
+        this.ngayNhanLuong = ngayNhanLuong;
+        this.trangThaiLuong = trangThaiLuong;
+        this.luaChon = luaChon;
+    }
+
+    public boolean isLuaChon() {
+        return luaChon;
+    }
+
+    public void setLuaChon(boolean luaChon) {
+        this.luaChon = luaChon;
     }
 
     public CongNhan getMaCongNhan() {
@@ -57,22 +73,6 @@ public class BangLuongCongNhan {
         this.luongCN = luongCN;
     }
 
-    public double getBhxhCN() {
-        return bhxhCN;
-    }
-
-    public void setBhxhCN(double bhxhCN) {
-        this.bhxhCN = bhxhCN;
-    }
-
-    public double getBhytCN() {
-        return bhytCN;
-    }
-
-    public void setBhytCN(double bhytCN) {
-        this.bhytCN = bhytCN;
-    }
-
     public double getTongLuongCN() {
         return tongLuongCN;
     }
@@ -104,11 +104,10 @@ public class BangLuongCongNhan {
                 "maCongNhan='" + maCongNhan + '\'' +
                 ", ngayTinhLuong=" + ngayTinhLuong +
                 ", luongCN=" + luongCN +
-                ", bhxhCN=" + bhxhCN +
-                ", bhytCN=" + bhytCN +
                 ", tongLuongCN=" + tongLuongCN +
                 ", ngayNhanLuong=" + ngayNhanLuong +
                 ", trangThaiLuong=" + trangThaiLuong +
+                ", luaChon=" + luaChon +
                 "}\n";
     }
 }

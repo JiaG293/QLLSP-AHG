@@ -8,6 +8,7 @@ module com.openjfx.qllspahg {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires com.microsoft.sqlserver.jdbc;
+    requires itextpdf;
 
 
 //    exports com.openjfx.qllspahg.dao;

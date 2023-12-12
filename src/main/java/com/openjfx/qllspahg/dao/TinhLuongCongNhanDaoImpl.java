@@ -359,7 +359,7 @@ public class TinhLuongCongNhanDaoImpl {
 
             while (rs.next()) {
                 String maCN = rs.getString("maCN");
-                String hoCN = rs.getString("maCN");
+                String hoCN = rs.getString("hoCN");
                 String tenCN = rs.getString("tenCN");
                 String tenTSX = rs.getString("tenTSX");
 
