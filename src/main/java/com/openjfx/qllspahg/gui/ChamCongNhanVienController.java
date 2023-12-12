@@ -301,6 +301,15 @@ public class ChamCongNhanVienController implements Initializable {
     @FXML
     void taoChamCongHienTai(ActionEvent event) {
         ChamCongNhanVienDaoImpl.getInstance().taoBangChamCongNhanVienThangHienTai(ChamCongNhanVienDaoImpl.getInstance().layDuLieuNhanVien());
+
+    }
+    @FXML
+    void taoChamCongTuyChon(ActionEvent event) {
+        LocalDate ngay = datepickLocNgayChamCong.getValue();
+        LocalDate ngayMoi = ngay.plusDays(1);
+        System.out.println(ngayMoi);
+
+        ChamCongNhanVienDaoImpl.getInstance().taoBangChamCongNhanVienThangTiepTheo(ChamCongNhanVienDaoImpl.getInstance().layDuLieuNhanVien());
     }
 
 

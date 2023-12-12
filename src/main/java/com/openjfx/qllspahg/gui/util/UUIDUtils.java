@@ -106,6 +106,9 @@ public class UUIDUtils {
     public static String taoMaBangLuongCongNhan(String maCongNhan){
         return "BL" + maCongNhan + DateUtils.formatStringVietnamDateCustom(Date.valueOf(Utils.taoNgayHienTai()), "MMyyyy");
     }
+    public static String taoMaBangLuongNhanVien(String maNhanVien){
+        return "BL" + maNhanVien + DateUtils.formatStringVietnamDateCustom(Date.valueOf(Utils.taoNgayHienTai()), "MMyyyy");
+    }
 
 
     public static void main(String[] args) {
