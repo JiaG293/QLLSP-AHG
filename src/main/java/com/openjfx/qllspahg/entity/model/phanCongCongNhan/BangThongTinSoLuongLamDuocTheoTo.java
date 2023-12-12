@@ -1,4 +1,4 @@
-package com.openjfx.qllspahg.entity.model.PhanCongCongNhan;
+package com.openjfx.qllspahg.entity.model.phanCongCongNhan;
 
 import com.openjfx.qllspahg.entity.ToSanXuat;
 

@@ -1,4 +1,4 @@
-package com.openjfx.qllspahg.entity.model.TamUngCongNhan;
+package com.openjfx.qllspahg.entity.model.tamUngCongNhan;
 
 import com.openjfx.qllspahg.entity.TamUngCongNhan;
 

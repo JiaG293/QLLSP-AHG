@@ -7,9 +7,9 @@ import com.openjfx.qllspahg.dao.ChamCongCongNhanDaoImpl;
 import com.openjfx.qllspahg.dao.PhanCongCongNhanDao;
 
 import com.openjfx.qllspahg.entity.*;
-import com.openjfx.qllspahg.entity.model.PhanCongCongNhan.BangThongTinCongNhan;
-import com.openjfx.qllspahg.entity.model.PhanCongCongNhan.BangThongTinCongNhanCoTo;
-import com.openjfx.qllspahg.entity.model.PhanCongCongNhan.BangThongTinSoLuongLamDuocTheoTo;
+import com.openjfx.qllspahg.entity.model.phanCongCongNhan.BangThongTinCongNhan;
+import com.openjfx.qllspahg.entity.model.phanCongCongNhan.BangThongTinCongNhanCoTo;
+import com.openjfx.qllspahg.entity.model.phanCongCongNhan.BangThongTinSoLuongLamDuocTheoTo;
 import com.openjfx.qllspahg.gui.util.Alerts;
 import com.openjfx.qllspahg.gui.util.DateUtils;
 import com.openjfx.qllspahg.gui.util.Utils;

@@ -1,9 +1,9 @@
 package com.openjfx.qllspahg.dao.interfaces;
 
 import com.openjfx.qllspahg.entity.BangPhanCongCongNhan;
-import com.openjfx.qllspahg.entity.model.PhanCongCongNhan.BangThongTinCongNhan;
-import com.openjfx.qllspahg.entity.model.PhanCongCongNhan.BangThongTinCongNhanCoTo;
-import com.openjfx.qllspahg.entity.model.PhanCongCongNhan.BangThongTinSoLuongLamDuocTheoTo;
+import com.openjfx.qllspahg.entity.model.phanCongCongNhan.BangThongTinCongNhan;
+import com.openjfx.qllspahg.entity.model.phanCongCongNhan.BangThongTinCongNhanCoTo;
+import com.openjfx.qllspahg.entity.model.phanCongCongNhan.BangThongTinSoLuongLamDuocTheoTo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

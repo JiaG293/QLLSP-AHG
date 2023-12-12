@@ -2,8 +2,7 @@ package com.openjfx.qllspahg.dao;
 
 import com.openjfx.qllspahg.database.Db;
 import com.openjfx.qllspahg.entity.*;
-import com.openjfx.qllspahg.entity.model.TamUngCongNhan.BangTamUngCongNhanKemSoNgay;
-import com.openjfx.qllspahg.entity.model.TamUngNhanVien.BangTamUngNhanVienKemSoNgayDiLam;
+import com.openjfx.qllspahg.entity.model.tamUngCongNhan.BangTamUngCongNhanKemSoNgay;
 import com.openjfx.qllspahg.gui.util.Alerts;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
