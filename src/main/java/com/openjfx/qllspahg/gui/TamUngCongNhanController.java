@@ -6,10 +6,8 @@ import static com.openjfx.qllspahg.dao.interfaces.DSTamUngCongNhan.*;
 import com.microsoft.sqlserver.jdbc.StringUtils;
 import com.openjfx.qllspahg.dao.TamUngCongNhanDao;
 
-import com.openjfx.qllspahg.dao.TamUngNhanVienDao;
 import com.openjfx.qllspahg.entity.*;
-import com.openjfx.qllspahg.entity.model.TamUngCongNhan.BangTamUngCongNhanKemSoNgay;
-import com.openjfx.qllspahg.entity.model.TamUngNhanVien.BangTamUngNhanVienKemSoNgayDiLam;
+import com.openjfx.qllspahg.entity.model.tamUngCongNhan.BangTamUngCongNhanKemSoNgay;
 import com.openjfx.qllspahg.gui.util.Alerts;
 import com.openjfx.qllspahg.gui.util.Utils;
 import javafx.beans.property.SimpleStringProperty;

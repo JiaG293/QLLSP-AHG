@@ -7,7 +7,7 @@ import com.openjfx.qllspahg.dao.TamUngNhanVienDao;
 import com.openjfx.qllspahg.entity.NhanVien;
 import com.openjfx.qllspahg.entity.PhongBan;
 import com.openjfx.qllspahg.entity.TamUngNhanVien;
-import com.openjfx.qllspahg.entity.model.TamUngNhanVien.BangTamUngNhanVienKemSoNgayDiLam;
+import com.openjfx.qllspahg.entity.model.tamUngNhanVien.BangTamUngNhanVienKemSoNgayDiLam;
 import com.openjfx.qllspahg.gui.util.Alerts;
 import com.openjfx.qllspahg.gui.util.Utils;
 import javafx.beans.property.SimpleStringProperty;
@@ -21,7 +21,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 import java.net.URL;

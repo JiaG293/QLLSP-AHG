@@ -4,7 +4,7 @@ import com.openjfx.qllspahg.database.Db;
 import com.openjfx.qllspahg.entity.NhanVien;
 import com.openjfx.qllspahg.entity.PhongBan;
 import com.openjfx.qllspahg.entity.TamUngNhanVien;
-import com.openjfx.qllspahg.entity.model.TamUngNhanVien.BangTamUngNhanVienKemSoNgayDiLam;
+import com.openjfx.qllspahg.entity.model.tamUngNhanVien.BangTamUngNhanVienKemSoNgayDiLam;
 import com.openjfx.qllspahg.gui.util.Alerts;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
