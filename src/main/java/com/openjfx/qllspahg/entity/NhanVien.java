@@ -45,6 +45,18 @@ public class NhanVien {
         this.luongCoBan = luongCoBan;
     }
 
+
+    public NhanVien(String maNV, String hoNV, String tenNV, String sDT, String email, String sTK, ChucVu chucVuNV, PhongBan phongBan) {
+        this.maNV = maNV;
+        this.hoNV = hoNV;
+        this.tenNV = tenNV;
+        this.sDT = sDT;
+        this.email = email;
+        this.sTK = sTK;
+        this.chucVuNV = chucVuNV;
+        this.phongBan = phongBan;
+    }
+
     public NhanVien(String maNV, String hoNV, String tenNV, PhongBan phongBan) {
         this.maNV = maNV;
         this.hoNV = hoNV;

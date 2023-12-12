@@ -1,5 +1,7 @@
 package com.openjfx.qllspahg.gui.util;
 
+import com.openjfx.qllspahg.entity.ChucVu;
+
 public class SqlQueryBuilder {
     public static String stringQueryLocBangChamCongNhanVien(String cauTruyVanTruocWhere, String tenPB, String ngayChamCong, String hoTenNV, String maNV) {
         StringBuilder sqlBuilder = new StringBuilder().append(cauTruyVanTruocWhere).append(" WHERE ");
@@ -248,6 +250,26 @@ public class SqlQueryBuilder {
 
         if (sql.toString().endsWith(" and "))
             sql.setLength(sql.length() - 5);
+
+        return sql.toString();
+    }
+
+    public static String TimKiem(String truyVanTruocWhere, String maNhanVien, String maChucVu, String maphongBan) {
+        StringBuilder sql = new StringBuilder().append(truyVanTruocWhere).append(" and ");
+
+        if (maNhanVien != null)
+            sql.append("NV.maNV '").append(maNhanVien).append("' and ");
+
+        if (maChucVu != null)
+            sql.append("CV.maCV = '").append(maChucVu).append("' and ");
+
+        if (maphongBan != null)
+            sql.append("PB.maPB = '").append(maphongBan).append("' and ");
+
+        if (sql.toString().endsWith(" and "))
+            sql.setLength(sql.length() - 5);
+        sql.append("GROUP BY  NV.email, \n" +
+                "NV.hoNV,NV.maNV,NV.sDT, NV.sTK, NV.tenNV, NV.trangThaiNV, PB.maPB, PB.tenPB, CV.maCV,CV.tenCV");
 
         return sql.toString();
     }
