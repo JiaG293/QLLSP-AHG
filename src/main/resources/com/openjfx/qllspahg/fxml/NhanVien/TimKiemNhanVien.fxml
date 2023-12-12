@@ -17,15 +17,15 @@
                   <content>
                       <TableView fx:id="tblViewTimKiem" editable="true">
                           <columns>
-                  <TableColumn fx:id="colTrangThai" prefWidth="100.0" text="Trạng thái" />
-                              <TableColumn fx:id="colMaNhanVien" prefWidth="133.60003048181534" text="Mã nhân viên" />
-                              <TableColumn fx:id="colHoVaTen" minWidth="-1.0" prefWidth="232.80007934570312" text="Họ và tên" />
-                              <TableColumn fx:id="colChucVu" minWidth="-1.0" prefWidth="107.199951171875" text="Chức vụ" />
-                              <TableColumn fx:id="colPhongBan" minWidth="-1.0" prefWidth="105.5999755859375" text="Phòng ban" />
-                              <TableColumn fx:id="colLienLac" minWidth="-1.0" prefWidth="150.0" text="Liên lạc" />
+                  <TableColumn fx:id="colTrangThai" prefWidth="74.39998775720596" text="Trạng thái" />
+                              <TableColumn fx:id="colMaNhanVien" prefWidth="101.5999755859375" text="Mã nhân viên" />
+                              <TableColumn fx:id="colHoVaTen" minWidth="-1.0" prefWidth="231.20001220703125" text="Họ và tên" />
+                              <TableColumn fx:id="colChucVu" minWidth="-1.0" prefWidth="200.0" text="Chức vụ" />
+                              <TableColumn fx:id="colPhongBan" minWidth="-1.0" prefWidth="150.0" text="Phòng ban" />
+                              <TableColumn fx:id="colLienLac" minWidth="-1.0" prefWidth="200.0" text="Liên lạc" />
                               <TableColumn fx:id="colSoNgayDiLam" minWidth="-1.0" prefWidth="167.199951171875" text="Số ngày đi làm trong tháng" />
-                  <TableColumn fx:id="colSoNgayNghiCoPhep" prefWidth="149.60003662109375" text="Số ngày nghỉ có phép" />
-                  <TableColumn fx:id="colSoNgayNghiKoPhep" prefWidth="158.39990234375" text="Số ngày nghỉ không phép" />
+                  <TableColumn fx:id="colSoNgayNghiCoPhep" prefWidth="131.199951171875" text="Số ngày nghỉ có phép" />
+                  <TableColumn fx:id="colSoNgayNghiKoPhep" prefWidth="163.199951171875" text="Số ngày nghỉ không phép" />
                           </columns>
                       </TableView>
                   </content>
