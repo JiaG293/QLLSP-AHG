@@ -73,7 +73,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button maxWidth="300.0" mnemonicParsing="false" onAction="#xuatBangLuongDuocChon" prefWidth="200.0" text="Xuất bảng lương chọn">
+                <Button fx:id="btnXuatBangLuong" maxWidth="300.0" mnemonicParsing="false" onAction="#xuatBangLuongDuocChon" prefWidth="200.0" text="Xuất bảng lương chọn">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>

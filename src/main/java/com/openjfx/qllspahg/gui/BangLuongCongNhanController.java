@@ -13,6 +13,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -24,8 +26,13 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import static com.openjfx.qllspahg.dao.interfaces.DSDao.*;
@@ -33,7 +40,16 @@ import static com.openjfx.qllspahg.dao.interfaces.DSDao.DSCHITIETLUONGCONGNHAN;
 
 public class BangLuongCongNhanController implements Initializable {
     @FXML
+    private ImageView img;
+
+    @FXML
     private Button btnXacNhanThanhToan;
+
+    @FXML
+    private Button btnXuatBangLuong;
+
+    @FXML
+    private FileChooser fileChooser;
 
     @FXML
     private ComboBox<String> cbxLocNamTinhLuongCN;
@@ -421,18 +437,39 @@ public class BangLuongCongNhanController implements Initializable {
             DSBANGLUONGCN.addAll(listBLCN);
             tblBangLuongCongNhan.setItems(DSBANGLUONGCN);
             Alerts.showAlert("Thông báo", "Lọc thành công", "Tìm thấy " + listBLCN.size() + " bảng lương.", Alert.AlertType.INFORMATION);
-            ;
         }
         System.out.println("DS bang luong cn sau khi loc:" + DSCHITIETLUONGCONGNHAN.toString() + "\n");
 
         tblBangLuongCongNhan.setItems(DSBANGLUONGCN);
     }
 
-    @FXML
-    void xuatBangLuongDuocChon(ActionEvent event) {
-//        PDFUtils.taoPhieuLuongCongNhan();
 
+    @FXML
+    void xuatBangLuongDuocChon(ActionEvent event) throws IOException {
+        if(!DSBANGLUONGCNCHON.isEmpty()){
+            Stage stage = (Stage) tblBangLuongCongNhan.getScene().getWindow();
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Lưu Tệp");
+            FileChooser.ExtensionFilter filePDF = new FileChooser.ExtensionFilter("Tệp PDF", "*.pdf");
+            fileChooser.getExtensionFilters().add(filePDF);
+            fileChooser.setInitialFileName("BangLuongCongNhan_" + LocalDate.now());
+            File selectedFile = fileChooser.showSaveDialog(stage);
+            if (selectedFile != null) {
+                String filePath = selectedFile.getAbsolutePath();
+                PDFUtils.taoPhieuLuongCongNhan(filePath, DSBANGLUONGCNCHON);
+                Alerts.showAlert("Thông báo", "Thành công", "File được lưu tại " + filePath + "\nĐã sao chép vào bảng tạm", Alert.AlertType.INFORMATION);
+
+                //Sao chép đường dẫn vừa lưu vào bảng tạm
+                Clipboard clipboard = Clipboard.getSystemClipboard();
+                ClipboardContent content = new ClipboardContent();
+                content.putString(filePath);
+                clipboard.setContent(content);
+            }
+        } else {
+            Alerts.showAlert("Cảnh báo", "Rỗng", "Không có dữ liệu để in", Alert.AlertType.WARNING);
+        }
     }
+
 
     @FXML
     void chonTatCaCacHang(ActionEvent event) {
