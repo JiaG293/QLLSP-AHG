@@ -209,7 +209,7 @@ public class PhanCongCongNhanDao {
 
             String truyVan2 = "SELECT DISTINCT CN.maCN, CN.hoCN, CN.tenCN\n" +
                     "FROM [dbo].[CongNhan] AS CN\n" +
-                    "where  CN.trangThaiCN !=1 AND CN.maTSX = '"+maTo+"'" + cauGhepTruyVan.toString();
+                    "where  CN.trangThaiCN !=1 AND CN.maTSX = '"+maTo+"'" + cauGhepTruyVan;
             ResultSet rs2 = st.executeQuery(truyVan2);
             int stt = 0;
             while (rs2.next()){
@@ -286,6 +286,10 @@ public class PhanCongCongNhanDao {
 
                 int chiTieu = bpc.getChiTieu();
                 boolean tangCa = bpc.isTangCa();
+                int tangCaint = 0;
+                if (tangCa){
+                    tangCaint = 1;
+                }
 
                 java.util.Date ngayPC = bpc.getNgayPC();
                 Date ngayPCSQL =new Date(ngayPC.getTime());
@@ -299,10 +303,10 @@ public class PhanCongCongNhanDao {
                             "[maCD] = '"+maCD+"',\n" +
                             "[maHD] = '"+maHD+"',\n" +
                             "[chiTieu] = "+chiTieu +",\n" +
-                            "[trangThaiTangCa] ="+tangCa+",\n"+
+                            "[trangThaiTangCa] = "+tangCaint+",\n"+
                             "[ngayPhanCong] = '"+ngayPCSQL+"',\n" +
-                            "[ngayKetThuc] ='"+ngayKTSQL+"'\n" +
-                            "WHERE [maBPCCN] LIKE '%"+mabpc+"'";
+                            "[ngayKetThuc] = '"+ngayKTSQL+"'\n" +
+                            "WHERE [maBPCCN] = '"+mabpc+"'";
 
 
                     PreparedStatement st = con.prepareStatement(truyVan);
