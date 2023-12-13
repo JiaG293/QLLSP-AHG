@@ -170,9 +170,9 @@ public class BangLuongNhanVienController implements Initializable {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<BangLuongNhanVien, String> NhanVienStringCellDataFeatures) {
                 return new SimpleStringProperty(
                         (
-                                NhanVienStringCellDataFeatures.getValue().getNgayNhanLuong() == null ?
+                                NhanVienStringCellDataFeatures.getValue().getNgayTinhLuong() == null ?
                                         "" :
-                                        DateUtils.formatStringVietnamDate(NhanVienStringCellDataFeatures.getValue().getNgayNhanLuong()))
+                                        DateUtils.formatStringVietnamDate(NhanVienStringCellDataFeatures.getValue().getNgayTinhLuong()))
                 );
 
             }
@@ -180,7 +180,10 @@ public class BangLuongNhanVienController implements Initializable {
         colNgayTra.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangLuongNhanVien, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<BangLuongNhanVien, String> NhanVienStringCellDataFeatures) {
-                return new SimpleStringProperty(DateUtils.formatStringVietnamDate(NhanVienStringCellDataFeatures.getValue().getNgayTinhLuong()));
+                return new SimpleStringProperty((
+                        NhanVienStringCellDataFeatures.getValue().getNgayNhanLuong() == null ?
+                                "" :
+                                DateUtils.formatStringVietnamDate(NhanVienStringCellDataFeatures.getValue().getNgayNhanLuong())));
             }
         });
         colLuongNhanDuoc.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangLuongNhanVien, String>, ObservableValue<String>>() {

@@ -238,7 +238,7 @@ public class ManHinhChinhController implements Initializable {
 
     @FXML
     void ChangeSceneBangLuongNhanVien(ActionEvent event) throws IOException {
-        BorderPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/CongNhan/BangLuongNhanVien.fxml")));
+        BorderPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/NhanVien/BangLuongNhanVien.fxml")));
         guiChinh.setCenter(view);
     }
 

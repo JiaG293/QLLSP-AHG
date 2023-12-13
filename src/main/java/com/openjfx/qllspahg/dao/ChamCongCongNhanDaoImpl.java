@@ -410,10 +410,12 @@ public class ChamCongCongNhanDaoImpl {
             pst = con.prepareStatement(sql);
 
             for (BangChamCongCongNhan bcccn : listUpdateBCCCN) {
-                pst.setString(1, bcccn.getMaBCCCN());
-                pst.setString(2, bcccn.getMaBangPhanCongCongNhan().getMaBPCCN());
-                pst.addBatch();
+                System.out.println("ma1" + bcccn.getMaBangPhanCongCongNhan().getMaBPCCN());
+                System.out.println("ma2" + bcccn.getMaBCCCN());
+                pst.setString(1, bcccn.getMaBangPhanCongCongNhan().getMaBPCCN());
+                pst.setString(2, bcccn.getMaBCCCN());
                 System.out.println("Da cap nhat bang cham cong vao csdl!!! ");
+                pst.addBatch();
             }
             pst.executeBatch();
             con.commit();
@@ -422,7 +424,6 @@ public class ChamCongCongNhanDaoImpl {
             e.printStackTrace();
             return false;
         }
-
         return true;
     }
 
@@ -451,8 +452,6 @@ public class ChamCongCongNhanDaoImpl {
         return listCDCuoi;
     }
 
-    public static void main(String[] args) {
 
-    }
 
 }

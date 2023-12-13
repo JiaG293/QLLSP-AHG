@@ -284,13 +284,13 @@ public class ChamCongCongNhanController implements Initializable {
 
 
         //tat nut luu khi neu la bang cham cong o qua khu
-        if (LocalDate.now().isBefore(ndc)) {
+       /* if (LocalDate.now().isBefore(ndc)) {
             btnCapNhatBangChamCong.setDisable(true);
         } else if (LocalDate.now().minusDays(1).isEqual(ndc)) {
             btnCapNhatBangChamCong.setDisable(false);
         } else {
             btnCapNhatBangChamCong.setDisable(true);
-        }
+        }*/
 
     }
 
@@ -326,7 +326,7 @@ public class ChamCongCongNhanController implements Initializable {
                     boolean cc = ChamCongCongNhanDaoImpl.getInstance().capNhatBangChamCongCongNhan(DSCHAMCONGCONGNHAN);
                     if (cc) {
                         Alerts.showAlert("Thành công", "Đã lưu", "Đã cập nhật thành công", Alert.AlertType.INFORMATION);
-                        ChamCongCongNhanDaoImpl.getInstance().capNhatSoLuongSanPhamSauChamCong(DSCHAMCONGCONGNHAN);
+                        System.out.println(ChamCongCongNhanDaoImpl.getInstance().capNhatSoLuongSanPhamSauChamCong(DSCHAMCONGCONGNHAN));;
                     }
                 } else {
                     Alerts.showAlert("Thông báo", "Rỗng", "Không có dữ liệu để cập nhật", Alert.AlertType.ERROR);

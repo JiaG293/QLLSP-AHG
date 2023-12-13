@@ -82,7 +82,4 @@ public class DangNhapDaoImpl {
         return taiKhoan;
     }
 
-    public static void main(String[] args) {
-        getInstance().layThongTinTaiKhoan("NV100000");
-    }
 }
