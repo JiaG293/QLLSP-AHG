@@ -91,7 +91,7 @@
    <center>
       <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/icons/avatar.png" />
+            <Image url="@../../images/icons/avatar.png" />
          </image>
       </ImageView>
    </center>
