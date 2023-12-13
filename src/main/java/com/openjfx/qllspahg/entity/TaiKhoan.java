@@ -1,23 +1,31 @@
 package com.openjfx.qllspahg.entity;
 
+import java.util.Objects;
+
 public class TaiKhoan {
-    private TaiKhoan maTK;
+    private NhanVien maTK;
     private String matKhau;
     private String vaiTro;
     private boolean trangThaiTK;
 
-    public TaiKhoan(TaiKhoan maTK, String matKhau) {
-        this.maTK = maTK;
-        this.matKhau = matKhau;
+    public TaiKhoan() {
     }
 
-    public TaiKhoan(TaiKhoan maTK, String matKhau, String vaiTro) {
+
+    public TaiKhoan(NhanVien maTK, String vaiTro) {
+        this.maTK = maTK;
+        this.vaiTro = vaiTro;
+    }
+
+    public TaiKhoan(NhanVien maTK, String matKhau, String vaiTro) {
         this.maTK = maTK;
         this.matKhau = matKhau;
         this.vaiTro = vaiTro;
     }
 
-    public TaiKhoan(TaiKhoan maTK, String matKhau, String vaiTro, boolean trangThaiTK) {
+
+
+    public TaiKhoan(NhanVien maTK, String matKhau, String vaiTro, boolean trangThaiTK) {
         this.maTK = maTK;
         this.matKhau = matKhau;
         this.vaiTro = vaiTro;
@@ -32,11 +40,11 @@ public class TaiKhoan {
         this.trangThaiTK = trangThaiTK;
     }
 
-    public TaiKhoan getMaTK() {
+    public NhanVien getMaTK() {
         return maTK;
     }
 
-    public void setMaTK(TaiKhoan maTK) {
+    public void setMaTK(NhanVien maTK) {
         this.maTK = maTK;
     }
 
@@ -54,6 +62,29 @@ public class TaiKhoan {
 
     public void setVaiTro(String vaiTro) {
         this.vaiTro = vaiTro;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TaiKhoan taiKhoan = (TaiKhoan) o;
+
+        if (trangThaiTK != taiKhoan.trangThaiTK) return false;
+        if (!Objects.equals(maTK, taiKhoan.maTK)) return false;
+        if (!Objects.equals(matKhau, taiKhoan.matKhau)) return false;
+        return Objects.equals(vaiTro, taiKhoan.vaiTro);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = maTK != null ? maTK.hashCode() : 0;
+        result = 31 * result + (matKhau != null ? matKhau.hashCode() : 0);
+        result = 31 * result + (vaiTro != null ? vaiTro.hashCode() : 0);
+        result = 31 * result + (trangThaiTK ? 1 : 0);
+        return result;
     }
 
     @Override

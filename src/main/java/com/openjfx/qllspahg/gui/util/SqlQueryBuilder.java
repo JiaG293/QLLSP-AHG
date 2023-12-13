@@ -292,12 +292,6 @@ public class SqlQueryBuilder {
         return sqlBuilder.toString();
     }
 
-    public static void main(String[] args) {
-        String sql = "";
-
-        System.out.println(stringQueryLocTinhLuongNhanVienTuyChon(sql, null, null,
-                null, "11", "2023", "Tất cả"));
-    }
 
 
 

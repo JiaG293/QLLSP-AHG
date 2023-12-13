@@ -1,22 +1,18 @@
 package com.openjfx.qllspahg.gui;
 
-import com.openjfx.qllspahg.Main;
+import com.openjfx.qllspahg.dao.DangNhapDaoImpl;
+import com.openjfx.qllspahg.entity.TaiKhoan;
 import com.openjfx.qllspahg.gui.util.Alerts;
 import com.openjfx.qllspahg.gui.util.ControlFlow;
+import com.openjfx.qllspahg.gui.util.FileIOUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class DangNhapController implements Initializable {
@@ -35,8 +31,15 @@ public class DangNhapController implements Initializable {
     @FXML
     private PasswordField tfMatKhau;
 
-    private String testUser = "test";
-    private String testPwd = "test";
+    private String testUser = "NV100000";
+    private String testPwd = "123456";
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        tfMaNhanSu.setText(testUser);
+        tfMatKhau.setText(testPwd);
+    }
+
     @FXML
     void xuLiDangNhap(ActionEvent event) throws IOException {
         String username = tfMaNhanSu.getText().trim();
@@ -51,8 +54,10 @@ public class DangNhapController implements Initializable {
             return;
         }
 
-        if(testUser.equals(username) && testPwd.equals(password)){
-            ControlFlow.switchViewsSetSize(event, "/com/openjfx/qllspahg/fxml/ManHinhChinhTest.fxml", "Màn Hình Chính", 1200, 700);
+        if(DangNhapDaoImpl.getInstance().kiemTraDangNhap(username, password)){
+            ControlFlow.switchViewsSetSize(event, "/com/openjfx/qllspahg/fxml/ManHinhChinh.fxml", "Quản lý lương AHG", 1200, 700);
+
+            FileIOUtils.writeTaiKhoanToFile(DangNhapDaoImpl.getInstance().layThongTinTaiKhoan(username), "userData.properties");
         } else{
             Alerts.showConfirmation("Vui lòng nhập lại!", "Mã nhân sự hoặc mật khẩu không chính xác!");
         }
@@ -60,11 +65,7 @@ public class DangNhapController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tfMaNhanSu.setText(testUser);
-        tfMatKhau.setText(testPwd);
-    }
+
 
 
 }

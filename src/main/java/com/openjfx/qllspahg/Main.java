@@ -21,17 +21,6 @@ public class Main extends Application {
         stage.show();
     }
 
-
-//    public void switchViews(ActionEvent event, String fileLocation, String titleStage) throws IOException {
-//
-//        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-//        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fileLocation)));
-//            stage.setTitle(titleStage)
-//        stage.setScene(new Scene(scene));
-//        stage.centerOnScreen();
-//        stage.show();
-//    }
-
     public static void main(String[] args) {
 
         launch();

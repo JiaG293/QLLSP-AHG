@@ -10,9 +10,6 @@ module com.openjfx.qllspahg {
     requires com.microsoft.sqlserver.jdbc;
     requires itextpdf;
 
-
-//    exports com.openjfx.qllspahg.dao;
-//    opens com.openjfx.qllspahg.dao to javafx.fxml;
     exports com.openjfx.qllspahg.database;
     opens com.openjfx.qllspahg.database to javafx.fxml;
 
