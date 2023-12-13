@@ -323,4 +323,42 @@ AND YEAR (BCCCN.ngayChamCong) = 2023 AND CN.trangThaiCN != 1
 AND CN.maCN = 'CN100007'
 GROUP BY  CN.tenCN, CN.hoCN,TSX.maTSX, TSX.tenTSX
 
+--TimKiem nhanvien
+SELECT * FROM [dbo].[PhongBan]
+select * from [dbo].[BangChamCongNhanVien]
+
+SELECT NV.email, NV.hoNV,NV.maNV,NV.sDT, NV.sTK, NV.tenNV, NV.trangThaiNV, PB.*,CV.maCV,CV.tenCV,
+SUM(CASE WHEN BCC.nghiPhep = 1 THEN 1 ELSE 0 END ) AS SoNgayDiLam,
+SUM(CASE WHEN BCC.diLam = 1 THEN 1 ELSE 0 END)  AS SoNgayNghiPhep,
+SUM(CASE WHEN BCC.diLam =0 AND BCC.nghiPhep = 0 THEN 1 ELSE 0 END) AS soNgayNghi
+FROM [dbo].[NhanVien] AS NV 
+JOIN [dbo].[BangChamCongNhanVien] AS BCC ON BCC.maNV = NV.maNV
+JOIN [dbo].[PhongBan] AS PB ON PB.maPB = NV.maPB
+JOIN [dbo].[ChucVu] AS CV ON CV.maCV =NV.maCV
+WHERE MONTH (BCC.ngayChamCong) = 12 
+AND YEAR (BCC.ngayChamCong) = 2023
+GROUP BY  NV.email, 
+NV.hoNV,NV.maNV,NV.sDT, NV.sTK, NV.tenNV, NV.trangThaiNV, PB.maPB, PB.tenPB, CV.maCV,CV.tenCV
+
+--Tim kiem cong nhan 
+SELECT * FROM [dbo].[CongNhan]
+SELECT * FROM [dbo].[BangPhanCongCongNhan]
+SELECT * FROM [dbo].[BangChamCongCongNhan]
+SELECT * FROM [dbo].[ToSanXuat]
+
+SELECT CN.email, CN.hoCN,CN.maCN,CN.sDT, CN.sTK, CN.tenCN, CN.trangThaiCN, TSX.*,CV.maCV,CV.tenCV ,
+SUM(CASE WHEN BCC.nghiPhep = 1 THEN 1 ELSE 0 END ) AS soNgayNghiPhep,
+SUM(CASE WHEN BCC.soLuongLamDuoc > 0 THEN 1 ELSE 0 END)  AS soNgayDiLam,
+SUM(CASE WHEN BCC.nghiPhep = 1 AND BCC.soLuongLamDuoc <= 0 THEN 1 ELSE 0 END) AS soNgayNghi,
+SUM(BPC.[chiTieu]) AS soLuongDuocPhanCong,
+SUM(BCC.[soLuongLamDuoc]) AS soLuongLamDuoc
+FROM [dbo].[CongNhan] AS CN  
+JOIN [dbo].[BangPhanCongCongNhan] AS BPC ON BPC.maCN = CN.maCN
+JOIN [dbo].[BangChamCongCongNhan] AS BCC ON BCC.maBPCCN = BPC.maBPCCN
+JOIN [dbo].[ChucVu] AS CV ON CV.[maCV] = CN.[maCV]
+JOIN [dbo].[ToSanXuat] AS TSX ON TSX.maTSX = CN.maTSX
+WHERE MONTH (BCC.ngayChamCong) = 12 
+AND YEAR (BCC.ngayChamCong) =2023 
+GROUP BY CN.email, CN.hoCN,CN.maCN,CN.sDT, CN.sTK, CN.tenCN, CN.trangThaiCN,
+TSX.maTSX, TSX.tenTSX,CV.maCV,CV.tenCV 
 

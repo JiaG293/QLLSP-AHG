@@ -197,14 +197,15 @@ public class TimKiemNhanVienController implements Initializable {
         if(!cbxChucVu.getSelectionModel().isEmpty()){
             chucVu = cbxChucVu.getSelectionModel().getSelectedItem().getMaCV();
         }
+        tfMaNhanVie.setText("");
+        cbxChucVu.getSelectionModel().clearSelection();
+        cbxPhongBan.getSelectionModel().clearSelection();
         if (TimKiemNhanVienDao.getInstance().timKiemNhanVien(maNhanVien,chucVu,maPhongBan)== null){
             return;
         }
         dsBangTimKiem.addAll(TimKiemNhanVienDao.getInstance().timKiemNhanVien(maNhanVien,chucVu,maPhongBan));
 
-        tfMaNhanVie.setText("");
-        cbxChucVu.getSelectionModel().clearSelection();
-        cbxPhongBan.getSelectionModel().clearSelection();
+
     }
 
 

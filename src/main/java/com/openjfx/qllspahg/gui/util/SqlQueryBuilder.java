@@ -1,7 +1,5 @@
 package com.openjfx.qllspahg.gui.util;
 
-import com.openjfx.qllspahg.entity.ChucVu;
-
 public class SqlQueryBuilder {
     public static String stringQueryLocBangChamCongNhanVien(String cauTruyVanTruocWhere, String tenPB, String ngayChamCong, String hoTenNV, String maNV) {
         StringBuilder sqlBuilder = new StringBuilder().append(cauTruyVanTruocWhere).append(" WHERE ");
@@ -409,11 +407,11 @@ public class SqlQueryBuilder {
         return sql.toString();
     }
 
-    public static String TimKiem(String truyVanTruocWhere, String maNhanVien, String maChucVu, String maphongBan) {
+    public static String TimKiemNhanVien(String truyVanTruocWhere, String maNhanVien, String maChucVu, String maphongBan) {
         StringBuilder sql = new StringBuilder().append(truyVanTruocWhere).append(" and ");
 
         if (maNhanVien != null)
-            sql.append("NV.maNV '").append(maNhanVien).append("' and ");
+            sql.append("NV.maNV LIKE '%").append(maNhanVien).append("%' and ");
 
         if (maChucVu != null)
             sql.append("CV.maCV = '").append(maChucVu).append("' and ");
@@ -425,6 +423,26 @@ public class SqlQueryBuilder {
             sql.setLength(sql.length() - 5);
         sql.append("GROUP BY  NV.email, \n" +
                 "NV.hoNV,NV.maNV,NV.sDT, NV.sTK, NV.tenNV, NV.trangThaiNV, PB.maPB, PB.tenPB, CV.maCV,CV.tenCV");
+
+        return sql.toString();
+    }
+
+    public static String TimKiemCongNhan(String truyVanTruocWhere, String maCongNhan, String maChucVu, String maToSanXuat) {
+        StringBuilder sql = new StringBuilder().append(truyVanTruocWhere).append(" and ");
+
+        if (maCongNhan != null)
+            sql.append("CN.maCN LIKE '%").append(maCongNhan).append("%' and ");
+
+        if (maChucVu != null)
+            sql.append("CV.maCV = '").append(maChucVu).append("' and ");
+
+        if (maToSanXuat != null)
+            sql.append("TSX.maTSX = '").append(maToSanXuat).append("' and ");
+
+        if (sql.toString().endsWith(" and "))
+            sql.setLength(sql.length() - 5);
+        sql.append("GROUP BY CN.email, CN.hoCN,CN.maCN,CN.sDT, CN.sTK, CN.tenCN, CN.trangThaiCN,\n" +
+                "TSX.maTSX, TSX.tenTSX,CV.maCV,CV.tenCV ");
 
         return sql.toString();
     }

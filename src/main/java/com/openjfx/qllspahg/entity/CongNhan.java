@@ -53,6 +53,17 @@ public class CongNhan {
         this.toSanXuat = toSanXuat;
     }
 
+    public CongNhan(String maCN, String hoCN, String tenCN, String sDT, String email, String sTK, ChucVu chucVuCN, ToSanXuat toSanXuat) {
+        this.maCN = maCN;
+        this.hoCN = hoCN;
+        this.tenCN = tenCN;
+        this.sDT = sDT;
+        this.email = email;
+        this.sTK = sTK;
+        this.chucVuCN = chucVuCN;
+        this.toSanXuat = toSanXuat;
+    }
+
     public CongNhan(String maCN, String hoCN, String tenCN, ToSanXuat toSanXuat, boolean trangThaiCN) {
         this.maCN = maCN;
         this.hoCN = hoCN;

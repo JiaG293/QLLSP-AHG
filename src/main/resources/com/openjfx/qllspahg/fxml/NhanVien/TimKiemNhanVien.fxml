@@ -22,7 +22,7 @@
                               <TableColumn fx:id="colHoVaTen" minWidth="-1.0" prefWidth="231.20001220703125" text="Họ và tên" />
                               <TableColumn fx:id="colChucVu" minWidth="-1.0" prefWidth="200.0" text="Chức vụ" />
                               <TableColumn fx:id="colPhongBan" minWidth="-1.0" prefWidth="150.0" text="Phòng ban" />
-                              <TableColumn fx:id="colLienLac" minWidth="-1.0" prefWidth="200.0" text="Liên lạc" />
+                              <TableColumn fx:id="colLienLac" minWidth="-1.0" prefWidth="200.0" text="Thông tin liên lạc" />
                               <TableColumn fx:id="colSoNgayDiLam" minWidth="-1.0" prefWidth="167.199951171875" text="Số ngày đi làm trong tháng" />
                   <TableColumn fx:id="colSoNgayNghiCoPhep" prefWidth="131.199951171875" text="Số ngày nghỉ có phép" />
                   <TableColumn fx:id="colSoNgayNghiKoPhep" prefWidth="163.199951171875" text="Số ngày nghỉ không phép" />
@@ -72,11 +72,4 @@
                 </padding>
             </HBox>
         </top>
-        <bottom>
-            <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="20.0" BorderPane.alignment="CENTER">
-                <padding>
-                    <Insets bottom="5.0" left="5.0" right="20.0" top="10.0" />
-                </padding>
-            </HBox>
-        </bottom>
     </BorderPane>
