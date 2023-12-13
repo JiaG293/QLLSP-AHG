@@ -13,7 +13,6 @@ public interface DSDao {
     public ObservableList<ChiTietHopDong> DSCTHOPDONG = FXCollections.observableArrayList();
     public ObservableList<BangChamCongNhanVien> DSCCNHANVIEN = FXCollections.observableArrayList();
     public ObservableList<NhanVien> DSNHANVIEN = FXCollections.observableArrayList();
-    public ObservableList<ChamCongNhanVienDTO> DSCHAMCONGDTO = FXCollections.observableArrayList();
     public ObservableList<PhongBan> DSPHONGBAN = FXCollections.observableArrayList();
     public ObservableList<CongDoan> DSCONGDOAN = FXCollections.observableArrayList();
     public ObservableList<BangChamCongCongNhan> DSCHAMCONGCONGNHAN = FXCollections.observableArrayList();

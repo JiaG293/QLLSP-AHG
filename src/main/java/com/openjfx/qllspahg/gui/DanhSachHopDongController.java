@@ -29,16 +29,16 @@ import static com.openjfx.qllspahg.dao.interfaces.DSDao.*;
 public class DanhSachHopDongController implements Initializable {
 
     @FXML
-    private DatePicker datepickLocNgayBatDau;
-
-    @FXML
-    private DatePicker datepickLocNgayKetThuc;
+    private TextField tfMaHopDongCTHD;
 
     @FXML
     private ComboBox<String> cbxLocTrangThaiHD;
 
     @FXML
     private ComboBox<String> cbxTenSP;
+
+    @FXML
+    private TableColumn<HopDong, String> colDiaChiHD;
 
     @FXML
     private TableColumn<ChiTietHopDong, String> colDonGiaSP;
@@ -56,9 +56,6 @@ public class DanhSachHopDongController implements Initializable {
     private TableColumn<ChiTietHopDong, String> colMaSP;
 
     @FXML
-    private TableColumn<HopDong, String> colDiaChiHD;
-
-    @FXML
     private TableColumn<HopDong, String> colNgayBatDauHD;
 
     @FXML
@@ -71,17 +68,28 @@ public class DanhSachHopDongController implements Initializable {
     private TableColumn<HopDong, Integer> colSTTHopDong;
 
     @FXML
-    private TableColumn<SanPham, Integer> colSTTChiTietHopDong;
+    private TableColumn<ChiTietHopDong, Integer> colSTTSanPham;
+
+    @FXML
+    private TableColumn<ChiTietHopDong, Integer> colSoLuongCongDoan;
 
     @FXML
     private TableColumn<ChiTietHopDong, Integer> colSoLuongDatSP;
 
     @FXML
-    private TableColumn<ChiTietHopDong, Integer> colSoLuongHoanThanhSP;
-
+    private TableColumn<ChiTietHopDong, Integer> colSoLuongDaSanXuatSP;
 
     @FXML
     private TableColumn<ChiTietHopDong, String> colTenSP;
+
+    @FXML
+    private TableColumn<HopDong, String> colTrangThaiHD;
+
+    @FXML
+    private DatePicker datepickLocNgayBatDau;
+
+    @FXML
+    private DatePicker datepickLocNgayKetThuc;
 
     @FXML
     private DatePicker datepickNgayBatDauHD;
@@ -90,13 +98,22 @@ public class DanhSachHopDongController implements Initializable {
     private DatePicker datepickNgayKetThucHD;
 
     @FXML
+    private TableView<ChiTietHopDong> tblChiTietHopDong;
+
+    @FXML
+    private TableView<HopDong> tblHopDong;
+
+    @FXML
+    private TextField tfDiaChiHD;
+
+    @FXML
     private TextField tfEmailHD;
 
     @FXML
     private TextField tfHoTenKH;
 
     @FXML
-    private TextField tfDiaChiHD;
+    private TextField tfMaHD;
 
     @FXML
     private TextField tfMaSP;
@@ -105,50 +122,184 @@ public class DanhSachHopDongController implements Initializable {
     private TextField tfSDTHD;
 
     @FXML
-    private TextField tfMaHD;
-
-    @FXML
     private Spinner<Integer> tfSoLuongSP;
 
     @FXML
-    private TableView<ChiTietHopDong> tblChiTietHopDong;
-
-    @FXML
-    private TableView<HopDong> tblHopDong;
-
-    @FXML
-    private TableColumn<HopDong, String> colTrangThaiHD;
-
-    @FXML
-    void capNhatHopDongDuocChon(ActionEvent event) {
-
-    }
-
-
-    @FXML
-    void xoaSanPhamHopDongDuocChon(ActionEvent event) {
+    void capNhatHopDong(ActionEvent event) {
 
     }
 
     @FXML
-    void xoaTrangTFChiTietHopDong(ActionEvent event) {
+    void chonMotChiTietHopDong(MouseEvent event) {
+        ChiTietHopDong cthdDuocChon = tblChiTietHopDong.getSelectionModel().getSelectedItem();
+        if (cthdDuocChon != null)
+        {
+            tfMaSP.setText(cthdDuocChon.getMaSanPham().getMaSP());
+            cbxTenSP.setValue(cthdDuocChon.getMaSanPham().getTenSP());
+            tfSoLuongSP.getValueFactory().setValue(3); //cthdDuocChon.getSoLuong()
+        }
+        else{
+            Alerts.showAlert("Thông báo", "Không có dữ liệu", "Chưa chọn một hợp đồng cụ thể", Alert.AlertType.WARNING);
+        }
+    }
+
+    @FXML
+    void chonMotHopDong(MouseEvent event) {
+        HopDong hdDuocChon = tblHopDong.getSelectionModel().getSelectedItem();
+        if(hdDuocChon != null){
+            tfMaHD.setText(hdDuocChon.getMaHD());
+            tfHoTenKH.setText(hdDuocChon.getTenKH());
+            tfSDTHD.setText(hdDuocChon.getsDT());
+            tfDiaChiHD.setText(hdDuocChon.getDiaChi());
+            tfEmailHD.setText(hdDuocChon.getEmail());
+            datepickNgayBatDauHD.setValue(hdDuocChon.getNgayKKHD().toLocalDate());
+            datepickNgayKetThucHD.setValue(hdDuocChon.getNgayTLHD().toLocalDate());
+            DSCTHOPDONG.clear();
+            tblChiTietHopDong.refresh();
+            System.out.println(hdDuocChon.getMaHD());
+        }
+
 
     }
 
     @FXML
-    void xoaTrangTFHopDong(ActionEvent event) {
+    void chonMotSanPhamThem(ActionEvent event) {
+        String maSP = DanhSachHopDongImpl.getInstance().timMaSanPhamDuaTrenTen(cbxTenSP.getValue());
+        tfMaSP.setText(maSP);
+    }
 
+    @FXML
+    void lamMoiDanhSachHD(ActionEvent event) {
+
+    }
+
+    @FXML
+    void lamMoiMaHD(ActionEvent event) {
+        tfMaHD.setText(UUIDUtils.taoMaHopDong(DanhSachHopDongImpl.getInstance().layDanhSachMaHopDong()));
+    }
+
+    @FXML
+    void layDuLieuLocDSHD(ActionEvent event) {
+        String trangThaiHD = null;
+
+        String ngayBatDau = null;
+        String ngayKetThuc = null;
+
+        if (ngayBatDau != null && ngayKetThuc != null) {
+            ngayBatDau = Utils.dinhDangNgayHienTai(datepickLocNgayBatDau.getValue(), "yyyy-MM-dd");
+            ngayKetThuc = Utils.dinhDangNgayHienTai(datepickLocNgayKetThuc.getValue(), "yyyy-MM-dd");
+        }
+
+        if (cbxLocTrangThaiHD.getValue().equals("Thanh lý"))
+            trangThaiHD = "1";
+        else {
+            trangThaiHD = "0";
+        }
+        taiDuLieuHopDong(DanhSachHopDongImpl.getInstance().locDuLieuDanhSachHopDong(trangThaiHD, ngayBatDau, ngayKetThuc));
+        Alerts.showAlert("Thông báo", "Lọc thành công", "Lấy dữ liệu lọc thành công", Alert.AlertType.INFORMATION);
+    }
+
+    @FXML
+    void luuDanhSachHopDong(ActionEvent event) {
+
+    }
+
+    @FXML
+    void thanhLyHopDong(ActionEvent event) {
+        HopDong hdDuocChon = tblHopDong.getSelectionModel().getSelectedItem();
+
+        Optional<ButtonType> otp = Alerts.showConfirmation("Xác nhận", "Bạn có chắc muốn thanh lý hợp đồng này?");
+        otp.ifPresent(btnType -> {
+            String trangThaiHD;
+            if (cbxLocTrangThaiHD.getValue().equals("Thanh lý"))
+                trangThaiHD = "1";
+            else {
+                trangThaiHD = "0";
+            }
+            if (btnType == btnType.OK) {
+                boolean check = DanhSachHopDongImpl.getInstance().thanhLyHopDong(hdDuocChon.getMaHD());
+                if (check == true) {
+                    Alerts.showAlert("Thông báo", "Thành công", "Đã thanh lý hợp đồng", Alert.AlertType.INFORMATION);
+                    xoaTrangDuLieuTextField();
+                    taiDuLieuHopDong(DanhSachHopDongImpl.getInstance().layDuLieuHopDongTrangThaiTuyChon(trangThaiHD));
+                } else
+                    Alerts.showAlert("Thông báo", "Thất bại", "Gặp lỗi trong quá trình cập nhật", Alert.AlertType.ERROR);
+            }
+        });
+    }
+
+    @FXML
+    void themHopDong(ActionEvent event) {
+        Optional<ButtonType> otp = Alerts.showConfirmation("Xác nhận", "Bạn có chắc muốn thêm hợp đồng này");
+        otp.ifPresent(btnType -> {
+            if (btnType == btnType.OK) {
+                boolean check = DanhSachHopDongImpl.getInstance().taoHopDongMoi(layDuLieuTextFieldHopDong());
+                if (check == true) {
+                    Alerts.showAlert("Thông báo", "Thành công", "Đã lưu thành công", Alert.AlertType.INFORMATION);
+                    tfMaHD.setText(UUIDUtils.taoMaHopDong(DanhSachHopDongImpl.getInstance().layDanhSachMaHopDong())); //khoi tao lai ma hd moi
+                    taiDuLieuHopDong(DanhSachHopDongImpl.getInstance().layDuLieuHopDong());
+                    xoaTrangDuLieuTextField();
+                } else
+                    Alerts.showAlert("Thông báo", "Thất bại", "Gặp lỗi trong quá trình tạo", Alert.AlertType.ERROR);
+            }
+        });
+    }
+
+    @FXML
+    void themSanPhamChoHopDong(ActionEvent event) {
+        String maSP = tfMaSP.getText();
+        int soLuong = tfSoLuongSP.getValue();
+        String maHD = tfMaHopDongCTHD.getText();
+        SanPham sp = new SanPham(maSP);
+        HopDong hd = new HopDong(maHD);
+
+        ChiTietHopDong cthd = new ChiTietHopDong(hd, sp, soLuong);
+        System.out.println(cthd.getMaSanPham().getMaSP());
+
+        boolean flag = DanhSachHopDongImpl.getInstance().themMotSanPhamChoMotHopDong(maHD, cthd);
+        if (flag) {
+            taiDuLieuChiTietHopDong(DanhSachHopDongImpl.getInstance().layDuLieuChiTietHopDong(maHD));
+            System.out.println("list sp duoc them:\n" + DSCTHOPDONG.size());
+        } else {
+            Alerts.showAlert("Thông báo", "Lỗi hoặc trùng sản phẩm", "Lỗi khi thêm 1 sản phẩm vào hợp đồng", Alert.AlertType.ERROR);
+        }
+        tfMaHD.clear();
+        cbxTenSP.getSelectionModel().select(0);
+    }
+
+    @FXML
+    void xemChiTietHopDong(ActionEvent event) {
+        HopDong hdDuocChon = tblHopDong.getSelectionModel().getSelectedItem();
+        if (hdDuocChon != null){
+            taiDuLieuChiTietHopDong(DanhSachHopDongImpl.getInstance().layDuLieuChiTietHopDong(hdDuocChon.getMaHD()));
+            tfMaHopDongCTHD.setText(hdDuocChon.getMaHD());
+        }
+        else
+            Alerts.showAlert("Thông báo", "Không có dữ liệu", "Chưa chọn một hợp đồng cụ thể", Alert.AlertType.WARNING);
+    }
+
+    @FXML
+    void xoaSanPhamChoHopDong(ActionEvent event) {
+
+    }
+
+    @FXML
+    void xoaTrangTextFieldDuLieu(ActionEvent event) {
+        Optional<ButtonType> otp = Alerts.showConfirmation("Xác nhận", "Bạn có chắc muốn trắng ô nhập");
+        otp.ifPresent(btnType -> {
+            if (btnType == btnType.OK) {
+                xoaTrangDuLieuTextField();
+            }
+        });
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         khoiTaoKieuDuLieuChoTableView();
-        taiDuLieuHopDong(DanhSachHopDongImpl.getInstance().layDuLieuHopDongTrangThaiTuyChon("False"));
+//        taiDuLieuHopDong(DanhSachHopDongImpl.getInstance().layDuLieuHopDongTrangThaiTuyChon("False"));
 
 
     }
-
-
 
 
     private void taiDuLieuHopDong(ObservableList<HopDong> method) {
@@ -169,8 +320,7 @@ public class DanhSachHopDongController implements Initializable {
 
     public void khoiTaoKieuDuLieuChoTableView() {
         //Tao cot ao tableview
-
-        colSTTChiTietHopDong.setCellValueFactory(cellData -> {
+        colSTTSanPham.setCellValueFactory(cellData -> {
             int rowIndex = cellData.getTableView().getItems().indexOf(cellData.getValue());
             if (rowIndex >= 0) {
                 return new SimpleIntegerProperty(rowIndex + 1).asObject();
@@ -264,10 +414,17 @@ public class DanhSachHopDongController implements Initializable {
             }
         });
 
-        colSoLuongHoanThanhSP.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietHopDong, Integer>, ObservableValue<Integer>>() {
+        colSoLuongDaSanXuatSP.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietHopDong, Integer>, ObservableValue<Integer>>() {
             @Override
             public ObservableValue<Integer> call(TableColumn.CellDataFeatures<ChiTietHopDong, Integer> chiTietHopDongIntegerCellDataFeatures) {
                 return new SimpleIntegerProperty(chiTietHopDongIntegerCellDataFeatures.getValue().getSoLuongDaLam()).asObject();
+            }
+        });
+
+        colSoLuongCongDoan.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietHopDong, Integer>, ObservableValue<Integer>>() {
+            @Override
+            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<ChiTietHopDong, Integer> chiTietHopDongIntegerCellDataFeatures) {
+                return new SimpleIntegerProperty(chiTietHopDongIntegerCellDataFeatures.getValue().getSoLuongCongDoan()).asObject();
             }
         });
 
@@ -283,16 +440,17 @@ public class DanhSachHopDongController implements Initializable {
 
 
     @FXML
-    private void capNhatHopDong(ActionEvent event) {
-
-    }
-
-    @FXML
     private void lamMoiTableView(ActionEvent event) {
         Optional<ButtonType> otp = Alerts.showConfirmation("Xác nhận", "Bạn có chắc làm mới dữ liệu hợp đồng");
+        String trangThai;
+        if (cbxLocTrangThaiHD.getValue().equals("Chưa thanh lý")) {
+            trangThai = "0";
+        } else {
+            trangThai = "1";
+        }
         otp.ifPresent(btnType -> {
             if (btnType == btnType.OK) {
-                taiDuLieuHopDong(DanhSachHopDongImpl.getInstance().layDuLieuHopDong());
+                taiDuLieuHopDong(DanhSachHopDongImpl.getInstance().layDuLieuHopDongTrangThaiTuyChon(trangThai));
                 Alerts.showAlert("Thông báo", "Đã tải lại dữ liệu", "Tải lại dữ liệu danh sách hợp đồng thành công", Alert.AlertType.INFORMATION);
                 tfMaHD.setText(UUIDUtils.taoMaHopDong(DanhSachHopDongImpl.getInstance().layDanhSachMaHopDong())); //khoi tao lai ma hd moi
             }
@@ -300,156 +458,11 @@ public class DanhSachHopDongController implements Initializable {
 
     }
 
-    @FXML
-    private void layDuLieuLocDSHD(ActionEvent event) {
-        String trangThaiHD = null;
-
-        String ngayBatDau = null;
-        String ngayKetThuc = null;
-
-        if (ngayBatDau != null && ngayKetThuc != null) {
-            ngayBatDau = Utils.dinhDangNgayHienTai(datepickLocNgayBatDau.getValue(), "yyyy-MM-dd");
-            ngayKetThuc = Utils.dinhDangNgayHienTai(datepickLocNgayKetThuc.getValue(), "yyyy-MM-dd");
-        }
-
-        if (cbxLocTrangThaiHD.getValue().equals("Thanh lý"))
-            trangThaiHD = "True";
-        else if (cbxLocTrangThaiHD.getValue().equals("Chưa thanh lý"))
-            trangThaiHD = "False";
-        else trangThaiHD = "Tất cả";
-        taiDuLieuHopDong(DanhSachHopDongImpl.getInstance().locDuLieuDanhSachHopDong(trangThaiHD, ngayBatDau, ngayKetThuc));
-        Alerts.showAlert("Thông báo", "Lọc thành công", "Lấy dữ liệu lọc thành công", Alert.AlertType.INFORMATION);;
-
-
-    }
-
-    @FXML
-    private void luuDanhSachHopDong(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void thanhLyHopDong(ActionEvent event) {
-        HopDong hdDuocChon = tblHopDong.getSelectionModel().getSelectedItem();
-        Optional<ButtonType> otp = Alerts.showConfirmation("Xác nhận", "Bạn có chắc muốn thanh lý hợp đồng này?");
-        otp.ifPresent(btnType -> {
-            if (btnType == btnType.OK) {
-                boolean check = DanhSachHopDongImpl.getInstance().thanhLyHopDong(hdDuocChon.getMaHD());
-                if (check == true) {
-                    Alerts.showAlert("Thông báo", "Thành công", "Đã thanh lý hợp đồng", Alert.AlertType.INFORMATION);
-                    xoaTrangDuLieuTextField();
-                    taiDuLieuHopDong(DanhSachHopDongImpl.getInstance().layDuLieuHopDong());
-                } else
-                    Alerts.showAlert("Thông báo", "Thất bại", "Gặp lỗi trong quá trình cập nhật", Alert.AlertType.ERROR);
-            }
-        });
-    }
-
-    @FXML
-    private void themHopDong(ActionEvent event) {
-        Optional<ButtonType> otp = Alerts.showConfirmation("Xác nhận", "Bạn có chắc muốn thêm hợp đồng này");
-        otp.ifPresent(btnType -> {
-            if (btnType == btnType.OK) {
-                boolean check = DanhSachHopDongImpl.getInstance().taoHopDongMoi(layDuLieuTextFieldHopDong());
-                if (check == true) {
-                    Alerts.showAlert("Thông báo", "Thành công", "Đã lưu thành công", Alert.AlertType.INFORMATION);
-                    tfMaHD.setText(UUIDUtils.taoMaHopDong(DanhSachHopDongImpl.getInstance().layDanhSachMaHopDong())); //khoi tao lai ma hd moi
-                    taiDuLieuHopDong(DanhSachHopDongImpl.getInstance().layDuLieuHopDong());
-                    xoaTrangDuLieuTextField();
-                } else
-                    Alerts.showAlert("Thông báo", "Thất bại", "Gặp lỗi trong quá trình tạo", Alert.AlertType.ERROR);
-            }
-        });
-    }
-
-    @FXML
-    private void themSanPhamChoHopDong(ActionEvent event) {
-        String maSP = tfMaSP.getText();
-        int soLuong = tfSoLuongSP.getValue();
-        String maHD = tfMaHD.getText();
-        SanPham sp = new SanPham(maSP);
-        HopDong hd = new HopDong(maHD);
-
-        ChiTietHopDong cthd = new ChiTietHopDong(hd, sp, soLuong);
-
-        System.out.println(cthd.getMaSanPham().getMaSP());
-//        System.out.println(DSCTHOPDONG.contains(.equals(maSP)));
-        /*if () {
-            Alerts.showAlert("Lỗi", "Trùng mã", "Sản phẩm thêm vào đã có, vui lòng xóa và thêm lại", Alert.AlertType.ERROR);
-        } else {
-
-        }*/
-        DSCTHOPDONG.add(cthd);
-        System.out.println("list sp duoc them:\n" + DSCTHOPDONG);
-    }
-
-    @FXML
-    private void xemChiTietHopDong(ActionEvent event) {
-        HopDong hdDuocChon = tblHopDong.getSelectionModel().getSelectedItem();
-
-        if (hdDuocChon.getMaHD() == null)
-            Alerts.showAlert("Thông báo", "Không có dữ liệu", "Chưa chọn một hợp đồng cụ thể", Alert.AlertType.WARNING);
-        else
-            taiDuLieuChiTietHopDong(DanhSachHopDongImpl.getInstance().layDuLieuChiTietHopDong(hdDuocChon.getMaHD()));
-    }
-
-    @FXML
-    private void xoaSanPhamChoHopDong(ActionEvent event) {
-
-    }
-
-
-    @FXML
-    void chonMotHopDong(MouseEvent event) {
-        HopDong hdDuocChon = tblHopDong.getSelectionModel().getSelectedItem();
-        tfMaHD.setText(hdDuocChon.getMaHD());
-        tfHoTenKH.setText(hdDuocChon.getTenKH());
-        tfSDTHD.setText(hdDuocChon.getsDT());
-        tfDiaChiHD.setText(hdDuocChon.getDiaChi());
-        tfEmailHD.setText(hdDuocChon.getEmail());
-        datepickNgayBatDauHD.setValue(hdDuocChon.getNgayKKHD().toLocalDate());
-        datepickNgayKetThucHD.setValue(hdDuocChon.getNgayTLHD().toLocalDate());
-
-        System.out.println(hdDuocChon.getMaHD());
-    }
-
-    @FXML
-    private void chonMotChiTietHopDong(MouseEvent event) {
-        ChiTietHopDong cthdDuocChon = tblChiTietHopDong.getSelectionModel().getSelectedItem();
-        if (cthdDuocChon.getMaSanPham().getMaSP() == null)
-            Alerts.showAlert("Thông báo", "Không có dữ liệu", "Chưa chọn một hợp đồng cụ thể", Alert.AlertType.WARNING);
-        else {
-            tfMaSP.setText(cthdDuocChon.getMaSanPham().getMaSP());
-            cbxTenSP.setValue(cthdDuocChon.getMaSanPham().getTenSP());
-            tfSoLuongSP.getValueFactory().setValue(3); //cthdDuocChon.getSoLuong()
-        }
-    }
-
-    @FXML
-    private void chonMotSanPhamThem(ActionEvent event) {
-        String maSP = DanhSachHopDongImpl.getInstance().timMaSanPhamDuaTrenTen(cbxTenSP.getValue());
-        tfMaSP.setText(maSP);
-    }
-
-    @FXML
-    void xoaTrangTextFieldDuLieu(ActionEvent event) {
-        Optional<ButtonType> otp = Alerts.showConfirmation("Xác nhận", "Bạn có chắc muốn trắng ô nhập");
-        otp.ifPresent(btnType -> {
-            if (btnType == btnType.OK) {
-                xoaTrangDuLieuTextField();
-            }
-        });
-    }
-
-    @FXML
-    void lamMoiMaHD(ActionEvent event) {
-        tfMaHD.setText(UUIDUtils.taoMaHopDong(DanhSachHopDongImpl.getInstance().layDanhSachMaHopDong()));
-    }
 
     private void taiDuLieuComboBoxTrangThaiHopDong() {
         cbxLocTrangThaiHD.setPromptText("Chọn trạng thái");
         ObservableList<String> listTrangThaiHD = FXCollections.observableArrayList();
-        listTrangThaiHD.addAll("Tất cả", "Thanh lý", "Chưa thanh lý");
+        listTrangThaiHD.addAll("Thanh lý", "Chưa thanh lý");
         cbxLocTrangThaiHD.setValue("Chưa thanh lý");
         cbxLocTrangThaiHD.setItems(listTrangThaiHD);
 
@@ -502,5 +515,6 @@ public class DanhSachHopDongController implements Initializable {
             Alerts.showAlert("Vui lòng nhập", "Không được để trống", "Vui lòng nhập thông tin cho trường email", Alert.AlertType.WARNING);
         return hd;
     }
+
 
 }

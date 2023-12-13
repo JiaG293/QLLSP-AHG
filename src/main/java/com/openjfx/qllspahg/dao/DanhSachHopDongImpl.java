@@ -53,28 +53,34 @@ public class DanhSachHopDongImpl {
     public ObservableList<ChiTietHopDong> layDuLieuChiTietHopDong(String maHopDong) {
         Connection con = null;
         PreparedStatement pst = null;
-        String sql = "SELECT HD.*, CTHD.maSP, CTHD.soLuong, SP.tenSP, SP.giaSP " +
-                "FROM HopDong AS HD " +
-                "JOIN ChiTietHopDong AS CTHD ON HD.maHD = CTHD.maHD " +
-                "JOIN SanPham AS SP ON CTHD.maSP = SP.maSP " +
-                "WHERE HD.maHD = '" + maHopDong + "'";
+        String sql = "SELECT CTHD.*, SP.tenSP, SP.giaSP, COALESCE(CD.soLuongCongDoan, 0) AS soLuongCongDoan\n" +
+                "FROM ChiTietHopDong AS CTHD\n" +
+                "LEFT JOIN SanPham AS SP ON CTHD.maSP = SP.maSP\n" +
+                "LEFT JOIN (\n" +
+                "    SELECT maSP, COUNT(*) AS soLuongCongDoan\n" +
+                "    FROM CongDoan\n" +
+                "    GROUP BY maSP\n" +
+                ") AS CD ON CTHD.maSP = CD.maSP\n" +
+                "WHERE CTHD.maHD = ?";
 
         ObservableList<ChiTietHopDong> listCTHD = FXCollections.observableArrayList();
         try {
             con = Db.getConnection();
             pst = con.prepareStatement(sql);
+            pst.setString(1, maHopDong);
             ResultSet rs = pst.executeQuery();
-
             while (rs.next()) {
                 String maHD = rs.getString("maHD");
                 String maSP = rs.getString("maSP");
                 String tenSP = rs.getString("tenSP");
-                int soLuong = rs.getInt("soLuong");
-                Double giaSP = rs.getDouble("giaSP");
+                int soLuongDat = rs.getInt("soLuongDat");
+                int soLuongLam = rs.getInt("soLuongDaLam");
+                int soLuongCongDoan = rs.getInt("soLuongCongDoan");
+                double giaSP = rs.getDouble("giaSP");
                 HopDong hd = new HopDong(maHD);
                 SanPham sp = new SanPham(maSP, tenSP, giaSP);
 
-                ChiTietHopDong dscthd = new ChiTietHopDong(hd, sp, soLuong);
+                ChiTietHopDong dscthd = new ChiTietHopDong(hd, sp, soLuongDat, soLuongLam, soLuongCongDoan);
                 listCTHD.add(dscthd);
             }
         } catch (SQLException e) {
@@ -251,6 +257,29 @@ public class DanhSachHopDongImpl {
             }
             pst.executeBatch();
             con.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        System.out.println("Da them ds san pham thanh cong vao csdl!!! ");
+        return true;
+    }
+
+    public boolean themMotSanPhamChoMotHopDong(String maHD, ChiTietHopDong chiTietHopDong) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        try {
+            String sql = "INSERT INTO ChiTietHopDong (maHD, maSP, soLuongDat) VALUES (?, ?, ?)";
+
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            pst.setString(1, maHD);
+            pst.setString(2, chiTietHopDong.getMaSanPham().getMaSP());
+            pst.setInt(3, chiTietHopDong.getSoLuongDat());
+
+            pst.executeUpdate();
 
         } catch (Exception e) {
             e.printStackTrace();

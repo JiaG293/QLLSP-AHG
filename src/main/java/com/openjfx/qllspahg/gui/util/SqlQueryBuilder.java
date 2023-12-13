@@ -36,8 +36,9 @@ public class SqlQueryBuilder {
         }
 
         if (ngayBatDau != null && ngayKetThuc != null) {
-            sqlBuilder.append("HD.ngayKKHD BETWEEN '").append(ngayBatDau).append("' AND '").append(ngayKetThuc).append("' OR ").append("HD.ngayTLHD BETWEEN '").append(ngayBatDau).append("' AND '").append(ngayKetThuc).append("'");
+            sqlBuilder.append("HD.ngayKKHD BETWEEN '").append(ngayBatDau).append("' AND '").append(ngayKetThuc);
         }
+
         // Xoa where cuoi neu co
         if (sqlBuilder.toString().endsWith("WHERE ")) {
             sqlBuilder.setLength(sqlBuilder.length() - 6);

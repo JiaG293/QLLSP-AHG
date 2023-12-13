@@ -5,6 +5,7 @@ public class ChiTietHopDong {
     private SanPham maSanPham;
     private int soLuongDat;
     private int soLuongDaLam;
+    private int soLuongCongDoan;
 
     public ChiTietHopDong(HopDong maHopDong, SanPham maSanPham, int soLuongDat) {
         this.maHopDong = maHopDong;
@@ -22,6 +23,23 @@ public class ChiTietHopDong {
     public ChiTietHopDong(HopDong maHopDong, SanPham maSanPham) {
         this.maHopDong = maHopDong;
         this.maSanPham = maSanPham;
+    }
+
+    public ChiTietHopDong(HopDong maHopDong, SanPham maSanPham, int soLuongDat, int soLuongDaLam, int soLuongCongDoan) {
+        this.maHopDong = maHopDong;
+        this.maSanPham = maSanPham;
+        this.soLuongDat = soLuongDat;
+        this.soLuongDaLam = soLuongDaLam;
+        this.soLuongCongDoan = soLuongCongDoan;
+    }
+
+
+    public int getSoLuongCongDoan() {
+        return soLuongCongDoan;
+    }
+
+    public void setSoLuongCongDoan(int soLuongCongDoan) {
+        this.soLuongCongDoan = soLuongCongDoan;
     }
 
     public ChiTietHopDong(HopDong maHopDong) {
@@ -62,11 +80,12 @@ public class ChiTietHopDong {
 
     @Override
     public String toString() {
-        return "ChiTietHopDong: " +
+        return "ChiTietHopDong{\n" +
                 "maHopDong=" + maHopDong +
                 ", maSanPham=" + maSanPham +
                 ", soLuongDat=" + soLuongDat +
                 ", soLuongDaLam=" + soLuongDaLam +
-                '\n';
+                ", soLuongCongDoan=" + soLuongCongDoan +
+                "}\n";
     }
 }
