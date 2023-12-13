@@ -62,17 +62,6 @@
                         <MenuItem mnemonicParsing="false" onAction="#ChangeSceneTimKiemHopDong" text="Tìm kiếm" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Lương">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Danh sách bảng lương" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Hệ số phụ cấp" />
-                        <MenuItem mnemonicParsing="false" text="Hệ số chức vụ" />
-                        <MenuItem mnemonicParsing="false" text="Hệ số lương" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Tìm kiếm" />
-                     </items>
-                  </Menu>
                   <Menu mnemonicParsing="false" text="Tài khoản">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Danh sách tài khoản" />
