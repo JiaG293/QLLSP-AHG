@@ -15,7 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.Locale;
 
 public class TimKiemNhanVienDao {
 
@@ -78,7 +77,7 @@ public class TimKiemNhanVienDao {
                     "WHERE MONTH (BCC.ngayChamCong) = "+ LocalDate.now().getMonth().getValue() +" \n" +
                     "AND YEAR (BCC.ngayChamCong) = "+LocalDate.now().getYear()+" ";
 
-            String truyVan = SqlQueryBuilder.TimKiem(truyVantrcwhere,maNhanVien,machucVu,maphongBan);
+            String truyVan = SqlQueryBuilder.TimKiemNhanVien(truyVantrcwhere,maNhanVien,machucVu,maphongBan);
             ResultSet rs = st.executeQuery(truyVan);
             if (!rs.isBeforeFirst()){
                 Alerts.showConfirmation("Thông báo", "Không tìm thấy");

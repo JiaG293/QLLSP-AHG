@@ -22,7 +22,8 @@ VALUES
 ('CCNV100000011223','NV100000','2023-12-01', 1,0),
 ('CCNV100000091223','NV100000','2023-12-09', 0,1),
 ('CCNV100000081223','NV100000','2023-12-08', 0,1),
-('CCNV100000081222','NV100000','2022-12-08', 0,1) --nam la 2022 de kiem tra coi cau truy van co dung la lay nam hien tai ko
+('CCNV100000081222','NV100000','2022-12-08', 0,1), --nam la 2022 de kiem tra coi cau truy van co dung la lay nam hien tai ko
+('CCNV100000111223','NV100000','2023-12-11', 0,0)
 
 INSERT [dbo].[BangChamCongNhanVien] ([maBCCNV],[maNV],[ngayChamCong], [diLam], [nghiPhep] )
 VALUES
