@@ -16,6 +16,8 @@ public class ChiTietLuongNhanVien {
     private double luongThucTe;
     private double phiBHYT;
     private double phiBHXH;
+    private String thangBangLuong;
+    private String namBangLuong;
 
     public ChiTietLuongNhanVien(BangLuongNhanVien maBangLuongNhanVien, NhanVien maNhanVien, BangChamCongNhanVien maBangChamCongNhanVien, TamUngNhanVien maTamUngNhanVien, PhuCap maPhuCapNhanVien, int soNgayDiLam, int soNgayTangCa, int soNgayNghi, int soNgayCoPhep, double luongNhanDuoc, double luongThucTe, double phiBHYT, double phiBHXH) {
         this.maBangLuongNhanVien = maBangLuongNhanVien;
@@ -60,6 +62,38 @@ public class ChiTietLuongNhanVien {
         this.luongThucTe = luongThucTe;
         this.phiBHYT = phiBHYT;
         this.phiBHXH = phiBHXH;
+    }
+
+    public ChiTietLuongNhanVien(NhanVien maNhanVien, TamUngNhanVien maTamUngNhanVien, PhuCap maPhuCapNhanVien, int soNgayDiLam, int soNgayTangCa, int soNgayNghi, int soNgayCoPhep, double luongNhanDuoc, double luongThucTe, double phiBHYT, double phiBHXH, String thangBangLuong, String namBangLuong) {
+        this.maNhanVien = maNhanVien;
+        this.maTamUngNhanVien = maTamUngNhanVien;
+        this.maPhuCapNhanVien = maPhuCapNhanVien;
+        this.soNgayDiLam = soNgayDiLam;
+        this.soNgayTangCa = soNgayTangCa;
+        this.soNgayNghi = soNgayNghi;
+        this.soNgayCoPhep = soNgayCoPhep;
+        this.luongNhanDuoc = luongNhanDuoc;
+        this.luongThucTe = luongThucTe;
+        this.phiBHYT = phiBHYT;
+        this.phiBHXH = phiBHXH;
+        this.thangBangLuong = thangBangLuong;
+        this.namBangLuong = namBangLuong;
+    }
+
+    public String getThangBangLuong() {
+        return thangBangLuong;
+    }
+
+    public void setThangBangLuong(String thangBangLuong) {
+        this.thangBangLuong = thangBangLuong;
+    }
+
+    public String getNamBangLuong() {
+        return namBangLuong;
+    }
+
+    public void setNamBangLuong(String namBangLuong) {
+        this.namBangLuong = namBangLuong;
     }
 
     public BangLuongNhanVien getMaBangLuongNhanVien() {

@@ -33,6 +33,12 @@ public class TamUngNhanVien {
         this.trangThaiTUCN = trangThaiTUCN;
     }
 
+    public TamUngNhanVien(NhanVien maNV, Date ngayTamUng, double soTienTamUng) {
+        this.maNV = maNV;
+        this.ngayTamUng = ngayTamUng;
+        this.soTienTamUng = soTienTamUng;
+    }
+
     public boolean getTrangThaiTUCN() {
         return trangThaiTUCN;
     }

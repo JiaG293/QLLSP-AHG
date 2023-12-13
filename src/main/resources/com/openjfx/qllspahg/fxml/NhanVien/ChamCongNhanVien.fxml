@@ -74,7 +74,8 @@
     <bottom>
         <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="20.0" BorderPane.alignment="CENTER">
             <children>
-            <Button mnemonicParsing="false" onAction="#taoChamCongHienTai" text="Tạo chấm công" />
+            <Button mnemonicParsing="false" onAction="#taoChamCongTuyChon" text="tao cc tuy chon" />
+            <Button mnemonicParsing="false" onAction="#taoChamCongHienTai" text="Tạo hien tai" />
                 <Button mnemonicParsing="false" onAction="#lamMoiDuLieuBangChamCongNhanVien" prefHeight="30.0" prefWidth="94.0" text="Làm mới">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">

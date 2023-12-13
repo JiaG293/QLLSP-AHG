@@ -19,7 +19,7 @@
         <center>
             <ScrollPane fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER">
                 <content>
-                    <TableView fx:id="tblLuongNhanVien" editable="true" tableMenuButtonVisible="true">
+                    <TableView fx:id="tblLuongNhanVien" editable="true" onMouseClicked="#chiTietBangLuongNhanVienDuocChon" tableMenuButtonVisible="true">
                         <columns>
                   <TableColumn fx:id="collSTTLuongNV" prefWidth="30.0" text="STT" />
                             <TableColumn fx:id="colMaNV" prefWidth="100.0" text="Mã nhân viên" />
@@ -66,7 +66,7 @@
         <bottom>
             <HBox alignment="CENTER" fillHeight="false" spacing="50.0">
          <children>
-            <Button maxWidth="200.0" mnemonicParsing="false" onAction="#tinhLuongNhanVien" prefWidth="100.0" text="Tính lương">
+            <Button maxWidth="200.0" mnemonicParsing="false" onAction="#lamMoiDanhSachTinhLuong" prefWidth="150.0" text="Làm mới">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -78,7 +78,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button maxWidth="200.0" mnemonicParsing="false" onAction="#temp" prefWidth="100.0" text="temp">
+            <Button fx:id="btnLuuDanhSachBangLuong" maxWidth="200.0" mnemonicParsing="false" onAction="#luuDanhSachLuong" prefWidth="150.0" text="Lưu danh sách">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -87,25 +87,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button maxWidth="200.0" mnemonicParsing="false" onAction="#luuDanhSachLuong" prefWidth="100.0" text="Lưu">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/icons/edit-removebg-preview.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button maxWidth="200.0" mnemonicParsing="false" onAction="#xuatBangLuong" prefWidth="100.0" text="Xuất">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/icons/edit-removebg-preview.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button maxWidth="200.0" mnemonicParsing="false" prefWidth="100.0" text="Tính lương">
+            <Button fx:id="btnLuuBangLuongDuocChon" maxWidth="200.0" mnemonicParsing="false" onAction="#luuBangTinhLuongDuocCHon" prefWidth="150.0" text="Lưu bảng chọn">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -146,23 +128,36 @@
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
                         <Label text="Tháng - Năm" />
-                        <ComboBox fx:id="cbxLocThangTinhLuongNV" prefHeight="26.0" prefWidth="120.0" />
+                        <ComboBox fx:id="cbxLocThangTinhLuongNV" onAction="#kiemTraThang" prefHeight="26.0" prefWidth="120.0" />
                         <ComboBox fx:id="cbxLocNamTinhLuongNV" prefHeight="26.0" prefWidth="120.0" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </HBox>
-                            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="270.0" spacing="10.0">
+                            <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="270.0" spacing="10.0">
                                 <children>
                                     <Label text="Phòng ban: " />
-                                    <ComboBox fx:id="cbxLocPhongBanNV" prefHeight="26.0" prefWidth="154.0" />
+                                    <ComboBox fx:id="cbxLocPhongBanNV" prefHeight="26.0" prefWidth="180.0" />
                                 </children>
                                 <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                 </padding>
                             </HBox>
-                            <Button mnemonicParsing="false" onAction="#layDuLieuLocLuongNhanVien" text="Lấy dữ liệu " />
+                  <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Label text="Trạng thái tạo:" />
+                        <ComboBox fx:id="cbxTrangThaiLocNV" prefHeight="26.0" prefWidth="100.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                            <Button mnemonicParsing="false" onAction="#layDuLieuLocLuongNhanVien" text="Lấy dữ liệu ">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Button>
                         </children>
                     </HBox>
                     <HBox alignment="CENTER">

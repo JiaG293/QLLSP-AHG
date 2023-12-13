@@ -153,7 +153,6 @@ public class TinhLuongCongNhanController implements Initializable {
         khoiTaoComboxBoxTrangThaiBangLuong();
 
         //tat button
-        btnLuuBangLuongDuocChon.setDisable(true);
         //Doi chu khi khong co du lieu tu tieng anh sang tieng viet
         tblLuongCongNhan.setPlaceholder(new Label("Không có dữ liệu\nVui lòng thực hiện lấy dữ liệu"));
 
@@ -294,7 +293,7 @@ public class TinhLuongCongNhanController implements Initializable {
         if (namLbl == null || namLbl.equals("Trống") || namLbl.isEmpty()) {
             namLbl = String.valueOf(dateHienTai.getYear());
         }
-        lblThangNamLuongCN.setText("Bảng lương tháng " + thangLbl + "-" + namLbl);
+        lblThangNamLuongCN.setText("Bảng tính lương tháng " + thangLbl + "-" + namLbl);
     }
 
     private void khoiTaoComboBoxThangNam() {
@@ -315,7 +314,7 @@ public class TinhLuongCongNhanController implements Initializable {
         cbxLocThangTinhLuongCN.setPromptText("Chọn tháng");
         cbxLocThangTinhLuongCN.setValue(String.valueOf(dateHienTai.getMonthValue() - 1)); // tra ve thang truoc de tinh bang luong
         int namHienTai = YearMonth.now().getYear();
-        for (int i = 2000; i <= namHienTai; i++) {
+        for (int i = 2000; i <= namHienTai + 1; i++) {
             nam.add(String.valueOf(i));
         }
         cbxLocNamTinhLuongCN.setItems(nam);
@@ -355,7 +354,7 @@ public class TinhLuongCongNhanController implements Initializable {
         //Set label bang luong
         String thangLbl = cbxLocThangTinhLuongCN.getValue();
         String namLbl = cbxLocNamTinhLuongCN.getValue();
-        lblThangNamLuongCN.setText("Bảng lương tháng " + thangLbl + "-" + namLbl);
+        lblThangNamLuongCN.setText("Bảng tính lương tháng " + thangLbl + "-" + namLbl);
 
         //Du lieu loc textfield ma, ten
         String maCN = tfLocMaCN.getText();
@@ -458,12 +457,12 @@ public class TinhLuongCongNhanController implements Initializable {
     @FXML
     void chiTietBangLuongCongNhanDuocChon(MouseEvent event) {
         kiemTraBangLuongDuocChon();
-        kiemTraCamSuaDoi();
+//        kiemTraCamSuaDoi();
     }
 
     @FXML
     void kiemTraThang(ActionEvent event) {
-        //kiemTraCamSuaDoi();
+//        kiemTraCamSuaDoi();
         //Khi nao hoan thanh chuong trinh bo xoa
     }
 
@@ -492,8 +491,8 @@ public class TinhLuongCongNhanController implements Initializable {
                 btnLuuDanhSachBangLuongCongNhan.setDisable(true);
                 btnLuuBangLuongDuocChon.setDisable(true);
             } else if (thangHienTai == thangDuocChon){
-                btnLuuDanhSachBangLuongCongNhan.setDisable(true);
-                btnLuuBangLuongDuocChon.setDisable(true);
+                btnLuuDanhSachBangLuongCongNhan.setDisable(false);
+                btnLuuBangLuongDuocChon.setDisable(false);
             } else {
                 btnLuuDanhSachBangLuongCongNhan.setDisable(false);
                 btnLuuBangLuongDuocChon.setDisable(false);

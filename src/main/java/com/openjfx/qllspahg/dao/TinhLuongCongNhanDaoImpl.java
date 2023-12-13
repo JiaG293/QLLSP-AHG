@@ -437,7 +437,6 @@ public class TinhLuongCongNhanDaoImpl {
     public boolean luuBangLuongCongNhanDuocChon(ChiTietLuongCongNhan chiTietLuongCongNhanDuocChon) {
         Connection con = null;
         PreparedStatement pst = null;
-        ObservableList<BangLuongCongNhan> listBangLuongCN = FXCollections.observableArrayList();
         try {
             String sql = "INSERT INTO BangLuongCongNhan(maBLCN, maCN, luongCN, tongLuongCN, ngayTinhLuong)\n" +
                     "VALUES (?, ?, ?, ?, ?)";
@@ -464,7 +463,6 @@ public class TinhLuongCongNhanDaoImpl {
     public boolean kiemTraBangLuongTonTai(String maBangLuongCN) {
         Connection con = null;
         PreparedStatement pst = null;
-        ObservableList<BangLuongCongNhan> listBangLuongCN = FXCollections.observableArrayList();
         try {
             String sql = "SELECT BLCN.*\n" +
                     "FROM BangLuongCongNhan AS BLCN\n" +
