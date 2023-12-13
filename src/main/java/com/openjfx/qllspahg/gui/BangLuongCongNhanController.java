@@ -117,6 +117,8 @@ public class BangLuongCongNhanController implements Initializable {
     }
 
     public void khoiTaoTableBangLuongCongNhan() {
+
+
         colSTTLuong.setCellValueFactory(cellData -> {
             int rowIndex = cellData.getTableView().getItems().indexOf(cellData.getValue());
             if (rowIndex >= 0) {
@@ -131,6 +133,12 @@ public class BangLuongCongNhanController implements Initializable {
         khoiTaoLabelThangNamBangLuong();
         khoiTaoComboxBoxTrangThaiBangLuong();
         khoiTaoComboBoxToSanXuat();
+
+        //textfile
+        tfLocTenCN.setPromptText("Nhập tên công nhân");
+        tfLocMaCN.setPromptText("Nhập mã công nhân");
+        tfLocMaCN.setText(null);
+        tfLocTenCN.setText(null);
 
         colMaCN.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangLuongCongNhan, String>, ObservableValue<String>>() {
             @Override
@@ -277,7 +285,7 @@ public class BangLuongCongNhanController implements Initializable {
         cbxLocThangTinhLuongCN.setPromptText("Chọn tháng");
         cbxLocThangTinhLuongCN.setValue(String.valueOf(dateHienTai.getMonthValue() - 1)); // tra ve thang truoc de tinh bang luong
         int namHienTai = YearMonth.now().getYear();
-        for (int i = 2000; i <= namHienTai; i++) {
+        for (int i = 2000; i <= namHienTai + 1; i++) {
             nam.add(String.valueOf(i));
         }
         cbxLocNamTinhLuongCN.setItems(nam);

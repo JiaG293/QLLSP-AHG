@@ -254,6 +254,45 @@ public class SqlQueryBuilder {
         return sqlBuilder.toString();
     }
 
+    public static String stringQueryLocBangLuongNhanVien(String cauTruyVanTruocWhere, String maNhanVien, String tenNhanVien, String tenPhongBan, String thangBangLuong, String namBangLuong, String trangThaiBangLuong) {
+
+        StringBuilder sqlBuilder = new StringBuilder().append(cauTruyVanTruocWhere);
+        if(trangThaiBangLuong.equals("Tất cả") || trangThaiBangLuong.equals("tất cả")){
+            sqlBuilder.append(" WHERE ");
+        } else if(trangThaiBangLuong.equals("Đã thanh toán") || trangThaiBangLuong.equals("đã thanh toán")){
+            sqlBuilder.append(" WHERE BLNV.trangThaiLuong = 1 AND ");
+        } else {
+            sqlBuilder.append(" WHERE BLNV.trangThaiLuong = 0 AND ");
+        }
+
+        if (maNhanVien != null && !maNhanVien.isEmpty() && !maNhanVien.equals(" ")) {
+            sqlBuilder.append("NV.maNV = '").append(maNhanVien).append("' AND ");
+        }
+
+        if (tenNhanVien != null && !tenNhanVien.isEmpty() && !tenNhanVien.equals(" ")) {
+            sqlBuilder.append("NV.tenNV LIKE '%").append(tenNhanVien).append("%' AND ");
+        }
+        if (tenPhongBan != null && !tenPhongBan.equals("Trống") && !tenPhongBan.isEmpty()) {
+            sqlBuilder.append("PB.tenPB = N'").append(tenPhongBan).append("' AND ");
+        }
+        if (thangBangLuong != null && !thangBangLuong.isEmpty() && !thangBangLuong.equals(" ") &&
+                namBangLuong != null && !namBangLuong.isEmpty() && !namBangLuong.equals(" ")) {
+            sqlBuilder.append("MONTH(BLNV.ngayTinhLuong) = '").append(thangBangLuong).append("' AND YEAR(BLNV.ngayTinhLuong)= '").append(namBangLuong).append("' AND ");
+        }
+
+        // Xoa where cuoi neu co
+        if (sqlBuilder.toString().endsWith("WHERE ")) {
+            sqlBuilder.setLength(sqlBuilder.length() - 6);
+        }
+
+        // Xoa and cuoi neu co
+        if (sqlBuilder.toString().endsWith("AND ")) {
+            sqlBuilder.setLength(sqlBuilder.length() - 4);
+        }
+
+        return sqlBuilder.toString();
+    }
+
     public static void main(String[] args) {
         String sql = "WITH ChiTietLuongNhanVien AS (\n" +
                 "SELECT \n" +

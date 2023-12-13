@@ -5,53 +5,35 @@ import java.util.Objects;
 
 public class BangLuongNhanVien {
     private String maBLNV;
-    private TamUngNhanVien maTamUngNhanvien;
-    private double luongNV; //luong chua truy lanh
-    private double bhxhNV;
-    private double bhytNV;
-    private double tongLuongNV; //luong thuc te
+    private NhanVien maNhanVien;
     private Date ngayTinhLuong;
+    private double luongNV; //luong chua truy lanh
+    private double tongLuongNV; //luong thuc te
     private Date ngayNhanLuong;
     private boolean trangThaiLuong;
+    private boolean luaChon;
 
-    public BangLuongNhanVien(String maBLNV, TamUngNhanVien maTamUngNhanvien, double luongNV, double bhxhNV, double bhytNV, double tongLuongNV) {
+    public BangLuongNhanVien(String maBLNV, NhanVien maNhanVien, Date ngayTinhLuong, double luongNV, double tongLuongNV, Date ngayNhanLuong, boolean trangThaiLuong, boolean luaChon) {
         this.maBLNV = maBLNV;
-        this.maTamUngNhanvien = maTamUngNhanvien;
+        this.maNhanVien = maNhanVien;
+        this.ngayTinhLuong = ngayTinhLuong;
         this.luongNV = luongNV;
-        this.bhxhNV = bhxhNV;
-        this.bhytNV = bhytNV;
         this.tongLuongNV = tongLuongNV;
+        this.ngayNhanLuong = ngayNhanLuong;
+        this.trangThaiLuong = trangThaiLuong;
+        this.luaChon = luaChon;
     }
 
-    public BangLuongNhanVien(String maBLNV, TamUngNhanVien maTamUngNhanvien, double luongNV, double bhxhNV, double bhytNV, double tongLuongNV, Date ngayTinhLuong, Date ngayNhanLuong, boolean trangThaiLuong) {
+    public BangLuongNhanVien(String maBLNV, NhanVien maNhanVien, Date ngayTinhLuong, double luongNV, double tongLuongNV, Date ngayNhanLuong, boolean trangThaiLuong) {
         this.maBLNV = maBLNV;
-        this.maTamUngNhanvien = maTamUngNhanvien;
-        this.luongNV = luongNV;
-        this.bhxhNV = bhxhNV;
-        this.bhytNV = bhytNV;
-        this.tongLuongNV = tongLuongNV;
+        this.maNhanVien = maNhanVien;
         this.ngayTinhLuong = ngayTinhLuong;
+        this.luongNV = luongNV;
+        this.tongLuongNV = tongLuongNV;
         this.ngayNhanLuong = ngayNhanLuong;
         this.trangThaiLuong = trangThaiLuong;
     }
 
-    public BangLuongNhanVien(String maBLNV, TamUngNhanVien maTamUngNhanvien, double luongNV, double tongLuongNV, Date ngayTinhLuong, Date ngayNhanLuong, boolean trangThaiLuong) {
-        this.maBLNV = maBLNV;
-        this.maTamUngNhanvien = maTamUngNhanvien;
-        this.luongNV = luongNV;
-        this.tongLuongNV = tongLuongNV;
-        this.ngayTinhLuong = ngayTinhLuong;
-        this.ngayNhanLuong = ngayNhanLuong;
-        this.trangThaiLuong = trangThaiLuong;
-    }
-
-    public boolean getTrangThaiLuong() {
-        return trangThaiLuong;
-    }
-
-    public void setTrangThaiLuong(boolean trangThaiLuong) {
-        this.trangThaiLuong = trangThaiLuong;
-    }
 
     public String getMaBLNV() {
         return maBLNV;
@@ -61,44 +43,12 @@ public class BangLuongNhanVien {
         this.maBLNV = maBLNV;
     }
 
-    public TamUngNhanVien getMaTamUngNhanvien() {
-        return maTamUngNhanvien;
+    public NhanVien getMaNhanVien() {
+        return maNhanVien;
     }
 
-    public void setMaTamUngNhanvien(TamUngNhanVien maTamUngNhanvien) {
-        this.maTamUngNhanvien = maTamUngNhanvien;
-    }
-
-    public double getLuongNV() {
-        return luongNV;
-    }
-
-    public void setLuongNV(double luongNV) {
-        this.luongNV = luongNV;
-    }
-
-    public double getBhxhNV() {
-        return bhxhNV;
-    }
-
-    public void setBhxhNV(double bhxhNV) {
-        this.bhxhNV = bhxhNV;
-    }
-
-    public double getBhytNV() {
-        return bhytNV;
-    }
-
-    public void setBhytNV(double bhytNV) {
-        this.bhytNV = bhytNV;
-    }
-
-    public double getTongLuongNV() {
-        return tongLuongNV;
-    }
-
-    public void setTongLuongNV(double tongLuongNV) {
-        this.tongLuongNV = tongLuongNV;
+    public void setMaNhanVien(NhanVien maNhanVien) {
+        this.maNhanVien = maNhanVien;
     }
 
     public Date getNgayTinhLuong() {
@@ -109,12 +59,44 @@ public class BangLuongNhanVien {
         this.ngayTinhLuong = ngayTinhLuong;
     }
 
+    public double getLuongNV() {
+        return luongNV;
+    }
+
+    public void setLuongNV(double luongNV) {
+        this.luongNV = luongNV;
+    }
+
+    public double getTongLuongNV() {
+        return tongLuongNV;
+    }
+
+    public void setTongLuongNV(double tongLuongNV) {
+        this.tongLuongNV = tongLuongNV;
+    }
+
     public Date getNgayNhanLuong() {
         return ngayNhanLuong;
     }
 
     public void setNgayNhanLuong(Date ngayNhanLuong) {
         this.ngayNhanLuong = ngayNhanLuong;
+    }
+
+    public boolean getTrangThaiLuong() {
+        return trangThaiLuong;
+    }
+
+    public void setTrangThaiLuong(boolean trangThaiLuong) {
+        this.trangThaiLuong = trangThaiLuong;
+    }
+
+    public boolean isLuaChon() {
+        return luaChon;
+    }
+
+    public void setLuaChon(boolean luaChon) {
+        this.luaChon = luaChon;
     }
 
     @Override
@@ -134,14 +116,13 @@ public class BangLuongNhanVien {
     public String toString() {
         return "BangLuongNhanVien{\n" +
                 "maBLNV='" + maBLNV + '\'' +
-                ", maTamUngNhanvien=" + maTamUngNhanvien +
-                ", luongNV=" + luongNV +
-                ", bhxhNV=" + bhxhNV +
-                ", bhytNV=" + bhytNV +
-                ", tongLuongNV=" + tongLuongNV +
+                ", maNhanVien=" + maNhanVien +
                 ", ngayTinhLuong=" + ngayTinhLuong +
+                ", luongNV=" + luongNV +
+                ", tongLuongNV=" + tongLuongNV +
                 ", ngayNhanLuong=" + ngayNhanLuong +
                 ", trangThaiLuong=" + trangThaiLuong +
+                ", luaChon=" + luaChon +
                 "}\n";
     }
 }

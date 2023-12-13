@@ -22,4 +22,6 @@ public interface DSDao {
     public ObservableList<ChiTietLuongCongNhan> DSCHITIETLUONGCONGNHAN= FXCollections.observableArrayList();
     public ObservableList<BangLuongCongNhan> DSBANGLUONGCN= FXCollections.observableArrayList();
     public ObservableList<BangLuongCongNhan> DSBANGLUONGCNCHON= FXCollections.observableArrayList();
+    public ObservableList<BangLuongNhanVien> DSBANGLUONGNV= FXCollections.observableArrayList();
+    public ObservableList<BangLuongNhanVien> DSBANGLUONGNVCHON= FXCollections.observableArrayList();
 }
