@@ -9,7 +9,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -20,7 +19,7 @@
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openjfx.qllspahg.gui.QuanLySanPhamController">
    <right>
-      <VBox alignment="TOP_CENTER" spacing="5.0">
+      <VBox alignment="TOP_RIGHT" spacing="5.0">
          <children>
             <VBox alignment="CENTER" style="-fx-border-color: black;">
                <children>
@@ -35,7 +34,7 @@
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
                         <Label text="Mã sản phẩm:" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="tfMaSP" editable="false" prefHeight="26.0" prefWidth="227.0" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="tfMaSP" editable="false" prefHeight="26.0" prefWidth="227.0" promptText="Mã sản phẩm" HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#lamMoiMaSanPham" text="Làm mới" />
                      </children>
                      <padding>
@@ -48,13 +47,13 @@
                      </padding>
                      <children>
                         <Label text="Tên sản phẩm:" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="tfTenSP" prefHeight="26.0" prefWidth="172.0" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="tfTenSP" prefHeight="26.0" prefWidth="172.0" promptText="Tên sản phẩm" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
                         <Label text="Giá sản phẩm:" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="tfGiaSP" prefHeight="26.0" prefWidth="172.0" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="tfGiaSP" prefHeight="26.0" prefWidth="172.0" promptText="Giá sản phẩm" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -79,7 +78,7 @@
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/icons/add-removebg-preview.png" />
+                                    <Image url="@../../images/icons/add-removebg-preview.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -88,7 +87,7 @@
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/icons/XoaTrang.png" />
+                                    <Image url="@../../images/icons/trash-removebg-preview.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -100,20 +99,20 @@
                   </HBox>
                   <HBox alignment="CENTER" spacing="50.0">
                      <children>
-                        <Button maxHeight="-Infinity" maxWidth="200.0" mnemonicParsing="false" onAction="#thanhLySanPhamDuocChon" prefWidth="150.0" text="Thanh lý sản phẩm">
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/icons/XoaTrang.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
                         <Button maxWidth="200.0" mnemonicParsing="false" onAction="#suaSanPhamDuocChon" prefWidth="150.0" text="Sửa sản phẩm">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/icons/add-removebg-preview.png" />
+                                    <Image url="@../../images/icons/edit-removebg-preview.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button maxWidth="200.0" mnemonicParsing="false" onAction="#xoaTrangTFSanPham" prefWidth="150.0" text="Xóa trắng">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/icons/XoaTrang.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -125,20 +124,11 @@
                   </HBox>
                   <HBox alignment="CENTER" spacing="50.0">
                      <children>
-                        <Button maxWidth="200.0" mnemonicParsing="false" onAction="#xoaTrangTFSanPham" prefWidth="150.0" text="Xóa trắng">
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/icons/add-removebg-preview.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
                         <Button maxWidth="200.0" mnemonicParsing="false" onAction="#xemCongDoan" prefWidth="150.0" text="Xem công đoạn">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/icons/XoaTrang.png" />
+                                    <Image url="@../../images/icons/detail-icon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -163,7 +153,7 @@
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
                         <Label text="Mã sản phẩm:" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="tfMaSPCD" editable="false" prefHeight="26.0" prefWidth="227.0" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="tfMaSPCD" editable="false" prefHeight="26.0" prefWidth="227.0" promptText="Mã sản phẩm" HBox.hgrow="ALWAYS" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -172,7 +162,7 @@
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
                         <Label text="Mã công đoạn:" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="tfMaCD" editable="false" prefHeight="26.0" prefWidth="227.0" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="tfMaCD" editable="false" prefHeight="26.0" prefWidth="227.0" promptText="Mã công đoạn" HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#layMaCongDoan" text="Lấy mã" />
                      </children>
                      <padding>
@@ -185,13 +175,13 @@
                      </padding>
                      <children>
                         <Label text="Tên công đoạn:" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="tfTenCD" prefHeight="26.0" prefWidth="172.0" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="tfTenCD" prefHeight="26.0" prefWidth="172.0" promptText="Tên công đoạn" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
                         <Label text="Giá công đoạn:" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="tfGiaCD" prefHeight="26.0" prefWidth="172.0" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="tfGiaCD" prefHeight="26.0" prefWidth="172.0" promptText="Giá công đoạn" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -266,6 +256,22 @@
                   <Insets left="5.0" right="5.0" />
                </VBox.margin>
             </VBox>
+            <HBox alignment="TOP_CENTER" spacing="50.0">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+               <children>
+                  <Button maxWidth="200.0" mnemonicParsing="false" onAction="#lamMoiTableView" prefWidth="150.0" text="Làm mới">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/icons/reset-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
          </children>
          <BorderPane.margin>
             <Insets />
@@ -312,13 +318,13 @@
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
                         <Label text="Mã sản phẩm:" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="tfLocMaSP" />
+                        <TextField fx:id="tfLocMaSP" promptText="Nhập mã sản phẩm" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
                         <Label text="Tên sản phẩm:" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="tfLocTenSP" />
+                        <TextField fx:id="tfLocTenSP" promptText="Nhập tên sản phẩm" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -341,31 +347,6 @@
       </Pane>
    </top>
    <bottom>
-      <Pane BorderPane.alignment="CENTER">
-         <children>
-            <ToolBar nodeOrientation="LEFT_TO_RIGHT">
-               <items>
-                  <Button maxWidth="200.0" mnemonicParsing="false" onAction="#lamMoiTableView" prefWidth="150.0" text="Làm mới">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons/reset-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button maxWidth="200.0" mnemonicParsing="false" onAction="#CapNhatDuLieuTableView" prefWidth="150.0" text="Lưu">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons/save.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </items>
-            </ToolBar>
-         </children>
-      </Pane>
+      <Pane BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

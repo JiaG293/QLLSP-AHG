@@ -108,10 +108,6 @@ public class QuanLySanPhamController implements Initializable {
 
     private static SanPham sanPhamDuocChonTableView;
 
-    @FXML
-    void CapNhatDuLieuTableView(ActionEvent event) {
-
-    }
 
     @FXML
     void chonMotCongDoan(MouseEvent event) {
@@ -324,7 +320,7 @@ public class QuanLySanPhamController implements Initializable {
     @FXML
     void themCongDoan(ActionEvent event) {
         String macd = tfMaCD.getText();
-        String masanpham = tfMaSP.getText();
+        String masanpham = tfMaSPCD.getText();
         String tencd = tfTenCD.getText();
         String giaString = tfGiaCD.getText();
         String cbxgiaidoan = cbxGiaiDoanCD.getValue();
@@ -431,9 +427,10 @@ public class QuanLySanPhamController implements Initializable {
 
     @FXML
     void xemCongDoan(ActionEvent event) {
+
         if (chonMotSanPhamTableView() != null) {
             tfMaSPCD.setText(chonMotSanPhamTableView().getMaSP());
-            taiDuLieuCongDoan(chonMotSanPhamTableView().getMaSP());
+            taiDuLieuCongDoan(tfMaSPCD.getText());
             taoMaCongDoanChoSanPham();
         } else {
             Alerts.showAlert("Thông báo", "Rỗng", "Sản phẩm chưa tạo công đoạn", Alert.AlertType.INFORMATION);
@@ -509,7 +506,7 @@ public class QuanLySanPhamController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         khoiTaoKieuDuLieuChoTableView();
-        taiDuLieuSanPham();
+//        taiDuLieuSanPham();
         chinhSuaDuLieuTrenTableView();
 
     }
@@ -723,8 +720,8 @@ public class QuanLySanPhamController implements Initializable {
     }
 
     private void taoMaCongDoanChoSanPham() {
-        if (chonMotSanPhamTableView() != null) {
-            tfMaCD.setText(UUIDUtils.taoMaCongDoan(chonMotSanPhamTableView().getMaSP()));
+        if (tfMaSPCD.getText() != null && !tfMaSPCD.getText().isEmpty() && !tfMaSPCD.getText().equals(" ")) {
+            tfMaCD.setText(UUIDUtils.taoMaCongDoan(tfMaSPCD.getText()));
         } else
             Alerts.showAlert("Cảnh báo", "Chưa chọn sản phẩm", "Vui lòng chọn một sản phẩm trước khi tạo mã", Alert.AlertType.WARNING);
     }
