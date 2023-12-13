@@ -1,7 +1,6 @@
 package com.openjfx.qllspahg.dao.interfaces;
 
 import com.openjfx.qllspahg.entity.*;
-import com.openjfx.qllspahg.entity.model.ChamCongNhanVienDTO;
 import com.openjfx.qllspahg.entity.model.ChiTietLuongCongNhan;
 import com.openjfx.qllspahg.entity.model.ChiTietLuongNhanVien;
 import javafx.collections.FXCollections;

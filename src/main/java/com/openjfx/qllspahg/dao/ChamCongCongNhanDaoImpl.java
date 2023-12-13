@@ -389,5 +389,70 @@ public class ChamCongCongNhanDaoImpl {
     }
 
 
+    public boolean capNhatSoLuongSanPhamSauChamCong(ObservableList<BangChamCongCongNhan> listUpdateBCCCN) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        try {
+            String sql = "UPDATE ChiTietHopDong\n" +
+                    "SET soLuongDaLam = ChiTietHopDong.soLuongDaLam + BCCCN.tongSoLuongLam\n" +
+                    "FROM ChiTietHopDong AS ChiTietHopDong\n" +
+                    "JOIN (\n" +
+                    "    SELECT BPCCN.maHD, SUM(BCCCN.soLuongLamDuoc + BCCCN.soLuongLamCa3) AS tongSoLuongLam, CD.maSP\n" +
+                    "    FROM BangChamCongCongNhan AS BCCCN\n" +
+                    "    JOIN BangPhanCongCongNhan AS BPCCN ON BPCCN.maBPCCN = ? AND BCCCN.maBCCCN = ? \n" +
+                    "    JOIN CongDoan AS CD ON BPCCN.maCD = CD.maCD\n" +
+                    "    WHERE CD.giaiDoan = N'Đóng gói'\n" +
+                    "    GROUP BY BPCCN.maHD, CD.maSP\n" +
+                    ") AS BCCCN ON ChiTietHopDong.maHD = BCCCN.maHD \n" +
+                    "WHERE ChiTietHopDong.maHD = BCCCN.maHD AND ChiTietHopDong.maSP = BCCCN.maSP;";
+
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            for (BangChamCongCongNhan bcccn : listUpdateBCCCN) {
+                pst.setString(1, bcccn.getMaBCCCN());
+                pst.setString(2, bcccn.getMaBangPhanCongCongNhan().getMaBPCCN());
+                pst.addBatch();
+                System.out.println("Da cap nhat bang cham cong vao csdl!!! ");
+            }
+            pst.executeBatch();
+            con.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    public ObservableList<String> layDanhSachCongDoanCuoi() {
+        Connection con = null;
+        ObservableList<String> listCDCuoi = FXCollections.observableArrayList();
+        try {
+            con = Db.getConnection();
+            Statement st = con.createStatement();
+            String sql = "SELECT CD.maCD, CD.giaiDoan\n" +
+                    "FROM CongDoan AS CD\n" +
+                    "WHERE CD.giaiDoan= N'Đóng gói'";
+
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                String maCD = rs.getString("maCD");
+                listCDCuoi.add(maCD);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        System.out.println("List LayDuLieuDSCongDoanCuoi:\n" + listCDCuoi + "\n");
+        return listCDCuoi;
+    }
+
+    public static void main(String[] args) {
+
+    }
 
 }

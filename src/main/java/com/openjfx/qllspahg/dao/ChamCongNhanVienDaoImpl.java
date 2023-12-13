@@ -1,8 +1,6 @@
 package com.openjfx.qllspahg.dao;
 
-import com.openjfx.qllspahg.dao.interfaces.ChamCongNhanVienDao;
 import com.openjfx.qllspahg.database.Db;
-import com.openjfx.qllspahg.database.DbException;
 import com.openjfx.qllspahg.entity.BangChamCongNhanVien;
 import com.openjfx.qllspahg.entity.NhanVien;
 import com.openjfx.qllspahg.entity.PhongBan;
@@ -12,11 +10,7 @@ import com.openjfx.qllspahg.gui.util.Utils;
 import javafx.collections.*;
 
 import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Locale;
 
 public class ChamCongNhanVienDaoImpl {
     public static ChamCongNhanVienDaoImpl getInstance() {
@@ -289,6 +283,8 @@ public class ChamCongNhanVienDaoImpl {
 
         return true;
     }
+
+
 
 
 

@@ -42,6 +42,9 @@ import static com.openjfx.qllspahg.dao.interfaces.DSDao.DSCHAMCONGCONGNHANUPDATE
 public class ChamCongCongNhanController implements Initializable {
 
     @FXML
+    private Button btnCapNhatBangChamCong;
+
+    @FXML
     private ComboBox<String> cbxLocToSanXuat;
 
     @FXML
@@ -278,6 +281,17 @@ public class ChamCongCongNhanController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        //tat nut luu khi neu la bang cham cong o qua khu
+        if (LocalDate.now().isBefore(ndc)) {
+            btnCapNhatBangChamCong.setDisable(true);
+        } else if (LocalDate.now().minusDays(1).isEqual(ndc)) {
+            btnCapNhatBangChamCong.setDisable(false);
+        } else {
+            btnCapNhatBangChamCong.setDisable(true);
+        }
+
     }
 
     @FXML
@@ -312,6 +326,7 @@ public class ChamCongCongNhanController implements Initializable {
                     boolean cc = ChamCongCongNhanDaoImpl.getInstance().capNhatBangChamCongCongNhan(DSCHAMCONGCONGNHAN);
                     if (cc) {
                         Alerts.showAlert("Thành công", "Đã lưu", "Đã cập nhật thành công", Alert.AlertType.INFORMATION);
+                        ChamCongCongNhanDaoImpl.getInstance().capNhatSoLuongSanPhamSauChamCong(DSCHAMCONGCONGNHAN);
                     }
                 } else {
                     Alerts.showAlert("Thông báo", "Rỗng", "Không có dữ liệu để cập nhật", Alert.AlertType.ERROR);
@@ -352,6 +367,7 @@ public class ChamCongCongNhanController implements Initializable {
         datepickNgayChamCong.setValue(ngayChamCong);
         System.out.println("Da dat lai ngay cham cong can lam viec " + ngayChamCong);
     }
+
 
 
 }
