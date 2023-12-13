@@ -176,7 +176,7 @@ public class BangLuongCongNhanController implements Initializable {
                         (
                                 CongNhanStringCellDataFeatures.getValue().getNgayNhanLuong() == null ?
                                         "" :
-                                        DateUtils.formatStringVietnamDate(CongNhanStringCellDataFeatures.getValue().getNgayNhanLuong()))
+                                        DateUtils.formatStringVietnamDate(CongNhanStringCellDataFeatures.getValue().getNgayTinhLuong()))
                 );
 
             }
@@ -184,7 +184,7 @@ public class BangLuongCongNhanController implements Initializable {
         colNgayTra.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangLuongCongNhan, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<BangLuongCongNhan, String> CongNhanStringCellDataFeatures) {
-                return new SimpleStringProperty(DateUtils.formatStringVietnamDate(CongNhanStringCellDataFeatures.getValue().getNgayTinhLuong()));
+                return new SimpleStringProperty(DateUtils.formatStringVietnamDate(CongNhanStringCellDataFeatures.getValue().getNgayNhanLuong()));
             }
         });
         colLuongNhanDuoc.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BangLuongCongNhan, String>, ObservableValue<String>>() {
