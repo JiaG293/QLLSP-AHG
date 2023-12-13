@@ -453,23 +453,30 @@ public class PhanCongCongNhanController implements Initializable {
         if (!cbxCongDoanPCCN.getSelectionModel().isEmpty() && !datepickNgayPhanCongPCCN.getValue().isBefore(LocalDate.now())){
             int soLuongCanLam = Integer.parseInt(tfSoLuongCanLamPCCN.getText().trim());
             int soLuongDaPhanCongChuaLuu = 0;
-            if (!DSPhanCongCanSave.isEmpty() || !DSPhanCongCongNhanUpdate.isEmpty()){
+
+            if (!DSPhanCongCanSave.isEmpty()){
                 for( BangPhanCongCongNhan bpc : DSPhanCongCanSave){
-                    if (cbxHopDongPCCN.getSelectionModel().getSelectedItem().equals(bpc.getMaHopDong().getMaHD()) && cbxCongDoanPCCN.getSelectionModel().getSelectedItem().getMaCD().equals(bpc.getMaCongDoan().getMaCD()))
+                    if (cbxHopDongPCCN.getSelectionModel().getSelectedItem().getMaHD().equals(bpc.getMaHopDong().getMaHD()) && cbxCongDoanPCCN.getSelectionModel().getSelectedItem().getMaCD().equals(bpc.getMaCongDoan().getMaCD()))
                         soLuongDaPhanCongChuaLuu += bpc.getChiTieu();
                 }
+
+
+            }
+
+            if (!DSPhanCongCongNhanUpdate.isEmpty()){
                 int a =0;
                 for (BangPhanCongCongNhan acc : DSPhanCongCongNhanUpdate){
                     for (BangPhanCongCongNhan bcc : DSPhanCongCongNhanDaLuu)
                         if (acc.getMaBPCCN().equals(bcc.getMaBPCCN()))
                             a = bcc.getChiTieu();
-                    if (cbxHopDongPCCN.getSelectionModel().getSelectedItem().equals(acc.getMaHopDong().getMaHD()) && cbxCongDoanPCCN.getSelectionModel().getSelectedItem().getMaCD().equals(acc.getMaCongDoan().getMaCD()))
+                    if (cbxHopDongPCCN.getSelectionModel().getSelectedItem().getMaHD().equals(acc.getMaHopDong().getMaHD()) && cbxCongDoanPCCN.getSelectionModel().getSelectedItem().getMaCD().equals(acc.getMaCongDoan().getMaCD()))
                         if (a-acc.getChiTieu()>0){
                             soLuongDaPhanCongChuaLuu += (a-acc.getChiTieu()) *-1;
                         } else
-                            soLuongDaPhanCongChuaLuu += acc.getChiTieu()-a;
+                            soLuongDaPhanCongChuaLuu += (acc.getChiTieu()-a)*-1;
                 }
             }
+
 
             int soLuongCanPhanCong = soLuongCanLam - PhanCongCongNhanDao.getInstance().getSoLuongDaPhanCong(
                     cbxSanPhanPCCN.getSelectionModel().getSelectedItem().getMaSP(),
@@ -977,6 +984,7 @@ public class PhanCongCongNhanController implements Initializable {
 
     public void skbtnLuu(ActionEvent actionEvent) throws InterruptedException {
         Optional<ButtonType> result = Alerts.showConfirmation("Thông báo:","Bạn có muốn lưu không?");
+        System.out.println(DSPhanCongCongNhanUpdate);
         if (result.isPresent() && result.get() == ButtonType.OK){
             TimeUnit.MICROSECONDS.sleep(500);
             if (PhanCongCongNhanDao.getInstance().saveDSPhanCong(DSPhanCongCanSave) && PhanCongCongNhanDao.getInstance().saveDSUpdatePC(DSPhanCongCongNhanUpdate)){
@@ -1086,14 +1094,15 @@ public class PhanCongCongNhanController implements Initializable {
 
 
                             if (!StringUtils.isNumeric(tfSoLuongCanPhanCongPCCN.getText())){
+                                System.out.println(chiTieuBanDau);
                                 int soLuongCanPhanCong = Integer.parseInt(tfSoLuongCanPhanCongPCCN.getText().substring(tfSoLuongCanPhanCongPCCN.getText().lastIndexOf(" ")).trim()) *-1;
                                 int a =0;
                                 if (chiTieu == chiTieuBanDau)
-                                    a = chiTieu * -1;
+                                    a = 0;
                                 else if (chiTieu > chiTieuBanDau){
-                                    a = (chiTieuBanDau -chiTieu ) *-1;
+                                    a = (chiTieu - chiTieuBanDau ) *-1;
                                 } else
-                                    a = (chiTieu- chiTieuBanDau) *-1;
+                                    a = (chiTieu - chiTieuBanDau) *-1;
 
                                 System.out.println(a+soLuongCanPhanCong);
 
@@ -1106,14 +1115,15 @@ public class PhanCongCongNhanController implements Initializable {
                                     ));
                                 }
                             } else{
+                                System.out.println(chiTieuBanDau);
                                 int a = 0;
                                 int soLuongCanPhanCong = Integer.parseInt(tfSoLuongCanPhanCongPCCN.getText());
                                 if (chiTieu == chiTieuBanDau)
                                     a = chiTieu * -1;
                                 else if (chiTieu > chiTieuBanDau){
-                                    a = (chiTieuBanDau -chiTieu) *-1;
+                                    a = (chiTieu - chiTieuBanDau) *-1;
                                 } else
-                                    a = (chiTieu- chiTieuBanDau) *-1;
+                                    a = (chiTieu - chiTieuBanDau) *-1;
 
                                 if (a+soLuongCanPhanCong >0){
                                     tfSoLuongCanPhanCongPCCN.setText(String.valueOf(a+soLuongCanPhanCong));
@@ -1160,11 +1170,11 @@ public class PhanCongCongNhanController implements Initializable {
                             int soLuongCanPhanCong = Integer.parseInt(tfSoLuongCanPhanCongPCCN.getText().substring(tfSoLuongCanPhanCongPCCN.getText().lastIndexOf(" ")).trim()) *-1;
                             int a =0;
                             if (chiTieu == chiTieuBanDau)
-                                a = chiTieu * -1;
+                                a = 0;
                             else if (chiTieu > chiTieuBanDau){
-                                a = (chiTieuBanDau -chiTieu ) *-1;
+                                a = (chiTieu - chiTieuBanDau ) *-1;
                             } else
-                                a = (chiTieu- chiTieuBanDau) *-1;
+                                a = (chiTieu - chiTieuBanDau) *-1;
 
                             System.out.println(a+soLuongCanPhanCong);
 
@@ -1180,9 +1190,9 @@ public class PhanCongCongNhanController implements Initializable {
                             int a = 0;
                             int soLuongCanPhanCong = Integer.parseInt(tfSoLuongCanPhanCongPCCN.getText());
                             if (chiTieu == chiTieuBanDau)
-                                a = chiTieu * -1;
+                                a = 0;
                             else if (chiTieu > chiTieuBanDau){
-                                a = (chiTieuBanDau -chiTieu) *-1;
+                                a = (chiTieu - chiTieuBanDau) *-1;
                             } else
                                 a = (chiTieu- chiTieuBanDau) *-1;
 

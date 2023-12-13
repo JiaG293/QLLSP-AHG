@@ -65,7 +65,7 @@ public class ManHinhChinhTestController implements Initializable {
     }
     @FXML
     void ChangeSceneTimKiemCongNhan(ActionEvent event) throws IOException {
-        TabPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/CongNhan/TimKiemCongNhan.fxml")));
+        BorderPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/CongNhan/TimKiemCongNhan.fxml")));
         guiChinh.setCenter(view);
     }
     @FXML
@@ -126,7 +126,7 @@ public class ManHinhChinhTestController implements Initializable {
 
     @FXML
     void ChangeSceneTimKiemNhanVien(ActionEvent event) throws IOException {
-        TabPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/NhanVien/TimKiemNhanVien.fxml")));
+        BorderPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/NhanVien/TimKiemNhanVien.fxml")));
         guiChinh.setCenter(view);
     }
 
