@@ -26,59 +26,49 @@
                <menus>
                   <Menu mnemonicParsing="false" text="Nhân viên">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneQuanLyNhanVien" text="Danh sách nhân viên" />
+                        <MenuItem fx:id="mItemDSNV" mnemonicParsing="false" onAction="#ChangeSceneQuanLyNhanVien" text="Danh sách nhân viên" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneChamCongNhanVien" text="Chấm công nhân viên" />
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneTamUngNhanVien" text="Tạm ứng nhân viên" />
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneTinhLuongNhanVien" text="Tính lương nhân viên" />
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneBangLuongNhanVien" text="Bảng lương nhân viên" />
+                        <MenuItem fx:id="mItemCCNV" mnemonicParsing="false" onAction="#ChangeSceneChamCongNhanVien" text="Chấm công nhân viên" />
+                        <MenuItem fx:id="mItemTUNV" mnemonicParsing="false" onAction="#ChangeSceneTamUngNhanVien" text="Tạm ứng nhân viên" />
+                        <MenuItem fx:id="mItemTLNV" mnemonicParsing="false" onAction="#ChangeSceneTinhLuongNhanVien" text="Tính lương nhân viên" />
+                        <MenuItem fx:id="mItemBLNV" mnemonicParsing="false" onAction="#ChangeSceneBangLuongNhanVien" text="Bảng lương nhân viên" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneTimKiemNhanVien" text="Tìm kiếm" />
+                        <MenuItem fx:id="mItemTKNV" mnemonicParsing="false" onAction="#ChangeSceneTimKiemNhanVien" text="Tìm kiếm" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Công nhân">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneQuanLyCongNhan" text="Danh sách công nhân" />
+                        <MenuItem fx:id="mItemDSCN" mnemonicParsing="false" onAction="#ChangeSceneQuanLyCongNhan" text="Danh sách công nhân" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeScenePhanCongCongNhan" text="Phân công công nhân" />
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneChamCongCongNhan" text="Chấm công công nhân" />
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneTamUngCongNhan" text="Tạm ứng công nhân" />
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneTinhLuongCongNhan" text="Tính lương công nhân" />
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneBangLuongCongNhan" text="Bảng lương công nhân" />
+                        <MenuItem fx:id="mItemPCCN" mnemonicParsing="false" onAction="#ChangeScenePhanCongCongNhan" text="Phân công công nhân" />
+                        <MenuItem fx:id="mItemCCCN" mnemonicParsing="false" onAction="#ChangeSceneChamCongCongNhan" text="Chấm công công nhân" />
+                        <MenuItem fx:id="mItemTUCN" mnemonicParsing="false" onAction="#ChangeSceneTamUngCongNhan" text="Tạm ứng công nhân" />
+                        <MenuItem fx:id="mItemTLCN" mnemonicParsing="false" onAction="#ChangeSceneTinhLuongCongNhan" text="Tính lương công nhân" />
+                        <MenuItem fx:id="mItemBLCN" mnemonicParsing="false" onAction="#ChangeSceneBangLuongCongNhan" text="Bảng lương công nhân" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneQuanLyToSanXuat" text="Quản lý tổ sản xuất" />
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneTimKiemCongNhan" text="Tìm kiếm" />
+                        <MenuItem fx:id="mItemTKCN" mnemonicParsing="false" onAction="#ChangeSceneTimKiemCongNhan" text="Tìm kiếm" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Sản phẩm">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneQuanLySanPham" text="Danh sách sản phẩm " />
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneTimKiemSanPham" text="Tìm kiếm" />
+                        <MenuItem fx:id="mItemDSSP" mnemonicParsing="false" onAction="#ChangeSceneQuanLySanPham" text="Danh sách sản phẩm " />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Hợp đồng">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneDanhSachHopDong" text="Danh sách hợp đồng" />
-                        <MenuItem mnemonicParsing="false" onAction="#ChangeSceneTimKiemHopDong" text="Tìm kiếm" />
+                        <MenuItem fx:id="mItemDSHD" mnemonicParsing="false" onAction="#ChangeSceneDanhSachHopDong" text="Danh sách hợp đồng" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Tài khoản">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Danh sách tài khoản" />
-                        <MenuItem mnemonicParsing="false" text="Đổi mật khẩu" />
+                        <MenuItem fx:id="DSTK" mnemonicParsing="false" onAction="#changeSceenDanhSachTaiKhoan" text="Danh sách tài khoản" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="menuItemDangXuat" mnemonicParsing="false" text="Đăng xuất" />
+                        <MenuItem fx:id="mItemDangXuat" mnemonicParsing="false" text="Đăng xuất" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Thống kê">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Thống kê" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Thống kê" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Thống kê" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Thống kê" />
+                        <MenuItem mnemonicParsing="false" text="Thống kê lương" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Trợ giúp">
@@ -135,6 +125,16 @@
                         </HBox>
                      </children>
                   </VBox>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <HBox spacing="10.0">
+                           <children>
+                              <Label text="Vai trò:" />
+                              <Label fx:id="lblVaiTro" text="Vai trò" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
          </items>
@@ -162,7 +162,10 @@
    <center>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="720.0" fitWidth="1280.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logoAHG.png" />
+               </image></ImageView>
          </children></AnchorPane>
    </center>
 </BorderPane>

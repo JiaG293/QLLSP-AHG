@@ -14,7 +14,6 @@ public class Main extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/TaiKhoan/DangNhap.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 700);
-
         stage.centerOnScreen(); // Trung tam man hinh
         stage.setTitle("Đăng nhập");
         stage.setScene(scene);

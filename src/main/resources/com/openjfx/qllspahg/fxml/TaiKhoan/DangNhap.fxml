@@ -66,7 +66,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </CheckBox>
-                              <Text accessibleRole="BUTTON" fill="RED" fontSmoothingType="LCD" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Quên mật khẩu" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                              <Text accessibleRole="BUTTON" fill="RED" fontSmoothingType="LCD" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -89,9 +89,9 @@
       </AnchorPane>
    </right>
    <center>
-      <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="374.0" fitWidth="616.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../images/icons/avatar.png" />
+            <Image url="@../../images/logoAHG.png" />
          </image>
       </ImageView>
    </center>

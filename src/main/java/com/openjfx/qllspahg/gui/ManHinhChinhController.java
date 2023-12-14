@@ -35,7 +35,7 @@ public class ManHinhChinhController implements Initializable {
     private Color x4;
 
     @FXML
-    private MenuItem menuItemDangXuat;
+    private MenuItem mItemDangXuat;
 
     @FXML
     private Label lblChucVu;
@@ -49,14 +49,62 @@ public class ManHinhChinhController implements Initializable {
     @FXML
     private Label lblPhongBan;
 
+    @FXML
+    private Label lblVaiTro;
+
+    @FXML
+    private MenuItem mItemBLCN;
+
+    @FXML
+    private MenuItem mItemBLNV;
+
+    @FXML
+    private MenuItem mItemCCCN;
+
+    @FXML
+    private MenuItem mItemCCNV;
+
+    @FXML
+    private MenuItem mItemDSCN;
+
+    @FXML
+    private MenuItem mItemDSHD;
+
+    @FXML
+    private MenuItem mItemDSNV;
+
+    @FXML
+    private MenuItem mItemDSSP;
+
+    @FXML
+    private MenuItem mItemPCCN;
+
+    @FXML
+    private MenuItem mItemTKCN;
+
+    @FXML
+    private MenuItem mItemTKNV;
+
+    @FXML
+    private MenuItem mItemTLCN;
+
+    @FXML
+    private MenuItem mItemTLNV;
+
+    @FXML
+    private MenuItem mItemTUCN;
+
+    @FXML
+    private MenuItem mItemTUNV;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        taiThongTinTaiKhoan();
         try {
             dangXuatTaiKhoan();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        taiThongTinTaiKhoan();
     }
 
     private void taiThongTinTaiKhoan() {
@@ -66,16 +114,18 @@ public class ManHinhChinhController implements Initializable {
         lblHoVaTen.setText(readTaiKhoan.getMaTK().getHoNV() + " " + readTaiKhoan.getMaTK().getTenNV());
         lblChucVu.setText(readTaiKhoan.getMaTK().getChucVuNV().getTenCV());
         lblPhongBan.setText(readTaiKhoan.getMaTK().getPhongBan().getTenPB());
+        lblVaiTro.setText(readTaiKhoan.getVaiTro());
         if (readTaiKhoan != null) {
             System.out.println("MaTK: " + readTaiKhoan.getMaTK());
         } else {
-            System.out.println("Khong cod du lieu duoc tim thay");
+            System.out.println("Khong co du lieu duoc tim thay");
         }
+        flowSceen();
     }
 
 
     private void dangXuatTaiKhoan() throws IOException {
-        menuItemDangXuat.setOnAction(event -> {
+        mItemDangXuat.setOnAction(event -> {
             try {
                 Stage currentStage = (Stage) lblMaNV.getScene().getWindow();
 
@@ -85,7 +135,7 @@ public class ManHinhChinhController implements Initializable {
 
                 Stage newStage = new Stage();
                 newStage.setTitle("Đăng nhập");
-                newStage.setScene(new Scene(root, 1500, 700));
+                newStage.setScene(new Scene(root, 1200, 800));
                 newStage.show();
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -93,6 +143,43 @@ public class ManHinhChinhController implements Initializable {
         });
     }
 
+    //"Quản lý hành chính", "Quản lý sản xuất", "Kế toán", "Nhân viên hành chính"
+    private void flowSceen() {
+        TaiKhoan readTaiKhoan = FileIOUtils.readTaiKhoanFromFile("userData.properties");
+        if (readTaiKhoan.getVaiTro().equals("Nhân viên hành chính")) {
+            mItemBLCN.setDisable(true);
+            mItemBLNV.setDisable(true);
+            mItemCCCN.setDisable(true);
+            mItemCCNV.setDisable(true);
+            mItemTLCN.setDisable(true);
+            mItemTLNV.setDisable(true);
+            mItemDSSP.setDisable(true);
+            mItemTUNV.setDisable(true);
+            mItemPCCN.setDisable(true);
+            mItemTUCN.setDisable(true);
+        } else if (readTaiKhoan.getVaiTro().equals("Quản lý sản xuất")) {
+            mItemBLNV.setDisable(true);
+            mItemCCNV.setDisable(true);
+            mItemTLNV.setDisable(true);
+            mItemDSSP.setDisable(true);
+            mItemTUNV.setDisable(true);
+            mItemTUCN.setDisable(true);
+            mItemTLCN.setDisable(true);
+            mItemDSCN.setDisable(true);
+            mItemBLCN.setDisable(true);
+        } else if (readTaiKhoan.getVaiTro().equals("Kế toán")) {
+            mItemCCCN.setDisable(true);
+            mItemCCNV.setDisable(true);
+            mItemCCCN.setDisable(true);
+            mItemCCNV.setDisable(true);
+            mItemPCCN.setDisable(true);
+            mItemDSSP.setDisable(true);
+            mItemDSSP.setDisable(true);
+            mItemDSHD.setDisable(true);
+            mItemDSNV.setDisable(true);
+            mItemDSCN.setDisable(true);
+        }
+    }
 
     //CongNhan
     @FXML
@@ -114,14 +201,14 @@ public class ManHinhChinhController implements Initializable {
     }
 
     @FXML
-    void ChangeSceneQuanLyToSanXuat(ActionEvent event) throws IOException {
-        BorderPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/CongNhan/QuanLyToSanXuat.fxml")));
+    void ChangeSceneTamUngCongNhan(ActionEvent event) throws IOException {
+        BorderPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/CongNhan/TamUngCongNhan.fxml")));
         guiChinh.setCenter(view);
     }
 
     @FXML
-    void ChangeSceneTamUngCongNhan(ActionEvent event) throws IOException {
-        BorderPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/CongNhan/TamUngCongNhan.fxml")));
+    void changeSceenDanhSachTaiKhoan(ActionEvent event) throws IOException {
+        BorderPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/TaiKhoan/QuanLyTaiKhoan.fxml")));
         guiChinh.setCenter(view);
     }
 
@@ -144,19 +231,6 @@ public class ManHinhChinhController implements Initializable {
         guiChinh.setCenter(view);
     }
 
-    @FXML
-    void ChangeSceneThongKeHopDong(ActionEvent event) throws IOException {
-        TabPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/HopDong/ThongKeHopDong.fxml")));
-        guiChinh.setCenter(view);
-    }
-
-    @FXML
-    void ChangeSceneTimKiemHopDong(ActionEvent event) throws IOException {
-        BorderPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/HopDong/TimKiemHopDong.fxml")));
-        guiChinh.setCenter(view);
-    }
-
-
     //NhanVien
     @FXML
     void ChangeSceneQuanLyNhanVien(ActionEvent event) throws IOException {
@@ -171,20 +245,8 @@ public class ManHinhChinhController implements Initializable {
     }
 
     @FXML
-    void ChangeSceneQuanLyPhongBan(ActionEvent event) throws IOException {
-        BorderPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/NhanVien/QuanLyPhongBan.fxml")));
-        guiChinh.setCenter(view);
-    }
-
-    @FXML
     void ChangeSceneTamUngNhanVien(ActionEvent event) throws IOException {
         BorderPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/NhanVien/TamUngNhanVien.fxml")));
-        guiChinh.setCenter(view);
-    }
-
-    @FXML
-    void ChangeSceneThongKeNhanVien(ActionEvent event) throws IOException {
-        TabPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/NhanVien/ThongKeNhanVien.fxml")));
         guiChinh.setCenter(view);
     }
 
@@ -200,23 +262,10 @@ public class ManHinhChinhController implements Initializable {
         guiChinh.setCenter(view);
     }
 
-
     //SanPham
     @FXML
     void ChangeSceneQuanLySanPham(ActionEvent event) throws IOException {
         BorderPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/SanPham/QuanLySanPham.fxml")));
-        guiChinh.setCenter(view);
-    }
-
-    @FXML
-    void ChangeSceneThongKeSanPham(ActionEvent event) throws IOException {
-        TabPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/SanPham/ThongKeSanPham.fxml")));
-        guiChinh.setCenter(view);
-    }
-
-    @FXML
-    void ChangeSceneTimKiemSanPham(ActionEvent event) throws IOException {
-        BorderPane view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/openjfx/qllspahg/fxml/SanPham/TimKiemSanPham.fxml")));
         guiChinh.setCenter(view);
     }
 

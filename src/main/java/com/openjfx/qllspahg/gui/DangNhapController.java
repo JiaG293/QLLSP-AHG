@@ -55,9 +55,8 @@ public class DangNhapController implements Initializable {
         }
 
         if(DangNhapDaoImpl.getInstance().kiemTraDangNhap(username, password)){
-            ControlFlow.switchViewsSetSize(event, "/com/openjfx/qllspahg/fxml/ManHinhChinh.fxml", "Quản lý lương AHG", 1200, 700);
-
             FileIOUtils.writeTaiKhoanToFile(DangNhapDaoImpl.getInstance().layThongTinTaiKhoan(username), "userData.properties");
+            ControlFlow.switchViewsSetSize(event, "/com/openjfx/qllspahg/fxml/ManHinhChinh.fxml", "Quản lý lương AHG", 1200, 700);
         } else{
             Alerts.showConfirmation("Vui lòng nhập lại!", "Mã nhân sự hoặc mật khẩu không chính xác!");
         }

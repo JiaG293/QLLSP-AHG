@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openjfx.qllspahg.gui.QuanLyNhanVienController">
         <center>
@@ -64,7 +65,7 @@
                     <HBox alignment="CENTER" prefHeight="22.0" prefWidth="147.0" spacing="10.0">
                         <children>
                             <Label text="Giới tính: " />
-                            <ComboBox fx:id="cbxLoadGioiTinhTTNhanVien" prefHeight="26.0" prefWidth="70.0" />
+                            <ComboBox fx:id="cbxLoadGioiTinhTTNhanVien" prefHeight="26.0" prefWidth="70.0" promptText="Chọn giới tính" />
                         </children>
                         <padding>
                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -73,7 +74,7 @@
                     <HBox alignment="CENTER" spacing="10.0">
                         <children>
                             <Label text="Chức vụ: " />
-                            <ComboBox fx:id="cbxLoadChucVuTTNhanVien" prefHeight="26.0" prefWidth="196.0" />
+                            <ComboBox fx:id="cbxLoadChucVuTTNhanVien" prefHeight="26.0" prefWidth="196.0" promptText="Chọn chức vụ" />
                         </children>
                         <padding>
                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -82,7 +83,7 @@
                     <HBox alignment="CENTER" prefHeight="30.0" prefWidth="270.0" spacing="10.0">
                         <children>
                             <Label text="Phòng ban: " />
-                            <ComboBox fx:id="cbxLoadPhongBanTTNhanVien" prefHeight="26.0" prefWidth="183.0" />
+                            <ComboBox fx:id="cbxLoadPhongBanTTNhanVien" prefHeight="26.0" prefWidth="183.0" promptText="Chọn phòng ban" />
                         </children>
                         <padding>
                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -99,14 +100,41 @@
                 </padding>
             </HBox>
         </top>
-        <right>
+        <bottom>
+            <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="20.0" BorderPane.alignment="CENTER">
+                <children>
+                    <Button fx:id="btnResetTTNhanVien" mnemonicParsing="false" onAction="#resetBangTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Làm mới">
+                        <graphic>
+                            <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@../../images/icons/reset-removebg-preview.png" />
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="btnLuuTTNhanVien" mnemonicParsing="false" onAction="#luuTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Lưu">
+                        <graphic>
+                            <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@../../images/icons/save.png" />
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </children>
+                <padding>
+                    <Insets bottom="5.0" left="5.0" right="20.0" top="10.0" />
+                </padding>
+            </HBox>
+        </bottom>
+   <left>
             <VBox alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
                 <children>
-                    <ImageView fitHeight="106.66666666667" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../images/icons/avatar.png" />
-                        </image>
-                    </ImageView>
+            <Label text="Nhập thông tin nhân viên">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
                   <Label text="Mã số nhân viên" />
@@ -238,22 +266,22 @@
                   <Insets left="5.0" />
                </padding>
             </HBox>
-                    <HBox alignment="CENTER" spacing="120.0">
+                    <HBox alignment="CENTER" spacing="50.0">
                         <children>
-                            <Button fx:id="btnThemTTNhanVien" mnemonicParsing="false" onAction="#themTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Thêm">
+                            <Button fx:id="btnThemTTNhanVien" mnemonicParsing="false" onAction="#themTTNhanVien" prefHeight="30.0" prefWidth="150.0" text="Thêm">
                                 <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
-                                            <Image url="@../images/icons/add-removebg-preview.png" />
+                                            <Image url="@../../images/icons/add-removebg-preview.png" />
                                         </image>
                                     </ImageView>
                                 </graphic>
                             </Button>
-                            <Button fx:id="btnLamMoiTTNhanVien" mnemonicParsing="false" onAction="#xoaTrangTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Làm mới">
+                            <Button fx:id="btnLamMoiTTNhanVien" mnemonicParsing="false" onAction="#xoaTrangTTNhanVien" prefHeight="30.0" prefWidth="150.0" text="Làm mới">
                                 <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
-                                            <Image url="@../images/icons/XoaTrang.png" />
+                                            <Image url="@../../images/icons/reset-removebg-preview.png" />
                                         </image>
                                     </ImageView>
                                 </graphic>
@@ -266,22 +294,22 @@
                             <Insets left="5.0" right="5.0" />
                         </padding>
                     </HBox>
-                    <HBox alignment="CENTER" spacing="120.0">
+                    <HBox alignment="CENTER" spacing="50.0">
                         <children>
-                            <Button fx:id="btnSuaTTNhanVien" mnemonicParsing="false" onAction="#suaTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Sửa">
+                            <Button fx:id="btnSuaTTNhanVien" mnemonicParsing="false" onAction="#suaTTNhanVien" prefHeight="30.0" prefWidth="150.0" text="Sửa">
                                 <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
-                                            <Image url="@../images/icons/edit-removebg-preview.png" />
+                                            <Image url="@../../images/icons/edit-removebg-preview.png" />
                                         </image>
                                     </ImageView>
                                 </graphic>
                             </Button>
-                            <Button fx:id="btnXoaTTNhanVien" mnemonicParsing="false" onAction="#xoaTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Xóa">
+                            <Button fx:id="btnXoaTTNhanVien" mnemonicParsing="false" onAction="#xoaTTNhanVien" prefHeight="30.0" prefWidth="150.0" text="Xóa">
                                 <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
-                                            <Image url="@../images/icons/trash-removebg-preview.png" />
+                                            <Image url="@../../images/icons/trash-removebg-preview.png" />
                                         </image>
                                     </ImageView>
                                 </graphic>
@@ -296,32 +324,5 @@
                     <Insets top="10.0" />
                 </padding>
             </VBox>
-        </right>
-        <bottom>
-            <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="20.0" BorderPane.alignment="CENTER">
-                <children>
-                    <Button fx:id="btnResetTTNhanVien" mnemonicParsing="false" onAction="#resetBangTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Reset">
-                        <graphic>
-                            <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../images/icons/reset-removebg-preview.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                    <Button fx:id="btnLuuTTNhanVien" mnemonicParsing="false" onAction="#luuTTNhanVien" prefHeight="30.0" prefWidth="94.0" text="Lưu">
-                        <graphic>
-                            <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../images/icons/save.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                </children>
-                <padding>
-                    <Insets bottom="5.0" left="5.0" right="20.0" top="10.0" />
-                </padding>
-            </HBox>
-        </bottom>
+   </left>
     </BorderPane>
