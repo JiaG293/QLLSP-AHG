@@ -65,7 +65,7 @@ public class TimKiemCongNhanDao {
             String truyVantrcwhere = "SELECT CN.email, CN.hoCN,CN.maCN,CN.sDT, CN.sTK, CN.tenCN, CN.trangThaiCN, TSX.*,CV.maCV,CV.tenCV ,\n" +
                     "SUM(CASE WHEN BCC.nghiPhep = 1 THEN 1 ELSE 0 END ) AS soNgayNghiPhep,\n" +
                     "SUM(CASE WHEN BCC.soLuongLamDuoc > 0 THEN 1 ELSE 0 END)  AS soNgayDiLam,\n" +
-                    "SUM(CASE WHEN BCC.nghiPhep = 1 AND BCC.soLuongLamDuoc <= 0 THEN 1 ELSE 0 END) AS soNgayNghi,\n" +
+                    "SUM(CASE WHEN BCC.nghiPhep = 0 AND BCC.soLuongLamDuoc <= 0 THEN 1 ELSE 0 END) AS soNgayNghi,\n" +
                     "SUM(BPC.[chiTieu]) AS soLuongDuocPhanCong,\n" +
                     "SUM(BCC.[soLuongLamDuoc]) AS soLuongLamDuoc\n" +
                     "FROM [dbo].[CongNhan] AS CN  \n" +

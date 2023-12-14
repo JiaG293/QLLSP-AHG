@@ -65,9 +65,9 @@ VALUES
 --HopDongTable
 INSERT INTO [HopDong] (maHD,tenKH,sDT,diaChi,email,ngayKKHD,ngayTLHD,trangThaiHD)
 VALUES
-    ('HD100000', N'Kalia Mcdaniel','0900856716','Ap #880-5637 Maecenas Ave','phasellus.at@gmail.com','2022-11-27','2023-01-31','1'),
-    ('HD100001', N'Oliver Monroe','0901130683','189-9031 Scelerisque, Road','felis.ullamcorper@gmail.com','2023-01-04','2023-04-26','1'),
-    ('HD100002', N'Cameron Cotton','0386142383','P.O. Box 954, 5519 Odio Road','et.ultrices.posuere@gmail.com','2022-11-18','2023-04-29','1');
+    ('HD100000', N'Kalia Mcdaniel','0900856716','Ap #880-5637 Maecenas Ave','phasellus.at@gmail.com','2022-11-27','2024-01-31','0'),
+    ('HD100001', N'Oliver Monroe','0901130683','189-9031 Scelerisque, Road','felis.ullamcorper@gmail.com','2023-01-04','2024-04-26','0'),
+    ('HD100002', N'Cameron Cotton','0386142383','P.O. Box 954, 5519 Odio Road','et.ultrices.posuere@gmail.com','2022-11-18','2024-04-29','0');
 
 
 --ChiTietHopDongTable

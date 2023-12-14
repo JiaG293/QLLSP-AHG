@@ -367,7 +367,13 @@ public class BangLuongNhanVienController implements Initializable {
     @FXML
     void chonTatCaCacHang(ActionEvent event) {
         for (BangLuongNhanVien bl :  DSBANGLUONGNV) {
-            bl.setLuaChon(true);
+            if (bl.isLuaChon()) {
+                bl.setLuaChon(false);
+                DSBANGLUONGNVCHON.removeIf(elem -> elem.getMaBLNV().equals(bl.getMaBLNV()));
+            } else {
+                bl.setLuaChon(true);
+                DSBANGLUONGNVCHON.add(bl);
+            }
             tblBangLuongNhanVien.refresh();
         }
 
