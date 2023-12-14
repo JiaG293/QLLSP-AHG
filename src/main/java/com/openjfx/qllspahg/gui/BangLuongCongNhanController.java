@@ -353,8 +353,18 @@ public class BangLuongCongNhanController implements Initializable {
     @FXML
     void bangLuongDuocChon(MouseEvent event) {
         BangLuongCongNhan blcn = tblBangLuongCongNhan.getSelectionModel().getSelectedItem();
-        blcn.setLuaChon(true);
-        tblBangLuongCongNhan.refresh();
+        if (blcn != null) {
+            for (BangLuongCongNhan bl : DSBANGLUONGCN) {
+                if (bl.getMaBLCN().equals(blcn.getMaBLCN()) && bl.isLuaChon()) {
+                    bl.setLuaChon(false);
+                    DSBANGLUONGCNCHON.removeIf(elem -> elem.getMaBLCN().equals(blcn.getMaBLCN()));
+                } else if (bl.getMaBLCN().equals(blcn.getMaBLCN()) && !bl.isLuaChon()) {
+                    bl.setLuaChon(true);
+                    DSBANGLUONGCNCHON.add(bl);
+                }
+                tblBangLuongCongNhan.refresh();
+            }
+        }
 
         System.out.println("bang luong chon " + DSBANGLUONGCNCHON);
     }

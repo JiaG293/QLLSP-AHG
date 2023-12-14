@@ -130,6 +130,12 @@ public class Utils {
         return dinhDangNgayHienTai(ngayHienTai, "yyyy-MM-dd");
     }
 
+    public static String taoNgayTruocDo() {
+        LocalDate ngayHienTai = LocalDate.now();
+//        String maNgayHienTai = String.format(ngayHienTai.getYear() + "-" + ngayHienTai.getMonthValue() + "-" + ngayHienTai.getDayOfMonth());
+        return dinhDangNgayHienTai(ngayHienTai.minusMonths(1), "yyyy-MM-dd");
+    }
+
     public static String taoNgayHomTruoc() {
         LocalDate ngayHienTai = LocalDate.now();
         LocalDate ngayHomTruoc = ngayHienTai.minusDays(1);

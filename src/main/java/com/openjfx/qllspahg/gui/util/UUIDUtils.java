@@ -104,12 +104,18 @@ public class UUIDUtils {
     }
 
     public static String taoMaBangLuongCongNhan(String maCongNhan){
-        return "BL" + maCongNhan + DateUtils.formatStringVietnamDateCustom(Date.valueOf(Utils.taoNgayHienTai()), "MMyyyy");
+        return "BL" + maCongNhan + DateUtils.formatStringVietnamDateCustom(Date.valueOf(Utils.taoNgayTruocDo()), "MMyyyy");
     }
     public static String taoMaBangLuongNhanVien(String maNhanVien){
-        return "BL" + maNhanVien + DateUtils.formatStringVietnamDateCustom(Date.valueOf(Utils.taoNgayHienTai()), "MMyyyy");
+        return "BL" + maNhanVien + DateUtils.formatStringVietnamDateCustom(Date.valueOf(Utils.taoNgayTruocDo()), "MMyyyy");
     }
 
+    public static String taoMaBangLuongCongNhanTuyChon(String maCongNhan, String thang, String nam){
+        return "BL" + maCongNhan + thang + nam;
+    }
+    public static String taoMaBangLuongNhanVienTuyChon(String maNhanVien, String thang, String nam){
+        return "BL" + maNhanVien + thang + nam;
+    }
 
 
 

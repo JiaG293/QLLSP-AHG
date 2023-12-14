@@ -272,7 +272,7 @@ public class TinhLuongNhanVienController implements Initializable {
 
     }
 
-    private void khoiTaoComboxBoxTrangThaiBangLuong(){
+    private void khoiTaoComboxBoxTrangThaiBangLuong() {
         ObservableList<String> listTrangThai = FXCollections.observableArrayList();
         listTrangThai.clear();
         cbxTrangThaiLocNV.setPromptText("Chọn trạng thái lọc");
@@ -285,7 +285,7 @@ public class TinhLuongNhanVienController implements Initializable {
         String thangLbl = cbxLocThangTinhLuongNV.getValue();
         String namLbl = cbxLocNamTinhLuongNV.getValue();
         LocalDate dateHienTai = LocalDate.now();
-        if ( thangLbl == null || thangLbl.equals("Trống") || thangLbl.isEmpty()) {
+        if (thangLbl == null || thangLbl.equals("Trống") || thangLbl.isEmpty()) {
             thangLbl = String.valueOf(dateHienTai.getMonthValue() - 1);
         }
         if (namLbl == null || namLbl.equals("Trống") || namLbl.isEmpty()) {
@@ -453,6 +453,7 @@ public class TinhLuongNhanVienController implements Initializable {
     }
 
     private void kiemTraBangLuongDuocChon() {
+
         ChiTietLuongNhanVien ctlnvDuocChon = tblLuongNhanVien.getSelectionModel().getSelectedItem();
         System.out.println(ctlnvDuocChon);
         if (ctlnvDuocChon != null) {
@@ -472,18 +473,18 @@ public class TinhLuongNhanVienController implements Initializable {
         //Khi nao hoan thanh chuong trinh bo xoa
     }
 
-    private void kiemTraCamSuaDoi(){
+    private void kiemTraCamSuaDoi() {
         String thang = cbxLocThangTinhLuongNV.getValue();
         LocalDate lc = LocalDate.now();
         int thangDuocChon = 0;
-        if(!cbxLocThangTinhLuongNV.getValue().equals("Trống")){
+        if (!cbxLocThangTinhLuongNV.getValue().equals("Trống")) {
             thangDuocChon = Integer.parseInt(cbxLocThangTinhLuongNV.getValue());
             int thangHienTai = lc.getMonthValue();
 
-            if(thangHienTai > thangDuocChon && thangHienTai - thangDuocChon > 1){
+            if (thangHienTai > thangDuocChon && thangHienTai - thangDuocChon > 1) {
                 btnLuuDanhSachBangLuong.setDisable(true);
                 btnLuuBangLuongDuocChon.setDisable(true);
-            } else if (thangHienTai == thangDuocChon){
+            } else if (thangHienTai == thangDuocChon) {
                 btnLuuDanhSachBangLuong.setDisable(true);
                 btnLuuBangLuongDuocChon.setDisable(true);
             } else {
@@ -498,9 +499,6 @@ public class TinhLuongNhanVienController implements Initializable {
         kiemTraBangLuongDuocChon();
 //        kiemTraCamSuaDoi();
     }
-
-
-
 
 
 }
