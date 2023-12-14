@@ -292,6 +292,30 @@ public class SqlQueryBuilder {
         return sqlBuilder.toString();
     }
 
+    public static String stringQueryLocTaiKhoanNhanVien(String cauTruyVanTruocWhere, String maTaiKhoan, String trangThaiLoc) {
+
+        StringBuilder sqlBuilder = new StringBuilder().append(cauTruyVanTruocWhere).append(" WHERE ");
+
+        if (maTaiKhoan != null && !maTaiKhoan.isEmpty() && !maTaiKhoan.equals(" ")) {
+            sqlBuilder.append("TK.maTK = '").append(maTaiKhoan).append("' AND ");
+        }
+
+        if (trangThaiLoc != null && !trangThaiLoc.isEmpty() && !trangThaiLoc.equals(" ")) {
+            sqlBuilder.append("TK.trangThaiTK = '").append(trangThaiLoc).append("' AND ");
+        }
+
+        // Xoa where cuoi neu co
+        if (sqlBuilder.toString().endsWith("WHERE ")) {
+            sqlBuilder.setLength(sqlBuilder.length() - 6);
+        }
+
+        // Xoa and cuoi neu co
+        if (sqlBuilder.toString().endsWith("AND ")) {
+            sqlBuilder.setLength(sqlBuilder.length() - 4);
+        }
+
+        return sqlBuilder.toString();
+    }
 
 
 

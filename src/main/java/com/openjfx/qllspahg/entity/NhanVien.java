@@ -21,6 +21,7 @@ public class NhanVien {
     private PhuCap phuCap;
     private double luongCoBan;
 
+
     public NhanVien(String maNV, String hoNV, String tenNV, boolean gioiTinh, Date ngaySinh, String sDT, String email, Date ngayVaoLam, String sTK, ChucVu chucVuNV, PhongBan phongBan, PhuCap phuCap, double luongCoBan) {
         this.maNV = maNV;
         this.hoNV = hoNV;

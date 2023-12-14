@@ -16,10 +16,11 @@ public interface DSDao {
     public ObservableList<CongDoan> DSCONGDOAN = FXCollections.observableArrayList();
     public ObservableList<BangChamCongCongNhan> DSCHAMCONGCONGNHAN = FXCollections.observableArrayList();
     public ObservableList<BangChamCongCongNhan> DSCHAMCONGCONGNHANUPDATE = FXCollections.observableArrayList(); //khi bangchamcong duoc sua doi se them vao day
-    public ObservableList<ChiTietLuongNhanVien> DSCHITIETLUONGNHANVIEN= FXCollections.observableArrayList();
-    public ObservableList<ChiTietLuongCongNhan> DSCHITIETLUONGCONGNHAN= FXCollections.observableArrayList();
-    public ObservableList<BangLuongCongNhan> DSBANGLUONGCN= FXCollections.observableArrayList();
-    public ObservableList<BangLuongCongNhan> DSBANGLUONGCNCHON= FXCollections.observableArrayList();
-    public ObservableList<BangLuongNhanVien> DSBANGLUONGNV= FXCollections.observableArrayList();
-    public ObservableList<BangLuongNhanVien> DSBANGLUONGNVCHON= FXCollections.observableArrayList();
+    public ObservableList<ChiTietLuongNhanVien> DSCHITIETLUONGNHANVIEN = FXCollections.observableArrayList();
+    public ObservableList<ChiTietLuongCongNhan> DSCHITIETLUONGCONGNHAN = FXCollections.observableArrayList();
+    public ObservableList<BangLuongCongNhan> DSBANGLUONGCN = FXCollections.observableArrayList();
+    public ObservableList<BangLuongCongNhan> DSBANGLUONGCNCHON = FXCollections.observableArrayList();
+    public ObservableList<BangLuongNhanVien> DSBANGLUONGNV = FXCollections.observableArrayList();
+    public ObservableList<BangLuongNhanVien> DSBANGLUONGNVCHON = FXCollections.observableArrayList();
+    public ObservableList<TaiKhoan> DSTAIKHOAN= FXCollections.observableArrayList();
 }
