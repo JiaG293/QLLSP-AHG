@@ -291,7 +291,7 @@ public class QuanLySanPhamDaoImpl {
             e.printStackTrace();
             return false;
         }
-        getInstance().capNhatGiaSanPhamKhiCoThayDoiCongDoan(UUIDUtils.taoMaSanPhamTuMaCongDoan(congDoanSanPham));
+//        getInstance().capNhatGiaSanPhamKhiCoThayDoiCongDoan(UUIDUtils.taoMaSanPhamTuMaCongDoan(congDoanSanPham));
         System.out.println("Da xoa cong doan san pham o csdl!!! ");
         return true;
     }
