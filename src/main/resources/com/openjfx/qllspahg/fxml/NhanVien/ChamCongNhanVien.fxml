@@ -23,7 +23,7 @@
                         <HBox alignment="CENTER" spacing="10.0">
                             <children>
                                 <Label text="Mã nhân viên" />
-                                <TextField fx:id="tfLocMaNV" prefHeight="26.0" prefWidth="152.0" />
+                                <TextField fx:id="tfLocMaNV" prefHeight="26.0" prefWidth="152.0" promptText="Nhập mã nhân viên" />
                             </children>
                             <padding>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -32,7 +32,7 @@
                         <HBox alignment="CENTER" spacing="10.0">
                             <children>
                                 <Label text="Tên nhân viên" />
-                                <TextField fx:id="tfLocTenNV" prefHeight="26.0" prefWidth="152.0" />
+                                <TextField fx:id="tfLocTenNV" prefHeight="26.0" prefWidth="152.0" promptText="Nhập tên nhân viên" />
                             </children>
                             <padding>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -50,7 +50,7 @@
                         <HBox alignment="CENTER" prefHeight="30.0" prefWidth="270.0" spacing="10.0">
                             <children>
                                 <Label text="Phòng ban: " />
-                                <ComboBox fx:id="cbxLocPhongBan" prefHeight="26.0" prefWidth="154.0" />
+                                <ComboBox fx:id="cbxLocPhongBan" prefHeight="26.0" prefWidth="154.0" promptText="Chọn phòng ban" />
                             </children>
                             <padding>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -74,13 +74,13 @@
     <bottom>
         <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="20.0" BorderPane.alignment="CENTER">
             <children>
-            <Button mnemonicParsing="false" onAction="#taoChamCongTuyChon" text="tao cc tuy chon" />
-            <Button mnemonicParsing="false" onAction="#taoChamCongHienTai" text="Tạo hien tai" />
+            <Button mnemonicParsing="false" onAction="#taoChamCongTuyChon" text="Tạo quá khứ" />
+            <Button mnemonicParsing="false" onAction="#taoChamCongHienTai" text="Tạo hiện tại" />
                 <Button mnemonicParsing="false" onAction="#lamMoiDuLieuBangChamCongNhanVien" prefHeight="30.0" prefWidth="94.0" text="Làm mới">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/icons/reset-removebg-preview.png" />
+                                <Image url="@../../images/icons/reset-removebg-preview.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -89,7 +89,7 @@
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/icons/save.png" />
+                                <Image url="@../../images/icons/save.png" />
                             </image>
                         </ImageView>
                     </graphic>
