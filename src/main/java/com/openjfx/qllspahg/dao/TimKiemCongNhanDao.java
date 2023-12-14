@@ -74,6 +74,7 @@ public class TimKiemCongNhanDao {
                     "JOIN [dbo].[ChucVu] AS CV ON CV.[maCV] = CN.[maCV]\n" +
                     "JOIN [dbo].[ToSanXuat] AS TSX ON TSX.maTSX = CN.maTSX\n" +
                     "WHERE MONTH (BCC.ngayChamCong) = "+ LocalDate.now().getMonth().getValue() +" \n" +
+                    "AND DAY (BCC.ngayChamCong) < "+LocalDate.now().getDayOfMonth()+" "+
                     "AND YEAR (BCC.ngayChamCong) = "+LocalDate.now().getYear()+" ";
 
             String truyVan = SqlQueryBuilder.TimKiemCongNhan(truyVantrcwhere,maCongNhan,chucVu,maToSanXuat);

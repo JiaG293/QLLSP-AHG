@@ -75,6 +75,7 @@ public class TimKiemNhanVienDao {
                     "JOIN [dbo].[PhongBan] AS PB ON PB.maPB = NV.maPB\n" +
                     "JOIN [dbo].[ChucVu] AS CV ON CV.maCV =NV.maCV\n" +
                     "WHERE MONTH (BCC.ngayChamCong) = "+ LocalDate.now().getMonth().getValue() +" \n" +
+                    "AND DAY (BCC.ngayChamCong) < "+LocalDate.now().getDayOfMonth()+" "+
                     "AND YEAR (BCC.ngayChamCong) = "+LocalDate.now().getYear()+" ";
 
             String truyVan = SqlQueryBuilder.TimKiemNhanVien(truyVantrcwhere,maNhanVien,machucVu,maphongBan);

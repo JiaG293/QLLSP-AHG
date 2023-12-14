@@ -103,6 +103,7 @@ public class TamUngNhanVienDao {
                     "JOIN [dbo].[NhanVien] AS NV ON NV.maNV = BCC.maNV\n" +
                     "WHERE MONTH (BCC.ngayChamCong) = "+ LocalDate.now().getMonth().getValue() +" \n" +
                     "AND YEAR (BCC.ngayChamCong) = "+ LocalDate.now().getYear() +" AND NV.trangThaiNV != 1\n" +
+                    "AND DAY (BCC.ngayChamCong) < "+LocalDate.now().getDayOfMonth()+" "+
                     "AND NV.maNV = '"+maNhanVien+"'";
             ResultSet rs2 = st.executeQuery(truyVan2);
             rs2.next();

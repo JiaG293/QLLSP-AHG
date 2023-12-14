@@ -98,14 +98,14 @@ public class PhanCongCongNhanDao {
         try {
             Connection con = Db.getConnection();
             Statement st = con.createStatement();
-            String truyVan = "SELECT DISTINCT CD.maCD, CD.tenCD\n" +
+            String truyVan = "SELECT DISTINCT CD.maCD, CD.tenCD, CD.[giaiDoan]\n" +
                     "FROM [dbo].[CongDoan] AS CD\n" +
                     "INNER JOIN [dbo].[SanPham] AS SP ON CD.maSP = SP.maSP\n" +
                     "INNER JOIN [dbo].[ChiTietHopDong] AS CT ON SP.maSP = CT.maSP\n" +
                     "where SP.maSP=N'"+maSp+"' AND CT.maHD='"+maHD+"'";
             ResultSet rs = st.executeQuery(truyVan);
             while (rs.next()){
-                dsCongDoan.add(new CongDoan(rs.getString("maCD"),rs.getString("tenCD")));
+                dsCongDoan.add(new CongDoan(rs.getString("maCD"),rs.getString("tenCD"),rs.getString("giaiDoan")));
             }
         }catch (SQLException e){
             e.printStackTrace();

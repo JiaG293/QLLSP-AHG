@@ -417,7 +417,7 @@ public class PhanCongCongNhanController implements Initializable {
             cbxCongDoanPCCN.setConverter(new StringConverter<CongDoan>() {
                 @Override
                 public String toString(CongDoan congDoan) {
-                    return congDoan !=null ? congDoan.getTenCD() : "null";
+                    return congDoan !=null ? congDoan.getTenCD() + " Giai Đoạn: " +congDoan.getGiaiDoanCD() : "null";
                 }
 
                 @Override
