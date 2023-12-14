@@ -309,7 +309,7 @@ public class ChamCongNhanVienController implements Initializable {
         LocalDate ngayMoi = ngay.plusDays(1);
         System.out.println(ngayMoi);
 
-        ChamCongNhanVienDaoImpl.getInstance().taoBangChamCongNhanVienThangTiepTheo(ChamCongNhanVienDaoImpl.getInstance().layDuLieuNhanVien());
+        ChamCongNhanVienDaoImpl.getInstance().taoBangChamCongNhanVienThangTruoc(ChamCongNhanVienDaoImpl.getInstance().layDuLieuNhanVien());
     }
 
 

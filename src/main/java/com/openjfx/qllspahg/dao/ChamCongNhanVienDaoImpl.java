@@ -111,6 +111,37 @@ public class ChamCongNhanVienDaoImpl {
         return listBCCNV;
     }
 
+    public boolean taoBangChamCongNhanVienThangTruoc(ObservableList<NhanVien> listNV) {
+        Connection con = null;
+        PreparedStatement pst = null;
+        try {
+            String sql = "INSERT INTO BangChamCongNhanVien (maBCCNV, maNV, ngayChamCong) VALUES ( ?, ?, ?)";
+
+            con = Db.getConnection();
+            pst = con.prepareStatement(sql);
+
+            List<String> ngayTiepTheo = Utils.taoDanhSachNgayTrongThangTruoc("dd/MM/yyyy");
+            List<String> ngayTiepTheoMaNV = Utils.taoDanhSachNgayTrongThangTruoc("ddMMyy");
+            for (NhanVien nv : listNV) {
+                for (int i = 0; i < ngayTiepTheo.size(); i++) {
+                    pst.setString(1, Utils.taoMaBangChamCong(nv.getMaNV(), ngayTiepTheoMaNV.get(i)));
+                    pst.setString(2, nv.getMaNV());
+                    pst.setString(3, DateUtils.chuyenDoiSangNgaySQL(ngayTiepTheo.get(i), "dd/MM/yyyy", "yyyy-MM-dd"));
+                    pst.addBatch();
+                }
+                pst.executeBatch();
+                System.out.println("Da tao bang cham cong vao csdl!!! ");
+            }
+            con.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
 
     //Tao du lieu bang cham cong thang tiep theo
     public boolean taoBangChamCongNhanVienThangTiepTheo(ObservableList<NhanVien> listNV) {

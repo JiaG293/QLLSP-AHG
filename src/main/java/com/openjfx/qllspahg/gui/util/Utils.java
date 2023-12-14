@@ -194,6 +194,23 @@ public class Utils {
         return nextMonthDates;
     }
 
+    public static List<String> taoDanhSachNgayTrongThangTruoc(String pattern) {
+        List<String> nextMonthDates = new ArrayList<>();
+
+        // Lấy ngày đầu tiên của tháng tiếp theo
+        LocalDate firstDayOfNextMonth = LocalDate.now().minusMonths(1).withDayOfMonth(1);
+        int numberOfDaysInNextMonth = firstDayOfNextMonth.lengthOfMonth();
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
+
+        for (int i = 0; i < numberOfDaysInNextMonth; i++) {
+            LocalDate currentDate = firstDayOfNextMonth.plusDays(i);
+            nextMonthDates.add(dateFormatter.format(currentDate));
+        }
+
+        return nextMonthDates;
+    }
+
 
 
 
