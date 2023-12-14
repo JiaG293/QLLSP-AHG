@@ -94,6 +94,24 @@
         <bottom>
             <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="20.0" BorderPane.alignment="CENTER">
                 <children>
+            <Button mnemonicParsing="false" onAction="#aaTest" prefHeight="30.0" prefWidth="94.0" text="temp" visible="false">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/icons/XoaTrang.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#taoBangChamCongKhiCoPhanCong" prefHeight="30.0" prefWidth="94.0" text="Tạo chấm công" visible="false">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/icons/add-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
                     <Button mnemonicParsing="false" onAction="#lamMoiDuLieuTableView" prefHeight="30.0" prefWidth="94.0" text="Làm mới">
                         <graphic>
                             <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
@@ -112,24 +130,6 @@
                             </ImageView>
                         </graphic>
                     </Button>
-            <Button mnemonicParsing="false" onAction="#aaTest" prefHeight="30.0" prefWidth="94.0" text="temp">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/icons/XoaTrang.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#taoBangChamCongKhiCoPhanCong" prefHeight="30.0" prefWidth="94.0" text="Tạo chấm công">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/icons/add-removebg-preview.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
                 </children>
                 <padding>
                     <Insets bottom="5.0" left="5.0" right="20.0" top="10.0" />

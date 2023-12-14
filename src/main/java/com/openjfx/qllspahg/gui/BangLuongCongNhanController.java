@@ -380,7 +380,7 @@ public class BangLuongCongNhanController implements Initializable {
     }
 
     private boolean layDuLieuBangLuongCongNhan() {
-        String thang = cbxLocThangTinhLuongCN.getValue();
+        String thang = String.valueOf(Integer.parseInt(cbxLocThangTinhLuongCN.getValue() + 1));
         String nam = cbxLocNamTinhLuongCN.getValue();
         //taiDuLieuTinhLuongCongNhanTuyChon(TinhLuongCongNhanDaoImpl.getInstance().tinhLuongCongNhanTuDong(thang, nam));
 
