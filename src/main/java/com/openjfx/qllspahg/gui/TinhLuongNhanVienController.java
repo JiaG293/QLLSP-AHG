@@ -442,6 +442,39 @@ public class TinhLuongNhanVienController implements Initializable {
     @FXML
     void lamMoiDanhSachTinhLuong(ActionEvent event) {
 
+        String thang = cbxLocThangTinhLuongNV.getValue();
+        String nam = cbxLocNamTinhLuongNV.getValue();
+
+        //Set label bang luong
+        String thangLbl = cbxLocThangTinhLuongNV.getValue();
+        String namLbl = cbxLocNamTinhLuongNV.getValue();
+        lblThangNamLuongNV.setText("Bảng tính lương tháng " + thangLbl + "-" + namLbl);
+
+        //Du lieu loc textfield ma, ten
+        String maNV = tfLocMaNhanVien.getText();
+        String tenNV = tfLocTenNhanVien.getText();
+        String phongBan = cbxLocPhongBanNV.getValue();
+
+        // combo box trang thai loc de xac dinh co xem du lieu khong
+        String trangThaiLoc = cbxTrangThaiLocNV.getValue();
+
+        System.out.println(maNV + " " + tenNV + " " + phongBan + " " + thangLbl + " " + namLbl);
+
+        if (!DSCHITIETLUONGNHANVIEN.isEmpty()) {
+            DSCHITIETLUONGNHANVIEN.clear();
+        }
+
+
+        ObservableList<ChiTietLuongNhanVien> listCTLNV = TinhLuongNhanVienDaoImpl.getInstance().locDuLieuDanhSachChiTietLuongNhanVienTuyChon(maNV, tenNV, phongBan, thangLbl, namLbl, trangThaiLoc);
+        if (listCTLNV.isEmpty()) {
+            Alerts.showAlert("Thông báo", "Lọc thành công", "Không tìm thấy bảng lương phù hợp.", Alert.AlertType.INFORMATION);
+        } else {
+            DSCHITIETLUONGNHANVIEN.addAll(listCTLNV);
+            tblLuongNhanVien.setItems(DSCHITIETLUONGNHANVIEN);
+            Alerts.showAlert("Thông báo", "Lọc thành công", "Tìm thấy " + listCTLNV.size() + " bảng lương.", Alert.AlertType.INFORMATION);
+            ;
+        }
+        System.out.println("DS san pham sau khi loc:" + DSCHITIETLUONGNHANVIEN.toString() + "\n");
     }
 
     private void taiDuLieuTinhLuongNhanVienTuyChon(ObservableList<ChiTietLuongNhanVien> listTinhLuong) {

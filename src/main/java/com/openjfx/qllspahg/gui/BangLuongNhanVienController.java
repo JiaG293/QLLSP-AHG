@@ -392,7 +392,7 @@ public class BangLuongNhanVienController implements Initializable {
 
     @FXML
     void layDuLieuLocLuongNhanVien(ActionEvent event) {
-        String thang = cbxLocThangTinhLuongNV.getValue();
+        String thang = String.valueOf(Integer.parseInt(Integer.parseInt(cbxLocThangTinhLuongNV.getValue()) == 12 ? String.valueOf(0) : cbxLocThangTinhLuongNV.getValue()) + 1);
         String nam = cbxLocNamTinhLuongNV.getValue();
         //taiDuLieuTinhLuongCongNhanTuyChon(TinhLuongCongNhanDaoImpl.getInstance().tinhLuongCongNhanTuDong(thang, nam));
 
@@ -417,7 +417,7 @@ public class BangLuongNhanVienController implements Initializable {
         }
 
 
-        ObservableList<BangLuongNhanVien> listBLNV = BangLuongNhanVienDaoImpl.getInstance().locDuLieuDanhSachBangLuongNhanVien(maNV, tenNV, phongBan, thangLbl, namLbl, trangThaiLuong);
+        ObservableList<BangLuongNhanVien> listBLNV = BangLuongNhanVienDaoImpl.getInstance().locDuLieuDanhSachBangLuongNhanVien(maNV, tenNV, phongBan, thang, namLbl, trangThaiLuong);
         if (listBLNV.isEmpty()) {
             Alerts.showAlert("Thông báo", "Lọc thành công", "Không tìm thấy bảng lương phù hợp.", Alert.AlertType.INFORMATION);
         } else {
