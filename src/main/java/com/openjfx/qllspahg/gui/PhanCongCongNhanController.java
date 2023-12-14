@@ -150,12 +150,7 @@ public class PhanCongCongNhanController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
-        /**
-         * Hồ Tấn Lộc
-         * Hoàn thành 3/12/2023
-         * 11.36pm
-         */
+
 
         datepickNgayPhanCongPCCN.setValue(LocalDate.now());
         batDauSKRad();

@@ -133,7 +133,7 @@
             <HBox>
                <children>
                   <Label text="Ghi chú: " />
-                  <TextField fx:id="tfGhiChu" prefHeight="111.0" prefWidth="222.0" />
+                  <TextField fx:id="tfGhiChu" accessibleRole="TEXT_AREA" prefHeight="111.0" prefWidth="222.0" />
                </children>
             </HBox>
             <HBox>

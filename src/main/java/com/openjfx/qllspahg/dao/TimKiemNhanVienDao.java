@@ -67,8 +67,8 @@ public class TimKiemNhanVienDao {
             Connection con = Db.getConnection();
             Statement st =con.createStatement();
             String truyVantrcwhere = "SELECT NV.email, NV.hoNV,NV.maNV,NV.sDT, NV.sTK, NV.tenNV, NV.trangThaiNV, PB.*,CV.maCV,CV.tenCV,\n" +
-                    "SUM(CASE WHEN BCC.nghiPhep = 1 THEN 1 ELSE 0 END ) AS SoNgayDiLam,\n" +
-                    "SUM(CASE WHEN BCC.diLam = 1 THEN 1 ELSE 0 END)  AS SoNgayNghiPhep,\n" +
+                    "SUM(CASE WHEN BCC.nghiPhep = 1 THEN 1 ELSE 0 END ) AS SoNgayNghiPhep,\n" +
+                    "SUM(CASE WHEN BCC.diLam = 1 THEN 1 ELSE 0 END)  AS SoNgayDiLam,\n" +
                     "SUM(CASE WHEN BCC.diLam =0 AND BCC.nghiPhep = 0 THEN 1 ELSE 0 END) AS soNgayNghi\n" +
                     "FROM [dbo].[NhanVien] AS NV \n" +
                     "JOIN [dbo].[BangChamCongNhanVien] AS BCC ON BCC.maNV = NV.maNV\n" +
