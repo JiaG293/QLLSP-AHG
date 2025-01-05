@@ -54,10 +54,7 @@ Phần mềm quản lý lương sản phẩm của công ty AHG là một hệ t
 ---
 
 ## Công nghệ sử dụng
-- **Ngôn ngữ lập trình:** Java, Python
-- **Cơ sở dữ liệu:** MySQL, MariaDB
-- **Frontend:** HTML, CSS, JavaScript
-- **Backend:** Spring Boot, Flask
+- JavaFX, SQL server
 
 ---
 
