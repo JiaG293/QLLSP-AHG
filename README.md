@@ -1,14 +1,7 @@
-# Phần mềm quản lý lương sản phẩm công ty AHG
-
-
-
-
-
-
 # Phần mềm Quản lý Lương Sản phẩm - Công ty AHG
 
 ## Giới thiệu
-Phần mềm quản lý lương sản phẩm của công ty AHG là một hệ thống hỗ trợ quản lý thông tin về lương và sản phẩm cho công nhân một cách hiệu quả, minh bạch và dễ sử dụng. Hệ thống bao gồm các tính năng chính như phân công sản phẩm, chấm công công nhân, và tính toán bảng lương công nhân.
+Phần mềm quản lý lương sản phẩm của công ty ba lô AHG là một hệ thống hỗ trợ quản lý thông tin về lương và sản phẩm cho công nhân một cách hiệu quả, minh bạch và dễ sử dụng. Hệ thống bao gồm các tính năng chính như phân công sản phẩm, chấm công công nhân, và tính toán bảng lương công nhân.
 
 ---
 
